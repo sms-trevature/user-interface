@@ -48,30 +48,29 @@ export class CognitoService {
       {}
     );
     console.log(response);
+    this.setup();
   }
 
   private setup() {
     Auth.currentAuthenticatedUser()
-    .then(user => {
-      // initialize the jwt for axios
-      Auth.currentSession()
-        .then(data => {
-          localStorage.setItem('token', data.getIdToken().getJwtToken());
-          const currentUser = data.getIdToken().payload;
-          this.currentUserStream.next(currentUser);
-        });
-
-      // create interval to refresh the jwt periodically
-      setInterval(() => {
+      .then(user => {
+        // initialize the jwt for axios
         Auth.currentSession()
           .then(data => {
-            console.log(data.getIdToken().getJwtToken());
             localStorage.setItem('token', data.getIdToken().getJwtToken());
+            const currentUser = data.getIdToken().payload;
+            this.currentUserStream.next(currentUser);
           });
-      }, 300000);
-    })
-    .catch(e => {
-      return;
-    });
+        // create interval to refresh the jwt periodically
+        setInterval(() => {
+          Auth.currentSession()
+            .then(data => {
+              localStorage.setItem('token', data.getIdToken().getJwtToken());
+            });
+        }, 300000);
+      })
+      .catch(e => {
+        return;
+      });
   }
 }
