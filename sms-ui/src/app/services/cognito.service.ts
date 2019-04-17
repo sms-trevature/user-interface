@@ -18,7 +18,7 @@ Amplify.configure({
 })
 export class CognitoService {
 
-  private currentUserStream = new BehaviorSubject<any>({});
+  private currentUserStream = new BehaviorSubject<any>(undefined);
   public currentUser$ = this.currentUserStream.asObservable();
 
   private tokenStream = new BehaviorSubject<string>(undefined);
@@ -62,6 +62,7 @@ export class CognitoService {
         Auth.currentSession()
           .then(data => {
             localStorage.setItem('token', data.getIdToken().getJwtToken());
+            this.tokenStream.next(data.getIdToken().getJwtToken());
             const currentUser = data.getIdToken().payload;
             this.currentUserStream.next(currentUser);
           });

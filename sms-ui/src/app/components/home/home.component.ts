@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
 import { CognitoService } from 'src/app/services/cognito.service';
 import { Subscription } from 'rxjs';
-import { User } from 'src/app/sms-client/model/User';
+import { User } from 'src/app/sms-client/dto/User';
 
 @Component({
   selector: 'app-home',
