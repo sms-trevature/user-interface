@@ -8,18 +8,22 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { CognitoService } from './services/cognito.service';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
+import { SmsClientModule } from './sms-client/sms-client.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    SmsClientModule
   ],
   providers: [
     CognitoService
