@@ -45,6 +45,12 @@ export class CognitoService {
     }
   }
 
+  async logout() {
+    await Auth.signOut();
+    this.tokenStream.next(undefined);
+    this.currentUserStream.next(undefined);
+  }
+
   async setNewPassword(password: string) {
     const response = await Auth.completeNewPassword(
       this.newPasswordUser,
@@ -71,6 +77,9 @@ export class CognitoService {
           Auth.currentSession()
             .then(data => {
               localStorage.setItem('token', data.getIdToken().getJwtToken());
+              this.tokenStream.next(data.getIdToken().getJwtToken());
+              const currentUser = data.getIdToken().payload;
+              this.currentUserStream.next(currentUser);
             });
         }, 300000);
       })
