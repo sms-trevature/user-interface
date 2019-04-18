@@ -31,7 +31,7 @@ const routes: Routes = [
     NavbarComponent,
     ProfileInfoComponent,
     HomeComponent,
-    AuthLoadingComponent
+    AuthLoadingComponent,
 
   ],
   imports: [
