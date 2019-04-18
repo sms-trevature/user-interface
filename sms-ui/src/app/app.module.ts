@@ -8,6 +8,9 @@ import { AuthLoadingComponent } from './components/auth-loading/auth-loading.com
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CognitoService } from './services/cognito.service';
+import { TestComponent } from './test/test.component';
+
+
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
 import { Routes, RouterModule } from '@angular/router';
@@ -24,6 +27,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
+    TestComponent,
     NavbarComponent,
     ProfileInfoComponent,
     HomeComponent,
