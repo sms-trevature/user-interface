@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
+import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 
 
 
@@ -29,7 +30,8 @@ const routes: Routes = [
     NavbarComponent,
     ProfileInfoComponent,
     HomeComponent,
-    AuthLoadingComponent
+    AuthLoadingComponent,
+    SurveyCreatorComponent
 
   ],
   imports: [
