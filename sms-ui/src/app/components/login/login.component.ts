@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CognitoService } from 'src/app/services/cognito.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   confirmationPassword = '';
 
 
-  constructor(private cognitoService: CognitoService) { }
+  constructor(private cognitoService: CognitoService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   async submit() {
     try {
       await this.cognitoService.login(this.username, this.password);
+      this.router.navigateByUrl('/home');
     } catch (err) {
       console.log(err);
       if (err.message === 'NEW_PASSWORD_REQUIRED') {
