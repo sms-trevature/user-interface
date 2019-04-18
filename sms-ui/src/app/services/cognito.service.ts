@@ -18,8 +18,11 @@ Amplify.configure({
 })
 export class CognitoService {
 
-  private currentUserStream = new BehaviorSubject<any>({});
+  private currentUserStream = new BehaviorSubject<any>(undefined);
   public currentUser$ = this.currentUserStream.asObservable();
+
+  private tokenStream = new BehaviorSubject<string>(undefined);
+  public token$ = this.tokenStream.asObservable();
 
   private newPasswordUser: any = null;
 
@@ -33,12 +36,19 @@ export class CognitoService {
 
     if (response.challengeName !== 'NEW_PASSWORD_REQUIRED') {
       this.setup();
+      return;
     } else {
       this.newPasswordUser = response;
       throw {
         message: 'NEW_PASSWORD_REQUIRED'
       };
     }
+  }
+
+  async logout() {
+    await Auth.signOut();
+    this.tokenStream.next(undefined);
+    this.currentUserStream.next(undefined);
   }
 
   async setNewPassword(password: string) {
@@ -58,6 +68,7 @@ export class CognitoService {
         Auth.currentSession()
           .then(data => {
             localStorage.setItem('token', data.getIdToken().getJwtToken());
+            this.tokenStream.next(data.getIdToken().getJwtToken());
             const currentUser = data.getIdToken().payload;
             this.currentUserStream.next(currentUser);
           });
@@ -66,6 +77,9 @@ export class CognitoService {
           Auth.currentSession()
             .then(data => {
               localStorage.setItem('token', data.getIdToken().getJwtToken());
+              this.tokenStream.next(data.getIdToken().getJwtToken());
+              const currentUser = data.getIdToken().payload;
+              this.currentUserStream.next(currentUser);
             });
         }, 300000);
       })
