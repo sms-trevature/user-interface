@@ -1,0 +1,30 @@
+#associatesHeader{
+    background: orange; 
+    margin: auto; 
+    border-style: outset; 
+    border-width: 2px; 
+    border-top-right-radius: 15px; 
+    border-top-left-radius: 15px; 
+}
+#InternalAssociates{
+    margin: auto; 
+    max-width: 600px;
+   
+}
+body{
+    text-align: center; 
+}
+#associateTable{
+    margin: auto; 
+
+}
+.spreadColumn{
+    padding: 10px; 
+    padding-left: 35px; 
+    padding-right: 35px; 
+}
+#filterByThisAssociate{
+    border-style: inset;
+    border: 1px; 
+    border-radius: 6px; 
+}
