@@ -10,16 +10,29 @@ import { LoginComponent } from './components/login/login.component';
 import { CognitoService } from './services/cognito.service';
 
 
+
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
+
+import { ReportsComponent } from './reports/reports.component';
+import { InterviewComponent } from './interview/interview.component';
+import { ManageComponent } from './manage/manage.component';
+import { SurveyComponent } from './survey/survey.component';
+
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
+
 
 
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
+
+  { path: 'reportsRoute', component: ReportsComponent },
+  { path: 'InterViewRoute', component: InterviewComponent },
+  { path: 'ManageRoute', component: ManageComponent },
+  { path: 'SurveyRoute', component: SurveyComponent }
 
 ];
 
@@ -27,11 +40,19 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
+
     NavbarComponent,
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
+
+    ReportsComponent,
+    InterviewComponent,
+    ManageComponent,
+    SurveyComponent
+
     SurveyCreatorComponent
+
 
   ],
   imports: [
