@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentUserSubscription = this.cognito.currentUser$.subscribe(user => {
-      this.userClient.findByEmail('blake.kruppa@revature.com').subscribe(
+      this.userClient.findByEmail(user.email).subscribe(
         succResp => {
           console.log(succResp);
           this.user = succResp;
