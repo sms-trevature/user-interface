@@ -1,0 +1,27 @@
+form id="manager-feed">
+  <!-- Options for interview status -->
+  <div class="form-group">
+    <div class="col-auto my-1">
+      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+        <option selected>Status</option>
+        <option value="1">Pending</option>
+        <option value="2">No Feedback</option>
+        <option value="3">Selected for 2nd</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <!-- This text box provides feedback for the form -->
+      <label for="exampleFormControlTextarea1">Feedback</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <!-- info for Date requested -->
+      <label class="col-lg-3 control-label">Date Requested:</label>
+      <div class="col-lg-8">
+        <input #birthdate type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+
+      </div>
+    </div>
+    <!--  info for date received -->
