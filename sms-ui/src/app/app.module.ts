@@ -15,6 +15,7 @@ import { SmsClientModule } from './sms-client/sms-client.module';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
+import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
 
 
 
@@ -31,7 +32,8 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-    SurveyCreatorComponent
+    SurveyCreatorComponent,
+    SurveyGridComponent
 
   ],
   imports: [
