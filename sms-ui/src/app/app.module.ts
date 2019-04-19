@@ -13,6 +13,7 @@ import { CognitoService } from './services/cognito.service';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
+import { NewInterviewComponent } from './components/new-interview/new-interview.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 
@@ -59,20 +60,19 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-
     NavbarComponent,
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-
     ReportsComponent,
     InterviewComponent,
     ManageComponent,
     SurveyComponent,
     MngrSubAssociatesComponent,
     SubMan2CohortComponent,
-    FakeServiceComponent
+    FakeServiceComponent,
 
+    NewInterviewComponent,
     SurveyCreatorComponent
 
 
