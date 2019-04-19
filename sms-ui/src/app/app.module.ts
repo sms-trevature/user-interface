@@ -49,7 +49,7 @@ const routes: Routes = [
     ReportsComponent,
     InterviewComponent,
     ManageComponent,
-    SurveyComponent
+    SurveyComponent,
 
     SurveyCreatorComponent
 
