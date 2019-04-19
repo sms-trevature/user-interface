@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
+    EditProfileComponent,
 
   ],
   imports: [
