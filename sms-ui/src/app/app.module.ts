@@ -16,6 +16,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
+import { AllSurveyComponent } from './all-survey/all-survey.component';
 
 
 
@@ -33,7 +34,8 @@ const routes: Routes = [
     HomeComponent,
     AuthLoadingComponent,
     SurveyCreatorComponent,
-    SurveyGridComponent
+    SurveyGridComponent,
+    AllSurveyComponent
 
   ],
   imports: [
