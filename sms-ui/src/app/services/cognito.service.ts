@@ -47,8 +47,12 @@ export class CognitoService {
 
   async logout() {
     await Auth.signOut();
+   
     this.tokenStream.next(undefined);
     this.currentUserStream.next(undefined);
+  }
+  async getCurrent(){
+    alert( Auth.currentAuthenticatedUser); 
   }
 
   async setNewPassword(password: string) {
