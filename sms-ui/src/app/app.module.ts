@@ -21,6 +21,9 @@ import { ReportsComponent } from './reports/reports.component';
 import { InterviewComponent } from './interview/interview.component';
 import { ManageComponent } from './manage/manage.component';
 import { SurveyComponent } from './survey/survey.component';
+import { MngrSubAssociatesComponent } from './mngr-sub-associates/mngr-sub-associates.component';
+import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.component';
+import { FakeServiceComponent } from './fake-service/fake-service.component';
 
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 
@@ -32,7 +35,23 @@ const routes: Routes = [
 
   { path: 'reportsRoute', component: ReportsComponent },
   { path: 'InterViewRoute', component: InterviewComponent },
-  { path: 'ManageRoute', component: ManageComponent },
+  {
+    path: 'ManageRoute', component: ManageComponent,
+    children: [
+      {
+        path: 'subMan1Internal',
+        component: MngrSubAssociatesComponent
+      },
+      {
+        path: 'cohort',
+        component: SubMan2CohortComponent
+      },
+      {
+        path: '',
+        component: SubMan2CohortComponent
+      }
+    ]
+  },
   { path: 'SurveyRoute', component: SurveyComponent }
 
 ];
@@ -51,6 +70,10 @@ const routes: Routes = [
     InterviewComponent,
     ManageComponent,
     SurveyComponent,
+    MngrSubAssociatesComponent,
+    SubMan2CohortComponent,
+    FakeServiceComponent,
+
     NewInterviewComponent,
     SurveyCreatorComponent
 
@@ -66,7 +89,7 @@ const routes: Routes = [
 
   ],
   providers: [
-    CognitoService,
+    CognitoService,FakeServiceComponent
   ],
   bootstrap: [AppComponent]
 })
