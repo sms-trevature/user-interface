@@ -9,18 +9,30 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CognitoService } from './services/cognito.service';
 
-
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
+import { NewInterviewComponent } from './components/new-interview/new-interview.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
+
+import { ReportsComponent } from './reports/reports.component';
+import { InterviewComponent } from './interview/interview.component';
+import { ManageComponent } from './manage/manage.component';
+import { SurveyComponent } from './survey/survey.component';
+
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
 
 
 
+
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
+
+  { path: 'reportsRoute', component: ReportsComponent },
+  { path: 'InterViewRoute', component: InterviewComponent },
+  { path: 'ManageRoute', component: ManageComponent },
+  { path: 'SurveyRoute', component: SurveyComponent }
 
 ];
 
@@ -33,7 +45,12 @@ const routes: Routes = [
     HomeComponent,
     AuthLoadingComponent,
     SurveyCreatorComponent,
-    SurveyGridComponent
+    SurveyGridComponent,
+    ReportsComponent,
+    InterviewComponent,
+    ManageComponent,
+    SurveyComponent,
+    NewInterviewComponent,
 
   ],
   imports: [
