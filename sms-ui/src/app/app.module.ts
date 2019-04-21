@@ -15,7 +15,6 @@ import { SmsClientModule } from './sms-client/sms-client.module';
 import { NewInterviewComponent } from './components/new-interview/new-interview.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 import { ReportsComponent } from './reports/reports.component';
 import { InterviewComponent } from './interview/interview.component';
@@ -64,7 +63,7 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-    EditProfileComponent,
+    
 
     ReportsComponent,
     InterviewComponent,
