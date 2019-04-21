@@ -22,6 +22,7 @@ import { SurveyComponent } from './survey/survey.component';
 
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
+import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component';
 
 
 
@@ -51,6 +52,7 @@ const routes: Routes = [
     ManageComponent,
     SurveyComponent,
     NewInterviewComponent,
+    SurveyDataComponent,
 
   ],
   imports: [
