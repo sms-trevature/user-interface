@@ -9,6 +9,8 @@ import { Color, Label } from 'ng2-charts';
 })
 export class AnswerData1Component implements OnInit {
 
+  /* TODO: un hard code this data */
+
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 50, 60, 56, 55, 40], label: 'Series A' },
     { data: [50, 35, 40, 30, 45, 22, 22], label: 'Super Cow'}
