@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SomeAssociate } from '../sms-client/dto/Employees';
 import { FakeServiceComponent } from '../fake-service/fake-service.component';
+import { Button } from 'protractor';
 
 
 @Component({
@@ -25,7 +26,10 @@ export class MngrSubAssociatesComponent implements OnInit {
   filteredEmployees: SomeAssociate[] = [];
   globalFart: string = '';
 
-
+  private returnableRoleValue = '';
+  private lastCell: any;  
+  private returnableEmailValue = '';
+  private returnableButton = document.createElement('button') as HTMLButtonElement;
   constructor(private _fakeService: FakeServiceComponent) {
 
     this.filteredEmployees =
@@ -56,6 +60,89 @@ export class MngrSubAssociatesComponent implements OnInit {
     } else {
       this.filteredEmployees = this.allAssociates;
     }
+  }
+  editRole(email) {
+    let selectedInquiry = document.getElementById(this.returnableEmailValue) as HTMLDataListElement;
+    console.log("when nothign is slectec: " + selectedInquiry); //test-
+    const grabDataCell = document.getElementById(email) as HTMLDataListElement;
+    
+    if (selectedInquiry !== null) {
+      selectedInquiry.appendChild(this.returnableButton);
+      while (selectedInquiry.firstChild) {
+        
+        selectedInquiry.removeChild(selectedInquiry.firstChild);
+      }
+      selectedInquiry.appendChild(this.returnableButton);
+      this.returnableButton = grabDataCell.firstChild as HTMLButtonElement;
+    }else{
+      this.returnableButton = grabDataCell.firstChild as HTMLButtonElement;
+    }
+    
+    
+    console.log("email of user: " + email);
+    //  const grabDataCell = document.getElementById(email) as HTMLDataListElement;
+    let currentRole: string;
+    const childButton = grabDataCell.firstChild as HTMLButtonElement;
+    currentRole = childButton.innerText;
+    //--This value is used later to return the previous role when a new selection is made - 
+    this.returnableRoleValue = childButton.innerText;
+    //this keeps track of the last selection - 
+    this.returnableEmailValue = email;
+    //--
+    console.log("the button currently holds: " + childButton.innerHTML);
+    while (grabDataCell.firstChild) {
+      currentRole = grabDataCell.firstChild.textContent;
+      grabDataCell.removeChild(grabDataCell.firstChild);
+    }
+    const NewRole = document.createElement('select') as HTMLSelectElement;
+    NewRole.onchange = this.changeRole;
+    NewRole.setAttribute('id', 'selectedRoleRow');
+    const optAdmin = document.createElement('option') as HTMLOptionElement;
+    optAdmin.textContent = "Admin";
+    const optStagingM = document.createElement('option') as HTMLOptionElement;
+    optStagingM.textContent = "Staging Managers";
+    const optAssociate = document.createElement('option') as HTMLOptionElement
+    optAssociate.textContent = "Associate";
+    const optTrainer = document.createElement('option') as HTMLOptionElement;
+    optTrainer.textContent = "Trainer";
+    //cycle until we find the current role and make that one first - 
+    let ArrayOfOptions = [optAdmin, optStagingM, optAssociate, optTrainer];
+    let ArrayOfNoneCurrentOptions = new Array;
+    ArrayOfOptions.forEach(PossibleFirstOptionElement => {
+      //too short
+      PossibleFirstOptionElement.innerText = PossibleFirstOptionElement.innerText + " ";
+      console.log("inside foreach: " + PossibleFirstOptionElement.textContent.length);
+      console.log('against..');
+      console.log(" - " + currentRole.length);
+      if (PossibleFirstOptionElement.innerText.length == childButton.innerText.length) {
+        console.log("current option should be " + PossibleFirstOptionElement.textContent);
+        NewRole.appendChild(PossibleFirstOptionElement);//append the current one so that it shows first - 
+      } else {
+        ArrayOfNoneCurrentOptions.push(PossibleFirstOptionElement);
+        //should result in three that we have not appendd yet - 
+      }
+    });
+    ArrayOfNoneCurrentOptions.forEach(OptionElement => {
+      NewRole.appendChild(OptionElement);
+    });
+
+
+    grabDataCell.appendChild(NewRole);
+    // a service is needed to update user info by the email assocaited with their row - 
+  }
+  changeRole() {
+
+    const newSpot = document.getElementById('selectedRoleRow') as HTMLSelectElement;
+    let index = newSpot.selectedIndex;
+    let opt = newSpot.options[index];
+    console.log("role has been changed to " + opt.value);//onChange test -
+  }
+
+  inputNewRole() {
+    //how to enter on 'enter' key
+    //myInputElement.addEventListener('keyup', this.inputNewRole);
+    console.log("enterkey pressed");
+
   }
 }
 
