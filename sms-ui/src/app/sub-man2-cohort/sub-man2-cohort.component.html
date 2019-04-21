@@ -1,35 +1,37 @@
 <body>
-  <div id="InternalAssociates">
+    <div id="InternalAssociates">
 
-    <div id="associatesHeader">
-         <!-- [(ngModel)]='listFilter' -->
-      <div style="display: inline; margin-left: -320px; ">
-        <input type="text" placeholder="Filter By"  [(ngModel)]='listFilter' id="filterCohortBy"/>
-      </div>
-     
-      <span style="display: inline;"> Cohorts</span>
+        <div id="associatesHeader">
+            <!-- [(ngModel)]='listFilter' -->
+            <div style="display: inline; margin-left: -320px; ">
+                <input type="text" placeholder="Filter By" [(ngModel)]='listFilter' id="filterCohortBy" />
+            </div>
+
+            <span style="display: inline;"> Cohorts</span>
+        </div>
+        <table id="associateTable">
+            <tr>
+                <th class="spreadColumnChrt">Name</th>
+                <th class="spreadColumnChrt">Location</th>
+                <th class="spreadColumnChrt">Token</th>
+                <th class="spreadColumnChrt">Start Date</th>
+                <th class="spreadColumnChrt">End Date</th>
+                <th class="spreadColumnChrt">Trainer</th>
+                <th class="spreadColumnChrt">Email</th>
+            </tr>
+            <tr *ngFor='let temp of filteredCohort'>
+                <a routerLink>
+                    <td>{{temp['cohortName']}}</td>
+                </a>
+                <td>{{temp.address.city}},{{temp.address.state}}</td>
+                <td>{{temp['cohortToken']}}</td>
+                <td> {{temp.startDate}} </td>
+                <td> {{temp.endDate}} </td>
+                <td> {{temp.trainer.firstName}} {{temp.trainer.lastName}} </td>
+                <td> {{temp.trainer.email}}</td>
+            </tr>
+
+        </table>
+
     </div>
-    <table id="associateTable">
-      <tr>
-        <th class="spreadColumnChrt">Name</th>
-        <th class="spreadColumnChrt">Location</th>
-        <th class="spreadColumnChrt">Token</th>
-        <th class="spreadColumnChrt">Start Date</th>
-        <th class="spreadColumnChrt">End Date</th>
-        <th class="spreadColumnChrt">Trainer</th>
-        <th class="spreadColumnChrt">Email</th>
-      </tr>
-      <tr *ngFor='let temp of filteredCohort'>
-        <td>{{temp.CName}}</td>
-        <td>{{temp.Location}}</td>
-        <td>{{temp.Token}}</td>
-        <td>{{temp.startDate}}</td>
-        <td>{{temp.endDate}}</td>
-        <td>{{temp.trainer}}</td>
-        <td>{{temp.email}}</td>
-      </tr>
-      
-    </table>
-
-  </div>
 </body>
