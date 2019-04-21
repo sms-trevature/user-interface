@@ -25,13 +25,15 @@ import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.compon
 import { FakeServiceComponent } from './fake-service/fake-service.component';
 
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
+import { SurveyListComponent } from './components/survey/survey-list/survey-list.component';
+import { TimestampPipe } from './pipe/timestamp.pipe';
 
 
 
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
-
+  {path: '', component: LoginComponent},
   { path: 'reportsRoute', component: ReportsComponent },
   { path: 'InterViewRoute', component: InterviewComponent },
   {
@@ -51,7 +53,8 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'SurveyRoute', component: SurveyComponent }
+  { path: 'SurveyRoute', component: SurveyListComponent }
+  // need to change back to SurveyComponentlater later, now just testing functionalities
 
 ];
 
@@ -63,7 +66,6 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-    
 
     ReportsComponent,
     InterviewComponent,
@@ -74,7 +76,9 @@ const routes: Routes = [
     FakeServiceComponent,
 
     NewInterviewComponent,
-    SurveyCreatorComponent
+    SurveyCreatorComponent,
+    SurveyListComponent,
+    TimestampPipe,
 
 
   ],
@@ -88,7 +92,7 @@ const routes: Routes = [
 
   ],
   providers: [
-    CognitoService,FakeServiceComponent
+    CognitoService, FakeServiceComponent
   ],
   bootstrap: [AppComponent]
 })
