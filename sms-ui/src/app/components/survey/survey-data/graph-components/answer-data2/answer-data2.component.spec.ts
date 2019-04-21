@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnswerData1Component } from './answer-data1.component';
-/* Do we even test? */
-describe('AnswerData1Component', () => {
-  let component: AnswerData1Component;
-  let fixture: ComponentFixture<AnswerData1Component>;
+import { AnswerData2Component } from './answer-data2.component';
+
+describe('AnswerData2Component', () => {
+  let component: AnswerData2Component;
+  let fixture: ComponentFixture<AnswerData2Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AnswerData1Component ]
+      declarations: [ AnswerData2Component ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AnswerData1Component);
+    fixture = TestBed.createComponent(AnswerData2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
