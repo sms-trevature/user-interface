@@ -85,6 +85,7 @@ $screen-xl-min: 1200px;
     background: linear-gradient(to left, #f3a55d, #e1e7e7);
     box-align: right;
       padding: 6px; 
+      min-height: 80px; 
   }
   .inlineNav{
     display: inline;

@@ -97,6 +97,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     const NewRole = document.createElement('select') as HTMLSelectElement;
     NewRole.onchange = this.changeRole;
     NewRole.setAttribute('id', 'selectedRoleRow');
+    NewRole.setAttribute('class', email);
     const optAdmin = document.createElement('option') as HTMLOptionElement;
     optAdmin.textContent = "Admin";
     const optStagingM = document.createElement('option') as HTMLOptionElement;
@@ -133,9 +134,11 @@ export class MngrSubAssociatesComponent implements OnInit {
   changeRole() {
 
     const newSpot = document.getElementById('selectedRoleRow') as HTMLSelectElement;
+    const emailIdentifier = newSpot.className; 
     let index = newSpot.selectedIndex;
     let opt = newSpot.options[index];
-    console.log("role has been changed to " + opt.value);//onChange test -
+    //this values will be used to update the user's role per their email as the identifier.. 
+    console.log("role has been changed to " + opt.value +" for:" +emailIdentifier);//onChange test -
   }
 
   inputNewRole() {
