@@ -4,10 +4,32 @@
     <!-- not in global sass -->
     <img id="rev-logo" src="/project/src/assets/rev-logo.png" alt="revature logo">
 
-    <button class="inlineNav" routerLink="/SurveyRoute">Surveys</button> <button class="inlineNav" routerLink="/ManageRoute">Manage</button> <button
-      class="inlineNav" routerLink="/InterViewRoute">Interviews</button> <button class="inlineNav" routerLink="/reportsRoute">Reports</button> <button class="inlineNav"
+    <div class="inlineNav" style="display: inline;">
 
-      routerLink="/profileInfo">ProfileInfo</button>
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+
+        <!-- <img [src]='loggedUser.imgUrl' height="50px" width="50px" style="border-radius: 50%"> -->
+        <span>fakeEmail@makeFakeEmails.ch </span>
+
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+        <a href="" class="dropdown-item" routerLink="/profileInfo">Edit Profile</a>
+
+        <a href="" class="dropdown-item" (click)='logout()'>Logout</a>
+
+      </div>
+    </div>
+    <button class="inlineNav" routerLink="/SurveyRoute">Surveys</button> <button class="inlineNav"
+      routerLink="/ManageRoute">Manage</button> <button class="inlineNav"
+      routerLink="/InterViewRoute">Interviews</button> <button class="inlineNav"
+      routerLink="/reportsRoute">Reports</button> 
+      <!-- old button -->
+      <!-- <button class="inlineNav" routerLink="/profileInfo">ProfileInfo</button> -->
+    
+
   </div>
 
 </div>
