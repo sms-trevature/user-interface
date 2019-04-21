@@ -35,7 +35,7 @@ export class FakeServiceComponent implements OnInit {
       }
     ];
   }
-  getCohorts(): Cohort[] {
+  /*getCohorts(): Cohort[] {
     return [
       {
           CName: 'Cohort1',
@@ -57,5 +57,5 @@ export class FakeServiceComponent implements OnInit {
     }
     ];
   }
-
+*/
 }
