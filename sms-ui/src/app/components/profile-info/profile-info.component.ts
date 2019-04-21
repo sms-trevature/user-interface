@@ -67,7 +67,7 @@ export class ProfileInfoComponent implements OnInit {
       addChange = true;
     }
    
-  //  this.cognitoService.
+    
   }
   
     ///example from login.. of NOT using the service.. 
