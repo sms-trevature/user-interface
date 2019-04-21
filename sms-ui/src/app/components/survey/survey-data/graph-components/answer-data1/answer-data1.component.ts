@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
- 
+
 @Component({
   selector: 'app-answer-data1',
   templateUrl: './answer-data1.component.html',
