@@ -3,12 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
+import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { AuthLoadingComponent } from './components/auth-loading/auth-loading.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CognitoService } from './services/cognito.service';
-
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
@@ -27,6 +27,11 @@ import { FakeServiceComponent } from './fake-service/fake-service.component';
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 import { SurveyListComponent } from './components/survey/survey-list/survey-list.component';
 import { TimestampPipe } from './pipe/timestamp.pipe';
+import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
+import { AnswerData2Component } from './components/survey/survey-data/graph-components/answer-data2/answer-data2.component';
+import { AnswerData1Component } from './components/survey/survey-data/graph-components/answer-data1/answer-data1.component';
+import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component';
+
 
 
 
@@ -66,7 +71,8 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-
+    SurveyCreatorComponent,
+    SurveyGridComponent,
     ReportsComponent,
     InterviewComponent,
     ManageComponent,
@@ -76,9 +82,14 @@ const routes: Routes = [
     FakeServiceComponent,
 
     NewInterviewComponent,
+
     SurveyCreatorComponent,
     SurveyListComponent,
     TimestampPipe,
+
+    SurveyDataComponent,
+    AnswerData1Component,
+    AnswerData2Component,
 
 
   ],
@@ -87,6 +98,7 @@ const routes: Routes = [
     AppRoutingModule,
     NgbModule,
     FormsModule,
+    ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes)
 
