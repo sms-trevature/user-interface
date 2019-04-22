@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
 
-    path: 'survey',
+    path: 'survey-create',
     component: SurveyCreatorComponent
   },
   {
