@@ -23,13 +23,8 @@ export class ProfileInfoComponent implements OnInit {
       isTrainingLocation: false
     }
   ];
-<<<<<<< HEAD
   //user will somehow be retrieved through cognito session
    currentUser: User[]/* = [
-=======
-  // user will somehow be retrieved through cognito session
-  currentUser: User[] = [
->>>>>>> 5e4c78f346667dba91e6eb6e3301b1712695f9db
     {
       userId: 2,
       firstName: 'Goofy',
