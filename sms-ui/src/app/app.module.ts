@@ -31,6 +31,7 @@ import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid
 import { AnswerData2Component } from './components/survey/survey-data/graph-components/answer-data2/answer-data2.component';
 import { AnswerData1Component } from './components/survey/survey-data/graph-components/answer-data1/answer-data1.component';
 import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component';
+import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
 
 
 
@@ -89,6 +90,7 @@ const routes: Routes = [
     SurveyDataComponent,
     AnswerData1Component,
     AnswerData2Component,
+    AssignSurveyComponent,
 
 
   ],
