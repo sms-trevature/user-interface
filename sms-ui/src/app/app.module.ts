@@ -26,8 +26,6 @@ import { FakeServiceComponent } from './fake-service/fake-service.component';
 
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
-import { AllSurveyComponent } from './all-survey/all-survey.component';
-
 
 
 
@@ -65,13 +63,7 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-<<<<<<< HEAD
-    SurveyCreatorComponent,
     SurveyGridComponent,
-    AllSurveyComponent
-=======
-    
-
     ReportsComponent,
     InterviewComponent,
     ManageComponent,
@@ -82,7 +74,6 @@ const routes: Routes = [
 
     NewInterviewComponent,
     SurveyCreatorComponent
->>>>>>> fe7856591f15a541e73b4ac3f3c0defb327ebf49
 
 
   ],
