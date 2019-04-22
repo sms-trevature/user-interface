@@ -10,6 +10,7 @@ import { SurveyListComponent } from './components/survey/survey-list/survey-list
 
 import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component'; // temporary -Steph
 import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
+import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,6 @@ const routes: Routes = [
   },
   {
     path: 'survey',
-
     component: SurveyCreatorComponent
   },
   {
@@ -46,6 +46,15 @@ const routes: Routes = [
   {
     path: 'assign-survey',
     component: AssignSurveyComponent
+
+  },
+  {
+    path: 'create-survey',
+    component: SurveyCreatorComponent
+  },
+  {
+    path: 'survey-template',
+    component: SurveyGridComponent
 
   }
 
