@@ -25,18 +25,19 @@ export class CognitoService {
   public token$ = this.tokenStream.asObservable();
 
   private newPasswordUser: any = null;
-// private grabUserJson:
+//private grabUserJson:
   constructor( ) {
     this.setup();
   }
 
   async login(username: string, password: string) {
     const response = await Auth.signIn(username, password);
-    /// ---Query by email for user info..
-    console.log(' email: ' + username);
+    ///---Query by email for user info.. 
+    console.log(' email: ' + username); 
+    
 
     console.log(response);
-    this.getCurrent();
+    this.getCurrent(); 
 
     if (response.challengeName !== 'NEW_PASSWORD_REQUIRED') {
       this.setup();
@@ -51,10 +52,12 @@ export class CognitoService {
 
   async logout() {
     await Auth.signOut();
+   
     this.tokenStream.next(undefined);
     this.currentUserStream.next(undefined);
   }
-  async getCurrent() {
+  async getCurrent(){
+     
   }
 
   async setNewPassword(password: string) {
