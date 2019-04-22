@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
-import { ChartsModule } from 'ng2-charts'; 
+import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { AuthLoadingComponent } from './components/auth-loading/auth-loading.component';
 import { HomeComponent } from './components/home/home.component';
@@ -12,9 +12,7 @@ import { CognitoService } from './services/cognito.service';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
-import { InterviewListComponent } from './components/interview-list/interview-list.component';
 import { NewInterviewComponent } from './components/new-interview/new-interview.component';
-import { AssociateFeedbackFormComponent } from './components/associate-feedback-form/associate-feedback-form.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 
@@ -25,6 +23,7 @@ import { SurveyComponent } from './survey/survey.component';
 import { MngrSubAssociatesComponent } from './mngr-sub-associates/mngr-sub-associates.component';
 import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.component';
 import { FakeServiceComponent } from './fake-service/fake-service.component';
+
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 
 import { CohortModalComponent } from './components/cohortModal/cohort-modal.component';
@@ -36,7 +35,7 @@ import { AnswerData2Component } from './components/survey/survey-data/graph-comp
 import { AnswerData1Component } from './components/survey/survey-data/graph-components/answer-data1/answer-data1.component';
 import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component';
 import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
-import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
+
 
 
 
@@ -75,10 +74,7 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-    InterviewListComponent,
-    AssociateFeedbackFormComponent,
     SurveyCreatorComponent,
-    StagingMgrFeedbackComponent,
     SurveyGridComponent,
     ReportsComponent,
     InterviewComponent,
@@ -87,10 +83,9 @@ const routes: Routes = [
     MngrSubAssociatesComponent,
     SubMan2CohortComponent,
     FakeServiceComponent,
+
     NewInterviewComponent,
-    SurveyCreatorComponent,
-    AssociateFeedbackFormComponent,
-    SurveyCreatorComponent,
+
     CohortModalComponent,
 
 
@@ -119,7 +114,6 @@ const routes: Routes = [
   providers: [
     CognitoService, FakeServiceComponent
   ],
-  /* AppComponent */
   bootstrap: [AppComponent]
 })
 export class AppModule { }
