@@ -1,3 +1,23 @@
 <p>
   survey-grid works!
 </p>
+<head>
+  <title>Survey</title>
+   <link rel="stylesheet" href="/survey-grid.component.css">
+</head>
+
+<table>
+<thead>
+    <tr>
+      <th class="Title">Title</th>
+      <th class="Description">Description</th>
+      <th class="DateCreated">Date Created</th>
+    </tr></thead>
+    <tbody>
+    <tr *ngFor='let temp of Iservey'>
+      <td>{{temp.Title}}</td>
+      <td>{{temp.Description}}</td>
+      <td>{{temp.DateCreated}}</td>
+    </tr>
+    </tbody>
+  </table>
