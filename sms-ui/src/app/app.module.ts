@@ -10,7 +10,6 @@ import { LoginComponent } from './components/login/login.component';
 import { CognitoService } from './services/cognito.service';
 
 
-
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
 import { NewInterviewComponent } from './components/new-interview/new-interview.component';
@@ -26,6 +25,7 @@ import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.compon
 import { FakeServiceComponent } from './fake-service/fake-service.component';
 
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
+import { CohortModalComponent } from './components/cohortModal/cohort-modal.component';
 
 
 
@@ -64,6 +64,8 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
+    
+
     ReportsComponent,
     InterviewComponent,
     ManageComponent,
@@ -73,7 +75,8 @@ const routes: Routes = [
     FakeServiceComponent,
 
     NewInterviewComponent,
-    SurveyCreatorComponent
+    SurveyCreatorComponent,
+    CohortModalComponent
 
 
   ],

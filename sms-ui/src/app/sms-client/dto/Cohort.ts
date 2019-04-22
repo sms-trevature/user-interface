@@ -1,9 +1,10 @@
 export interface Cohort {
+    cohortId:number;
     CName: String; 
-    Location: String; 
+    address: String; 
     Token: String; 
     StartD: String; 
     EndD: String; 
-    Trainer: String; 
+    trainer: String; 
     Email: String; 
 }
