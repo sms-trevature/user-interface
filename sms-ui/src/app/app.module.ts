@@ -12,14 +12,11 @@ import { CognitoService } from './services/cognito.service';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
-<<<<<<< HEAD
 import { AssociateFeedbackFormComponent } from './components/associate-feedback-form/associate-feedback-form.component';
-=======
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 
->>>>>>> e598b4128aaaa5866ae45cd550f205993f60aafa
 
 
 const routes: Routes = [
@@ -35,12 +32,9 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-<<<<<<< HEAD
-    AssociateFeedbackFormComponent
-=======
+    AssociateFeedbackFormComponent,
     SurveyCreatorComponent
 
->>>>>>> e598b4128aaaa5866ae45cd550f205993f60aafa
   ],
   imports: [
     BrowserModule,
