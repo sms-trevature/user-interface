@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
-import { ChartsModule } from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts'; 
 import { AppComponent } from './app.component';
 import { AuthLoadingComponent } from './components/auth-loading/auth-loading.component';
 import { HomeComponent } from './components/home/home.component';
@@ -36,6 +36,7 @@ import { AnswerData2Component } from './components/survey/survey-data/graph-comp
 import { AnswerData1Component } from './components/survey/survey-data/graph-components/answer-data1/answer-data1.component';
 import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component';
 import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
+import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 
 
 
@@ -77,6 +78,7 @@ const routes: Routes = [
     InterviewListComponent,
     AssociateFeedbackFormComponent,
     SurveyCreatorComponent,
+    StagingMgrFeedbackComponent,
     SurveyGridComponent,
     ReportsComponent,
     InterviewComponent,
@@ -117,6 +119,7 @@ const routes: Routes = [
   providers: [
     CognitoService, FakeServiceComponent
   ],
+  /* AppComponent */
   bootstrap: [AppComponent]
 })
 export class AppModule { }
