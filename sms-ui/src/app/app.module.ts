@@ -73,6 +73,7 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
+    AssociateFeedbackFormComponent,
     SurveyCreatorComponent,
     SurveyGridComponent,
     ReportsComponent,
