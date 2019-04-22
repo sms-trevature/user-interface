@@ -213,7 +213,7 @@ export class InterviewService {
             clientName: 'Hewlett Packard'
         }
     }
-]
+];
 
   constructor(private httpCli: HttpClient) { }
 
