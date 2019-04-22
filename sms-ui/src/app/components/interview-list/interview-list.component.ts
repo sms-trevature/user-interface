@@ -10,7 +10,11 @@ export class InterviewListComponent implements OnInit {
 
   private interviewList;
   private filteredInterviewList;
-  constructor(private interview: InterviewService) { }
+  constructor(private interview: InterviewService) {
+    this.interviewList = this.interview.getInterviews2();
+    this.filteredInterviewList = this.interviewList;
+    console.log(this.filteredInterviewList);
+  }
 
   ngOnInit() {
   }

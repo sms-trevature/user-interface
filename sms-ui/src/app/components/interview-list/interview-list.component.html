@@ -1,7 +1,3 @@
-<p>
-  interview-list works!
-</p>
-
 <div class='panel panel-primary'>
   <div class='panel-heading'>
     {{pageTitle}}
@@ -35,7 +31,7 @@
       <tbody>
         <tr *ngFor='let temp of filteredInterviewList'>
           <td *ngIf='temp.reviewed'>Yes</td>
-          <td *ngIf='!temp.reviewed'>No</td>
+          <td *ngIf='!temp.reviewed'></td>
           <td>{{temp.associateEmail}}</td>
           <td>{{temp.managerEmail}}</td>
           <td>{{temp.place}}</td>
@@ -54,6 +50,6 @@
 
 </div>
 
-<button (click)='buttonClicked()'>
+<!-- <button (click)='buttonClicked()'>
   The Button
-</button>
+</button> -->

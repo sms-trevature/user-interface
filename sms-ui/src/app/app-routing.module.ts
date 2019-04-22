@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthLoadingComponent } from './components/auth-loading/auth-loading.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { InterviewListComponent } from './components/interview-list/interview-list.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'auth-loading',
     component: AuthLoadingComponent
+  },
+  {
+    path: 'interview-list',
+    component: InterviewListComponent
   }
 ];
 
