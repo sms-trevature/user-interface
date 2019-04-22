@@ -29,7 +29,7 @@ export class ProfileInfoComponent implements OnInit {
       userId: 2,
       firstName: 'Goofy',
       lastName: 'lastName',
-      email: 'email@email.com',
+      coemail: 'email@email.com',
       phoneNumber: '705837213',
       trainingAddress: this.currentAddress[0],
       personalAddress: this.currentAddress[0],
