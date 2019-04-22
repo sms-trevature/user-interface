@@ -25,6 +25,7 @@ import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.compon
 import { FakeServiceComponent } from './fake-service/fake-service.component';
 
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
+import { CohortModalComponent } from './components/cohortModal/cohort-modal.component';
 
 
 
@@ -74,7 +75,8 @@ const routes: Routes = [
     FakeServiceComponent,
 
     NewInterviewComponent,
-    SurveyCreatorComponent
+    SurveyCreatorComponent,
+    CohortModalComponent
 
 
   ],
