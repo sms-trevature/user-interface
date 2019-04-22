@@ -8,6 +8,7 @@ import { SurveyCreatorComponent } from './components/survey/survey-creator/surve
 import { SurveyListComponent } from './components/survey/survey-list/survey-list.component';
 
 import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component'; // temporary -Steph
+import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'survey-data', // temporary path just need to see my page - Steph
     component: SurveyDataComponent
+
+  },
+  {
+    path: 'assign-survey', 
+    component: AssignSurveyComponent
 
   }
 
