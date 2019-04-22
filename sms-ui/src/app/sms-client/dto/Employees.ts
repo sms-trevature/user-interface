@@ -1,7 +1,7 @@
 export interface SomeAssociate {
-    firstName: String;
-    lastName: String;
-    role: String;
-    email: String;
+    firstName: string;
+    lastName: string;
+    role: string;
+    email: string;
  }
  
