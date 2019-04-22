@@ -52,7 +52,7 @@ export class SubMan2CohortComponent implements OnInit {
   ngOnInit() {
     this.http.get('cohorts').toPromise().then(data => {
       this.filteredCohort = data;
-      this.allCohorts = this.filteredCohort;
+      this.allCohorts = this.filteredCohort; 
       this.exportedCohort=data[1];
     })
   }
