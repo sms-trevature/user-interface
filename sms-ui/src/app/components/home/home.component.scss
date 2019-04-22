@@ -34,8 +34,10 @@ img {
     width: 1980px;
     height: 400px;
     background: url("../../../assets/surveyimg.jpg");
-    background-size: 1980px;
     background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
     background-attachment: fixed;
 }
 
