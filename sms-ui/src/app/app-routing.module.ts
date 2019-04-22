@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthLoadingComponent } from './components/auth-loading/auth-loading.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { InterviewListComponent } from './components/interview-list/interview-list.component';
 
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
 import { SurveyListComponent } from './components/survey/survey-list/survey-list.component';
@@ -26,7 +27,12 @@ const routes: Routes = [
   },
   {
 
+    path: 'interview-list',
+    component: InterviewListComponent
+  },
+  {
     path: 'survey',
+
     component: SurveyCreatorComponent
   },
   {
@@ -38,7 +44,7 @@ const routes: Routes = [
 
   },
   {
-    path: 'assign-survey', 
+    path: 'assign-survey',
     component: AssignSurveyComponent
 
   }
