@@ -32,7 +32,8 @@ export class ProfileInfoComponent implements OnInit {
       email: 'email@email.com',
       phoneNumber: '705837213',
       trainingAddress: this.currentAddress[0],
-      personalAddress: this.currentAddress[0]
+      personalAddress: this.currentAddress[0],
+      userStatus: ''
     }
   ];
 
