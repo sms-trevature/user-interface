@@ -23,8 +23,13 @@ export class ProfileInfoComponent implements OnInit {
       isTrainingLocation: false
     }
   ];
+<<<<<<< HEAD
   //user will somehow be retrieved through cognito session
    currentUser: User[]/* = [
+=======
+  // user will somehow be retrieved through cognito session
+  currentUser: User[]/* = [
+>>>>>>> 0b751f0f5c8626de5d427f0b2c51ac2e68afdaea
     {
       userId: 2,
       firstName: 'Goofy',
@@ -35,7 +40,11 @@ export class ProfileInfoComponent implements OnInit {
       personalAddress: this.currentAddress[0],
       userStatus: 'Scrum masters are Trash'
     }
+<<<<<<< HEAD
   ]; */
+=======
+  ];*/
+>>>>>>> 0b751f0f5c8626de5d427f0b2c51ac2e68afdaea
 
   constructor(private cognitoService: CognitoService) { }
 
