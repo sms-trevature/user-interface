@@ -24,7 +24,7 @@ export class ProfileInfoComponent implements OnInit {
     }
   ];
   //user will somehow be retrieved through cognito session
-  currentUser: User[] = [
+   currentUser: User[]/* = [
     {
       userId: 2,
       firstName: 'Goofy',
@@ -34,7 +34,7 @@ export class ProfileInfoComponent implements OnInit {
       trainingAddress: this.currentAddress[0],
       personalAddress: this.currentAddress[0]
     }
-  ];
+  ]; */
 
   constructor(private cognitoService: CognitoService) { }
 
