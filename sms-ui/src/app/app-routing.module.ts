@@ -4,6 +4,13 @@ import { AuthLoadingComponent } from './components/auth-loading/auth-loading.com
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 
+import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
+import { SurveyListComponent } from './components/survey/survey-list/survey-list.component';
+
+import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component'; // temporary -Steph
+import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
+
+
 const routes: Routes = [
   {
     path: 'login',
@@ -16,7 +23,26 @@ const routes: Routes = [
   {
     path: 'auth-loading',
     component: AuthLoadingComponent
+  },
+  {
+
+    path: 'survey',
+    component: SurveyCreatorComponent
+  },
+  {
+    path: 'surveyList',
+    component: SurveyListComponent},
+  {
+    path: 'survey-data', // temporary path just need to see my page - Steph
+    component: SurveyDataComponent
+
+  },
+  {
+    path: 'assign-survey', 
+    component: AssignSurveyComponent
+
   }
+
 ];
 
 @NgModule({

@@ -1,0 +1,23 @@
+<div>
+    <table>
+        <tr>
+            <th>Associate ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+        </tr>
+        <tr *ngFor='let temp of userList'>
+            <td>{{temp.userId}}</td>
+            <td>{{temp.firstName}}</td>
+            <td>{{temp.lastName}}</td>
+            <td>{{temp.email}}</td>
+            <td>{{temp.phoneNumber}}</td>
+            <td>{{temp.personalAddress}}</td>
+
+        </tr>
+
+    </table>
+
+</div>
