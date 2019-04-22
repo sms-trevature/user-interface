@@ -38,7 +38,7 @@ const routes: Routes = [
 
   },
   {
-    path: 'assign-survey', 
+    path: 'assign-survey',
     component: AssignSurveyComponent
 
   }
