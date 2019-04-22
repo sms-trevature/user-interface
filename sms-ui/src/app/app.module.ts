@@ -51,7 +51,7 @@ import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
-  {path: '', component: LoginComponent},
+  { path: '', component: LoginComponent },
   { path: 'reportsRoute', component: ReportsComponent },
   { path: 'InterViewRoute', component: InterviewComponent },
   {
