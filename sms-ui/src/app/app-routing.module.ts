@@ -26,11 +26,13 @@ const routes: Routes = [
     component: AuthLoadingComponent
   },
   {
+
     path: 'interview-list',
     component: InterviewListComponent
   },
   {
     path: 'survey',
+
     component: SurveyCreatorComponent
   },
   {
@@ -42,7 +44,7 @@ const routes: Routes = [
 
   },
   {
-    path: 'assign-survey', 
+    path: 'assign-survey',
     component: AssignSurveyComponent
 
   }
