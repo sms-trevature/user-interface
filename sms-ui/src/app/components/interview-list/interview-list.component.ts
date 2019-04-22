@@ -8,8 +8,8 @@ import { InterviewService } from 'src/app/services/interview.service';
 })
 export class InterviewListComponent implements OnInit {
 
-  private interviewList;
-  private filteredInterviewList;
+  private interviewList: object;
+  private filteredInterviewList: object;
   constructor(private interview: InterviewService) {
     this.interviewList = this.interview.getInterviews2();
     this.filteredInterviewList = this.interviewList;
