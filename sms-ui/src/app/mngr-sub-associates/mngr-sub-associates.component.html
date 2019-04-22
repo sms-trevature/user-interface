@@ -1,0 +1,34 @@
+<body>
+  <div id="InternalAssociates">
+
+    <div id="associatesHeader"> 
+      <div style="display: inline;"> 
+        <input type='text' [(ngModel)]='listFilter' id="filterByThisAssociate" /> 
+      </div>
+      <span style="display: inline; margin-left: 10px; margin-right: 10px;"> Internal Associates</span>
+      <div style="display: inline;">
+          <!-- (change)="nrSelect(value)" -->
+        <select id="selectElement" (change)="optionSelect()" >
+          <option value="All" >All</option>
+          <option value="Associates">Associates</option>
+          <option value="Trainer">Trainer</option>
+          <option value="Staging Managers">Staging Managers</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+    </div>
+    <table id="associateTable">
+      <tr >
+        <th class="spreadColumn">Name</th>
+        <th class="spreadColumn">Role</th>
+        <th class="spreadColumn">Email</th>
+      </tr>
+      <tr *ngFor='let temp of filteredEmployees'>
+        <td>{{temp.firstName}} {{temp.lastName}}</td>
+        <td id={{temp.email}}><button  class="cantBelieveItsNotButton" (click)="editRole(temp.email)"> {{temp.role}}</button></td>
+        <td >{{temp.email}}</td>
+      </tr>
+    </table>
+
+  </div>
+</body>
