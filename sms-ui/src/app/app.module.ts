@@ -25,6 +25,9 @@ import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.compon
 import { FakeServiceComponent } from './fake-service/fake-service.component';
 
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
+
+import { CohortModalComponent } from './components/cohortModal/cohort-modal.component';
+
 import { SurveyListComponent } from './components/survey/survey-list/survey-list.component';
 import { TimestampPipe } from './pipe/timestamp.pipe';
 import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
@@ -83,6 +86,9 @@ const routes: Routes = [
 
     NewInterviewComponent,
 
+    CohortModalComponent,
+
+
     SurveyCreatorComponent,
     SurveyListComponent,
     TimestampPipe,
@@ -91,6 +97,7 @@ const routes: Routes = [
     AnswerData1Component,
     AnswerData2Component,
     AssignSurveyComponent,
+
 
 
   ],
