@@ -8,7 +8,15 @@
             </div>
 
             <span style="display: inline;"> Cohorts</span>
+
+            <!-- </div> -->
+            <!-- <div id="addbutton"> -->
+            <button class="pure-button">
+            <i class="material-icons">person</i>
+            Add Cohort
+        </button>
         </div>
+
         <table id="associateTable">
             <tr>
                 <th class="spreadColumnChrt">Name</th>
@@ -20,11 +28,11 @@
                 <th class="spreadColumnChrt">Email</th>
             </tr>
             <tr *ngFor='let temp of filteredCohort'>
-                <a routerLink>
+                <button (click)="openModal(temp['cohortName'])">
                     <td>{{temp['cohortName']}}</td>
-                </a>
+                </button>
                 <td>{{temp.address.city}},{{temp.address.state}}</td>
-                <td>{{temp['cohortToken']}}</td>
+                <td>{{temp.cohortToken}}</td>
                 <td> {{temp.startDate}} </td>
                 <td> {{temp.endDate}} </td>
                 <td> {{temp.trainer.firstName}} {{temp.trainer.lastName}} </td>
@@ -34,4 +42,40 @@
         </table>
 
     </div>
+    <div class="backdrop" [ngStyle]="{'display':display}">
+    </div>
+    <!--end of table, beginning of cohort modal-->
+    <div class="modal-fade" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+
+                    <div class="modal-body">
+                        <div *ngIf='modalShow'>
+
+                            <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+
+
+                    </div>
+                    <!-- /.modal-content -->
+
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /.modal !-->
 </body>
