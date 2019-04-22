@@ -13,6 +13,7 @@ import { CognitoService } from './services/cognito.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
 import { NewInterviewComponent } from './components/new-interview/new-interview.component';
+import { AssociateFeedbackFormComponent } from './components/associate-feedback-form/associate-feedback-form.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 
@@ -23,9 +24,7 @@ import { SurveyComponent } from './survey/survey.component';
 import { MngrSubAssociatesComponent } from './mngr-sub-associates/mngr-sub-associates.component';
 import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.component';
 import { FakeServiceComponent } from './fake-service/fake-service.component';
-
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
-
 
 
 
@@ -63,8 +62,7 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-    
-
+    InterviewDev,
     ReportsComponent,
     InterviewComponent,
     ManageComponent,
@@ -72,11 +70,10 @@ const routes: Routes = [
     MngrSubAssociatesComponent,
     SubMan2CohortComponent,
     FakeServiceComponent,
-
     NewInterviewComponent,
+    SurveyCreatorComponent,
+    AssociateFeedbackFormComponent,
     SurveyCreatorComponent
-
-
   ],
   imports: [
     BrowserModule,
