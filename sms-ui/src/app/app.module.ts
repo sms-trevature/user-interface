@@ -12,6 +12,7 @@ import { CognitoService } from './services/cognito.service';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
+import { InterviewListComponent } from './components/interview-list/interview-list.component';
 import { NewInterviewComponent } from './components/new-interview/new-interview.component';
 import { AssociateFeedbackFormComponent } from './components/associate-feedback-form/associate-feedback-form.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -73,6 +74,7 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
+    InterviewListComponent,
     AssociateFeedbackFormComponent,
     SurveyCreatorComponent,
     SurveyGridComponent,
