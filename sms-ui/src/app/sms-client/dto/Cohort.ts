@@ -1,4 +1,5 @@
 export interface Cohort {
+    cohortId:number;
     CName: String; 
     address: String; 
     Token: String; 
