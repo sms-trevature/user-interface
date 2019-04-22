@@ -54,6 +54,10 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'reportsRoute', component: ReportsComponent },
   { path: 'InterViewRoute', component: InterviewComponent },
+  { path: 'CreateInterviewRoute', component: NewInterviewComponent},
+  { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
+  { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
+  { path: 'InterviewListRoute', component: InterviewListComponent},
   {
     path: 'ManageRoute', component: ManageComponent,
     children: [
