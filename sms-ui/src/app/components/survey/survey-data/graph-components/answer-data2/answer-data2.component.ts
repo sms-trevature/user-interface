@@ -12,8 +12,8 @@ export class AnswerData2Component implements OnInit {
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
-  public pieChartLabels: Label[] = ['YES', 'NO'];
-  public pieChartData: SingleDataSet = [20, 5];
+  public pieChartLabels: Label[] = ['Ellen', 'Wont respond', 'to this'];
+  public pieChartData: SingleDataSet = [300, 500, 100];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
