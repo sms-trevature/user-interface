@@ -79,7 +79,7 @@ const routes: Routes = [
 
 ];
 
-@NgModule({
+@NgModule({ 
   declarations: [
     AppComponent,
     LoginComponent,
