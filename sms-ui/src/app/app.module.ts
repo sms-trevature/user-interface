@@ -12,11 +12,9 @@ import { CognitoService } from './services/cognito.service';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
-<<<<<<< HEAD
 import { MyStuffComponent } from './my-stuff/my-stuff.component';
 
 
-=======
 import { InterviewListComponent } from './components/interview-list/interview-list.component';
 import { NewInterviewComponent } from './components/new-interview/new-interview.component';
 import { AssociateFeedbackFormComponent } from './components/associate-feedback-form/associate-feedback-form.component';
@@ -50,7 +48,6 @@ import { AnswerData7Component } from './components/survey/survey-data/graph-comp
 
 
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
->>>>>>> 3cbe734b13b682eaed0e0a8dc16c80cd2f237ade
 
 
 
@@ -94,9 +91,7 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-<<<<<<< HEAD
     MyStuffComponent
-=======
     InterviewListComponent,
     AssociateFeedbackFormComponent,
     SurveyCreatorComponent,
@@ -131,7 +126,6 @@ const routes: Routes = [
     AnswerData7Component,
 
 
->>>>>>> 3cbe734b13b682eaed0e0a8dc16c80cd2f237ade
   ],
   imports: [
     BrowserModule,
