@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CognitoService } from './services/cognito.service';
 import { SmsClientModule } from './sms-client/sms-client.module';
+import { MyStuffComponent } from './my-stuff/my-stuff.component';
 
 
 
@@ -21,7 +22,8 @@ import { SmsClientModule } from './sms-client/sms-client.module';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AuthLoadingComponent
+    AuthLoadingComponent,
+    MyStuffComponent
   ],
   imports: [
     BrowserModule,
