@@ -122,7 +122,6 @@ const routes: Routes = [
     AnswerData7Component,
 
 
-
   ],
   imports: [
     BrowserModule,
