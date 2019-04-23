@@ -33,7 +33,7 @@ export class ProfileInfoComponent implements OnInit {
       phoneNumber: '705837213',
       trainingAddress: this.currentAddress[0],
       personalAddress: this.currentAddress[0],
-      userStatus: 'Scrum masters are Trash'
+      userStatus: ''
     }
   ];*/
 
