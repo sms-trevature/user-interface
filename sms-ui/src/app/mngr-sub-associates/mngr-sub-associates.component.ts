@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SomeAssociate } from '../sms-client/dto/Employees';
 import { FakeServiceComponent } from '../fake-service/fake-service.component';
 import { Button } from 'protractor';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -25,20 +26,28 @@ export class MngrSubAssociatesComponent implements OnInit {
   allAssociates: SomeAssociate[] = [];
   filteredEmployees: SomeAssociate[] = [];
   globalFart: string = '';
+  returnableDataVariable; 
 
   private returnableRoleValue = '';
   private lastCell: any;  
   private returnableEmailValue = '';
   private returnableButton = document.createElement('button') as HTMLButtonElement;
-  constructor(private _fakeService: FakeServiceComponent) {
+  constructor(private _fakeService: FakeServiceComponent, private http: HttpClient) {
 
     this.filteredEmployees =
-      this._fakeService.getEmployees();
+    this._fakeService.getEmployees();
 
     this.allAssociates = this.filteredEmployees;
   }
 
   ngOnInit() {
+  this.http.get('users').toPromise().then(data => {
+    this.returnableDataVariable = data; 
+    this.filteredEmployees = this.returnableDataVariable;
+    console.log("any role show up yet?  " +data[5].userStatus.generalStatus);
+    
+  });
+
   }
 
   performFilter(filterBy: string): SomeAssociate[] {

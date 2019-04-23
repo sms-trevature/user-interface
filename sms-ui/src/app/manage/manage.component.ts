@@ -11,6 +11,6 @@ export class ManageComponent implements OnInit {
   constructor(private http: HttpClient) { }
   public cohorts:any;
   ngOnInit() {
-  }
+  } 
 
 }
