@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FakeServiceComponent } from '../fake-service/fake-service.component';
 import { Cohort } from '../sms-client/dto/Cohort';
 import { HttpClient } from '@angular/common/http';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sub-man2-cohort',
@@ -10,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SubMan2CohortComponent implements OnInit {
   _listFilter = '';
+  closeResult: string;
 
   get listFilter(): string {
     return this._listFilter;
@@ -37,7 +39,7 @@ export class SubMan2CohortComponent implements OnInit {
   allCohorts: Cohort[] = [];
   filteredCohort;
 
-  constructor(private _fakeService: FakeServiceComponent, private http: HttpClient) {
+  constructor(private _fakeService: FakeServiceComponent, private http: HttpClient, private modalService: NgbModal) {
 
     // this.filteredCohort =
     // this._fakeService.getCohorts();
@@ -60,6 +62,25 @@ export class SubMan2CohortComponent implements OnInit {
     this.modalShow=false;
     this.display='none'
   }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+
   //getCohorts()
 
 
