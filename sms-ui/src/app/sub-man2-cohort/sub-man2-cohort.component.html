@@ -11,11 +11,54 @@
 
             <!-- </div> -->
             <!-- <div id="addbutton"> -->
-            <button class="pure-button">
-            <i class="material-icons">person</i>
-            Add Cohort
-        </button>
+            <ng-template #content let-modal>
+                <div [ngSwitch]="ngswitchCase">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" *ngSwitchCase="'addCohort'">
+                        <h4 class="modal-title" id="modal-basic-title">Create Cohort</h4>
+                        <form>
+                            <div class="form-group">
+                                <label for="Name">Name</label>
+                                <div class="input-group">
+                                    <input id="Name" class="form-control" placeholder="Cohort Name" name="dp">
+
+                                    <div class="d-inline-block" mdbDropdown>
+                                        <button mdbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Location</button>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <button class="dropdown-menu" href="#">Tampa, FL</button>
+                                            <button class="dropdown-menu" href="#">Reston, VA</button>
+                                            <button class="dropdown-menu" href="#">Dallas, TX</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div *ngSwitchCase="'editAssociates'">
+                        <div *ngIf='modalShow'>
+
+                            <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
+
+                        </div>
+                    </div>
+                    <div *ngSwitchDefault>peter rabbit</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                    </div>
+                </div>
+            </ng-template>
+
+            <button class="pure-button" (click)='open(content)'>
+                <i class="material-icons">person</i>
+                Add Cohort
+            </button>
         </div>
+
 
         <table id="associateTable">
             <tr>
@@ -28,7 +71,7 @@
                 <th class="spreadColumnChrt">Email</th>
             </tr>
             <tr *ngFor='let temp of filteredCohort'>
-                <button (click)="openModal(temp['cohortName'])">
+                <button (click)="openModal(temp['cohortName'], content)">
                     <td>{{temp['cohortName']}}</td>
                 </button>
                 <td>{{temp.address.city}},{{temp.address.state}}</td>
@@ -42,40 +85,5 @@
         </table>
 
     </div>
-    <div class="backdrop" [ngStyle]="{'display':display}">
-    </div>
-    <!--end of table, beginning of cohort modal-->
-    <div class="modal-fade" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
 
-        <div class="modal-dialog" role="document">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-
-
-                    <div class="modal-body">
-                        <div *ngIf='modalShow'>
-
-                            <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
-
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
-
-
-                    </div>
-                    <!-- /.modal-content -->
-
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-        </div>
-
-
-    </div>
-    <!-- /.modal !-->
 </body>
