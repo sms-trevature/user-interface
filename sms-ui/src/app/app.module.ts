@@ -37,13 +37,27 @@ import { AnswerData1Component } from './components/survey/survey-data/graph-comp
 import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component';
 import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
 
+import { AnswerData3Component } from './components/survey/survey-data/graph-components/answer-data3/answer-data3.component';
+import { AnswerData4Component } from './components/survey/survey-data/graph-components/answer-data4/answer-data4.component';
+import { AnswerData5Component } from './components/survey/survey-data/graph-components/answer-data5/answer-data5.component';
+import { AnswerData6Component } from './components/survey/survey-data/graph-components/answer-data6/answer-data6.component';
+import { AnswerData7Component } from './components/survey/survey-data/graph-components/answer-data7/answer-data7.component';
+
+
+import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
+
+
 
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
-  {path: '', component: LoginComponent},
+  { path: '', component: LoginComponent },
   { path: 'reportsRoute', component: ReportsComponent },
   { path: 'InterViewRoute', component: InterviewComponent },
+  { path: 'CreateInterviewRoute', component: NewInterviewComponent},
+  { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
+  { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
+  { path: 'InterviewListRoute', component: InterviewListComponent},
   {
     path: 'ManageRoute', component: ManageComponent,
     children: [
@@ -77,6 +91,7 @@ const routes: Routes = [
     InterviewListComponent,
     AssociateFeedbackFormComponent,
     SurveyCreatorComponent,
+    StagingMgrFeedbackComponent,
     SurveyGridComponent,
     ReportsComponent,
     InterviewComponent,
@@ -100,7 +115,11 @@ const routes: Routes = [
     AnswerData1Component,
     AnswerData2Component,
     AssignSurveyComponent,
-
+    AnswerData3Component,
+    AnswerData4Component,
+    AnswerData5Component,
+    AnswerData6Component,
+    AnswerData7Component,
 
 
   ],
@@ -117,6 +136,7 @@ const routes: Routes = [
   providers: [
     CognitoService, FakeServiceComponent
   ],
+  /* AppComponent */
   bootstrap: [AppComponent]
 })
 export class AppModule { }
