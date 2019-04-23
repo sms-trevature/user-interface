@@ -12,6 +12,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class SubMan2CohortComponent implements OnInit {
   _listFilter = '';
   closeResult: string;
+  ngswitchCase='';
 
   get listFilter(): string {
     return this._listFilter;
@@ -20,12 +21,13 @@ export class SubMan2CohortComponent implements OnInit {
   exportedCohort: Cohort;
   display = 'none'
 
-  openModal(name: string) {
+  openModal(name: string, content) {
     for (let temp of this.filteredCohort) {
       if (temp['cohortName'] == name) {
         this.exportedCohort = temp;
         this.modalShow = true;
-        this.display = 'block'
+        this.open(content);
+        this.ngswitchCase='editAssociates'
       }
     }
   }
@@ -61,10 +63,12 @@ export class SubMan2CohortComponent implements OnInit {
     })
   }
   closeModal(){
+    this.ngswitchCase=''
     this.modalShow = false;
     this.display = 'none'
   }
   open(content) {
+    this.ngswitchCase='addCohort'
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
