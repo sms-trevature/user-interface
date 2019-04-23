@@ -1,4 +1,7 @@
 <div>
+    <form #associateEmail='ngForm' (ngSubmit)='emailSubmit(associateEmail)'>
+        <input type='email' name='cohortEmail' ngModel placeholder='Add Associate By Email' />
+    </form>
     <table>
         <tr>
             <th>Associate ID</th>
@@ -8,6 +11,15 @@
             <th>Phone Number</th>
             <th>Address</th>
         </tr>
+        <tr>
+            <td>Trainer</td>
+            <td>{{cohort.trainer.firstName}}</td>
+            <td>{{cohort.trainer.lastName}}</td>
+            <td>{{cohort.trainer.email}}</td>
+            <td>{{cohort.trainer.phoneNumber}}</td>
+            <td>{{cohort.trainer.trainingAddress.city}}, {{cohort.trainer.trainingAddress.state}}</td>
+
+        </tr>
         <tr *ngFor='let temp of userList'>
             <td>{{temp.userId}}</td>
             <td>{{temp.firstName}}</td>
@@ -15,7 +27,7 @@
             <td>{{temp.email}}</td>
             <td>{{temp.phoneNumber}}</td>
             <td>{{temp.personalAddress}}</td>
-
+            <button (click)="removeUserFromCohort(temp.email)">Remove User</button>
         </tr>
 
     </table>
