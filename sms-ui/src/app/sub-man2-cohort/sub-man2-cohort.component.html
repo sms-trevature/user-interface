@@ -1,0 +1,89 @@
+<body>
+    <div id="InternalAssociates">
+
+        <div id="associatesHeader">
+            <!-- [(ngModel)]='listFilter' -->
+            <div style="display: inline; margin-left: -320px; ">
+                <input type="text" placeholder="Filter By" [(ngModel)]='listFilter' id="filterCohortBy" />
+            </div>
+
+            <span style="display: inline;"> Cohorts</span>
+
+            <!-- </div> -->
+            <!-- <div id="addbutton"> -->
+            <ng-template #content let-modal>
+                <div [ngSwitch]="ngswitchCase">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" *ngSwitchCase="'addCohort'">
+                        <h4 class="modal-title" id="modal-basic-title">Create Cohort</h4>
+                        <form>
+                            <div class="form-group">
+                                <label for="Name">Name</label>
+                                <div class="input-group">
+                                    <input id="Name" class="form-control" placeholder="Cohort Name" name="dp">
+
+                                    <div class="d-inline-block" mdbDropdown>
+                                        <button mdbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Location</button>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <button class="dropdown-menu" href="#">Tampa, FL</button>
+                                            <button class="dropdown-menu" href="#">Reston, VA</button>
+                                            <button class="dropdown-menu" href="#">Dallas, TX</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div *ngSwitchCase="'editAssociates'">
+                        <div *ngIf='modalShow'>
+
+                            <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
+
+                        </div>
+                    </div>
+                    <div *ngSwitchDefault>peter rabbit</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                    </div>
+                </div>
+            </ng-template>
+
+            <button class="pure-button" (click)='open(content)'>
+                <i class="material-icons">person</i>
+                Add Cohort
+            </button>
+        </div>
+
+
+        <table id="associateTable">
+            <tr>
+                <th class="spreadColumnChrt">Name</th>
+                <th class="spreadColumnChrt">Location</th>
+                <th class="spreadColumnChrt">Token</th>
+                <th class="spreadColumnChrt">Start Date</th>
+                <th class="spreadColumnChrt">End Date</th>
+                <th class="spreadColumnChrt">Trainer</th>
+                <th class="spreadColumnChrt">Email</th>
+            </tr>
+            <tr *ngFor='let temp of filteredCohort'>
+                <button (click)="openModal(temp['cohortName'], content)">
+                    <td>{{temp['cohortName']}}</td>
+                </button>
+                <td>{{temp.address.city}},{{temp.address.state}}</td>
+                <td>{{temp.cohortToken}}</td>
+                <td> {{temp.startDate}} </td>
+                <td> {{temp.endDate}} </td>
+                <td> {{temp.trainer.firstName}} {{temp.trainer.lastName}} </td>
+                <td> {{temp.trainer.email}}</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</body>
