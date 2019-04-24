@@ -12,7 +12,7 @@ import { CognitoService } from './services/cognito.service';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
-import { MyStuffComponent } from './my-stuff/my-stuff.component';
+
 
 
 import { InterviewListComponent } from './components/interview-list/interview-list.component';
@@ -91,7 +91,6 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-    MyStuffComponent,
     InterviewListComponent,
     AssociateFeedbackFormComponent,
     SurveyCreatorComponent,
