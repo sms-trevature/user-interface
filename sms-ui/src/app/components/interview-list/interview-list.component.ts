@@ -12,7 +12,7 @@ export class InterviewListComponent implements OnInit {
   private interviewList: Interview[] = [];
   private filteredInterviewList: Interview[] = [];
   private listFilterVar = '';
-  private reviewFilterVar = 'both';
+  private reviewFilterVar = 'all';
   // private pageTitle = 'All Interviews';
 
   get listFilter(): string {
@@ -20,7 +20,7 @@ export class InterviewListComponent implements OnInit {
   }
   set listFilter(temp: string) {
     this.listFilterVar = temp;
-    this.filteredInterviewList = (this.listFilterVar || this.reviewFilterVar !== 'both') ?
+    this.filteredInterviewList = (this.listFilterVar || this.reviewFilterVar !== 'all') ?
       this.performFilter(this.listFilterVar) : this.interviewList;
   }
 
@@ -61,7 +61,7 @@ export class InterviewListComponent implements OnInit {
         || temp.place.toLocaleLowerCase().indexOf(filterBy) !== -1
         || temp.client.clientName.toLocaleLowerCase().indexOf(filterBy) !== -1
       )
-      && (this.reviewFilterVar === 'both'
+      && (this.reviewFilterVar === 'all'
         || (this.reviewFilterVar === 'reviewed' && temp.reviewed != null)
         || (this.reviewFilterVar === 'notreviewed' && temp.reviewed == null)
       )
