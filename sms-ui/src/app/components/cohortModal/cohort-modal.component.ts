@@ -13,12 +13,17 @@ export class CohortModalComponent implements OnInit {
 
   @Input() cohort: Cohort;
   userList;
+  cotrainer:boolean =true;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getAssociates(this.cohort.cohortId).toPromise().then(data => {
       this.userList = data;
     });
+    console.log(this.cohort.coTrainer)
+    if(this.cohort.coTrainer==undefined||null){
+      this.cotrainer=false;
+    }
 
   }
   emailSubmit(associateEmail: NgForm) {
@@ -42,4 +47,17 @@ export class CohortModalComponent implements OnInit {
     return this.http.get(`/users/cohorts/${id}`)
   }
 
+  submitCotrainer(){
+    let email = document.getElementById('cotrainerEmail') as HTMLInputElement;
+    console.log(email.value);
+    this.http.post(`cohorts/addcotrainer/${this.cohort['cohortToken']}`,{'email':email.value}).toPromise().then(data =>{
+      console.log(data)
+    })
+  }
+
+  removeCotrainer(){
+    this.http.delete(`cohorts/removecotrainer/${this.cohort['cohortToken']}`).toPromise().then(data=>{
+      console.log(data)
+    })
+  }
 }
