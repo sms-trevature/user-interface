@@ -47,6 +47,8 @@ import { AnswerData7Component } from './components/survey/survey-data/graph-comp
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 
 
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 
 const routes: Routes = [
@@ -130,7 +132,8 @@ const routes: Routes = [
     FormsModule,
     ChartsModule,
     SmsClientModule, AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BsDatepickerModule.forRoot()
 
   ],
   providers: [
