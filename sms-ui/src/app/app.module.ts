@@ -46,6 +46,8 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 
 
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 
 const routes: Routes = [
@@ -130,6 +132,7 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
+    BsDatepickerModule.forRoot(),
     BrowserModule,
     DatePickerModule
 
