@@ -42,8 +42,7 @@ import { AnswerData4Component } from './components/survey/survey-data/graph-comp
 import { AnswerData5Component } from './components/survey/survey-data/graph-components/answer-data5/answer-data5.component';
 import { AnswerData6Component } from './components/survey/survey-data/graph-components/answer-data6/answer-data6.component';
 import { AnswerData7Component } from './components/survey/survey-data/graph-components/answer-data7/answer-data7.component';
-
-
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 
 
@@ -54,6 +53,10 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'reportsRoute', component: ReportsComponent },
   { path: 'InterViewRoute', component: InterviewComponent },
+  { path: 'CreateInterviewRoute', component: NewInterviewComponent},
+  { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
+  { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
+  { path: 'InterviewListRoute', component: InterviewListComponent},
   {
     path: 'ManageRoute', component: ManageComponent,
     children: [
@@ -118,7 +121,6 @@ const routes: Routes = [
     AnswerData7Component,
 
 
-
   ],
   imports: [
     BrowserModule,
@@ -127,7 +129,9 @@ const routes: Routes = [
     FormsModule,
     ChartsModule,
     SmsClientModule, AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    DatePickerModule
 
   ],
   providers: [
