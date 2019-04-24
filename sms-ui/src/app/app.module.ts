@@ -91,7 +91,7 @@ const routes: Routes = [
     ProfileInfoComponent,
     HomeComponent,
     AuthLoadingComponent,
-    MyStuffComponent
+    MyStuffComponent,
     InterviewListComponent,
     AssociateFeedbackFormComponent,
     SurveyCreatorComponent,
