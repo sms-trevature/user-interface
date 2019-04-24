@@ -44,6 +44,7 @@ import { AnswerData7Component } from './components/survey/survey-data/graph-comp
 
 
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
+import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
 
 
 
@@ -119,6 +120,7 @@ const routes: Routes = [
     AnswerData5Component,
     AnswerData6Component,
     AnswerData7Component,
+    SurveyRespondentsComponent,
 
 
 

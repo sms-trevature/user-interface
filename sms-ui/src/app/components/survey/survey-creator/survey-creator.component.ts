@@ -11,5 +11,4 @@ export class SurveyCreatorComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
