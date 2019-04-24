@@ -12,7 +12,7 @@
 
 
     <div class="col-auto my-1">
-      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" rel="txtTooltip" title="Feedback Status" data-toggle="tooltip" data-placement="bottom">
         <option selected>Status</option>
         <option value="1">Pending</option>
         <option value="2">No Feedback</option>
@@ -24,7 +24,7 @@
     <!-- This text box provides feedback for the form -->
     <div class="form-group">
       <label for="exampleFormControlTextarea1">Feedback</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" rel="txtTooltip" title="Please enter your feedback" data-toggle="tooltip" data-placement="bottom"></textarea>
     </div>
 
     <div class="form-group">
@@ -34,7 +34,7 @@
     
         
         <!-- info for Date requested -->
-        <input #birthdate type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2020-12-31">
+        <input #birthdate type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2020-12-31"rel="txtTooltip" title="Date Requested" data-toggle="tooltip" data-placement="bottom">
 
         <!--  info for date received -->
         &nbsp;
@@ -42,13 +42,13 @@
         &nbsp;
         &nbsp;
         <!-- <label class="col-lg-3 control-label">Date Requested:</label> -->
-        <input #birthdate type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2020-12-31">
+        <input #birthdate type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2020-12-31" rel="txtTooltip" title="Date Received" data-toggle="tooltip" data-placement="bottom">
 
        
         </div>
       </div>
 
-      <input class="btn btn-primary" type="button" value="Submit" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-
+      <input class="btn btn-primary" type="button" value="Submit" data-toggle="tooltip" data-placement="top" title="Submit form" >
+     
 
   </form> 

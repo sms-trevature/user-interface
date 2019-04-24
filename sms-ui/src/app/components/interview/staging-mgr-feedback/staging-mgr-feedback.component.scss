@@ -9,8 +9,7 @@
     left: 27%;
     margin-top: 5%;
 }
-.col-lg-8{
-}
+
 .current-interview{
     border-bottom: 1px solid #ffffff !important;
     margin-bottom: 20px;
@@ -27,6 +26,10 @@
       min-height: 80px; 
     width: 100%;
   }
+
+ .btn-primary {
+background-color: #ff9a00 !important;
+}
 
   /* (function () {
     ('[data-toggle="tooltip"]').tooltip()
