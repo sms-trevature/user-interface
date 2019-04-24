@@ -24,7 +24,7 @@ export class ProfileInfoComponent implements OnInit {
     }
   ];
   // user will somehow be retrieved through cognito session
-  currentUser: User[]/* = [
+  currentUser: User[]; /* = [
     {
       userId: 2,
       firstName: 'Goofy',
