@@ -1,3 +1,66 @@
-<p>
-  survey-creator works!
-</p>
+<div>
+
+  <app-navbar></app-navbar>
+</div>
+
+<div class="container">
+  <form class="form-horizontal">
+    <fieldset>
+      <!-- Form Name -->
+      <legend>Survey Build</legend>
+      <!-- Text input-->
+      <div class="survey_title">
+        <label class="col-md-4 control-label" for="textinput">Survey Title</label>
+        <div class="col-md-4">
+          <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+        </div>
+      </div>
+      <br>
+      <!-- Checkbox (inline) -->
+      <div class="template_check">
+        <label class="col-md-4 control-label" for="checkboxes">Is This A New Template?</label>
+        <label class="checkbox-inline" for="checkboxes-0">
+          <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+          yes
+        </label>
+
+      </div>
+      <!-- Textarea -->
+      <div class="survey_description">
+        <label class="col-md-4 control-label" for="textarea">Survey Description</label>
+        <div class="col-md-4">
+          <textarea class="form-control" id="textarea" name="textarea"></textarea>
+        </div>
+      </div>
+      <!-- Select Basic -->
+      <div class="questioncontainer">
+        <label class="col-md-4 control-label" for="selectquestiontype">Select Question Type</label>
+        <div class="questiontype" id="dropdown">
+          <select id="selectquestiontype" name="selectquestiontype" class="form-control">
+            <option value="T/F">True/False</option>
+            <option value="Multi Choice">Multiple Choice</option>
+            <option value="Checkbox Multi Answer">Checkboxes for Multiple Answers</option>
+            <option value="Rating">Rating</option>
+            <option value="Feedback">Feedback</option>
+            <option value="Y/N">Yes/No</option>
+            <option value="Agree Disagree">Strongly Agree - Strongly Disagree</option>
+          </select>
+          <button id="addquestion" name="addbutton" class="btn btn-warning">Add Question</button>
+        </div>
+      </div>
+      <br>
+      <div id="questionlist">
+
+
+      </div>
+      <br>
+      <!-- Button -->
+      <div class="submit-button">
+        <!--<label class="col-md-4 control-label" for="singlebutton">Submission</label>-->
+        <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+      </div>
+
+    </fieldset>
+  </form>
+</div>
+<router-outlet></router-outlet>
