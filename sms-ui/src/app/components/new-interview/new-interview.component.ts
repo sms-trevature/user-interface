@@ -8,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class NewInterviewComponent implements OnInit {
 
   dateSelection:Date;
-  constructor() { }
+  minDate: Date;
+  constructor() {
+     this.minDate= new Date();
+     this.minDate.setDate(this.minDate.getDate());
+  }
 
   ngOnInit() {
   }
 
+  try(){
+
+    console.log(this.dateSelection);
+  
+  }
 }
