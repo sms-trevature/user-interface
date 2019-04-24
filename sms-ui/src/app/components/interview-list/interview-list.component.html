@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    {{pageTitle}}
+  </div>
+
+  <div class='panel-body'>
+    <div class='row'>
+      <div class='col-md-2'>Search: </div>
+      <div class='col-md-4'>
+        <input type='text' [(ngModel)]='listFilter' />
+      </div>
+    </div>
+  </div>
+
+  <div class='table-responsive'>
+    <table class='table' *ngIf='interviewList && interviewList.length'>
+      <thead>
+        <tr>
+          <th>Reviewed</th>
+          <th>Associate Email</th>
+          <th>Manager Email</th>
+          <th>Location</th>
+          <th>Client</th>
+          <th>Date Notified</th>
+          <th>Date Scheduled</th>
+          <th>Date Reviewed</th>
+          <th>Associate Feedback</th>
+          <th>Interview Feedback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let temp of filteredInterviewList'>
+          <td *ngIf='temp.reviewed'>Yes</td>
+          <td *ngIf='!temp.reviewed'></td>
+          <td>{{temp.associateEmail}}</td>
+          <td>{{temp.managerEmail}}</td>
+          <td>{{temp.place}}</td>
+          <td>{{temp.client.clientName}}</td>
+          <td>{{temp.notified | date}}</td>
+          <td>{{temp.scheduled | date}}</td>
+          <td>{{temp.reviewed | date}}</td>
+          <td>WIP</td>
+          <td>WIP</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
