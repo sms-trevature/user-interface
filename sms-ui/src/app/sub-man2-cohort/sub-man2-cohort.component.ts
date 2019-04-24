@@ -16,13 +16,12 @@ export class SubMan2CohortComponent implements OnInit {
   closeResult: string;
   ngswitchCase = '';
   addressList;
-trainer;
+  trainer;
   get listFilter(): string {
     return this._listFilter;
   }
   modalShow = false
   exportedCohort: Cohort;
-  //display = 'none'
 
   openModal(name: string, content) {
     for (let temp of this.filteredCohort) {
@@ -46,10 +45,6 @@ trainer;
   filteredCohort;
 
   constructor(private _fakeService: FakeServiceComponent, private http: HttpClient, private modalService: NgbModal) {
-
-    // this.filteredCohort =
-    // this._fakeService.getCohorts();
-
     this.allCohorts = this.filteredCohort;
   }
   performFilter(filterBy: string): Cohort[] {
@@ -61,15 +56,9 @@ trainer;
     this.http.get('cohorts').toPromise().then(data => {
       this.filteredCohort = data;
       this.allCohorts = this.filteredCohort;
-      console.log(data)
     })
     this.getAddresses();
   }
-  // closeModal(){
-  //   this.ngswitchCase=''
-  //   this.modalShow = false;
-  //   this.display = 'none'
-  // }
   open(content) {
     this.ngswitchCase = 'addCohort'
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -96,12 +85,10 @@ trainer;
   getAddresses() {
     this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
       this.addressList = data;
-      console.log(data);
     })
   }
   getTrainerById(id: number) {
-    this.http.get(`users/${id}`).toPromise().then(data=>{
-      console.log(data)
+    this.http.get(`users/${id}`).toPromise().then(data => {
       return data;
     })
   }
@@ -111,7 +98,6 @@ trainer;
     for (let temp of this.addressList) {
       if (temp.addressId == cohort.value['location']) {
         var location = temp;
-        console.log(temp)
       }
     }
     let body = {
@@ -123,10 +109,9 @@ trainer;
       'startDate': cohort.value['startDate'],
       'endDate': cohort.value['endDate'],
       'users': null,
-      'trainer': this.getTrainerById(cohort.value['trainer'])
+      'trainer': {}
     }
-    this.http.post(`cohorts/cohort/trainer/${cohort.value['trainer']}`, body).toPromise().then(data =>
-      console.log(data))
+    this.http.post(`cohorts/cohort/trainer/${cohort.value['trainer']}`, body).toPromise().then(data => {
+    })
   }
-
 }

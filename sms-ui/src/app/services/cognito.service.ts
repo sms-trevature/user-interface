@@ -77,12 +77,6 @@ export class CognitoService {
             this.tokenStream.next(data.getIdToken().getJwtToken());
             const currentUser = data.getIdToken().payload;
             this.currentUserStream.next(currentUser);
-            console.log('beginning the auth logs')
-            console.log(data.getIdToken())
-            console.log(data.getIdToken().getJwtToken())
-            console.log(currentUser)
-            console.log(this.currentUser$)
-            console.log(this.currentUserStream)
           });
         // create interval to refresh the jwt periodically
         setInterval(() => {
