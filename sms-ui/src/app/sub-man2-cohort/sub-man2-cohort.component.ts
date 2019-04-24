@@ -19,7 +19,7 @@ export class SubMan2CohortComponent implements OnInit {
   }
   modalShow = false
   exportedCohort: Cohort;
-  display = 'none'
+  //display = 'none'
 
   openModal(name: string, content) {
     for (let temp of this.filteredCohort) {
@@ -62,17 +62,18 @@ export class SubMan2CohortComponent implements OnInit {
     
     })
   }
-  closeModal(){
-    this.ngswitchCase=''
-    this.modalShow = false;
-    this.display = 'none'
-  }
+  // closeModal(){
+  //   this.ngswitchCase=''
+  //   this.modalShow = false;
+  //   this.display = 'none'
+  // }
   open(content) {
     this.ngswitchCase='addCohort'
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.ngOnInit();
     });
   }
 
@@ -86,7 +87,9 @@ export class SubMan2CohortComponent implements OnInit {
     }
   }
 
-
+close(){
+  this.modalService.dismissAll();
+}
   //getCohorts()
 
 

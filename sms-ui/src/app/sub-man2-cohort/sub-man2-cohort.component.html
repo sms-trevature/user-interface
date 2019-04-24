@@ -54,8 +54,9 @@
                     </div>
                     <div *ngSwitchDefault>peter rabbit</div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark"
-                            (click)="modal.close('Save click')">Save</button>
+
+                        <button type="button" class="btn btn-outline-dark" (click)="close()">Save</button>
+
                     </div>
                 </div>
             </ng-template>
@@ -82,7 +83,7 @@
                     <td>{{temp['cohortName']}}</td>
                 </button>
                 <td>{{temp.address.city}},{{temp.address.state}}</td>
-                <td>{{temp.cohortToken}}</td>
+                <button><td>{{temp.cohortToken}}</td></button>
                 <td> {{temp.startDate}} </td>
                 <td> {{temp.endDate}} </td>
                 <td> {{temp.trainer.firstName}} {{temp.trainer.lastName}} </td>
