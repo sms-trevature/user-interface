@@ -25,17 +25,23 @@
                                 <label for="Name">Name</label>
                                 <div class="input-group">
                                     <input id="Name" class="form-control" placeholder="Cohort Name" name="dp">
-
-                                    <div class="d-inline-block" mdbDropdown>
-                                        <button mdbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Location</button>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <button class="dropdown-menu" href="#">Tampa, FL</button>
-                                            <button class="dropdown-menu" href="#">Reston, VA</button>
-                                            <button class="dropdown-menu" href="#">Dallas, TX</button>
-                                        </div>
-                                    </div>
+                                    <select>
+                                            <option value="" disabled="disabled" selected="selected">Location</option>
+                                            <option value="1">Tampa, Fl.</option>
+                                            <option value="2">Reston, Va.</option>
+                                            <option value="3">Dallas, Tx.</option>
+                                        </select>
+                                    
                                 </div>
+                                <br>
+                                <textarea rows="4" cols="50" name="comment" form="cohortform">Description</textarea>
+                                <br>
+                                <select>
+                                        <option value="" disabled="disabled" selected="selected">Trainer</option>
+                                        <option value="1">Trevin Chester</option>
+                                        <option value="2">Blake Kruppa</option>
+                                        <option value="3">IDK</option>
+                                    </select>
                             </div>
                         </form>
                     </div>
@@ -48,7 +54,9 @@
                     </div>
                     <div *ngSwitchDefault>peter rabbit</div>
                     <div class="modal-footer">
+
                         <button type="button" class="btn btn-outline-dark" (click)="close()">Save</button>
+
                     </div>
                 </div>
             </ng-template>
