@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDatabaseService } from 'src/app/services/Inmemorydb/in-memory-db.service';
 import { AppComponent } from './app.component';
 import { AuthLoadingComponent } from './components/auth-loading/auth-loading.component';
 import { HomeComponent } from './components/home/home.component';
@@ -80,7 +83,7 @@ const routes: Routes = [
 
 ];
 
-@NgModule({ 
+@NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
@@ -131,6 +134,10 @@ const routes: Routes = [
     NgbModule,
     FormsModule,
     ChartsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDatabaseService, { dataEncapsulation: false }
+    ),
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes)
 
