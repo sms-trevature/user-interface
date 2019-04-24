@@ -42,8 +42,7 @@ import { AnswerData4Component } from './components/survey/survey-data/graph-comp
 import { AnswerData5Component } from './components/survey/survey-data/graph-components/answer-data5/answer-data5.component';
 import { AnswerData6Component } from './components/survey/survey-data/graph-components/answer-data6/answer-data6.component';
 import { AnswerData7Component } from './components/survey/survey-data/graph-components/answer-data7/answer-data7.component';
-
-
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 
 
@@ -130,7 +129,9 @@ const routes: Routes = [
     FormsModule,
     ChartsModule,
     SmsClientModule, AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserModule,
+    DatePickerModule
 
   ],
   providers: [
