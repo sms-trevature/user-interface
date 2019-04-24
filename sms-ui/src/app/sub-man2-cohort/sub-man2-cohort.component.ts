@@ -3,6 +3,8 @@ import { FakeServiceComponent } from '../fake-service/fake-service.component';
 import { Cohort } from '../sms-client/dto/Cohort';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sub-man2-cohort',
@@ -12,8 +14,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class SubMan2CohortComponent implements OnInit {
   _listFilter = '';
   closeResult: string;
-  ngswitchCase='';
-
+  ngswitchCase = '';
+  addressList;
+trainer;
   get listFilter(): string {
     return this._listFilter;
   }
@@ -27,11 +30,11 @@ export class SubMan2CohortComponent implements OnInit {
         this.exportedCohort = temp;
         this.modalShow = true;
         this.open(content);
-        this.ngswitchCase='editAssociates'
+        this.ngswitchCase = 'editAssociates'
       }
     }
   }
-  
+
 
 
   set listFilter(temp: string) {
@@ -59,8 +62,8 @@ export class SubMan2CohortComponent implements OnInit {
       this.filteredCohort = data;
       this.allCohorts = this.filteredCohort;
       console.log(data)
-    
     })
+    this.getAddresses();
   }
   // closeModal(){
   //   this.ngswitchCase=''
@@ -68,8 +71,8 @@ export class SubMan2CohortComponent implements OnInit {
   //   this.display = 'none'
   // }
   open(content) {
-    this.ngswitchCase='addCohort'
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.ngswitchCase = 'addCohort'
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -83,14 +86,47 @@ export class SubMan2CohortComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
-close(){
-  this.modalService.dismissAll();
-}
-  //getCohorts()
-
+  close() {
+    this.modalService.dismissAll();
+  }
+  getAddresses() {
+    this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
+      this.addressList = data;
+      console.log(data);
+    })
+  }
+  getTrainerById(id: number) {
+    this.http.get(`users/${id}`).toPromise().then(data=>{
+      console.log(data)
+      return data;
+    })
+  }
+  addCohort(cohort: NgForm) {
+    console.log('in the submit')
+    console.log(cohort.value['trainer'])
+    for (let temp of this.addressList) {
+      if (temp.addressId == cohort.value['location']) {
+        var location = temp;
+        console.log(temp)
+      }
+    }
+    let body = {
+      'cohortId': 0,
+      'cohortName': cohort.value['dp'],
+      'cohortDescription': cohort.value['description'],
+      'cohortToken': '',
+      'address': location,
+      'startDate': cohort.value['startDate'],
+      'endDate': cohort.value['endDate'],
+      'users': null,
+      'trainer': this.getTrainerById(cohort.value['trainer'])
+    }
+    this.http.post(`cohorts/cohort/trainer/${cohort.value['trainer']}`, body).toPromise().then(data =>
+      console.log(data))
+  }
 
 }

@@ -20,28 +20,31 @@
                     </div>
                     <div class="modal-body" *ngSwitchCase="'addCohort'">
                         <h4 class="modal-title" id="modal-basic-title">Create Cohort</h4>
-                        <form>
+                        <form #addCohortForm='ngForm' (ngSubmit)='addCohort(addCohortForm)'>
                             <div class="form-group">
                                 <label for="Name">Name</label>
                                 <div class="input-group">
-                                    <input id="Name" class="form-control" placeholder="Cohort Name" name="dp">
-                                    <select>
-                                            <option value="" disabled="disabled" selected="selected">Location</option>
-                                            <option value="1">Tampa, Fl.</option>
-                                            <option value="2">Reston, Va.</option>
-                                            <option value="3">Dallas, Tx.</option>
+                                    <input id="Name" ngModel class="form-control" placeholder="Cohort Name" name="dp">
+                                    <select ngModel name='location'>
+                                            <option *ngFor='let temp of addressList' [value]="temp.addressId">{{temp.city}}, {{temp.state}}</option>
                                         </select>
-                                    
+
                                 </div>
                                 <br>
-                                <textarea rows="4" cols="50" name="comment" form="cohortform">Description</textarea>
+                                <textarea rows="4" cols="50" name="description" ngModel placeholder='Description' form="cohortform"></textarea>
                                 <br>
-                                <select>
-                                        <option value="" disabled="disabled" selected="selected">Trainer</option>
-                                        <option value="1">Trevin Chester</option>
-                                        <option value="2">Blake Kruppa</option>
-                                        <option value="3">IDK</option>
-                                    </select>
+                                <h4>Start Date</h4>
+                                <input name='startDate' ngModel type="date" min="2018-01-01" max="2020-12-31">
+                                <br>
+                                <h4>End Date</h4>
+                                <input name='endDate' ngModel type="date" min="2018-01-01" max="2020-12-31">
+                                <select name='trainer' ngModel>
+                                    <option value="1" disabled="disabled" selected="selected">Trainer</option>
+                                    <option value="1">Trevin Chester</option>
+                                    <option value="1">Blake Kruppa</option>
+                                    <option value="1">IDK</option>
+                                </select>
+                                <br><button type='submit'>Submit</button>
                             </div>
                         </form>
                     </div>
