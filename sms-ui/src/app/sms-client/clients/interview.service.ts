@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Interview } from './interview';
+import { Interview } from '../dto/Interview';
 
 @Injectable({
   providedIn: 'root'
