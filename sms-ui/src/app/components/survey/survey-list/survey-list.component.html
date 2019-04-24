@@ -16,12 +16,15 @@
           <td>{{temp.surveyId}}</td>
           <td>{{temp.title}}</td>
           <td>{{temp.description}}</td>
-          <td><p *ngIf="!temp.template; else elseBlock1">No Template</p>
+          <td><p *ngIf="!temp.template; else elseBlock1">
+              <button (click)='getGraph(temp.surveyId)'>show graphs</button>
+          </p>
             <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template></td>
           <td>{{temp.dateCreated | showTimestamp}}</td>
           <td><p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
             <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template></td>
-      </tr>
+           
+          </tr>
   </tbody>
 </table> 
 
@@ -33,4 +36,8 @@
     </li>
    
   </ul></div>
+
+  <div *ngFor='let temp of ArrayOfResponseAnswerList; index as i;'>
+      <app-answer-data2 [pieChartLabels]='temp' [pieChartData]= 'arrOfCounts[i]'></app-answer-data2>
+  </div>
 
