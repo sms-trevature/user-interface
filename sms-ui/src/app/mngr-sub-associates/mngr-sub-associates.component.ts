@@ -59,8 +59,8 @@ export class MngrSubAssociatesComponent implements OnInit {
   performFilter(filterBy: string): SomeAssociate[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.allAssociates.filter((metaEmployee: SomeAssociate) =>
-      (metaEmployee.firstName.toLocaleLowerCase()).indexOf(filterBy) !== -1);
-      //.concat(metaEmployee.lastName.toLocaleLowerCase())
+      (metaEmployee.firstName.toLocaleLowerCase().concat(metaEmployee.lastName.toLocaleLowerCase())).indexOf(filterBy) !== -1);
+      
   }
   optionSelect() {
     let e = (document.getElementById('selectElement')) as HTMLSelectElement;
