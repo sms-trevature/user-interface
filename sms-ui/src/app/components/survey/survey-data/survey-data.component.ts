@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Color, BaseChartDirective, Label } from 'ng2-charts';
+import { Component, OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'app-survey-data',

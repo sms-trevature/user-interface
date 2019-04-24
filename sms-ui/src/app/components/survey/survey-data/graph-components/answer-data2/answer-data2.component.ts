@@ -13,8 +13,18 @@ export class AnswerData2Component implements OnInit {
     responsive: true,
   };
   public pieChartLabels: Label[] = ['YES', 'NO'];
-  public pieChartData: SingleDataSet = [20, 5];
+  public pieChartData: Array<any> = [20, 5];
   public pieChartType: ChartType = 'pie';
+  public chartColors: Array<any> = [
+    {
+      backgroundColor: ['#f3a760'],
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+  ];
   public pieChartLegend = true;
   public pieChartPlugins = [];
 

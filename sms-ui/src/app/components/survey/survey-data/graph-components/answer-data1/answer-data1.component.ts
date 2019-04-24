@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
+import { SurveyDataService } from 'src/app/services/survey-data/survey-data.service';
+import { SurveyResponses } from 'src/app/tables/survey-responses';
 
 @Component({
   selector: 'app-answer-data1',
@@ -8,6 +10,7 @@ import { Label, Color } from 'ng2-charts';
   styleUrls: ['./answer-data1.component.css']
 })
 export class AnswerData1Component implements OnInit {
+  surveyResponses: SurveyResponses[];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -23,30 +26,14 @@ export class AnswerData1Component implements OnInit {
     'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12', 'Week 13', 'Week 14 or More'];
   public barChartType: ChartType = 'bar';
   public chartColors: Array<any> = [
-    { // grey
-      backgroundColor: 'orange',
+    {
+      backgroundColor: '#f3a760',
       borderColor: 'rgba(148,159,177,1)',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
-    { // dark grey
-      backgroundColor: 'orange',
-      borderColor: 'orange',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // red
-      backgroundColor: 'rgba(255,0,0,0.3)',
-      borderColor: 'red',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
   ];
   public barChartLegend = true;
 
@@ -54,12 +41,18 @@ export class AnswerData1Component implements OnInit {
     { data: [30, 20, 19, 18, 18, 18, 17, 16, 16, 16, 15, 15, 15], label: 'Number of Responses' }
   ];
 
-  constructor() { }
+  constructor(private surveyDataService: SurveyDataService) { }
 
   ngOnInit() {
+    this.getResponses();
   }
 
-  // events
+  getResponses(): void {
+    this.surveyDataService.getResponses().subscribe(
+      surveyResponses => this.surveyResponses = surveyResponses);
+  }
+
+
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }

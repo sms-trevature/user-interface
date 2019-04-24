@@ -14,6 +14,16 @@ export class AnswerData3Component implements OnInit {
   };
   public barChartLabels: Label[] = ['Hated It', 'Not Satisfied', 'Meh..', 'Satisfied', 'Very Satisfied'];
   public barChartType: ChartType = 'bar';
+  public chartColors: Array<any> = [
+    {
+      backgroundColor: '#f3a760',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+  ];
   public barChartLegend = true;
   public barChartPlugins = [];
 
