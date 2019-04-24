@@ -12,13 +12,25 @@ export class InterviewListComponent implements OnInit {
   private interviewList: Interview[] = [];
   private filteredInterviewList: Interview[] = [];
   private listFilterVar = '';
+  private reviewFilterVar = 'both';
+  // private pageTitle = 'All Interviews';
 
   get listFilter(): string {
     return this.listFilterVar;
   }
   set listFilter(temp: string) {
     this.listFilterVar = temp;
-    this.filteredInterviewList = this.listFilterVar ? this.performFilter(this.listFilterVar) : this.interviewList;
+    this.filteredInterviewList = (this.listFilterVar || this.reviewFilterVar !== 'both')
+      ? this.performFilter(this.listFilterVar) : this.interviewList;
+  }
+
+  get reviewFilter(): string {
+    return this.reviewFilterVar;
+  }
+  set reviewFilter(temp: string) {
+    this.reviewFilterVar = temp;
+    this.filteredInterviewList = this.reviewFilterVar
+     ? this.performFilter(this.listFilterVar) : this.interviewList;
   }
 
   constructor(private interview: InterviewService) {}
@@ -44,10 +56,16 @@ export class InterviewListComponent implements OnInit {
   performFilter(filterBy: string): Interview[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.interviewList.filter((temp: Interview) =>
-      temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
-      || temp.managerEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
-      || temp.place.toLocaleLowerCase().indexOf(filterBy) !== -1
-      || temp.client.clientName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+      (temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.managerEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.place.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.client.clientName.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+      && (this.reviewFilterVar === 'both'
+        || (this.reviewFilterVar === 'reviewed' && temp.reviewed != null)
+        || (this.reviewFilterVar === 'notreviewed' && temp.reviewed == null)
+      )
+    );
   }
 
 }
