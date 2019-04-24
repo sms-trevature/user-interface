@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InterviewService } from 'src/app/services/interview.service';
+import { Interview } from 'src/app/services/interview';
 
 @Component({
   selector: 'app-interview-list',
@@ -8,15 +9,24 @@ import { InterviewService } from 'src/app/services/interview.service';
 })
 export class InterviewListComponent implements OnInit {
 
-  private interviewList: object;
-  private filteredInterviewList: object;
-  constructor(private interview: InterviewService) {
+  private interviewList: Interview[] = [];
+  private filteredInterviewList: Interview[] = [];
+  private listFilterVar = '';
+
+  get listFilter(): string {
+    return this.listFilterVar;
+  }
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.filteredInterviewList = this.listFilterVar ? this.performFilter(this.listFilterVar) : this.interviewList;
+  }
+
+  constructor(private interview: InterviewService) {}
+
+  ngOnInit() {
     this.interviewList = this.interview.getInterviews2();
     this.filteredInterviewList = this.interviewList;
     console.log(this.filteredInterviewList);
-  }
-
-  ngOnInit() {
   }
 
   buttonClicked() {
@@ -29,6 +39,15 @@ export class InterviewListComponent implements OnInit {
     this.interviewList = this.interview.getInterviews2();
     this.filteredInterviewList = this.interviewList;
     console.log(this.filteredInterviewList);
+  }
+
+  performFilter(filterBy: string): Interview[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.interviewList.filter((temp: Interview) =>
+      temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
+      || temp.managerEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
+      || temp.place.toLocaleLowerCase().indexOf(filterBy) !== -1
+      || temp.client.clientName.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
 }
