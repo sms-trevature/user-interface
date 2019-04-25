@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
-import { SurveyDataService } from 'src/app/services/survey-data/survey-data.service';
+import { SurveyDataService } from 'src/app/sms-client/clients/survey-data/survey-data.service';
 import { SurveyResponses } from 'src/app/tables/survey-responses';
 
 @Component({

@@ -5,38 +5,46 @@ img {
 
 .reports {
     width: 1980px;
-    height: 400px;
+    height: 450px;
     background: url("../../../assets/reportsimg.jpg");
-    background-size: 1980px;
-    background-position: bottom;
-    background-attachment: fixed;
+    background-size: cover;
+    background-position: bottom 15% right 15%;
+    background-repeat: no-repeat;
+    //background-attachment: fixed;
 }
 
 .interviews {
     width: 1980px;
-    height: 400px;
+    height: 450px;
     background: url("../../../assets/interviewsimg.jpg");
-    background-size: 100%;
-    background-position: center;
-    background-attachment: fixed;
+    //background-size: 100%;
+    background-position: top 25% right 35%;
+    ;
+    //background-attachment: fixed;
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
 }
 
 .manage {
     width: 1980px;
-    height: 400px;
-    background: url("../../../assets/manageimg.jpg");
+    height: 450px;
+    background: url("../../../assets/managerimg.jpg");
     background-size: 100%;
-    background-position: top;
-    background-attachment: fixed;
+    background-position: top 20% right 35%;
+    //background-attachment: fixed;
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    //background-size: cover;
 }
 
 .surveys {
     width: 1980px;
-    height: 400px;
+    height: 450px;
     background: url("../../../assets/surveyimg.jpg");
-    background-size: 1980px;
-    background-position: bottom;
-    background-attachment: fixed;
+    background-size: 100%;
+    background-position: bottom 15% right 15%;
+    //background-attachment: fixed;
 }
 
 .container {
