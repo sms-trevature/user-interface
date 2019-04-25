@@ -19,6 +19,7 @@ import { ProfileInfoComponent } from './components/profile-info/profile-info.com
 import { ReportsComponent } from './reports/reports.component';
 import { InterviewComponent } from './interview/interview.component';
 import { ManageComponent } from './manage/manage.component';
+import { SurveyComponent } from './survey/survey.component';
 import { MngrSubAssociatesComponent } from './mngr-sub-associates/mngr-sub-associates.component';
 import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.component';
 import { FakeServiceComponent } from './fake-service/fake-service.component';
@@ -39,8 +40,7 @@ import { AnswerData7Component } from './components/survey/survey-data/graph-comp
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
-
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
@@ -120,10 +120,12 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
+    //Javier's thing 
     BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
     BrowserModule,
-    DatePickerModule,
-    BsDatepickerModule.forRoot()
+    DatePickerModule
+
 
   ],
   providers: [

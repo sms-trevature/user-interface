@@ -13,7 +13,7 @@ export class AnswerData2Component implements OnInit {
     responsive: true,
   };
   public pieChartLabels: Label[] = ['YES', 'NO'];
-  public pieChartData: Array<any> = [20, 5];
+  public pieChartData: SingleDataSet = [20, 5];
   public pieChartType: ChartType = 'pie';
   public chartColors: Array<any> = [
     {
