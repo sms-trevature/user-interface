@@ -66,7 +66,7 @@ export class CohortModalComponent implements OnInit {
     console.log(date.value)
     this.cohort['endDate']=date.value;
     console.log(this.cohort)
-    this.http.post('cohorts',this.cohort).toPromise().then(data=>{
+    this.http.put('cohorts',this.cohort).toPromise().then(data=>{
       console.log(data)
     })
   }
