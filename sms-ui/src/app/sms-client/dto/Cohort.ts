@@ -1,6 +1,6 @@
 export interface Cohort {
     cohortId:number;
-    CName: String; 
+    cohortName: String; 
     address: String; 
     Token: String; 
     StartD: String; 
