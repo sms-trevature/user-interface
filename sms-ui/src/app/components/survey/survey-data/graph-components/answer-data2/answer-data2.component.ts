@@ -17,7 +17,7 @@ export class AnswerData2Component implements OnInit {
   public pieChartType: ChartType = 'pie';
   public chartColors: Array<any> = [
     {
-      backgroundColor: ['#f3a760'],
+      backgroundColor: ['#f3a760', 'light-gray'],
       borderColor: 'rgba(148,159,177,1)',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
