@@ -1,5 +1,32 @@
 <app-navbar> </app-navbar>
 
-<p>
-  home works! Welcome: {{user?.firstName }} {{user?.lastName}}
-</p>
+<body style="text-align:center;">
+    <div class="centeredBody">
+
+        <p>
+            Welcome: {{user?.firstName }} {{user?.lastName}}
+        </p>
+    </div>
+    <div class="container">
+        <div class="row surveys">
+            <div class="btn"><a routerLink="/surveyList">SURVEYS</a></div>
+        </div>
+        <div class="row manage">
+            <div class="btn"><a routerLink="/ManageRoute">MANAGE</a></div>
+        </div>
+        <div class="row interviews">
+            <div class="btn"><a routerLink="/InterviewListRoute">INTERVIEWS</a></div>
+        </div>
+        <div class="row reports">
+            <div class="btn"><a routerLink="/reportRoute">REPORTS</a></div>
+
+        </div>
+
+
+
+        <br>
+        <br>
+        <br>
+
+    </div>
+</body>
