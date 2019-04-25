@@ -36,8 +36,15 @@ import { AnswerData4Component } from './components/survey/survey-data/graph-comp
 import { AnswerData5Component } from './components/survey/survey-data/graph-components/answer-data5/answer-data5.component';
 import { AnswerData6Component } from './components/survey/survey-data/graph-components/answer-data6/answer-data6.component';
 import { AnswerData7Component } from './components/survey/survey-data/graph-components/answer-data7/answer-data7.component';
+<<<<<<< HEAD
+=======
+import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
+>>>>>>> a94d30a3450db92e38205c7734b891a488ea3ded
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
+
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
@@ -106,6 +113,11 @@ const routes: Routes = [
     AnswerData5Component,
     AnswerData6Component,
     AnswerData7Component,
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a94d30a3450db92e38205c7734b891a488ea3ded
   ],
   imports: [
     BrowserModule,
@@ -114,7 +126,11 @@ const routes: Routes = [
     FormsModule,
     ChartsModule,
     SmsClientModule, AppRoutingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BsDatepickerModule.forRoot(),
+    BrowserModule,
+    DatePickerModule,
+    BsDatepickerModule.forRoot()
 
   ],
   providers: [
