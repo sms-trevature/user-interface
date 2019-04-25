@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class StagingMgrFeedbackComponent implements OnInit {
 
   constructor(private htp: HttpClient) { 
-    this.htp.get('Feedback/InterviewId/2').toPromise().then(data => {
+    this.htp.get('/interview-service/interview/Feedback/InterviewId/2').toPromise().then(data => {
     
       console.log(data);
     
