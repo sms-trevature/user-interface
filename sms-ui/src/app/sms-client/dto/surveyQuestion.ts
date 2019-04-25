@@ -1,13 +1,28 @@
 import { Survey } from './Survey';
 
-export interface Question {
+export class Question {
     questionId: number;
     question: string;
-    typeId: number; // may need to do something for this.
+    typeId: number;
+
+    constructor(questionId: number, question: string, typeId: number) {
+      this.questionId = questionId;
+      this.question = question;
+      this.typeId = typeId;
+      }
+
   }
 
-export interface SurveyQuestion {
+export class SurveyQuestion {
+    id: number;
     surveyId: Survey;
     questionId: Question;
-    questionOrder: number; // may need to do something for this.
+    questionOrder: number;
+
+    constructor(id: number, surveyId: Survey, questionId: Question, questionOrder: number) {
+      this.id = id;
+      this.surveyId = surveyId;
+      this.questionId = questionId;
+      this.questionOrder = questionOrder;
+      }
   }
