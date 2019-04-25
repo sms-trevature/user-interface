@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Isurvey } from './survey-grid';
 import { Survey } from 'src/app/sms-client/dto/Survey';
 import { SurveyQuestion } from 'src/app/sms-client/dto/surveyQuestion';
 import { Answer } from 'src/app/sms-client/dto/Answer';
