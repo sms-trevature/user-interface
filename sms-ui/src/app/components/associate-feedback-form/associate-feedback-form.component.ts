@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AssociateFeedbackService, AssociateFeedback } from './associate-feedback.service';
 import { Router } from '@angular/router';
+import { InterviewFormat } from 'src/app/sms-client/dto/InterviewFormat';
 
 @Component({
   selector: 'app-associate-feedback-form',
@@ -11,16 +12,19 @@ export class AssociateFeedbackFormComponent implements OnInit {
 
   public minDate: Date = new Date('01/01/2016');
   public maxDate: Date = new Date('12/31/2019');
-  public value: Date = new Date('05/16/2017'); 
+  public value: Date = new Date('05/16/2017');
 
   _descriptionProvided = false;
   _recievedNotifications = '';
   _dayNotice = false;
-  _interviewFormat = '';
-  _proposedFormat = '';
+  _interviewFormatStr = '';
+  _proposedFormatStr = '';
 
   associateInputList: any[];
 
+  associateFeed: AssociateFeedback;
+  interviewFormat: InterviewFormat;
+  proposedFormat: InterviewFormat;
   constructor(private associateFeedbackService: AssociateFeedbackService, private router: Router) {
 
   }
@@ -49,44 +53,46 @@ export class AssociateFeedbackFormComponent implements OnInit {
     this._dayNotice = temp;
   }
 
-  get interviewFormat(): string {
-    return this._interviewFormat;
+  get interviewFormatStr() {
+    return this._interviewFormatStr;
   }
 
-  set interFormat(temp: string) {
-    this._interviewFormat = temp;
+  set interviewFormatStr(temp: string) {
+    this._interviewFormatStr = temp;
+  }
+  get proposedFormatStr() {
+    return this._proposedFormatStr;
   }
 
-  get proposedFormat(): string {
-    return this._proposedFormat;
-  }
-
-  set proposedFormat(temp: string) {
-    this._proposedFormat = temp;
+  set proposedFormatStr(temp: string) {
+    this._proposedFormatStr = temp;
   }
 
   ngOnInit() {
 
-    this.postAssociateInput();
+    //this.postAssociateInput();
   }
 
   postAssociateInput() {
-    this.associateFeedbackService.getAssociateInput().subscribe((data: AssociateFeedback) => {
-      console.log(data);
 
-      this.associateInputList = [
-        {
-          descriptionProvided: data.descriptionProvided,
-          recievedNotifications: data.recievedNotifications,
-          dayNotice: data.dayNotice,
-          interFormat: data.interFormat,
-          proposedFormat: data.proposedFormat
-        }
-      ]
+    this.interviewFormat.formatDesc = this._interviewFormatStr;
+    this. proposedFormat.formatDesc = this._proposedFormatStr;
+    let associateInput = new AssociateFeedback(this._descriptionProvided, this._recievedNotifications, this._dayNotice, this.interviewFormat, this.proposedFormat);
+    let tempString = '2019-08-03 14:00:00';
+    
+    associateInput.interviewFormat.formatDesc = this._interviewFormatStr;
+    associateInput.proposedFormat.formatDesc = this._proposedFormatStr;
+    this.associateFeedbackService.postAssociateInput(associateInput).subscribe(data => {
+      data.recievedNotifications = tempString,
+        data.descriptionProvided = this._descriptionProvided,
+        data.interviewFormat = this.interviewFormat,
+        data.proposedFormat = this.proposedFormat,
+        data.dayNotice = this._dayNotice
     });
   }
 
   newInterviewFeedback() {
-   
+    console.log("inside of new interview feedback");
+
   }
 }
