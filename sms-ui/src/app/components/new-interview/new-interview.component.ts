@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewInterviewComponent implements OnInit {
 
+  dateSelection:Date;
   constructor() { }
 
   ngOnInit() {

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
-import { SurveyDataService } from 'src/app/sms-client/clients/survey-data/survey-data.service';
-import { SurveyResponses } from 'src/app/tables/survey-responses';
 
 @Component({
   selector: 'app-answer-data1',
@@ -10,7 +8,6 @@ import { SurveyResponses } from 'src/app/tables/survey-responses';
   styleUrls: ['./answer-data1.component.css']
 })
 export class AnswerData1Component implements OnInit {
-  surveyResponses: SurveyResponses[];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -41,17 +38,10 @@ export class AnswerData1Component implements OnInit {
     { data: [30, 20, 19, 18, 18, 18, 17, 16, 16, 16, 15, 15, 15], label: 'Number of Responses' }
   ];
 
-  constructor(private surveyDataService: SurveyDataService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getResponses();
   }
-
-  getResponses(): void {
-    this.surveyDataService.getResponses().subscribe(
-      surveyResponses => this.surveyResponses = surveyResponses);
-  }
-
 
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);

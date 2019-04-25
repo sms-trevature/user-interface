@@ -32,8 +32,8 @@ export class CognitoService {
 
   async login(username: string, password: string) {
     const response = await Auth.signIn(username, password);
+   
     /// ---Query by email for user info..
-    console.log(' email: ' + username);
 
     console.log(response);
     this.getCurrent();
@@ -68,6 +68,7 @@ export class CognitoService {
   }
 
   private setup() {
+    
     Auth.currentAuthenticatedUser()
       .then(user => {
         // initialize the jwt for axios
