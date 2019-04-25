@@ -20,22 +20,31 @@
                     </div>
                     <div class="modal-body" *ngSwitchCase="'addCohort'">
                         <h4 class="modal-title" id="modal-basic-title">Create Cohort</h4>
-                        <form>
+                        <form #addCohortForm='ngForm' (ngSubmit)='addCohort(addCohortForm)'>
                             <div class="form-group">
                                 <label for="Name">Name</label>
                                 <div class="input-group">
-                                    <input id="Name" class="form-control" placeholder="Cohort Name" name="dp">
+                                    <input id="Name" ngModel class="form-control" placeholder="Cohort Name" name="dp">
+                                    <select ngModel name='location'>
+                                            <option *ngFor='let temp of addressList' [value]="temp.addressId">{{temp.city}}, {{temp.state}}</option>
+                                        </select>
 
-                                    <div class="d-inline-block" mdbDropdown>
-                                        <button mdbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Location</button>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <button class="dropdown-menu" href="#">Tampa, FL</button>
-                                            <button class="dropdown-menu" href="#">Reston, VA</button>
-                                            <button class="dropdown-menu" href="#">Dallas, TX</button>
-                                        </div>
-                                    </div>
                                 </div>
+                                <br>
+                                <textarea rows="4" cols="50" name="description" ngModel placeholder='Description' form="cohortform"></textarea>
+                                <br>
+                                <h4>Start Date</h4>
+                                <input name='startDate' ngModel type="date" min="2018-01-01" max="2020-12-31">
+                                <br>
+                                <h4>End Date</h4>
+                                <input name='endDate' ngModel type="date" min="2018-01-01" max="2020-12-31">
+                                <select name='trainer' ngModel>
+                                    <option value="1" disabled="disabled" selected="selected">Trainer</option>
+                                    <option value="1">Trevin Chester</option>
+                                    <option value="1">Blake Kruppa</option>
+                                    <option value="1">IDK</option>
+                                </select>
+                                <br><button type='submit'>Submit</button>
                             </div>
                         </form>
                     </div>
@@ -48,7 +57,9 @@
                     </div>
                     <div *ngSwitchDefault>peter rabbit</div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+
+                        <button type="button" class="btn btn-outline-dark" (click)="close()">Save</button>
+
                     </div>
                 </div>
             </ng-template>
@@ -75,7 +86,7 @@
                     <td>{{temp['cohortName']}}</td>
                 </button>
                 <td>{{temp.address.city}},{{temp.address.state}}</td>
-                <td>{{temp.cohortToken}}</td>
+                <button><td>{{temp.cohortToken}}</td></button>
                 <td> {{temp.startDate}} </td>
                 <td> {{temp.endDate}} </td>
                 <td> {{temp.trainer.firstName}} {{temp.trainer.lastName}} </td>

@@ -1,6 +1,7 @@
 <div>
     <form #associateEmail='ngForm' (ngSubmit)='emailSubmit(associateEmail)'>
         <input type='email' name='cohortEmail' ngModel placeholder='Add Associate By Email' />
+        <button type='submit'>Submit</button>
     </form>
     <table>
         <tr>
@@ -18,8 +19,21 @@
             <td>{{cohort.trainer.email}}</td>
             <td>{{cohort.trainer.phoneNumber}}</td>
             <td>{{cohort.trainer.trainingAddress.city}}, {{cohort.trainer.trainingAddress.state}}</td>
-
         </tr>
+        <tr *ngIf="!cotrainer">
+            <input type='text' id='cotrainerEmail' placeholder="Add Cotrainer By Email" ngModel />
+            <button (click)="submitCotrainer()">Add Cotrainer</button>
+        </tr>
+        <tr *ngIf='cotrainer'>
+            <td>Cotrainer</td>
+            <td>{{cohort.coTrainer.firstName}}</td>
+            <td>{{cohort.coTrainer.lastName}}</td>
+            <td>{{cohort.coTrainer.email}}</td>
+            <td>{{cohort.coTrainer.phoneNumber}}</td>
+            <td>{{cohort.coTrainer.trainingAddress.city}}, {{cohort.coTrainer.trainingAddress.state}}</td>
+            <button (click)=removeCotrainer()>Remove Cotrainer</button>
+        </tr>
+
         <tr *ngFor='let temp of userList'>
             <td>{{temp.userId}}</td>
             <td>{{temp.firstName}}</td>
