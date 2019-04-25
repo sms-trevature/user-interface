@@ -2,12 +2,11 @@
 
 
 <body style="text-align:center;">
-  <div class="centeredBody">
-    <div id="subManagerMenu">
-      <button class="inlineManagerMenu" [routerLink]="['/ManageRoute','subMan1Internal']">Associates </button> <button
-        class="inlineManagerMenu" [routerLink]="['/ManageRoute','cohort']"> Cohorts </button>
-      <br>
-      <router-outlet></router-outlet>
+    <div class="centeredBody">
+        <div id="subManagerMenu">
+            <button class="inlineManagerMenu" [routerLink]="['/ManageRoute','subMan1Internal']">Associates </button> <button class="inlineManagerMenu" [routerLink]="['/ManageRoute','cohort']"> Cohorts </button>
+            <br>
+            <router-outlet></router-outlet>
+        </div>
     </div>
-  </div>
 </body>
