@@ -45,7 +45,6 @@ export class SurveyListComponent implements OnInit {
     this.sqService.getTemplate(surveyId).subscribe(
       data => {
         this.curTemplate = data;
-
 // tslint:disable-next-line: forin
         for (const i in data) {
           this.answerService.findByQuestionId(data[i].questionId.questionId).subscribe(

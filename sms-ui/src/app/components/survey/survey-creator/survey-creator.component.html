@@ -1,3 +1,65 @@
-<p>
-  survey-creator works!
-</p>
+<form class="form-horizontal" id="build-form">
+  <fieldset>
+  <!-- Form Name -->
+  <legend>Survey Build</legend>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">Survey Title</label>  
+    <div class="col-md-4">
+    <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+    </div>
+  </div>
+  
+  <!-- Checkbox (inline) -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="checkboxes">Is This a New Template?</label>
+    <div class="col-md-4">
+      <label class="checkbox-inline" for="checkboxes-0">
+        <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+        
+      </label>
+      
+    </div>
+  </div>
+
+  <!-- Textarea -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textarea">Survey Description</label>
+    <div class="col-md-4">                     
+      <textarea class="form-control" id="textarea" name="textarea">default text</textarea>
+    </div>
+  </div>
+
+  <!-- Select Basic -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Select Question Type</label>
+    <div class="col-md-4">
+      <select id="selectbasic" name="selectbasic" class="form-control">
+        <option value="1">True/False</option>
+        <option value="2">Multiple Choice Questions</option>
+        <option value="3">Multiple Choice Questions w/ Checkboxes</option>
+      </select>
+    </div>
+  </div>
+  <!-- Select Basic -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="selectbasic">Select Question(s)</label>
+    <div class="col-md-4">
+      <select id="selectbasic" name="selectbasic" class="form-control">
+        <option value="1">Option one</option>
+        <option value="2">Option two</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="singlebutton">Submission</label>
+    <div class="col-md-4">
+      <button id="singlebutton" name="singlebutton" class="btn btn-warning">Submit</button>
+    </div>
+  </div>
+  
+  </fieldset>
+  </form>
