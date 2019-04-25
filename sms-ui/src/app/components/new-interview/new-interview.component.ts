@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+
+import { NewInterviewService } from 'src/app/sms-client/clients/new-interview.service';
+import { Cohort } from 'src/app/sms-client/dto/Cohort';
 
 @Component({
   selector: 'app-new-interview',
@@ -8,21 +10,32 @@ import { DOCUMENT } from '@angular/common';
 })
 export class NewInterviewComponent implements OnInit {
 
-  dateSelection:Date;
-  minDate: Date;
-  time: Date = new Date();
-  showSpinners = false;
-  private _values1 = ["1", "2", "3"];
+  private dateSelection:Date;
+  private minDate: Date;
+  private time: Date = new Date();
+  private showSpinners = false;
+  private myCohorts:Cohort[];
+  private cohortId: number;
+  private dropdown2NotReady=true;
+  
+
+  private _values1 = [];
   private _values2 = [];
 
-  constructor() {
+  constructor(private newInt: NewInterviewService) {
      this.minDate= new Date();
      this.minDate.setDate(this.minDate.getDate());
   
   }
 
   ngOnInit() {
-
+    this.newInt.findAllCohorts().subscribe(data => {
+      this.myCohorts=data;
+      console.log(this.myCohorts);
+      for(let i=0;i<this.myCohorts.length;i++){
+        this._values1.push(this.myCohorts[i].cohortName);
+      }
+    });
   }
 
  
@@ -32,20 +45,30 @@ export class NewInterviewComponent implements OnInit {
   
   }
 
-  firstDropDownChanged(val: any) {
+  firstDropDownChanged(val: String): boolean {
     console.log(val);
 
-    if (val == "1") {
-      this._values2 = ["1.1", "1.2", "1.3"];
+    for(let j=0;j<this.myCohorts.length;j++){
+        if(val== this.myCohorts[j].cohortName){
+            this.cohortId= this.myCohorts[j].cohortId;
+            break;
+        }
     }
-    else if (val == "2") {
-      this._values2 = ["2.1", "2.2", "2.3"];
+    if(val=="Select Cohort"){
+      this.dropdown2NotReady=true;
+      this._values2.length=0;
+      return false;
     }
-    else if (val == "3") {
-      this._values2 = ["3.1", "3.2", "3.3"];
-    }
-    else {
-      this._values2 = [];
-    }
+    this.newInt.findCohortUsers(this.cohortId).subscribe(userdata =>{
+      console.log(userdata);
+      this._values2.length=0;
+      for(let k=0; k<userdata.length;k++){
+        this._values2.push(`${userdata[k].firstName+ " " +userdata[k].lastName}`);
+      }
+      this.dropdown2NotReady=false;
+      
+    })
+   
+    return true;
   }
 }

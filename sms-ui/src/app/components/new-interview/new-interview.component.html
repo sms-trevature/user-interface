@@ -17,7 +17,7 @@
       </select>
       <br>
       <br>
-      <select class="custom-select">
+      <select class="custom-select" [disabled]="dropdown2NotReady">
         <option selected>Select An Associate</option>
         <option *ngFor='let v of _values2'>{{v}}</option>
         
