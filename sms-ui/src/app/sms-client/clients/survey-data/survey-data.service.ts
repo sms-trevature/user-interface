@@ -9,7 +9,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 })
 export class SurveyDataService {
 
-  private responseUrl = 'survey-responses';
+  private responseUrl = 'survey-service/responses';
   constructor(
     private http: HttpClient,
   ) { }
