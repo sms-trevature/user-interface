@@ -10,7 +10,7 @@ import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.se
 @Component({
   selector: 'app-survey-grid',
   templateUrl: './survey-grid.component.html',
-  styleUrls: ['./survey-grid.component.css']
+  styleUrls: ['./survey-grid.component.scss']
 })
 export class SurveyGridComponent implements OnInit {
   listOfSurvey: Survey[];
