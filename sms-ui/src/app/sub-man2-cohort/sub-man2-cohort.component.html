@@ -8,16 +8,6 @@
             </div>
 
             <span style="display: inline;"> Cohorts</span>
-<<<<<<< HEAD
-            
-        <!-- </div> -->
-        <!-- <div id="addbutton"> -->
-        <button class="pure-button">
-            <i class="material-icons">person</i>
-            Add Cohort
-        </button>
-    </div>
-=======
 
             <!-- </div> -->
             <!-- <div id="addbutton"> -->
@@ -26,7 +16,6 @@
             Add Cohort
         </button>
         </div>
->>>>>>> 94ab3bfae8d8213aa9e89eca35f9dc37985454d9
 
         <table id="associateTable">
             <tr>
@@ -39,19 +28,11 @@
                 <th class="spreadColumnChrt">Email</th>
             </tr>
             <tr *ngFor='let temp of filteredCohort'>
-<<<<<<< HEAD
-                <a routerLink>
-                    <td>{{temp['cohortName']}}</td>
-                </a>
-                <td>{{temp.address.city}},{{temp.address.state}}</td>
-                <td>{{temp['cohortToken']}}</td>
-=======
                 <button (click)="openModal(temp['cohortName'])">
                     <td>{{temp['cohortName']}}</td>
                 </button>
                 <td>{{temp.address.city}},{{temp.address.state}}</td>
                 <td>{{temp.cohortToken}}</td>
->>>>>>> 94ab3bfae8d8213aa9e89eca35f9dc37985454d9
                 <td> {{temp.startDate}} </td>
                 <td> {{temp.endDate}} </td>
                 <td> {{temp.trainer.firstName}} {{temp.trainer.lastName}} </td>
@@ -61,8 +42,6 @@
         </table>
 
     </div>
-<<<<<<< HEAD
-=======
     <div class="backdrop" [ngStyle]="{'display':display}">
     </div>
     <!--end of table, beginning of cohort modal-->
@@ -99,5 +78,4 @@
 
     </div>
     <!-- /.modal !-->
->>>>>>> 94ab3bfae8d8213aa9e89eca35f9dc37985454d9
 </body>
