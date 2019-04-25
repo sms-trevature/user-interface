@@ -51,7 +51,6 @@ export class CognitoService {
 
   async logout() {
     await Auth.signOut();
-
     this.tokenStream.next(undefined);
     this.currentUserStream.next(undefined);
   }
