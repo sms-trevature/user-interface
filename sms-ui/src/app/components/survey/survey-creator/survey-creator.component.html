@@ -1,8 +1,8 @@
 <div>
     <app-navbar></app-navbar>
-  </div>
-  <table class="table table-striped" id="resptable">
-    <thead>
+</div>
+<table class="table table-striped" id="resptable">
+    <thead align="center">
         <tr id="tableheader">
             <th scope="col">User Email</th>
             <th scope="col">Date Assigned</th>
@@ -11,53 +11,66 @@
     </thead>
     <tbody>
         <tr>
-            <th scope="row"></th>
-            <!--  <td>{{temp.surveyId}}</td>
-            <td>{{temp.title}}</td>
-            <td>{{temp.description}}</td> -->
-            <td>
+            <td scope="row" align="center">
+                GitMan@git.com
+
+                <!--  <td>{{temp.surveyId}}</td>
+                <td>{{temp.title}}</td>
+                <td>{{temp.description}}</td> -->
+            </td>
+            <td align="center">
+                Fri Mar 01 2019
                 <!--  <p *ngIf="!temp.template; else elseBlock1">No Template</p> -->
                 <!--  <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template> -->
             </td>
             <!-- <td>{{temp.dateCreated | showTimestamp}}</td> -->
-            <td>
+            <td align="center">
+                Fri Mar 08 2019
                 <!--  <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p> -->
                 <!-- <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template> -->
             </td>
         </tr>
         <tr>
-            <th scope="row"></th>
-            <!-- <td>{{temp.surveyId}}</td>
-            <td>{{temp.title}}</td>
-            <td>{{temp.description}}</td> -->
-            <td>
+            <td scope="row" align="center">
+                BenDover@gmail.com
+                <!-- <td>{{temp.surveyId}}</td>
+                <td>{{temp.title}}</td>
+                <td>{{temp.description}}</td> -->
+            </td>
+            
+            <td align="center">
+                Fri Mar 08 2019
                 <!-- <p *ngIf="!temp.template; else elseBlock1">No Template</p> -->
                 <!--  <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template> -->
             </td>
             <!--             <td>{{temp.dateCreated | showTimestamp}}</td> -->
-            <td>
+            <td align="center">
+                Mon Mar 11 2019
                 <!--  <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p> -->
                 <!-- <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template> -->
             </td>
         </tr>
         <tr>
-            <th scope="row"></th>
-            <!--  <td>{{temp.surveyId}}</td>
-            <td>{{temp.title}}</td>
-            <td>{{temp.description}}</td> -->
-            <td>
+            <td scope="row" align="center">
+                KenobiBen@yahoo.com
+                <!-- <td>{{temp.surveyId}}</td>
+                <td>{{temp.title}}</td>
+                <td>{{temp.description}}</td> -->
+            </td>
+            <td align="center">
+                Fri Mar 08 2019
                 <!--  <p *ngIf="!temp.template; else elseBlock1">No Template</p> -->
                 <!--  <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template> -->
             </td>
             <!-- <td>{{temp.dateCreated | showTimestamp}}</td> -->
-            <td>
+            <td align="center">
                 <!--  <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p> -->
                 <!-- <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template> -->
             </td>
         </tr>
     </tbody>
-  </table>
-  <div *ngFor='let posts of postList'>
+</table>
+<div *ngFor='let posts of postList'>
     <div *ngFor='let pp of posts.slice().reverse()'>
         <div class='posts'>
             <img [src]="pp['bluUserPost'].imgUrl">
@@ -65,9 +78,10 @@
             <p class='text-align-left'>{{pp.timeOfPost}} </p>
             <p>SUBJECT:<br>{{pp['messageSubject']}} </p>
             <p>MESSAGE:<br>{{pp.messageDescription}} </p>
-            <img src="https://imgur.com/fODEkb4.png" (click)="incCount()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{count}}
+            <img src="https://imgur.com/fODEkb4.png"
+                (click)="incCount()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{count}}
             <!-- <button class="btn btn-info" src="https://imgur.com/fODEkb4.png">Likes</button>{{pp.count}} -->
         </div>
     </div>
-  </div>
-  <router-outlet></router-outlet>
+</div>
+<router-outlet></router-outlet>
