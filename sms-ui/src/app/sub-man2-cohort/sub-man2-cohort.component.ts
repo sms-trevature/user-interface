@@ -56,19 +56,8 @@ export class SubMan2CohortComponent implements OnInit {
     this.http.get('cohorts').toPromise().then(data => {
       this.filteredCohort = data;
       this.allCohorts = this.filteredCohort;
-<<<<<<< HEAD
-      console.log(data);
-    
-    });
-  }
-  closeModal(){
-    this.ngswitchCase=''
-    this.modalShow = false;
-    this.display = 'none'
-=======
     })
     this.getAddresses();
->>>>>>> SurveyDev
   }
   open(content) {
     this.ngswitchCase = 'addCohort'

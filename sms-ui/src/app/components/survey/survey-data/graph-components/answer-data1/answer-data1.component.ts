@@ -33,10 +33,6 @@ export class AnswerData1Component implements OnInit {
   ngOnInit() {
   }
 
-<<<<<<< HEAD
-  // events
-=======
->>>>>>> SurveyDev
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }
