@@ -7,8 +7,8 @@
                 <div class="form-group">
                     <label for="name">Date of interview notification</label>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Please enter a date" />
+                        <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+                        <ejs-datepicker id='datepicker' placeholder='Select a date' [value]='value' [min]='minDate' [max]='maxDate'></ejs-datepicker>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary" type="submit">Submit Feedback</button>
+                <button class="btn btn-primary" (click)="newInterviewFeedback()">Submit Feedback</button>
 
             </form>
         </div>
