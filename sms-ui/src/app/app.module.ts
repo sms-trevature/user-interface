@@ -47,6 +47,8 @@ import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 
 const routes: Routes = [
@@ -131,6 +133,7 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
+    BsDatepickerModule.forRoot(),
     BrowserModule,
     DatePickerModule,
     BsDatepickerModule.forRoot()
