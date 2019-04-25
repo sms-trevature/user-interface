@@ -17,8 +17,8 @@ export class SurveyGridComponent implements OnInit {
   curTemplate: SurveyQuestion[];
   curTempAnswers: Array<Answer[]>;
   constructor(private surveyService: SurveyService,
-              private sqService: SurveyQuestionService,
-              private answerService: SurveyAnswerService) {}
+    private sqService: SurveyQuestionService,
+    private answerService: SurveyAnswerService) { }
 
   ngOnInit() {
     this.listOfSurvey = [];
@@ -32,7 +32,7 @@ export class SurveyGridComponent implements OnInit {
           }
         }
         console.log(this.listOfSurvey);
-     }
+      }
     );
   }
 
@@ -45,12 +45,12 @@ export class SurveyGridComponent implements OnInit {
     );
   }
 
-  create(){
+  create() {
     let temp = this.curTemplate[0].surveyId;
-    temp.published=!temp.published;
-    temp.template=!temp.template;
+    temp.published = !temp.published;
+    temp.template = !temp.template;
     this.surveyService.save(temp).subscribe(
-      data=>{
+      data => {
         alert('successful');
       }
     );
@@ -61,7 +61,7 @@ export class SurveyGridComponent implements OnInit {
     this.sqService.getTemplate(surveyId).subscribe(
       data => {
         this.curTemplate = data;
-// tslint:disable-next-line: forin
+        // tslint:disable-next-line: forin
         for (const i in data) {
           this.answerService.findByQuestionId(data[i].questionId.questionId).subscribe(
             curQuestionAnswerList => {
