@@ -16,22 +16,12 @@ export class AnswerData1Component implements OnInit {
       datalabels: {
         anchor: 'end',
         align: 'end',
-      },
+      }
     }
   };
   public barChartLabels: Label[] = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6',
     'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12', 'Week 13', 'Week 14 or More'];
   public barChartType: ChartType = 'bar';
-  public chartColors: Array<any> = [
-    {
-      backgroundColor: '#f3a760',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-  ];
   public barChartLegend = true;
 
   public barChartData: ChartDataSets[] = [

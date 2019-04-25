@@ -5,6 +5,7 @@ import { Answer } from 'src/app/sms-client/dto/Answer';
 import { SurveyService } from 'src/app/sms-client/clients/survey.service';
 import { SurveyQuestionService } from 'src/app/sms-client/clients/surveyquestion.service';
 import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.service';
+import { CookieStorage } from '@aws-amplify/auth';
 
 @Component({
   selector: 'app-survey-grid',
@@ -30,19 +31,30 @@ export class SurveyGridComponent implements OnInit {
             this.listOfSurvey.push(temp);
           }
         }
+        console.log(this.listOfSurvey);
      }
     );
   }
 
   closeSurvey(index: number) {
     this.listOfSurvey[index].closingDate = new Date();
-    this.surveyService.closeSurvey(this.listOfSurvey[index]).subscribe(
+    this.surveyService.save(this.listOfSurvey[index]).subscribe(
       data => {
         this.listOfSurvey[index] = data;
       }
     );
   }
 
+  create(){
+    let temp = this.curTemplate[0].surveyId;
+    temp.published=!temp.published;
+    temp.template=!temp.template;
+    this.surveyService.save(temp).subscribe(
+      data=>{
+        alert('successful');
+      }
+    );
+  }
   checkTemplate(surveyId: number) {
     this.curTemplate = [];
     this.curTempAnswers = [];
