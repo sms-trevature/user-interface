@@ -5,10 +5,8 @@ import { CognitoService } from './services/cognito.service';
   providedIn: 'root'
 })
 export class UpdateInfoService {
-  url = ""
-  private cognitoService: CognitoService
+  url = '';
+  private cognitoService: CognitoService;
   constructor() { }
-  
-  
- 
+
 }

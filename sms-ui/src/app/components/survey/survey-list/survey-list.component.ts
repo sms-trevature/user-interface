@@ -9,7 +9,7 @@ import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.se
 @Component({
   selector: 'app-survey-list',
   templateUrl: './survey-list.component.html',
-  styleUrls: ['./survey-list.component.css']
+  styleUrls: ['./survey-list.component.scss']
 })
 export class SurveyListComponent implements OnInit {
 

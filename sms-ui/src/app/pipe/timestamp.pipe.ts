@@ -7,8 +7,10 @@ import { formatDate } from '@angular/common/src/i18n/format_date';
 export class TimestampPipe implements PipeTransform {
     temp: Date;
 
+
     transform(value: Date): string {
       const temp = new Date (value);
       return temp.toDateString();
+
     }
 }
