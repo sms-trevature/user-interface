@@ -1,4 +1,4 @@
-import { InterviewClient } from './interviewClient';
+import { InterviewClient } from './InterviewClient';
 
 export interface Interview {
     id: number;
