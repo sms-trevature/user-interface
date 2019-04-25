@@ -17,10 +17,17 @@ export class NewInterviewComponent implements OnInit {
   private myCohorts:Cohort[];
   private cohortId: number;
   private dropdown2NotReady=true;
-  
+  private buttonDisabled=true;
 
-  private _values1 = [];
-  private _values2 = [];
+  private selectedCohort;
+  private selectedAssociate;
+  private selectedLocation;
+  private selectedClient;
+
+  private _cohortName = [];
+  private _associateName = [];
+
+
 
   constructor(private newInt: NewInterviewService) {
      this.minDate= new Date();
@@ -33,7 +40,7 @@ export class NewInterviewComponent implements OnInit {
       this.myCohorts=data;
       console.log(this.myCohorts);
       for(let i=0;i<this.myCohorts.length;i++){
-        this._values1.push(this.myCohorts[i].cohortName);
+        this._cohortName.push(this.myCohorts[i].cohortName);
       }
     });
   }
@@ -56,14 +63,14 @@ export class NewInterviewComponent implements OnInit {
     }
     if(val=="Select Cohort"){
       this.dropdown2NotReady=true;
-      this._values2.length=0;
+      this._associateName.length=0;
       return false;
     }
     this.newInt.findCohortUsers(this.cohortId).subscribe(userdata =>{
       console.log(userdata);
-      this._values2.length=0;
+      this._associateName.length=0;
       for(let k=0; k<userdata.length;k++){
-        this._values2.push(`${userdata[k].firstName+ " " +userdata[k].lastName}`);
+        this._associateName.push(`${userdata[k].firstName+ " " +userdata[k].lastName}`);
       }
       this.dropdown2NotReady=false;
       
@@ -71,4 +78,13 @@ export class NewInterviewComponent implements OnInit {
    
     return true;
   }
+   submitReadyCheck(){
+    console.log('closer')
+    if(this.dateSelection!=null && this.selectedCohort != 'Select Cohort'
+       && this.selectedAssociate != 'Select An Associate' && this.selectedLocation != null
+        && this.dateSelection != null  && this.selectedClient != null){
+        console.log('should work');
+          this.buttonDisabled=false;
+       }
+  } 
 }
