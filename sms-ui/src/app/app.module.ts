@@ -44,6 +44,7 @@ import { AnswerData6Component } from './components/survey/survey-data/graph-comp
 import { AnswerData7Component } from './components/survey/survey-data/graph-components/answer-data7/answer-data7.component';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -131,7 +132,8 @@ const routes: Routes = [
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
     BrowserModule,
-    DatePickerModule
+    DatePickerModule,
+    BsDatepickerModule.forRoot()
 
   ],
   providers: [
