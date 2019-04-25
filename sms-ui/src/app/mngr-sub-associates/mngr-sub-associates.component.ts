@@ -33,20 +33,26 @@ export class MngrSubAssociatesComponent implements OnInit {
   private returnableEmailValue = '';
   private returnableButton = document.createElement('button') as HTMLButtonElement;
   constructor(private _fakeService: FakeServiceComponent, private http: HttpClient) {
-
-    this.filteredEmployees =
-    this._fakeService.getEmployees();
+    this.http.get('users').toPromise().then(data => {
+   
+     let objIndex = 0; 
+     while(data[objIndex] != null || data[objIndex] != undefined){
+      console.log("any shit happening here? ");
+        this.filteredEmployees.push(data[objIndex]);
+        
+      objIndex++; 
+     }
+      // this.filteredEmployees = this.returnableDataVariable;
+      // console.log(' TEST MC TEST ;  ' + data[1].firstName);
+      
+    });
 
     this.allAssociates = this.filteredEmployees;
+//    console.log("filtered employees even " + this.filteredEmployees[1] + "- variable of object: " + this.filteredEmployees[1].firstName );
+   // console.log("inside all associates: " + this.allAssociates[1]+"- first namne: " + this.allAssociates[1].firstName); 
   }
 
   ngOnInit() {
-  this.http.get('users').toPromise().then(data => {
-    this.returnableDataVariable = data; 
-    this.filteredEmployees = this.returnableDataVariable;
-    console.log("any role show up yet?  " +data[5].userStatus.generalStatus);
-    
-  });
 
   }
 
@@ -54,6 +60,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     filterBy = filterBy.toLocaleLowerCase();
     return this.allAssociates.filter((metaEmployee: SomeAssociate) =>
       (metaEmployee.firstName.toLocaleLowerCase().concat(metaEmployee.lastName.toLocaleLowerCase())).indexOf(filterBy) !== -1);
+      
   }
   optionSelect() {
     let e = (document.getElementById('selectElement')) as HTMLSelectElement;
