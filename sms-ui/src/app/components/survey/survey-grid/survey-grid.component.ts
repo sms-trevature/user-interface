@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Isurvey } from './survey-grid';
+import { Survey } from 'src/app/sms-client/dto/Survey';
+import { SurveyQuestion } from 'src/app/sms-client/dto/surveyQuestion';
+import { Answer } from 'src/app/sms-client/dto/Answer';
+import { SurveyService } from 'src/app/sms-client/clients/survey.service';
+import { SurveyQuestionService } from 'src/app/sms-client/clients/surveyquestion.service';
+import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.service';
 
 @Component({
   selector: 'app-survey-grid',
@@ -7,29 +13,53 @@ import { Isurvey } from './survey-grid';
   styleUrls: ['./survey-grid.component.css']
 })
 export class SurveyGridComponent implements OnInit {
-  Iservey: Isurvey[] = [];
-  constructor() {
-
-    this. Iservey = [
-      {
-          Title: 'Math Survey',
-          Description: 'A survey for traning Feedback',
-          DateCreated: 'thu FEB 28 2019',
-      },
-      {
-        Title: 'Staging Manager Evalution',
-        Description: 'A servey for associates in staging to evaluate the staging manager.',
-        DateCreated: 'Thu March 11 2019',
-    },
-    {
-      Title: 'Frozone',
-      Description: 'this servey was hard',
-      DateCreated: 'cold generation',
-  },
-    ];
-}
+  listOfSurvey: Survey[];
+  curTemplate: SurveyQuestion[];
+  curTempAnswers: Array<Answer[]>;
+  constructor(private surveyService: SurveyService,
+              private sqService: SurveyQuestionService,
+              private answerService: SurveyAnswerService) {}
 
   ngOnInit() {
+    this.listOfSurvey = [];
+    this.surveyService.findAll().subscribe(
+      data => {
+        // data[i].dateCreated = new Date(data[i].dateCreated);
+        // data[i].closingDate = new Date(data[i].closingDate);
+        for (const temp of data) {
+          if (temp.template) {
+            this.listOfSurvey.push(temp);
+          }
+        }
+     }
+    );
   }
 
+  closeSurvey(index: number) {
+    this.listOfSurvey[index].closingDate = new Date();
+    this.surveyService.closeSurvey(this.listOfSurvey[index]).subscribe(
+      data => {
+        this.listOfSurvey[index] = data;
+      }
+    );
+  }
+
+  checkTemplate(surveyId: number) {
+    this.curTemplate = [];
+    this.curTempAnswers = [];
+    this.sqService.getTemplate(surveyId).subscribe(
+      data => {
+        this.curTemplate = data;
+// tslint:disable-next-line: forin
+        for (const i in data) {
+          this.answerService.findByQuestionId(data[i].questionId.questionId).subscribe(
+            curQuestionAnswerList => {
+              this.curTempAnswers[i] = curQuestionAnswerList;
+              console.log(curQuestionAnswerList);
+            }
+          );
+        }
+      }
+    );
+  }
 }
