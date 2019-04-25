@@ -56,7 +56,7 @@ export class NewInterviewComponent implements OnInit {
     console.log(val);
 
     for(let j=0;j<this.myCohorts.length;j++){
-        if(val== this.myCohorts[j].CName){
+        if(val== this.myCohorts[j].cohortName){
             this.cohortId= this.myCohorts[j].cohortId;
             break;
         }
