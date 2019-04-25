@@ -109,7 +109,7 @@ const routes: Routes = [
   providers: [
     CognitoService, FakeServiceComponent
   ],
-  /* AppComponent */
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
