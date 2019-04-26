@@ -24,16 +24,16 @@ export class ProfileInfoComponent implements OnInit {
     }
   ];
   // user will somehow be retrieved through cognito session
-  currentUser: User[]/* = [
+  currentUser: User[]; /* = [
     {
       userId: 2,
       firstName: 'Goofy',
       lastName: 'lastName',
-      email: 'email@email.com',
+      coemail: 'email@email.com',
       phoneNumber: '705837213',
       trainingAddress: this.currentAddress[0],
       personalAddress: this.currentAddress[0],
-      userStatus: 'Scrum masters are Trash'
+      userStatus: ''
     }
   ];*/
 
