@@ -22,8 +22,6 @@ export class SmsInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    //console.log(this.token)
-    //this.cognito.getCurrentSession();
     this.cognito.someMethod();
     request = request.clone({
       url: `${environment.smsGateway}/${request.url}/`,
@@ -31,7 +29,6 @@ export class SmsInterceptor implements HttpInterceptor {
         Authorization: `Bearer ${this.token}`
       }
     });
-    console.log(request)
     return next.handle(request);
   }
 }
