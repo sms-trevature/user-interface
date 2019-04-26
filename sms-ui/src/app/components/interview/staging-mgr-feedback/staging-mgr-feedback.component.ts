@@ -17,18 +17,22 @@ export class StagingMgrFeedbackComponent implements OnInit {
     return this.feedbackVar;
   }
 
+<<<<<<< HEAD
  
 
 
+=======
+>>>>>>> c0ee6223e0607cd8ed205116be766c7b2e67ecb4
   constructor(private sManagerServ: StagingmanagerService) { }
 
   ngOnInit() {
     // Need to not hardcode feedback id (WIP)
     this.sManagerServ.getMgrFeedback(2).subscribe(data => { this.feedbackVar = data; });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c0ee6223e0607cd8ed205116be766c7b2e67ecb4
   }
-
-
 
 }
