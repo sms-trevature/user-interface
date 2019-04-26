@@ -56,7 +56,7 @@
           <input type="text" class="form-control" [(ngModel)]='selectedClient' (keypress)="submitReadyCheck()" placeholder="Enter Client Name" aria-describedby="basic-addon1">
         </div>
 
-        <button type="button" [disabled]="buttonDisabled"  (click)="try()" class="btn btn-dark">Confirm Interview</button>
+        <button type="button" [disabled]="buttonDisabled"  (click)="sendInterviewData()" class="btn btn-dark">Confirm Interview</button>
 
     </div>
     <div class="col-3"></div>
