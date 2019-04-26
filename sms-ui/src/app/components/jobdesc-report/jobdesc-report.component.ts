@@ -3,6 +3,7 @@ import { DaynoticeService } from 'src/app/services/daynotice.service';
 import { DaynoticeReportComponent } from '../daynotice-report/daynotice-report.component';
 import { DayNotice } from 'src/app/sms-client/dto/DayNotice';
 
+
 @Component({
   selector: 'app-jobdesc-report',
   templateUrl: './jobdesc-report.component.html',
@@ -65,4 +66,5 @@ export class JobdescReportComponent implements OnInit {
   noDescFilter(): DayNotice[] {
     return this.noDescList.filter((randomV: DayNotice) => (randomV.associateInput.descriptionProvided) == false);
   }
+
 }

@@ -17,8 +17,7 @@ export class DaynoticeReportComponent implements OnInit {
   dayNoticeList: DayNotice[];
   filteredDayNoticeList: DayNotice[];
   noDayNoticeList: DayNotice[];
-  
-
+ 
   constructor(private dayNotice: DaynoticeService) { }
 
   get id(): number {
@@ -48,6 +47,12 @@ export class DaynoticeReportComponent implements OnInit {
   ngOnInit() {
 
     this.get24HrNotice();
+  }
+
+  get24HrNotice() {
+    this.dayNotice.get24HrNotice().subscribe((data: DayNotice[]) => {
+      this.dayNoticeList = data;
+      this.dayNoticeList = this.filterByDayNotice();
 
   }
 
@@ -59,6 +64,10 @@ export class DaynoticeReportComponent implements OnInit {
       this.noDayNoticeList = this.filterByNoNotice();
 
     });
+  }
+
+  filterByDayNotice(): DayNotice[] {
+    return this.dayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == true);
   }
 
 
