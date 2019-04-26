@@ -2,6 +2,7 @@ import { User } from './User';
 import { Address } from 'cluster';
 
 export interface Cohort {
+  cohortName(cohortName: any);
     cohortId: number;
     CName: string;
     address: Address;
@@ -11,12 +12,4 @@ export interface Cohort {
     trainer: User;
     coTrainer: User;
     Email: string;
-    cohortId:number;
-    cohortName: String; 
-    address: String; 
-    Token: String; 
-    StartD: String; 
-    EndD: String; 
-    trainer: String; 
-    Email: String; 
 }

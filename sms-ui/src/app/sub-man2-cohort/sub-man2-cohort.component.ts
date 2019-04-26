@@ -60,8 +60,8 @@ export class SubMan2CohortComponent implements OnInit {
     this.getAddresses();
       console.log(data);
     
-    });
-  }
+    };
+  
   closeModal(){
     this.ngswitchCase=''
     this.modalShow = false;
