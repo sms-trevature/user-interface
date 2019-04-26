@@ -47,7 +47,6 @@ import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
