@@ -33,7 +33,7 @@ export class NewInterviewComponent implements OnInit {
       this.myCohorts=data;
       console.log(this.myCohorts);
       for(let i=0;i<this.myCohorts.length;i++){
-        this._values1.push(this.myCohorts[i].cohortName);
+        this._values1.push(this.myCohorts[i].CName);
       }
     });
   }
@@ -49,7 +49,7 @@ export class NewInterviewComponent implements OnInit {
     console.log(val);
 
     for(let j=0;j<this.myCohorts.length;j++){
-        if(val== this.myCohorts[j].cohortName){
+        if(val== this.myCohorts[j].CName){
             this.cohortId= this.myCohorts[j].cohortId;
             break;
         }
