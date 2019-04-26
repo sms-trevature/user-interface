@@ -12,7 +12,6 @@
     </tr>
   </thead>
   <tbody>
-<<<<<<< HEAD
     <tr *ngFor='let temp of listOfSurvey; index as i'>
       <td>{{temp.surveyId}}</td>
       <td>{{temp.title}}</td>
@@ -30,21 +29,6 @@
       </td>
 
     </tr>
-=======
-      <tr *ngFor='let temp of listOfSurvey; index as i'>
-          <td>{{temp.surveyId}}</td>
-          <td>{{temp.title}}</td>
-          <td>{{temp.description}}</td>
-          <td><p *ngIf="!temp.template; else elseBlock1">
-              <button (click)='getGraph(temp.surveyId)'>show graphs</button>
-          </p>
-            <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template></td>
-          <td>{{temp.dateCreated | showTimestamp}}</td>
-          <td><p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
-            <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template></td>
-           
-          </tr>
->>>>>>> e41cee623837c1398005b802e63d14e1ae4580d3
   </tbody>
 </table>
 
@@ -54,15 +38,6 @@
       <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p><br>
       <p *ngFor='let ans of curTempAnswers[i]'>{{ans?.answer+"  "}}</p>
     </li>
-<<<<<<< HEAD
-=======
-   
-  </ul></div>
-<!-- 
-  <div *ngFor='let temp of ArrayOfResponseAnswerList; index as i;'>
-      <app-answer-data2 [pieChartLabels]='temp' [pieChartData]= 'arrOfCounts[i]'></app-answer-data2>
-  </div> -->
->>>>>>> e41cee623837c1398005b802e63d14e1ae4580d3
 
   </ul>
 </div>
