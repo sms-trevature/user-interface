@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class='panel panel-primary'>
   <div class='panel-heading'>
     {{pageTitle}}
@@ -5,9 +6,17 @@
 
   <div class='panel-body'>
     <div class='row'>
-      <div class='col-md-2'>Filter by: </div>
+      <div class='col-md-2'>Search: </div>
       <div class='col-md-4'>
         <input type='text' [(ngModel)]='listFilter' />
+      </div>
+      <div class='col-md-2'>Review Status: </div>
+      <div class='col-md-4'>
+          <select autofocus type='text' [(ngModel)]='reviewFilter'>
+              <option value="all">Any</option>
+              <option value="reviewed">Reviewed</option>
+              <option value="notreviewed">Not Reviewed</option>
+            </select>
       </div>
     </div>
   </div>
@@ -17,13 +26,34 @@
       <thead>
         <tr>
           <th>Reviewed</th>
-          <th>Associate Email</th>
-          <th>Manager Email</th>
-          <th>Location</th>
-          <th>Client</th>
-          <th>Date Notified</th>
-          <th>Date Scheduled</th>
-          <th>Date Reviewed</th>
+          <th>Associate Email
+            <button (click)='sortByAssociateEmailAsc()'>▲</button>
+            <button (click)='sortByAssociateEmailDesc()'>▼</button>
+          </th>
+          <th>Manager Email
+            <button (click)='sortByManagerEmailAsc()'>▲</button>
+            <button (click)='sortByManagerEmailDesc()'>▼</button>
+          </th>
+          <th>Location
+            <button (click)='sortByLocationAsc()'>▲</button>
+            <button (click)='sortByLocationDesc()'>▼</button>
+          </th>
+          <th>Client
+            <button (click)='sortByClientAsc()'>▲</button>
+            <button (click)='sortByClientDesc()'>▼</button>
+          </th>
+          <th>Date Notified
+              <button (click)='sortByNotifiedAsc()'>▲</button>
+              <button (click)='sortByNotifiedDesc()'>▼</button>
+          </th>
+          <th>Date Scheduled
+              <button (click)='sortByScheduledAsc()'>▲</button>
+              <button (click)='sortByScheduledDesc()'>▼</button>
+          </th>
+          <th>Date Reviewed
+              <button (click)='sortByReviewedAsc()'>▲</button>
+              <button (click)='sortByReviewedDesc()'>▼</button>
+          </th>
           <th>Associate Feedback</th>
           <th>Interview Feedback</th>
         </tr>
@@ -46,7 +76,3 @@
     </table>
   </div>
 </div>
-
-<!-- <button (click)='buttonClicked()'>
-  The Button
-</button> -->
