@@ -58,9 +58,9 @@ export class SubMan2CohortComponent implements OnInit {
     this.http.get('cohorts').toPromise().then(data => {
       this.filteredCohort = data;
       this.allCohorts = this.filteredCohort;
-      console.log(data)
+      console.log(data);
     
-    })
+    });
   }
   closeModal(){
     this.ngswitchCase=''

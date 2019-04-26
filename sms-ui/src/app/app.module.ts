@@ -49,6 +49,7 @@ import { DaynoticeReportComponent } from './components/daynotice-report/daynotic
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 
 
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
@@ -135,10 +136,12 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
+    //Javier's thing 
     BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
     BrowserModule,
-    DatePickerModule,
-    BsDatepickerModule.forRoot()
+    DatePickerModule
+
 
   ],
   providers: [
