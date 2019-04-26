@@ -12,7 +12,9 @@ export class DaynoticeService {
 
   private url = 'interview-service/interview';
 
-get24HrNotice(): Observable<DayNotice[]> {
+  //misleading... gets all interviews
+getAllInterviews(): Observable<DayNotice[]> {
+
     return this.http.get<DayNotice[]>(this.url);
   }
 }

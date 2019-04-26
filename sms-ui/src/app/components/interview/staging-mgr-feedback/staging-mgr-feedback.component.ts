@@ -10,17 +10,24 @@ import { InterviewFeedback } from 'src/app/sms-client/dto/InterviewFeedback';
 })
 export class StagingMgrFeedbackComponent implements OnInit {
 
+
   private feedbackVar: InterviewFeedback;
 
   get feedback() {
     return this.feedbackVar;
   }
 
+  private feedback: InterviewFeedback;
+
+
   constructor(private sManagerServ: StagingmanagerService) { }
 
   ngOnInit() {
     // Need to not hardcode feedback id (WIP)
     this.sManagerServ.getMgrFeedback(2).subscribe(data => { this.feedbackVar = data; });
+
+    this.sManagerServ.getMgrFeedback(2).subscribe(data => { this.feedback = data; });
+
   }
 
 

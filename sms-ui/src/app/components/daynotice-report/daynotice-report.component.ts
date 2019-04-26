@@ -16,7 +16,8 @@ export class DaynoticeReportComponent implements OnInit {
 
   dayNoticeList: DayNotice[];
   filteredDayNoticeList: DayNotice[];
-
+  noDayNoticeList: DayNotice[];
+ 
   constructor(private dayNotice: DaynoticeService) { }
 
   get id(): number {
@@ -53,11 +54,29 @@ export class DaynoticeReportComponent implements OnInit {
       this.dayNoticeList = data;
       this.dayNoticeList = this.filterByDayNotice();
 
+  }
+
+  get24HrNotice() {
+    this.dayNotice.getAllInterviews().subscribe((data: DayNotice[]) => {
+      this.dayNoticeList = data;
+      this.noDayNoticeList = data;
+      this.dayNoticeList = this.filterByDayNotice();
+      this.noDayNoticeList = this.filterByNoNotice();
+
     });
   }
 
   filterByDayNotice(): DayNotice[] {
     return this.dayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == true);
+  }
+
+
+  filterByDayNotice(): DayNotice[] {
+    return this.dayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == true);
+  }
+
+  filterByNoNotice(): DayNotice[] {
+    return this.noDayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == false);
   }
 }
 
