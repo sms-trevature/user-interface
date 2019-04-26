@@ -23,6 +23,9 @@ export class CohortModalComponent implements OnInit {
     console.log(this.cohort.coTrainer)
     if(this.cohort.coTrainer==undefined||null){
       this.cotrainer=false;
+      this.findUsersByRole('TRAINING_MANAGER').toPromise().then(data=>{
+        console.log(data)
+      })
     }
 
   }
@@ -59,5 +62,19 @@ export class CohortModalComponent implements OnInit {
     this.http.delete(`cohorts/removecotrainer/${this.cohort['cohortToken']}`).toPromise().then(data=>{
       console.log(data)
     })
+  }
+
+  setCohortDate(){
+    let date=document.getElementById('endingDate') as HTMLInputElement;
+    console.log(date.value)
+    this.cohort['endDate']=date.value;
+    console.log(this.cohort)
+    this.http.put('cohorts',this.cohort).toPromise().then(data=>{
+      console.log(data)
+    })
+  }
+
+  findUsersByRole = (role: string) => {
+    return this.http.get(`/cognito/users/groups/${role}`);
   }
 }

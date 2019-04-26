@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { Survey } from 'src/app/sms-client/dto/Survey';
 import { SurveyQuestion } from 'src/app/sms-client/dto/surveyQuestion';
 import { Answer } from 'src/app/sms-client/dto/Answer';
@@ -7,6 +8,13 @@ import { SurveyQuestionService } from 'src/app/sms-client/clients/surveyquestion
 import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.service';
 import { SurveyResponseService } from 'src/app/sms-client/clients/survey-response.service';
 
+=======
+import { SurveyService } from 'src/app/sms-client/clients/survey.service';
+import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
+import { SurveyQuestionService } from 'src/app/sms-client/clients/surveyquestion.service';
+import { Survey } from 'src/app/sms-client/dto/Survey';
+import { User } from 'src/app/sms-client/dto/User';
+>>>>>>> 82ddb5fd07cf977cb4e05c23dd19a7fcda845d6a
 
 
 
@@ -17,6 +25,7 @@ import { SurveyResponseService } from 'src/app/sms-client/clients/survey-respons
   styleUrls: ['./assign-survey.component.scss']
 })
 export class AssignSurveyComponent implements OnInit {
+<<<<<<< HEAD
   
   listOfSurvey: Survey[];
   curTemplate: SurveyQuestion[];
@@ -33,6 +42,28 @@ export class AssignSurveyComponent implements OnInit {
       data => {
         // data[i].dateCreated = new Date(data[i].dateCreated);
         // data[i].closingDate = new Date(data[i].closingDate);
+=======
+
+  listOfSurvey: Survey[];
+  surveyCreator: User;
+
+
+  constructor(
+    private surveyService: SurveyService,
+    private userService: UsersClientService,
+    private sqService: SurveyQuestionService
+    ) { }
+
+  ngOnInit() {
+    this.userService.findByEmail('blake.kruppa@revature.com').subscribe(
+      creator => {
+        this.surveyCreator = creator;
+      }
+    );
+
+    this.surveyService.findAll().subscribe(
+      data => {
+>>>>>>> 82ddb5fd07cf977cb4e05c23dd19a7fcda845d6a
         this.listOfSurvey = data;
       }
     );
@@ -46,6 +77,7 @@ export class AssignSurveyComponent implements OnInit {
         console.log(this.listOfSurvey[index]);
       }
     );
+<<<<<<< HEAD
   }
 
   checkTemplate(surveyId: number) {
@@ -94,6 +126,8 @@ export class AssignSurveyComponent implements OnInit {
         console.log(this.arrOfCounts);
       }
     );
+=======
+>>>>>>> 82ddb5fd07cf977cb4e05c23dd19a7fcda845d6a
   }
 
 }

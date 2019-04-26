@@ -2,6 +2,7 @@
 
 
 
+<<<<<<< HEAD
 <div class="container">
     <div class="row">
 
@@ -96,3 +97,30 @@
 
     </div>
 </div>
+=======
+<table class="table table-striped" *ngIf='listOfSurvey && listOfSurvey.length'>
+    <thead>
+        <button class="btn btn-light">Assign</button>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Created By</th>
+            <th scope="col">Date Created</th>
+            <th scope="col">Date Closed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let temp of listOfSurvey; index as i'>
+            <td>{{temp.title}}</td>
+            <td>{{temp.description}}</td>
+            <td>{{surveyCreator.email}}</td>
+            <td>{{temp.dateCreated | showTimestamp}}</td>
+            <td>
+                <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
+                <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
+            </td>
+        </tr>
+        <button class="btn btn-light">Assign</button>
+    </tbody>
+</table>
+>>>>>>> 82ddb5fd07cf977cb4e05c23dd19a7fcda845d6a
