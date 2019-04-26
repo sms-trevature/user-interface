@@ -3,6 +3,7 @@ import { Address } from 'src/app/sms-client/dto/Address';
 import { User } from 'src/app/sms-client/dto/User';
 import { async } from '@angular/core/testing';
 import { CognitoService } from 'src/app/services/cognito.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class ProfileInfoComponent implements OnInit {
     }
   ];
   // user will somehow be retrieved through cognito session
-  currentUser: User[]; /* = [
+  currentUser: User; /* = [
     {
       userId: 2,
       firstName: 'Goofy',
@@ -37,7 +38,10 @@ export class ProfileInfoComponent implements OnInit {
     }
   ];*/
 
-  constructor(private cognitoService: CognitoService) { }
+  constructor(private cognitoService: CognitoService, private nav: NavbarComponent) { 
+    this.currentUser = nav.user;
+    console.log("User Info: " + this.currentUser.email);
+  }
 
   ngOnInit() {
   }

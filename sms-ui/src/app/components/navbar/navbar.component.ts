@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/sms-client/dto/User';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  public user: User;
 
   constructor(private router: Router) { }
 

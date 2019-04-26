@@ -129,7 +129,7 @@ const routes: Routes = [
 
   ],
   providers: [
-    CognitoService, FakeServiceComponent
+    CognitoService, FakeServiceComponent, NavbarComponent
   ],
   /* AppComponent */
   bootstrap: [AppComponent]
