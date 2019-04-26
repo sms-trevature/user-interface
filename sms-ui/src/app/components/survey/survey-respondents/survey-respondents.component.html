@@ -12,37 +12,13 @@
     <tbody>
 
         <!-- ngFor loop to iterate through and display all respondents of survey-->
-        <div *ngFor='let surveys of surveyList'>
-            <tr>
-                <td align="center">
-
-                </td>
-                
-                <td align="center">
-
-                </td>
-
-                <td align="center">
-
-                </td>
-            </tr>
-        </div>
+        <tr *ngFor='let temp of listOfSurvey; index as i'>
+            <td class="dataElement">{{temp.userEmail}}</td>
+            <td class="dataElement">{{temp.dateAssigned}}</td>
+            <td class="dataElement">{{temp.dateComplete}}</td>
+        </tr>
 
     </tbody>
 </table>
 
-<!--
-    <div *ngFor='let posts of postList'>
-        <div *ngFor='let pp of posts.slice().reverse()'>
-            <div class='posts'>
-                <img [src]="pp['bluUserPost'].imgUrl">
-                <label id="name"><a routerLink='/profile'>{{pp['bluUserPost'].username}} </a></label>
-                <p class='text-align-left'>{{pp.timeOfPost}} </p>
-                <p>SUBJECT:<br>{{pp['messageSubject']}} </p>
-                <p>MESSAGE:<br>{{pp.messageDescription}} </p>
-                <img src="https://imgur.com/fODEkb4.png"
-                    (click)="incCount()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{count}}
-            </div>
-        </div>
-    </div>-->
 <router-outlet></router-outlet>
