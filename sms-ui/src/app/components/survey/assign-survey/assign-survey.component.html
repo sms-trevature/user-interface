@@ -2,102 +2,6 @@
 
 
 
-<<<<<<< HEAD
-<div class="container">
-    <div class="row">
-
-        <div class="col-sm">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Survey Id</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Has Template</th>
-                        <th scope="col">Date Created</th>
-                        <th scope="col">Date Closed</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row">1</td>
-                        <td>{{temp.surveyId}}</td>
-                        <td>{{temp.title}}</td>
-                        <td>{{temp.description}}</td>
-                        <td>
-                            <p *ngIf="!temp.template; else elseBlock1">No Template</p>
-                            <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template>
-                        </td>
-                        <td>{{temp.dateCreated | showTimestamp}}</td>
-                        <td>
-                            <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
-                            <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">2</td>
-                        <td>{{temp.surveyId}}</td>
-                        <td>{{temp.title}}</td>
-                        <td>{{temp.description}}</td>
-                        <td>
-                            <p *ngIf="!temp.template; else elseBlock1">No Template</p>
-                            <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template>
-                        </td>
-                        <td>{{temp.dateCreated | showTimestamp}}</td>
-                        <td>
-                            <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
-                            <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="row">3</td>
-                        <td>{{temp.surveyId}}</td>
-                        <td>{{temp.title}}</td>
-                        <td>{{temp.description}}</td>
-                        <td>
-                            <p *ngIf="!temp.template; else elseBlock1">No Template</p>
-                            <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template>
-                        </td>
-                        <td>{{temp.dateCreated | showTimestamp}}</td>
-                        <td>
-                            <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
-                            <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
-
-
-
-            <div>
-                <ul *ngIf='curTemplate'>
-                    <li *ngFor='let temp of curTemplate; index as i;'>
-                        <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p><br>
-                        <p *ngFor='let ans of curTempAnswers[i]'>{{ans?.answer+" "}}</p>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-
-    </div>
-</div>
-=======
 <table class="table table-striped" *ngIf='listOfSurvey && listOfSurvey.length'>
     <thead>
         <button class="btn btn-light">Assign</button>
@@ -123,4 +27,3 @@
         <button class="btn btn-light">Assign</button>
     </tbody>
 </table>
->>>>>>> 82ddb5fd07cf977cb4e05c23dd19a7fcda845d6a
