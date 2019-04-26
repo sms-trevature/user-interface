@@ -13,6 +13,8 @@ export class StagingmanagerService {
 
   private url= 'interview-service/interview/Feedback/InterviewId';
 
-  getMgrFeedback(): Observable<ManagerFeedback>
+  getMgrFeedback(): Observable<ManagerFeedback[]>{
+    return this.http.get<ManagerFeedback[]>(this.url);
+  }
 }
 

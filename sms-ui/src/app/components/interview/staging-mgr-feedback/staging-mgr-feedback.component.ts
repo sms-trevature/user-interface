@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { StagingmanagerService } from 'src/app/sms-client/clients/stagingmanager.service';
 
 @Component({
   selector: 'app-staging-mgr-feedback',
@@ -8,16 +9,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class StagingMgrFeedbackComponent implements OnInit {
 
-  constructor(private htp: HttpClient) { 
-    this.htp.get('/interview-service/interview/Feedback/InterviewId/2').toPromise().then(data => {
-    
-      console.log(data);
-    
-    });
+  constructor(private mngrfeedback: StagingmanagerService) {
+
   }
 
+  
+
   ngOnInit() {
-    console.log("test test est !!");
+    //console.log("test test est !!");
 
     
 
