@@ -5,7 +5,6 @@ export interface DayNotice {
     associateEmail: string;
     place: string; 
    associateInput: AssociateInput;
-
 }
 
 

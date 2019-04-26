@@ -16,8 +16,10 @@ export class DaynoticeReportComponent implements OnInit {
 
   dayNoticeList: DayNotice[];
   filteredDayNoticeList: DayNotice[];
+
   noDayNoticeList: DayNotice[];
  
+
   constructor(private dayNotice: DaynoticeService) { }
 
   get id(): number {
@@ -45,9 +47,9 @@ export class DaynoticeReportComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.getAllInterviews();
+   this.getAllInterviews();
   }
+
   getAllInterviews() {
     this.dayNotice.getAllInterviews().subscribe((data: DayNotice[]) => {
       this.dayNoticeList = data;
