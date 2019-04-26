@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-staging-mgr-feedback',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StagingMgrFeedbackComponent implements OnInit {
 
-  constructor() { }
+  constructor(private htp: HttpClient) { 
+    this.htp.get('Feedback/InterviewId/2').toPromise().then(data => {
+    
+      console.log(data);
+    
+    });
+  }
 
   ngOnInit() {
+    console.log("test test est !!");
+
+    
+
   }
+
+
 
 }
