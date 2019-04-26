@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, Color } from 'ng2-charts';
 
 @Component({
   selector: 'app-answer-data1',
@@ -33,7 +33,6 @@ export class AnswerData1Component implements OnInit {
   ngOnInit() {
   }
 
-  // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }
