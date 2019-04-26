@@ -1,6 +1,6 @@
 import { InterviewClient } from './InterviewClient';
 import { InterviewFeedback } from './InterviewFeedback';
-import { AssociateInput } from './AssociateInput';
+import { AssociateFeedback } from './AssociateFeedback';
 
 export interface Interview {
     id: number;
@@ -11,6 +11,6 @@ export interface Interview {
     reviewed: number;
     place: string;
     feedback: InterviewFeedback;
-    associateInput: AssociateInput;
+    associateInput: AssociateFeedback;
     client: InterviewClient;
 }
