@@ -45,6 +45,7 @@ import { AnswerData7Component } from './components/survey/survey-data/graph-comp
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
@@ -128,8 +129,12 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
+    //Javier's thing 
     BsDatepickerModule.forRoot(),
-    DatePickerModule,
+    TimepickerModule.forRoot(),
+    BrowserModule,
+    DatePickerModule
+
 
   ],
   providers: [
