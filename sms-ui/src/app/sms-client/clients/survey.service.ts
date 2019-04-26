@@ -20,7 +20,7 @@ export class SurveyService {
     return this.http.get<Survey[]>(`${this.context}`);
   }
 
-  closeSurvey(surveyToUpdate: Survey): Observable<Survey> {
+  save(surveyToUpdate: Survey): Observable<Survey> {
     return this.http.post<Survey>(`${this.context}`, surveyToUpdate);
   }
 

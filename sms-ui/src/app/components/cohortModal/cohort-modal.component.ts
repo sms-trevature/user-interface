@@ -13,12 +13,20 @@ export class CohortModalComponent implements OnInit {
 
   @Input() cohort: Cohort;
   userList;
+  cotrainer:boolean =true;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getAssociates(this.cohort.cohortId).toPromise().then(data => {
       this.userList = data;
     });
+    console.log(this.cohort.coTrainer)
+    if(this.cohort.coTrainer==undefined||null){
+      this.cotrainer=false;
+      this.findUsersByRole('TRAINING_MANAGER').toPromise().then(data=>{
+        console.log(data)
+      })
+    }
 
   }
   emailSubmit(associateEmail: NgForm) {
@@ -42,4 +50,31 @@ export class CohortModalComponent implements OnInit {
     return this.http.get(`/users/cohorts/${id}`)
   }
 
+  submitCotrainer(){
+    let email = document.getElementById('cotrainerEmail') as HTMLInputElement;
+    console.log(email.value);
+    this.http.post(`cohorts/addcotrainer/${this.cohort['cohortToken']}`,{'email':email.value}).toPromise().then(data =>{
+      console.log(data)
+    })
+  }
+
+  removeCotrainer(){
+    this.http.delete(`cohorts/removecotrainer/${this.cohort['cohortToken']}`).toPromise().then(data=>{
+      console.log(data)
+    })
+  }
+
+  setCohortDate(){
+    let date=document.getElementById('endingDate') as HTMLInputElement;
+    console.log(date.value)
+    this.cohort['endDate']=date.value;
+    console.log(this.cohort)
+    this.http.put('cohorts',this.cohort).toPromise().then(data=>{
+      console.log(data)
+    })
+  }
+
+  findUsersByRole = (role: string) => {
+    return this.http.get(`/cognito/users/groups/${role}`);
+  }
 }

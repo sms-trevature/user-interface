@@ -3,6 +3,10 @@ import { FakeServiceComponent } from '../fake-service/fake-service.component';
 import { Cohort } from '../sms-client/dto/Cohort';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { SmsInterceptor } from '../sms-client/interceptors/sms.interceptor';
+
 
 @Component({
   selector: 'app-sub-man2-cohort',
@@ -12,14 +16,14 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class SubMan2CohortComponent implements OnInit {
   _listFilter = '';
   closeResult: string;
-  ngswitchCase='';
-
+  ngswitchCase = '';
+  addressList;
+  trainer;
   get listFilter(): string {
     return this._listFilter;
   }
   modalShow = false
   exportedCohort: Cohort;
-  display = 'none'
 
   openModal(name: string, content) {
     for (let temp of this.filteredCohort) {
@@ -27,11 +31,11 @@ export class SubMan2CohortComponent implements OnInit {
         this.exportedCohort = temp;
         this.modalShow = true;
         this.open(content);
-        this.ngswitchCase='editAssociates'
+        this.ngswitchCase = 'editAssociates'
       }
     }
   }
-  
+
 
 
   set listFilter(temp: string) {
@@ -43,10 +47,6 @@ export class SubMan2CohortComponent implements OnInit {
   filteredCohort;
 
   constructor(private _fakeService: FakeServiceComponent, private http: HttpClient, private modalService: NgbModal) {
-
-    // this.filteredCohort =
-    // this._fakeService.getCohorts();
-
     this.allCohorts = this.filteredCohort;
   }
   performFilter(filterBy: string): Cohort[] {
@@ -58,21 +58,16 @@ export class SubMan2CohortComponent implements OnInit {
     this.http.get('cohorts').toPromise().then(data => {
       this.filteredCohort = data;
       this.allCohorts = this.filteredCohort;
-      console.log(data)
-    
     })
-  }
-  closeModal(){
-    this.ngswitchCase=''
-    this.modalShow = false;
-    this.display = 'none'
+    this.getAddresses();
   }
   open(content) {
-    this.ngswitchCase='addCohort'
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.ngswitchCase = 'addCohort'
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.ngOnInit();
     });
   }
 
@@ -82,12 +77,43 @@ export class SubMan2CohortComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
-
-  //getCohorts()
-
-
+  close() {
+    this.modalService.dismissAll();
+  }
+  getAddresses() {
+    this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
+      this.addressList = data;
+    })
+  }
+  getTrainerById(id: number) {
+    this.http.get(`users/${id}`).toPromise().then(data => {
+      return data;
+    })
+  }
+  addCohort(cohort: NgForm) {
+    console.log('in the submit')
+    console.log(cohort.value['trainer'])
+    for (let temp of this.addressList) {
+      if (temp.addressId == cohort.value['location']) {
+        var location = temp;
+      }
+    }
+    let body = {
+      'cohortId': 0,
+      'cohortName': cohort.value['dp'],
+      'cohortDescription': cohort.value['description'],
+      'cohortToken': '',
+      'address': location,
+      'startDate': cohort.value['startDate'],
+      'endDate': cohort.value['endDate'],
+      'users': null,
+      'trainer': {}
+    }
+    this.http.post(`cohorts/cohort/trainer/${cohort.value['trainer']}`, body).toPromise().then(data => {
+    })
+  }
 }

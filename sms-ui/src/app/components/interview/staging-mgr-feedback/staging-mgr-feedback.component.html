@@ -1,60 +1,22 @@
 <app-navbar></app-navbar>
-<form id="manager-feed">
-
-  <!-- Options for interview status -->
-  <div class="form-group">
-
-    <h5>Place holder for interviewee name </h5>
-    <h6>batch #/ name</h6>
-    <h6>client</h6>
-    <h6>date and location</h6>
-    <br>
 
 
-    <div class="col-auto my-1">
-      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-        <option selected>Status</option>
-        <option value="1">Pending</option>
-        <option value="2">No Feedback</option>
-        <option value="3">Selected for 2nd</option>
-      </select>
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Temporary button to launch feedback page</button>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-body">
+            <h4>Interview Feedback</h4>
+            <hr>
+            <label for='dateRequested'><b>Date Requested: + {{feedback.feedbackRequested | date}} </b></label><br>
+            <label for='feedbackStatus'><b>Feedback Status: + {{feedback.status.feedback_status_desc}}</b></label><br>
+            <label for='feedbackReceived'><b>Date Received: + {{feedback.feedbackRequested | date}}</b></label><br>
+            <label for='feedback'><b>Actual Feedback Comments:  + {{feedback.feedback}}</b></label><br><br><br>
+            <label for='feedbackDelivered'><b>Feedback Delivered: + {{feedback.feedbackDelivered | date}}</b></label><br>
+
+          </div>
     </div>
-    </div>
-
-    <!-- This text box provides feedback for the form -->
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Feedback</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-
-    <div class="form-group">
-      <label class="col-lg-3 control-label">Date Requested:</label>   &nbsp; &nbsp; &nbsp; &nbsp;
-      <label class="col-lg-3 control-label">Date Received:</label>    &nbsp; &nbsp; &nbsp; &nbsp;
-      <label class="col-lg-3 control-label">Date Delivered:</label>
-      <div class="col-lg-12">
-        
-        <!-- info for Date requested -->
-        <input #birthdate type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2020-12-31">
-
-        <!--  info for date received -->
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <!-- <label class="col-lg-3 control-label">Date Requested:</label> -->
-        <input #birthdate type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2020-12-31">
-
-        <!--  info for date delivered -->
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <input #birthdate type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2020-12-31">
-        
-        </div>
-      </div>
-
-      <input class="btn btn-primary" type="button" value="Submit">
-
-
-  </form>
+  </div>
+</div>

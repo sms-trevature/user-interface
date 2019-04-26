@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Interview } from './interview';
+import { Interview } from '../dto/Interview';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterviewService {
 
-  private urlVar = 'interview';
+  private urlVar = 'interview-service/interview';
 
   private interviewList = [
     {
@@ -421,8 +421,8 @@ export class InterviewService {
 
   constructor(private httpCli: HttpClient) { }
 
-  getInterviews(): Observable<Interview> {
-    return this.httpCli.get<Interview>(this.urlVar);
+  getInterviews(): Observable<Interview[]> {
+    return this.httpCli.get<Interview[]>(`${this.urlVar}`);
   }
 
   getInterviews2(): Interview[] {

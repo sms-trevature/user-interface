@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { StagingmanagerService } from 'src/app/sms-client/clients/stagingmanager.service';
+import { InterviewFeedback } from 'src/app/sms-client/dto/InterviewFeedback';
 
 @Component({
   selector: 'app-staging-mgr-feedback',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StagingMgrFeedbackComponent implements OnInit {
 
-  constructor() { }
+  private feedback: InterviewFeedback;
+
+  constructor(private sManagerServ: StagingmanagerService) { }
 
   ngOnInit() {
+    // Need to not hardcode feedback id (WIP)
+    this.sManagerServ.getMgrFeedback(2).subscribe(data => { this.feedback = data; });
   }
+
+
 
 }

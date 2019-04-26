@@ -1,14 +1,20 @@
+$revature-orange-light: #f3a55d;
+$revature-orange: #f26925;
+$drew-orange: #f3a55d;
+$rounded-amount: 0.5em;
+
 #associatesHeader{
-    background: orange; 
+    background:$revature-orange-light; 
     margin: auto; 
     border-style: outset; 
     border-width: 2px; 
     border-top-right-radius: 15px; 
     border-top-left-radius: 15px; 
+    border-color: $revature-orange-light; 
 }
 #InternalAssociates{
     margin: auto; 
-    max-width: 600px;
+    max-width: 750px;
    
 }
 body{
