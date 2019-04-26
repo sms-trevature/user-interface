@@ -46,17 +46,9 @@ export class DaynoticeReportComponent implements OnInit {
 
   ngOnInit() {
 
-    this.get24HrNotice();
+    this.getAllInterviews();
   }
-
-  get24HrNotice() {
-    this.dayNotice.get24HrNotice().subscribe((data: DayNotice[]) => {
-      this.dayNoticeList = data;
-      this.dayNoticeList = this.filterByDayNotice();
-
-  }
-
-  get24HrNotice() {
+  getAllInterviews() {
     this.dayNotice.getAllInterviews().subscribe((data: DayNotice[]) => {
       this.dayNoticeList = data;
       this.noDayNoticeList = data;
@@ -65,11 +57,6 @@ export class DaynoticeReportComponent implements OnInit {
 
     });
   }
-
-  filterByDayNotice(): DayNotice[] {
-    return this.dayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == true);
-  }
-
 
   filterByDayNotice(): DayNotice[] {
     return this.dayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == true);
