@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { SmsInterceptor } from '../sms-client/interceptors/sms.interceptor';
+
 
 @Component({
   selector: 'app-sub-man2-cohort',
