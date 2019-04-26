@@ -9,7 +9,6 @@ import { AuthLoadingComponent } from './components/auth-loading/auth-loading.com
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CognitoService } from './services/cognito.service';
-
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SmsClientModule } from './sms-client/sms-client.module';
 import { InterviewListComponent } from './components/interview-list/interview-list.component';
@@ -17,7 +16,6 @@ import { NewInterviewComponent } from './components/new-interview/new-interview.
 import { AssociateFeedbackFormComponent } from './components/associate-feedback-form/associate-feedback-form.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
-
 import { ReportsComponent } from './reports/reports.component';
 import { InterviewComponent } from './interview/interview.component';
 import { ManageComponent } from './manage/manage.component';
@@ -26,9 +24,7 @@ import { MngrSubAssociatesComponent } from './mngr-sub-associates/mngr-sub-assoc
 import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.component';
 import { FakeServiceComponent } from './fake-service/fake-service.component';
 import { SurveyCreatorComponent } from './components/survey/survey-creator/survey-creator.component';
-
 import { CohortModalComponent } from './components/cohortModal/cohort-modal.component';
-
 import { SurveyListComponent } from './components/survey/survey-list/survey-list.component';
 import { TimestampPipe } from './pipe/timestamp.pipe';
 import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
@@ -36,7 +32,6 @@ import { AnswerData2Component } from './components/survey/survey-data/graph-comp
 import { AnswerData1Component } from './components/survey/survey-data/graph-components/answer-data1/answer-data1.component';
 import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component';
 import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
-
 import { AnswerData3Component } from './components/survey/survey-data/graph-components/answer-data3/answer-data3.component';
 import { AnswerData4Component } from './components/survey/survey-data/graph-components/answer-data4/answer-data4.component';
 import { AnswerData5Component } from './components/survey/survey-data/graph-components/answer-data5/answer-data5.component';
@@ -45,11 +40,7 @@ import { AnswerData7Component } from './components/survey/survey-data/graph-comp
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
-
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
-
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
@@ -98,7 +89,6 @@ const routes: Routes = [
     ReportsComponent,
     InterviewComponent,
     ManageComponent,
-    SurveyComponent,
     MngrSubAssociatesComponent,
     SubMan2CohortComponent,
     FakeServiceComponent,
@@ -107,12 +97,9 @@ const routes: Routes = [
     AssociateFeedbackFormComponent,
     SurveyCreatorComponent,
     CohortModalComponent,
-
-
     SurveyCreatorComponent,
     SurveyListComponent,
     TimestampPipe,
-
     SurveyDataComponent,
     AnswerData1Component,
     AnswerData2Component,
@@ -133,10 +120,12 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
+    //Javier's thing 
     BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
     BrowserModule,
-    DatePickerModule,
-    BsDatepickerModule.forRoot()
+    DatePickerModule
+
 
   ],
   providers: [
