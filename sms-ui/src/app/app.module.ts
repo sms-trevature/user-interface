@@ -130,11 +130,7 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
-<<<<<<< HEAD
-    //Javier's thing
-=======
     // Javier's thing
->>>>>>> InterviewDev
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
