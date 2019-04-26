@@ -94,10 +94,9 @@ export class AssociateFeedbackService {
     return this.httpClient.post<AssociateFeedback>(this.url, {
       'recievedNotifications': associateInput.recievedNotifications,
       'descriptionProvided': associateInput.descriptionProvided,
-     
       'interviewFormat': associateInput.interviewFormat,
-      'proposedFormat': associateInput.proposedFormat
-     // 'dayNotice': associateInput.dayNotice
+      'proposedFormat': associateInput.proposedFormat,
+      'dayNotice': associateInput.dayNotice
 
     });
   }

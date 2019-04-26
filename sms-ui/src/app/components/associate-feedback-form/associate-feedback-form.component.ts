@@ -78,6 +78,7 @@ export class AssociateFeedbackFormComponent implements OnInit {
     console.log('in the submit')
     console.log(this._interviewFormatStr)
     console.log(this.interviewFormat)
+    console.log(this._dayNotice); 
     this.interviewFormat = {'formatDesc':this._interviewFormatStr};
     console.log('seperator')
     this.proposedFormat={'formatDesc':this._proposedFormatStr};;
@@ -91,13 +92,14 @@ export class AssociateFeedbackFormComponent implements OnInit {
     console.log('proposed Format')
     console.log(this.proposedFormat)
     associateInput.recievedNotifications=tempString;
-
+    console.log()
     this.associateFeedbackService.postAssociateInput(associateInput).subscribe(data => {
-      data.recievedNotifications = tempString,
+        data.recievedNotifications = tempString,
         data.descriptionProvided = this._descriptionProvided,
         data.interviewFormat = this.interviewFormat,
         data.proposedFormat = this.proposedFormat,
         data.dayNotice = this._dayNotice
+        console.log('DATA: ' + data.dayNotice);
 
     });
   }
