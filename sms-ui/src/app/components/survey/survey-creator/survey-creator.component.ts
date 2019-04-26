@@ -21,37 +21,37 @@ export class SurveyCreatorComponent implements OnInit {
   curAnswerList: Answer[] = [];
   arrofAnswerList: Array<Answer[]> = [];
   inputAnswerString: string;
-  questionList: Question [] = [];
+  questionList: Question[] = [];
   constructor(private surveyService: SurveyService,
-              private sqService: SurveyQuestionService,
-              private answerService: SurveyAnswerService,
-              private questionService: QuestionOfSurveyService) {
+    private sqService: SurveyQuestionService,
+    private answerService: SurveyAnswerService,
+    private questionService: QuestionOfSurveyService) {
   }
   selectOption(qType: number) {
     this.curAnswerList = [];
     switch (qType.toString()) {
       case '1':
-      this.addAnswerOverload1('True');
-      this.addAnswerOverload1('False');
-      break;
+        this.addAnswerOverload1('True');
+        this.addAnswerOverload1('False');
+        break;
       case '4':
-      this.addAnswerOverload1('1');
-      this.addAnswerOverload1('2');
-      this.addAnswerOverload1('3');
-      this.addAnswerOverload1('4');
-      this.addAnswerOverload1('5');
-      break;
+        this.addAnswerOverload1('1');
+        this.addAnswerOverload1('2');
+        this.addAnswerOverload1('3');
+        this.addAnswerOverload1('4');
+        this.addAnswerOverload1('5');
+        break;
       case '6':
-      this.addAnswerOverload1('yes');
-      this.addAnswerOverload1('no');
-      break;
+        this.addAnswerOverload1('yes');
+        this.addAnswerOverload1('no');
+        break;
       case '7':
-      this.addAnswerOverload1('Strongly Agree');
-      this.addAnswerOverload1('Agree');
-      this.addAnswerOverload1('Neutral');
-      this.addAnswerOverload1('Disagree');
-      this.addAnswerOverload1('Strongly Disagree');
-      break;
+        this.addAnswerOverload1('Strongly Agree');
+        this.addAnswerOverload1('Agree');
+        this.addAnswerOverload1('Neutral');
+        this.addAnswerOverload1('Disagree');
+        this.addAnswerOverload1('Strongly Disagree');
+        break;
     }
   }
   addAnswer() {
@@ -78,10 +78,10 @@ export class SurveyCreatorComponent implements OnInit {
   }
   submit() {
     let survey = new Survey(null, this.title, this.description, new Date(),
-     null, this.isTemplate, !this.isTemplate);
+      null, this.isTemplate, !this.isTemplate);
 
-// tslint:disable-next-line: align
-     this.surveyService.save(survey).subscribe(
+    // tslint:disable-next-line: align
+    this.surveyService.save(survey).subscribe(
       data => {
         survey = data;
         console.log(survey);
@@ -91,7 +91,7 @@ export class SurveyCreatorComponent implements OnInit {
               this.questionList[i] = q;
               const sq = new SurveyQuestion(null, survey, this.questionList[i], i + 1);
               this.sqService.save(sq).subscribe(
-                sqBack => {console.log(sqBack); });
+                sqBack => { console.log(sqBack); });
               console.log(this.questionList[i]);
 
               for (const temp of this.arrofAnswerList[i]) {
@@ -100,12 +100,13 @@ export class SurveyCreatorComponent implements OnInit {
               this.answerService.saveList(this.arrofAnswerList[i]).subscribe(
                 ans => {
                   this.arrofAnswerList[i] = ans;
-                  if (ans) {alert('successfully!'); }
+                  if (!ans) { alert('Question answers ' + i + ': ' + this.questionList[i].question + ' were not sent successfully'); }
                 }
               );
             }
           );
         }
+        alert('successful');
       }
     );
 

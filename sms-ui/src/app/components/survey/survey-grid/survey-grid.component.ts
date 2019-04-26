@@ -24,14 +24,11 @@ export class SurveyGridComponent implements OnInit {
     this.listOfSurvey = [];
     this.surveyService.findAll().subscribe(
       data => {
-        // data[i].dateCreated = new Date(data[i].dateCreated);
-        // data[i].closingDate = new Date(data[i].closingDate);
         for (const temp of data) {
           if (temp.template) {
             this.listOfSurvey.push(temp);
           }
         }
-        console.log(this.listOfSurvey);
       }
     );
   }
