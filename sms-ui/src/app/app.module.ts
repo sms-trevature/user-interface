@@ -133,7 +133,7 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
-    //Javier's thing 
+    // Javier's thing
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
