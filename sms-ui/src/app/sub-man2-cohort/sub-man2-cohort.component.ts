@@ -58,6 +58,14 @@ export class SubMan2CohortComponent implements OnInit {
       this.allCohorts = this.filteredCohort;
     })
     this.getAddresses();
+      console.log(data);
+    
+    });
+  }
+  closeModal(){
+    this.ngswitchCase=''
+    this.modalShow = false;
+    this.display = 'none'
   }
   open(content) {
     this.ngswitchCase = 'addCohort'
