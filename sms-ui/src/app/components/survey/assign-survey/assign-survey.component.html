@@ -4,7 +4,6 @@
 
 <table class="table table-striped" *ngIf='listOfSurvey && listOfSurvey.length'>
     <thead>
-        <button class="btn btn-light">Assign</button>
         <tr>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
@@ -14,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor='let temp of listOfSurvey; index as i'>
+        <tr *ngFor='let temp of listOfSurvey; index as i' data-toggle="modal" data-target="#exampleModal">
             <td>{{temp.title}}</td>
             <td>{{temp.description}}</td>
             <td>{{surveyCreator.email}}</td>
@@ -24,6 +23,27 @@
                 <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
             </td>
         </tr>
-        <button class="btn btn-light">Assign</button>
+        <!-- Button trigger modal -->
     </tbody>
 </table>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
