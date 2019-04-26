@@ -193,8 +193,9 @@ export class MngrSubAssociatesComponent implements OnInit {
       'personalAddress': '',
       'userStatus': '' + id
     }
-    // this.http.post(`cohorts/cohort/trainer/${associate.value['trainer']}`, body).toPromise().then(data => {
-    // })
+     this.http.post(`user`, body).toPromise().then(data => {
+       
+     })
   }
 
   private getDismissReason(reason: any): string {
