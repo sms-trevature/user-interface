@@ -17,7 +17,7 @@ export class StagingMgrFeedbackComponent implements OnInit {
     return this.feedbackVar;
   }
 
-  private feedback: InterviewFeedback;
+ 
 
 
   constructor(private sManagerServ: StagingmanagerService) { }
@@ -26,7 +26,6 @@ export class StagingMgrFeedbackComponent implements OnInit {
     // Need to not hardcode feedback id (WIP)
     this.sManagerServ.getMgrFeedback(2).subscribe(data => { this.feedbackVar = data; });
 
-    this.sManagerServ.getMgrFeedback(2).subscribe(data => { this.feedback = data; });
 
   }
 
