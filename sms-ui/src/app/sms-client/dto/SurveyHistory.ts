@@ -1,21 +1,16 @@
 export class SurveyHistory {
     historyId: number;
     surveyId: number;
-    title: string;
-    description: string;
-    dateCreated: Date;
-    closingDate: Date;
-    template: boolean;
-    published: boolean;
+    userEmail: string;
+    dateAssigned: Date;
+    dateCompleted: Date;
 
-    constructor(surveyId: number, title: string, description: string,
-                dateCreated: Date, closingDate: Date, template: boolean, published: boolean) {
+    constructor(surveyId: number, dateAssigned: Date, dateCompleted: Date, 
+                historyId: number, userEmail: string) {
       this.surveyId = surveyId;
-      this.title = title;
-      this.description = description;
-      this.dateCreated = dateCreated;
-      this.closingDate = closingDate;
-      this.template = template;
-      this.published = published;
+      this.historyId = historyId;
+      this.dateAssigned = dateAssigned;
+      this.dateCompleted = dateCompleted;
+      this.userEmail = userEmail;
       }
   }
