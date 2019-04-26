@@ -9,17 +9,10 @@
 
   </thead>
   <tbody>
-<<<<<<< HEAD
-      <tr data-toggle="modal" data-target="#exampleModalLong"> <!-- *ngFor='let temp of listOfSurvey; index as i' (click)='checkTemplate(temp.surveyId)' -->
-          <td></td> <!-- {{temp.title}} -->
-          <td></td> <!-- {{temp.description}} -->
-          <td></td> <!-- {{temp.dateCreated | showTimestamp}} -->
-=======
       <tr *ngFor='let temp of listOfSurvey; index as i' (click)='checkTemplate(temp.surveyId)'  data-toggle="modal" data-target="#exampleModalLong">
           <td>{{temp.title}}</td>
           <td>{{temp.description}}</td>
           <td>{{temp.dateCreated | showTimestamp}}</td>
->>>>>>> 029cc9faf30de39cd1bc762318358ab0cb81935d
       </tr>
   </tbody>
 </table></div>
