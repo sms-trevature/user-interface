@@ -75,19 +75,30 @@ export class AssociateFeedbackFormComponent implements OnInit {
 
   postAssociateInput() {
 
-    this.interviewFormat.formatDesc = this._interviewFormatStr;
-    this. proposedFormat.formatDesc = this._proposedFormatStr;
+    console.log('in the submit')
+    console.log(this._interviewFormatStr)
+    console.log(this.interviewFormat)
+    this.interviewFormat = {'formatDesc':this._interviewFormatStr};
+    console.log('seperator')
+    this.proposedFormat={'formatDesc':this._proposedFormatStr};;
+    console.log('made it past the formats')
     let associateInput = new AssociateFeedback(this._descriptionProvided, this._recievedNotifications, this._dayNotice, this.interviewFormat, this.proposedFormat);
     let tempString = '2019-08-03 14:00:00';
-    
+    console.log('past the constructor')
     associateInput.interviewFormat.formatDesc = this._interviewFormatStr;
     associateInput.proposedFormat.formatDesc = this._proposedFormatStr;
+    console.log('interview Format')
+    console.log('proposed Format')
+    console.log(this.proposedFormat)
+    associateInput.recievedNotifications=tempString;
+
     this.associateFeedbackService.postAssociateInput(associateInput).subscribe(data => {
       data.recievedNotifications = tempString,
         data.descriptionProvided = this._descriptionProvided,
         data.interviewFormat = this.interviewFormat,
         data.proposedFormat = this.proposedFormat,
         data.dayNotice = this._dayNotice
+
     });
   }
 
