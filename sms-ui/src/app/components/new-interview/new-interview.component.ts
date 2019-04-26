@@ -22,10 +22,10 @@ export class NewInterviewComponent implements OnInit {
   private dropdown2NotReady = true;
   private buttonDisabled = true;
 
-  private selectedCohort:string;
-  private selectedAssociate:string;
-  private selectedLocation:string;
-  private selectedClient:string;
+  private selectedCohort: string;
+  private selectedAssociate: string;
+  private selectedLocation: string;
+  private selectedClient: string;
 
   private _cohortName = [];
   private _associateName = [];
@@ -51,61 +51,65 @@ export class NewInterviewComponent implements OnInit {
 
 
   sendInterviewData() {
- 
+
     this.newInterview = new NewInterviewData();
     this.newIntServ.findCohortUsers(this.cohortId).subscribe(userdata => {
+// tslint:disable-next-line: prefer-for-of
       for (let l = 0; l < userdata.length; l++) {
-        if(userdata[l].firstName + " " + userdata[l].lastName == this.selectedAssociate){
+        if (userdata[l].firstName + ' ' + userdata[l].lastName == this.selectedAssociate) {
           this.newInterview.associateEmail = userdata[l].email;
           break;
         }
       }
-      this.newInterview.client=this.selectedClient;
-          this.newInterview.location= this.selectedLocation;
-          this.newInterview.date=this.dateSelection;
-    
+      this.newInterview.client = this.selectedClient;
+      this.newInterview.location = this.selectedLocation;
+      this.newInterview.date = this.dateSelection;
 
-    this.newIntServ.createNewInterview(this.newInterview).subscribe(interview => {
-     
+
+      this.newIntServ.createNewInterview(this.newInterview).subscribe(interview => {
+
     });
     });
-  
+
 
     window.location.reload();
   }
 
+// tslint:disable-next-line: ban-types
   firstDropDownChanged(val: String): boolean {
-  
 
+
+// tslint:disable-next-line: prefer-for-of
     for (let j = 0; j < this.myCohorts.length; j++) {
-      if (val == this.myCohorts[j].cohortName) {
+      if (val === this.myCohorts[j].cohortName) {
         this.cohortId = this.myCohorts[j].cohortId;
         break;
       }
     }
-    if (val == "Select Cohort") {
+    if (val == 'Select Cohort') {
       this.dropdown2NotReady = true;
       this._associateName.length = 0;
       return false;
     }
     this.newIntServ.findCohortUsers(this.cohortId).subscribe(userdata => {
-      
+
       this._associateName.length = 0;
+// tslint:disable-next-line: prefer-for-of
       for (let k = 0; k < userdata.length; k++) {
-        this._associateName.push(`${userdata[k].firstName + " " + userdata[k].lastName}`);
+        this._associateName.push(`${userdata[k].firstName + ' ' + userdata[k].lastName}`);
       }
       this.dropdown2NotReady = false;
 
-    })
+    });
 
     return true;
   }
   submitReadyCheck() {
-    
+
     if (this.dateSelection != null && this.selectedCohort != 'Select Cohort'
       && this.selectedAssociate != 'Select An Associate' && this.selectedLocation != null
       && this.dateSelection != null && this.selectedClient != null) {
-     
+
       this.buttonDisabled = false;
     }
   }
