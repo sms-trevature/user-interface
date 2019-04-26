@@ -95,4 +95,14 @@ export class CognitoService {
         return;
       });
   }
+
+  getCurrentSession(){
+    Auth.currentSession().then(data=>{
+      console.log(data)})
+  }
+  someMethod(){
+    Auth.currentCredentials().then(data=>{
+      console.log(data)
+    })
+  }
 }
