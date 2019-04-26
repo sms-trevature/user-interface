@@ -47,10 +47,7 @@ import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
-
-
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
   { path: '', component: LoginComponent },
