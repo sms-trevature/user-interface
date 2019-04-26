@@ -18,12 +18,12 @@
         <th>24 Hour Notice</th>
       </tr>
     </thead>
-    <tbody *ngFor="let temp of dayNoticeList">
+    <tbody *ngFor="let temp of descProvidedList">
       <tr>
         <td>{{temp.id}}</td>
         <td>{{temp.associateEmail}}</td>
         <td>{{temp.place}}</td>
-        <td>{{temp.associateInput.dayNotice}}</td>
+        <td>{{temp.associateInput.descriptionProvided}}</td>
       </tr>
     </tbody>
   </table>
@@ -40,7 +40,7 @@
         <th>24 Hour Notice</th>
       </tr>
     </thead>
-    <tbody *ngFor="let temp of noDayNoticeList">
+    <tbody *ngFor="let temp of noDescList">
       <tr>
         <td>{{temp.id}}</td>
         <td>{{temp.associateEmail}}</td>
