@@ -44,6 +44,7 @@ import { DaynoticeReportComponent } from './components/daynotice-report/daynotic
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
+
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
   { path: '', component: LoginComponent },
@@ -54,6 +55,8 @@ const routes: Routes = [
   { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
   { path: 'InterviewListRoute', component: InterviewListComponent},
   {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
+  {path: 'JobDescRoute', component: JobdescReportComponent},
+
   {
     path: 'ManageRoute', component: ManageComponent,
     children: [
@@ -117,6 +120,7 @@ const routes: Routes = [
     DaynoticeGraphComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -126,7 +130,7 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
-    //Javier's thing 
+    // Javier's thing
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
