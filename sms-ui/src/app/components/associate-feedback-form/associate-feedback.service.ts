@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
+import { InterviewFormat } from 'src/app/sms-client/dto/InterviewFormat';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AssociateFeedback {
+export class AssociateFeedback { 
   '_descriptionProvided': boolean;
   '_recievedNotifications': string;
   '_dayNotice': boolean;
-  '_interviewFormat': string;
-  '_proposedFormat': string;
+  '_interviewFormat': InterviewFormat;
+  '_proposedFormat': InterviewFormat;
 
-  constructor(descriptionProvided: boolean, recievedNotifications: string, dayNotice: boolean, interviewFormat: string, proposedFormat: string) {
+  constructor(descriptionProvided: boolean, recievedNotifications: string, dayNotice: boolean, interviewFormat: InterviewFormat, proposedFormat: InterviewFormat) {
     this._descriptionProvided = descriptionProvided;
     this._recievedNotifications = recievedNotifications;
     this._dayNotice = dayNotice;
@@ -44,19 +45,19 @@ export class AssociateFeedback {
     this._dayNotice = temp;
   }
 
-  get interviewFormat(): string {
+  get interviewFormat(): InterviewFormat {
     return this._interviewFormat;
   }
 
-  set interFormat(temp: string) {
+  set interviewFormat(temp: InterviewFormat) {
     this._interviewFormat = temp;
   }
 
-  get proposedFormat(): string {
+  get proposedFormat(): InterviewFormat {
     return this._proposedFormat;
   }
 
-  set proposedFormat(temp: string) {
+  set proposedFormat(temp: InterviewFormat) {
     this._proposedFormat = temp;
   }
 }
@@ -66,7 +67,9 @@ export class AssociateFeedback {
 })
 export class AssociateFeedbackService {
 
-  private url = '/interview-service/interview/associateInput';
+  associateInput: AssociateFeedback;
+
+  private url = 'interview-service/interview/associateInput';
 
   constructor(private httpClient: HttpClient) {
 
@@ -75,4 +78,29 @@ export class AssociateFeedbackService {
   getAssociateInput(): Observable<AssociateFeedback> {
     return this.httpClient.get<AssociateFeedback>(this.url);
   }
+
+  postAssociateInput(associateInput): Observable<AssociateFeedback> {
+    console.log("the asso input proposed format is ")
+    console.log(associateInput.proposedFormat);
+    console.log("the asso input interview format is ")
+    console.log(associateInput.interviewFormat);
+    console.log("the asso input desc format is ")
+    console.log(associateInput.descriptionProvided);
+    console.log("the asso input dayNotice format is ")
+    console.log(associateInput.dayNotice);
+    console.log(associateInput._recievedNotifications)
+
+    console.log("inside of post associate");
+    return this.httpClient.post<AssociateFeedback>(this.url, {
+      'recievedNotifications': associateInput.recievedNotifications,
+      'descriptionProvided': associateInput.descriptionProvided,
+     
+      'interviewFormat': associateInput.interviewFormat,
+      'proposedFormat': associateInput.proposedFormat
+     // 'dayNotice': associateInput.dayNotice
+
+    });
+  }
+
+
 }

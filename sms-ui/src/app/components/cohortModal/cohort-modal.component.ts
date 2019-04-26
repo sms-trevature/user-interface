@@ -23,6 +23,9 @@ export class CohortModalComponent implements OnInit {
     console.log(this.cohort.coTrainer)
     if(this.cohort.coTrainer==undefined||null){
       this.cotrainer=false;
+      this.findUsersByRole('TRAINING_MANAGER').toPromise().then(data=>{
+        console.log(data)
+      })
     }
 
   }
@@ -71,4 +74,7 @@ export class CohortModalComponent implements OnInit {
     })
   }
 
+  findUsersByRole = (role: string) => {
+    return this.http.get(`/cognito/users/groups/${role}`);
+  }
 }
