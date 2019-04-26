@@ -25,14 +25,18 @@ export class CognitoService {
   public token$ = this.tokenStream.asObservable();
 
   private newPasswordUser: any = null;
-
-  constructor() {
+// private grabUserJson:
+  constructor( ) {
     this.setup();
   }
 
   async login(username: string, password: string) {
     const response = await Auth.signIn(username, password);
+   
+    /// ---Query by email for user info..
+
     console.log(response);
+    this.getCurrent();
 
     if (response.challengeName !== 'NEW_PASSWORD_REQUIRED') {
       this.setup();
@@ -50,6 +54,8 @@ export class CognitoService {
     this.tokenStream.next(undefined);
     this.currentUserStream.next(undefined);
   }
+  async getCurrent() {
+  }
 
   async setNewPassword(password: string) {
     const response = await Auth.completeNewPassword(
@@ -62,6 +68,7 @@ export class CognitoService {
   }
 
   private setup() {
+    
     Auth.currentAuthenticatedUser()
       .then(user => {
         // initialize the jwt for axios
@@ -86,5 +93,15 @@ export class CognitoService {
       .catch(e => {
         return;
       });
+  }
+
+  getCurrentSession(){
+    Auth.currentSession().then(data=>{
+      console.log(data)})
+  }
+  someMethod(){
+    Auth.currentCredentials().then(data=>{
+      console.log(data)
+    })
   }
 }
