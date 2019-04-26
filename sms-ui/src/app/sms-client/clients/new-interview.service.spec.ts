@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SurveyDataService } from './survey-data.service';
+import { NewInterviewService } from './new-interview.service';
 
-describe('SurveyDataService', () => {
+describe('NewInterviewService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: SurveyDataService = TestBed.get(SurveyDataService);
+    const service: NewInterviewService = TestBed.get(NewInterviewService);
     expect(service).toBeTruthy();
   });
 });
