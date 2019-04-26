@@ -10,11 +10,11 @@
         <div class="modal-body">
             <h4>Interview Feedback</h4>
             <hr>
-            <!-- <label for="dateRequested"><b>Date Requested: + {{data.FeedbackeRequested}} </b></label><output name=" dateRequested" ></output><br>
-            <label for="feedbackStatus"><b>Feedback Status: + {{data.feedbackStatus}}</b></label><output name=" feedbackStatus" ></output><br>
-            <label for="feedbackReceived"><b>Date Received: + {{data.feedbackRequested}}</b></label><output name=" dateReceived" ></output><br>
-            <label for="feedback"><b>Actual Feedback Comments:  + {{data.feedback}}</b></label><output name=" actualFeedbackComments" ></output><br><br><br>
-            <label for= feedbackDelivered"><b>Feedback Delivered: + {{data.feedbackDelivered}}</b></label><output name=" dateDelivered" ></output><br> -->
+            <label for='dateRequested'><b>Date Requested: + {{feedback.feedbackRequested | date}} </b></label><br>
+            <label for='feedbackStatus'><b>Feedback Status: + {{feedback.status.feedback_status_desc}}</b></label><br>
+            <label for='feedbackReceived'><b>Date Received: + {{feedback.feedbackRequested | date}}</b></label><br>
+            <label for='feedback'><b>Actual Feedback Comments:  + {{feedback.feedback}}</b></label><br><br><br>
+            <label for='feedbackDelivered'><b>Feedback Delivered: + {{feedback.feedbackDelivered | date}}</b></label><br>
 
           </div>
     </div>
