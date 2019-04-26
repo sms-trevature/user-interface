@@ -26,6 +26,7 @@
                                 <div class="input-group">
                                     <input id="Name" ngModel class="form-control" placeholder="Cohort Name" name="dp">
                                     <select ngModel name='location'>
+                                            <option value="" disabled selected>Location</option>
                                             <option *ngFor='let temp of addressList' [value]="temp.addressId">{{temp.city}}, {{temp.state}}</option>
                                         </select>
 
@@ -38,12 +39,15 @@
                                 <br>
                                 <h4>End Date</h4>
                                 <input name='endDate' ngModel type="date" min="2018-01-01" max="2020-12-31">
+                                <br>
+                                <br>
                                 <select name='trainer' ngModel>
-                                    <option value="1" disabled="disabled" selected="selected">Trainer</option>
+                                    <option value="" disabled selected>Trainer</option>
                                     <option value="1">Trevin Chester</option>
                                     <option value="1">Blake Kruppa</option>
                                     <option value="1">IDK</option>
                                 </select>
+                                <br>
                                 <br><button type='submit'>Submit</button>
                             </div>
                         </form>
@@ -65,8 +69,7 @@
             </ng-template>
 
             <button class="pure-button" (click)='open(content)'>
-                <i class="material-icons">person</i>
-                Add Cohort
+               New Cohort
             </button>
         </div>
 
@@ -75,18 +78,18 @@
             <tr>
                 <th class="spreadColumnChrt">Name</th>
                 <th class="spreadColumnChrt">Location</th>
-                <th class="spreadColumnChrt">Token</th>
+
                 <th class="spreadColumnChrt">Start Date</th>
                 <th class="spreadColumnChrt">End Date</th>
                 <th class="spreadColumnChrt">Trainer</th>
                 <th class="spreadColumnChrt">Email</th>
             </tr>
             <tr *ngFor='let temp of filteredCohort'>
-                <button (click)="openModal(temp['cohortName'], content)">
+                <button id="ateam" (click)="openModal(temp['cohortName'], content)">
                     <td>{{temp['cohortName']}}</td>
                 </button>
                 <td>{{temp.address.city}},{{temp.address.state}}</td>
-                <button><td>{{temp.cohortToken}}</td></button>
+
                 <td> {{temp.startDate}} </td>
                 <td> {{temp.endDate}} </td>
                 <td> {{temp.trainer.firstName}} {{temp.trainer.lastName}} </td>
