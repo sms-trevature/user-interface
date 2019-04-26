@@ -43,7 +43,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
+import { DaynoticeGraphComponent } from './components/daynotice-graph/daynotice-graph.component';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
