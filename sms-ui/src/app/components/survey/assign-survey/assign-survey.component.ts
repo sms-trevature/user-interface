@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-
-=======
 import { SurveyService } from 'src/app/sms-client/clients/survey.service';
 import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
 import { SurveyQuestionService } from 'src/app/sms-client/clients/surveyquestion.service';
 import { Survey } from 'src/app/sms-client/dto/Survey';
 import { User } from 'src/app/sms-client/dto/User';
->>>>>>> e41cee623837c1398005b802e63d14e1ae4580d3
 
 
 
