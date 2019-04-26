@@ -22,7 +22,8 @@ export class SurveyCreatorComponent implements OnInit {
   arrofAnswerList: Array<Answer[]> = [];
   inputAnswerString: string;
   questionList: Question[] = [];
-  constructor(private surveyService: SurveyService,
+  constructor(
+    private surveyService: SurveyService,
     private sqService: SurveyQuestionService,
     private answerService: SurveyAnswerService,
     private questionService: QuestionOfSurveyService) {
