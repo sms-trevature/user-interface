@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DaynoticeService } from 'src/app/services/daynotice.service';
 
 @Component({
   selector: 'app-jobdesc-report',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobdescReportComponent implements OnInit {
 
-  constructor() { }
+  constructor(private interview: DaynoticeService) { }
 
   ngOnInit() {
   }

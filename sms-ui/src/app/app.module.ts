@@ -58,6 +58,7 @@ const routes: Routes = [
   { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
   { path: 'InterviewListRoute', component: InterviewListComponent},
   {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
+  {path: 'JobDescRoute', component: JobdescReportComponent},
   {
     path: 'ManageRoute', component: ManageComponent,
     children: [
