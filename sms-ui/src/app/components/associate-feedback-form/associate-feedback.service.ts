@@ -6,7 +6,7 @@ import { InterviewFormat } from 'src/app/sms-client/dto/InterviewFormat';
 @Injectable({
   providedIn: 'root'
 })
-export class AssociateFeedback { 
+export class AssociateFeedback {
   '_descriptionProvided': boolean;
   '_recievedNotifications': string;
   '_dayNotice': boolean;
@@ -94,7 +94,7 @@ export class AssociateFeedbackService {
     return this.httpClient.post<AssociateFeedback>(this.url, {
       'recievedNotifications': associateInput.recievedNotifications,
       'descriptionProvided': associateInput.descriptionProvided,
-     
+
       'interviewFormat': associateInput.interviewFormat,
       'proposedFormat': associateInput.proposedFormat,
       'dayNotice': associateInput.dayNotice

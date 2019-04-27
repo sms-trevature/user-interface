@@ -2,72 +2,48 @@
 
 
 
-<table class="table table-striped">
+<table class="table table-striped" *ngIf='listOfSurvey && listOfSurvey.length'>
     <thead>
         <tr>
-            <th scope="col">Survey Id</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
-            <th scope="col">Has Template</th>
+            <th scope="col">Created By</th>
             <th scope="col">Date Created</th>
             <th scope="col">Date Closed</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>{{temp.surveyId}}</td>
+        <tr *ngFor='let temp of listOfSurvey; index as i' data-toggle="modal" data-target="#exampleModal">
             <td>{{temp.title}}</td>
             <td>{{temp.description}}</td>
-            <td>
-                <p *ngIf="!temp.template; else elseBlock1">No Template</p>
-                <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template>
-            </td>
+            <td>{{surveyCreator.email}}</td>
             <td>{{temp.dateCreated | showTimestamp}}</td>
             <td>
                 <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
                 <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
             </td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>{{temp.surveyId}}</td>
-            <td>{{temp.title}}</td>
-            <td>{{temp.description}}</td>
-            <td>
-                <p *ngIf="!temp.template; else elseBlock1">No Template</p>
-                <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template>
-            </td>
-            <td>{{temp.dateCreated | showTimestamp}}</td>
-            <td>
-                <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
-                <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>{{temp.surveyId}}</td>
-            <td>{{temp.title}}</td>
-            <td>{{temp.description}}</td>
-            <td>
-                <p *ngIf="!temp.template; else elseBlock1">No Template</p>
-                <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template>
-            </td>
-            <td>{{temp.dateCreated | showTimestamp}}</td>
-            <td>
-                <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
-                <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
-            </td>
-        </tr>
+        <!-- Button trigger modal -->
     </tbody>
 </table>
 
-<div>
-    <ul *ngIf='curTemplate'>
-        <li *ngFor='let temp of curTemplate; index as i;'>
-            <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p><br>
-            <p *ngFor='let ans of curTempAnswers[i]'>{{ans?.answer+" "}}</p>
-        </li>
-
-    </ul>
-</div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
