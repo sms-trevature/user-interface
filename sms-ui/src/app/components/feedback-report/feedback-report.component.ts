@@ -51,16 +51,16 @@ export class FeedbackReportComponent implements OnInit {
     this.dayNotice.getAllInterviews().subscribe((data: DayNotice[]) => {
       this.feedbackYesList = data;
       this.feedbackNoList = data;
-      this.feedbackYesList = this.filterByRequested();
+     // this.feedbackYesList = this.filterByRequested();
       this.feedbackNoList = this.filterByNotRequested();
 
     });
   }
 
-  filterByRequested(): DayNotice[] {
+ /*  filterByRequested(): DayNotice[] {
     console.log("inside of requested");
     return this.feedbackYesList.filter((randomV: DayNotice) => (randomV.feedback.feedbackRequested) == null);
-  }
+  } */
 
   filterByNotRequested(): DayNotice[] {
     console.log("inside of not requested");
