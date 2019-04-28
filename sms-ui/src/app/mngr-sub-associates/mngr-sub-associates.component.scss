@@ -42,3 +42,20 @@ body{
     font-size: 102%;
     color: gray;
 }
+#pAddress{
+    display: none; 
+}
+#specificStatusElmnt1{
+    display: none; 
+}
+#specificStatusElmnt2{
+    display: none; 
+}
+#editButton{
+    border-radius: 20px; 
+    background-color: red;
+}
+#editButton:hover{
+    background-color: tomato; 
+    color: yellowgreen;
+}
