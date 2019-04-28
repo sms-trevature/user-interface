@@ -44,7 +44,6 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
-import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 
 const routes: Routes = [
@@ -122,7 +121,6 @@ const routes: Routes = [
     AnswerData5Component,
     AnswerData6Component,
     AnswerData7Component,
-    SurveyRespondentsComponent,
     DaynoticeReportComponent,
     JobdescReportComponent,
 

@@ -1,16 +1,19 @@
 export class SurveyHistory {
-    historyId: number;
+    id: number;
+    // tslint:disable-next-line: variable-name
     surveyId: number;
-    userEmail: string;
+    useremail: string;
+    // tslint:disable-next-line: variable-name
     dateAssigned: Date;
+    // tslint:disable-next-line: variable-name
     dateCompleted: Date;
 
-    constructor(surveyId: number, dateAssigned: Date, dateCompleted: Date, 
-                historyId: number, userEmail: string) {
-      this.surveyId = surveyId;
-      this.historyId = historyId;
-      this.dateAssigned = dateAssigned;
-      this.dateCompleted = dateCompleted;
-      this.userEmail = userEmail;
-      }
-  }
+    // tslint:disable-next-line: variable-name
+    constructor(id: number, survey_id: number, useremail: string, date_assigned: Date, date_completed: Date) {
+        this.id = id;
+        this.surveyId = survey_id;
+        this.useremail = useremail;
+        this.dateAssigned = date_assigned;
+        this.dateCompleted = date_completed;
+    }
+}

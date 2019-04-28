@@ -5,9 +5,9 @@ export interface Cohort {
     cohortId: number;
     cohortName: string;
     address: Address;
-    cohortToken: string;
-    startDate: string;
-    endDate: string;
+    Token: string;
+    StartD: string;
+    EndD: string;
     trainer: User;
     coTrainer: User;
     Email: string;
