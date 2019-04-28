@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive, Input } from '@angular/core';
 import { SurveyService } from 'src/app/sms-client/clients/survey.service';
-import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
 import { SurveyQuestionService } from 'src/app/sms-client/clients/surveyquestion.service';
 import { Survey } from 'src/app/sms-client/dto/Survey';
-import { User } from 'src/app/sms-client/dto/User';
 import { SurveyHistoryService } from 'src/app/sms-client/clients/survey-history.service';
 import { SurveyHistory } from 'src/app/sms-client/dto/SurveyHistory';
 import { SurveyQuestion } from 'src/app/sms-client/dto/surveyQuestion';
 import { Answer } from 'src/app/sms-client/dto/Answer';
 import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.service';
 import { Responses } from 'src/app/sms-client/dto/Response';
-
+import { SurveyResponseService } from 'src/app/sms-client/clients/survey-response.service';
 
 
 
@@ -32,7 +30,8 @@ export class AssignSurveyComponent implements OnInit {
     private surveyService: SurveyService,
     private historyService: SurveyHistoryService,
     private sqService: SurveyQuestionService,
-    private answerService: SurveyAnswerService
+    private answerService: SurveyAnswerService,
+    private responseService: SurveyResponseService
     ) { }
 
   ngOnInit() {
@@ -80,15 +79,17 @@ export class AssignSurveyComponent implements OnInit {
   close() {
     window.location.reload();
   }
-  submit() {
+  async submit() {
     const responseList: Responses[] = [];
     const answerList: Answer[] = [];
-// tslint:disable-next-line: forin
-    for (const i in this.inputAns) {
+
+    for (const i of Object.keys(this.inputAns)) {
       let tempAns;
       if (this.curTemplate[i].questionId.typeId === 5) {
         tempAns = new Answer(null, this.inputAns[i], this.curTemplate[i].questionId.questionId);
-        // need to send to db and get back then push to answerlist here
+        await this.answerService.save(tempAns).subscribe(
+          data => {tempAns = data; }
+        );
         answerList.push(tempAns);
       } else {
         for (const ansForCurQuestion of this.curTempAnswers[i]) {
@@ -100,19 +101,22 @@ export class AssignSurveyComponent implements OnInit {
       responseList.push(new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, tempAns));
     }
 
-    console.log(this.inputAns);
-    console.log(this.inputMultiAns);
-    console.log(this.inputMultiAnsQNum);
-    for (let x = 0; x < this.inputMultiAns.length; x++) {
+    for (const x in this.inputMultiAns) {
       if (this.inputMultiAns[x]) {
-        const index = x / this.inputMultiAnsQNum[x] - 1;
-        const tempSurvey = this.curTemplate[this.inputMultiAnsQNum[x] - 1].surveyId;
-        const tempAns = this.curTempAnswers[this.inputMultiAnsQNum[x] - 1][index];
+        const hide = document.getElementById(x.toString()) as HTMLInputElement;
+        const iPlus1 = Number(hide.value);
+        const index = Number(x) / iPlus1 - 1;
+        const tempSurvey = this.curTemplate[iPlus1 - 1].surveyId;
+        const tempAns = this.curTempAnswers[iPlus1 - 1][index];
         responseList.push(new Responses(null, localStorage.getItem('userEmail'), tempSurvey, tempAns));
       }
     }
-
-    console.log(answerList);
-    console.log(responseList);
+    this.responseService.saveList(responseList).subscribe(
+      hope => {
+        if (hope) {
+          alert('successful');
+        }
+      }
+    );
   }
 }
