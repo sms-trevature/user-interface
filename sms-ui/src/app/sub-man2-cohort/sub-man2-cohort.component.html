@@ -29,7 +29,6 @@
                                             <option value="" disabled selected>Location</option>
                                             <option *ngFor='let temp of addressList' [value]="temp.addressId">{{temp.city}}, {{temp.state}}</option>
                                         </select>
-
                                 </div>
                                 <br>
                                 <textarea rows="4" cols="50" name="description" ngModel placeholder='Description' form="cohortform"></textarea>

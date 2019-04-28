@@ -3,6 +3,7 @@ import { UsersClientService } from 'src/app/sms-client/clients/users-client.serv
 import { CognitoService } from 'src/app/services/cognito.service';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/sms-client/dto/User';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
@@ -13,15 +14,19 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private currentUserSubscription: Subscription;
 
-  private user: User;
+  public user: User;
 
-  constructor(private userClient: UsersClientService, private cognito: CognitoService) { }
+  constructor(private nav: NavbarComponent, private userClient: UsersClientService, private cognito: CognitoService) { }
 
   ngOnInit() {
     this.currentUserSubscription = this.cognito.currentUser$.subscribe(user => {
       this.userClient.findByEmail(user.email).subscribe(
         succResp => {
           console.log(succResp);
+          user = succResp;
+          console.log("we can pass this user: " + user.firstName);
+          this.nav.user = user;
+          //trying to pass via the nav bar.. 
           this.user = succResp;
         },
         err => {
@@ -30,7 +35,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       );
     });
   }
-
+returnUserInfo(): User{
+  console.log("something called finally "); 
+  return this.user;
+}
   ngOnDestroy() {
     // ensures that we don't try calling unsubscribe on undefined
     if (this.currentUserSubscription) {
