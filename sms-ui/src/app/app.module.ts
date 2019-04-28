@@ -41,6 +41,7 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { AutodataComponent } from './components/autodata/autodata.component';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
@@ -109,6 +110,7 @@ const routes: Routes = [
     AnswerData5Component,
     AnswerData6Component,
     AnswerData7Component,
+    AutodataComponent,
 
 
   ],
