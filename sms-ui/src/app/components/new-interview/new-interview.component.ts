@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 
 import { NewInterviewService } from 'src/app/sms-client/clients/new-interview.service';
 import { Cohort } from 'src/app/sms-client/dto/Cohort';
+import { NewInterviewData } from 'src/app/sms-client/dto/NewInterviewData';
 
 @Component({
   selector: 'app-new-interview',
@@ -22,7 +23,7 @@ export class NewInterviewComponent implements OnInit {
 
 
   private selectedCohort: string;
-  private selectedAssociate: string;
+  private selectedAssociate: string; 
   private selectedLocation: string;
   private selectedClient: string;
 
@@ -63,7 +64,7 @@ export class NewInterviewComponent implements OnInit {
   sendInterviewData() {
 
     this.newInterview = new NewInterviewData();
-    this.newIntServ.findCohortUsers(this.cohortId).subscribe(userdata => {
+    this.newInt.findCohortUsers(this.cohortId).subscribe(userdata => {
 // tslint:disable-next-line: prefer-for-of
       for (let l = 0; l < userdata.length; l++) {
         if (userdata[l].firstName + ' ' + userdata[l].lastName === this.selectedAssociate) {
@@ -76,7 +77,7 @@ export class NewInterviewComponent implements OnInit {
       this.newInterview.date = this.dateSelection;
 
 
-      this.newIntServ.createNewInterview(this.newInterview).subscribe(interview => {
+      this.newInt.createNewInterview(this.newInterview).subscribe(interview => {
 
     });
     });
@@ -106,7 +107,7 @@ export class NewInterviewComponent implements OnInit {
       this._associateName.length = 0;
       return false;
     }
-    this.newIntServ.findCohortUsers(this.cohortId).subscribe(userdata => {
+    this.newInt.findCohortUsers(this.cohortId).subscribe(userdata => {
 
 
       this._associateName.length = 0;

@@ -3,7 +3,7 @@ import { Address } from 'cluster';
 
 export interface Cohort {
     cohortId: number;
-    CName: string;
+    cohortName: string;
     address: Address;
     Token: string;
     StartD: string;

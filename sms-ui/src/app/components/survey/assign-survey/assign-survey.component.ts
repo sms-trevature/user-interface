@@ -75,6 +75,7 @@ export class AssignSurveyComponent implements OnInit {
         }
       }
     );
+  }
 
   closeSurvey(index: number) {
     this.listOfSurvey[index].closingDate = new Date();
