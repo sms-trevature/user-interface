@@ -8,12 +8,14 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  email: string;
   constructor(private router: Router) { }
 
   showSurveyPage() {
     this.router.navigateByUrl('/surveyList');
   }
   ngOnInit() {
+    this.email = localStorage.getItem('userEmail');
   }
 
 }
