@@ -8,10 +8,10 @@ import { User } from 'src/app/sms-client/dto/User';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
-  public user: User;
-
+  
   constructor(private router: Router) { }
+  
+  public user: User;
 
   showSurveyPage() {
     this.router.navigateByUrl('/surveyList');

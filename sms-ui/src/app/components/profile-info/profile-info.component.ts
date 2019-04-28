@@ -39,11 +39,15 @@ export class ProfileInfoComponent implements OnInit {
   ];*/
 
   constructor(private cognitoService: CognitoService, private nav: NavbarComponent) { 
+/*     console.log("User Info Before Assignment: " + this.nav.user.firstName);
     this.currentUser = nav.user;
-    console.log("User Info: " + this.currentUser.email);
+    console.log("User Info After Assignment: " + this.currentUser.email); */
   }
 
   ngOnInit() {
+    console.log("User Info Before Assignment: " + this.nav.user.email);
+    this.currentUser = this.nav.user;
+    console.log("User Info After Assignment: " + this.currentUser.email);
   }
   someMethodToGrabAddressForUserViaUserPKGrabbedFromCognitoCurrentUserSession() {
     // retrieve user info
