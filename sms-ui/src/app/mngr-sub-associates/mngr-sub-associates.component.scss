@@ -51,3 +51,11 @@ body{
 #specificStatusElmnt2{
     display: none; 
 }
+#editButton{
+    border-radius: 20px; 
+    background-color: red;
+}
+#editButton:hover{
+    background-color: tomato; 
+    color: yellowgreen;
+}

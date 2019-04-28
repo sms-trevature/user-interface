@@ -20,6 +20,8 @@
         <i class="material-icons">person</i>
         Add Employee
       </button>
+      <br>
+      <button id="editButton" (click)="editAllRoles()" style=" font-size: 10px;"> Edit Mode </button>
     </div>
     <table id="associateTable">
       <tr>
@@ -30,7 +32,7 @@
       <tr *ngFor='let temp of filteredEmployees'>
         <td>{{temp.firstName}} {{temp.lastName}}</td>
         <td id={{temp.email}}><button class="cantBelieveItsNotButton" (click)="editRole(temp.email)">
-            {{temp.role}}</button></td>
+            {{functionTest(temp.email)}}</button></td>
         <td>{{temp.email}}</td>
       </tr>
     </table>

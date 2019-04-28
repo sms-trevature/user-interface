@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { Address } from '../sms-client/dto/Address';
 import { VirtualAction } from 'rxjs';
 import { status } from '../sms-client/dto/Status';
+import { stringify } from 'querystring';
 
 
 @Component({
@@ -27,7 +28,9 @@ export class MngrSubAssociatesComponent implements OnInit {
     this._listFilter = temp;
     this.filteredEmployees = this._listFilter ? this.performFilter(this._listFilter) : this.allAssociates;
   }
-
+  stagingM = new Array;
+  adminArray = new Array;
+  trainerArray = new Array;
   virtualStatus;
   wholeName = '';
   addressList;
@@ -42,19 +45,85 @@ export class MngrSubAssociatesComponent implements OnInit {
   private returnableEmailValue = '';
   private returnableButton = document.createElement('button') as HTMLButtonElement;
   constructor(private _fakeService: FakeServiceComponent, private http: HttpClient, private modalService: NgbModal) {
+
+    //----now retrieve all users in the actual DB 
     this.http.get('users').toPromise().then(data => {
 
       let objIndex = 0;
       while (data[objIndex] != null || data[objIndex] != undefined) {
-        console.log("any shit happening here? ");
+
         this.filteredEmployees.push(data[objIndex]);
 
         objIndex++;
       }
-      // this.filteredEmployees = this.returnableDataVariable;
-      // console.log(' TEST MC TEST ;  ' + data[1].firstName);
+    });
+    //===============================^
+
+    this.http.get('cognito/users/groups/admin').toPromise().then(admins => {
+      // console.log("----inside admin retrieval----");
+      let index = 0;
+      while (admins['Users'][index] != undefined) {
+        if (admins['Users'][index].Attributes[1]['Value'] == true || admins['Users'][index].Attributes[1]['Value'] == 'true') {
+          this.adminArray.push(admins['Users'][index].Attributes[2]['Value']);
+        } else {
+          this.adminArray.push(admins['Users'][index].Attributes[1]['Value']);
+        }
+        index++;
+      }
+      // console.log("emails of admins: ");
+      // this.adminArray.forEach(element => {
+      //   console.log(element);
+      // });
 
     });
+    this.http.get('cognito/users/groups/trainer').toPromise().then(trainer => {
+      // console.log("----inside admin retrieval----");
+      let index = 0;
+      while (trainer['Users'][index] != undefined) {
+        if (trainer['Users'][index].Attributes[1]['Value'] == true || trainer['Users'][index].Attributes[1]['Value'] == 'true') {
+          this.trainerArray.push(trainer['Users'][index].Attributes[2]['Value']);
+        } else {
+          this.trainerArray.push(trainer['Users'][index].Attributes[1]['Value']);
+        }
+        index++;
+      }
+      // console.log("emails of trainers: ");
+      // this.trainerArray.forEach(element => {
+      //   console.log(element);
+      // });
+    });
+    this.http.get('cognito/users/groups/staging-manager').toPromise().then(sm => {
+      //  console.log("----inside admin retrieval----");
+      let index = 0;
+      while (sm['Users'][index] != undefined) {
+        if (sm['Users'][index].Attributes[1]['Value'] == true || sm['Users'][index].Attributes[1]['Value'] == 'true') {
+          this.stagingM.push(sm['Users'][index].Attributes[2]['Value']);
+        } else {
+          this.stagingM.push(sm['Users'][index].Attributes[1]['Value']);
+        }
+        index++;
+      }
+      // console.log("emails of staging managers: ");
+      // this.stagingM.forEach(element => {
+      //   console.log(element);
+      // });
+    });
+
+    //----------------------tests
+    // console.log("emails of admins: ");
+    // this.adminArray.forEach(element => {
+    //   console.log(element);
+    // });
+    // console.log("(emails of trainers: ");
+    // this.trainerArray.forEach(element => {
+    //   console.log(element);
+    // });
+    // console.log("(emails of staging managers: )");
+    // this.stagingM.forEach(element => {
+    //   console.log(element);
+    // });
+    //====================================^
+
 
     this.allAssociates = this.filteredEmployees;
     //    console.log("filtered employees even " + this.filteredEmployees[1] + "- variable of object: " + this.filteredEmployees[1].firstName );
@@ -62,13 +131,59 @@ export class MngrSubAssociatesComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
       this.addressList = data;
     })
-
   }
-  
+
+  functionTest(email) {
+    console.log("FUNCTION FOR ROLE CALLED ");
+    if (this.adminArray.indexOf(email) != -1) {
+      return "Admin";
+    } else
+      if (this.trainerArray.indexOf(email) != -1) {
+        return "Trainer";
+      } else if (this.stagingM.indexOf(email) != -1) {
+        return "Staging Manager";
+      } else {
+        return 'Associate';
+      }
+  }
+  editAllRoles() {
+    this.stagingM;
+    this.adminArray;
+    this.trainerArray;
+
+    this.trainerArray.forEach(element => {
+      console.log("trainers: ");
+          console.log(element);
+          const roleSpot = document.getElementById(element) as HTMLDataListElement;
+          while (roleSpot.firstChild) {
+            roleSpot.removeChild(roleSpot.firstChild);
+          }
+          const trainDiv = document.createElement('div') as HTMLDivElement;
+          const x = document.createElement('button') as HTMLButtonElement; 
+          x.innerText ='x';
+          // x.style.width = '8px';
+           x.style.height = '14px';
+          x.style.cssFloat ='right';
+          x.style.backgroundImage = "url(../../../assets/rev-logo.png)";
+        x.style.marginLeft = "-65px";
+          trainDiv.innerHTML = "trainer";
+          trainDiv.appendChild(x);
+          roleSpot.appendChild(trainDiv);
+
+     }); 
+    this.adminArray.forEach(element => {
+      console.log("admins: ");
+      console.log(element);
+    });
+
+    this.stagingM.forEach(element => {
+      console.log("staging manager: ");
+      console.log(element);
+    });
+  }
   generalStatus() {
     console.log("general status change");
     const controlFlow = document.getElementById('GeneralSelection') as HTMLSelectElement;
@@ -184,18 +299,18 @@ export class MngrSubAssociatesComponent implements OnInit {
     }
 
     let body = {
-      'userId': 0,
+      'userId': 100,
       'firstName': fName,
       'lastName': lName,
       'email': email,
       'phoneNumber': phone,
       'trainingAddress': TrainLocation,
-      'personalAddress': '',
-      'userStatus': '' + id
+      'personalAddress': null,
+      'userStatus': null
     }
-     this.http.post(`user`, body).toPromise().then(data => {
-       
-     })
+    this.http.post(`users`, body).toPromise().then(data => {
+
+    })
   }
 
   private getDismissReason(reason: any): string {
@@ -259,7 +374,9 @@ export class MngrSubAssociatesComponent implements OnInit {
     //--
     console.log("the button currently holds: " + childButton.innerHTML);
     while (grabDataCell.firstChild) {
+
       currentRole = grabDataCell.firstChild.textContent;
+      console.log("CURRENT ROLE: " + currentRole);
       grabDataCell.removeChild(grabDataCell.firstChild);
     }
     const NewRole = document.createElement('select') as HTMLSelectElement;
@@ -269,7 +386,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     const optAdmin = document.createElement('option') as HTMLOptionElement;
     optAdmin.textContent = "Admin";
     const optStagingM = document.createElement('option') as HTMLOptionElement;
-    optStagingM.textContent = "Staging Managers";
+    optStagingM.textContent = "Staging-Manager";
     const optAssociate = document.createElement('option') as HTMLOptionElement
     optAssociate.textContent = "Associate";
     const optTrainer = document.createElement('option') as HTMLOptionElement;
@@ -307,6 +424,10 @@ export class MngrSubAssociatesComponent implements OnInit {
     let opt = newSpot.options[index];
     //this values will be used to update the user's role per their email as the identifier.. 
     console.log("role has been changed to " + opt.value + " for:" + emailIdentifier);//onChange test -
+    this.http.put('cognito/users/groups/' + opt.value, '').toPromise().then(change => {
+
+    });
+
   }
 
   inputNewRole() {
