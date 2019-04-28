@@ -125,9 +125,7 @@ const routes: Routes = [
     AnswerData7Component,
     DaynoticeReportComponent,
     JobdescReportComponent,
-
     DaynoticeGraphComponent,
-    DaynoticeReportComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
 
