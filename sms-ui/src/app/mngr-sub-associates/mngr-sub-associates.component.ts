@@ -153,78 +153,81 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.stagingM;
     this.adminArray;
     this.trainerArray;
-    let multiRoleUsers = new Array; 
+    let multiRoleUsers = new Array;
     this.trainerArray.forEach(element => {
       console.log("trainers: ");
-          console.log(element);
-          const roleSpot = document.getElementById(element) as HTMLDataListElement;
-          if(roleSpot != null && roleSpot != undefined){
-            multiRoleUsers.push(element);
-            console.log(' ADDING ' + element +" to list of people that have roles");
+      console.log(element);
+      const roleSpot = document.getElementById(element) as HTMLDataListElement;
+      if (roleSpot != null && roleSpot != undefined) {
+        multiRoleUsers.push(element);
+        console.log(' ADDING ' + element + " to list of people that have roles");
 
-          }
-          //while (roleSpot.firstChild) {
-            roleSpot.removeChild(roleSpot.firstChild);//gets rid of that one button
-          
-          const trainDiv = document.createElement('div') as HTMLDivElement;
-          const x = document.createElement('button') as HTMLButtonElement; 
-          x.innerText ='x';
-          trainDiv.id = element+'-trainer';    
-           x.style.height = '14px';
-          x.style.cssFloat ='right';
-          
-          x.style.borderRadius = '10px';
-          x.className ='AssociatesXitButton';//only reachable through global styles idk y
-        //  x.style.backgroundImage = "url('../../assets/rev-logo.png')";
-        x.style.marginLeft = "-65px";
-        x.addEventListener('click', function(){
-          trainDiv.innerHTML = '';
-          console.log('remove role from actual cognito logic here' ); } );
-          trainDiv.innerHTML = "Trainer";
-          trainDiv.appendChild(x);
-          roleSpot.appendChild(trainDiv);
-     }); 
+      }
+      //while (roleSpot.firstChild) {
+      roleSpot.removeChild(roleSpot.firstChild);//gets rid of that one button
+
+      const trainDiv = document.createElement('div') as HTMLDivElement;
+      const x = document.createElement('button') as HTMLButtonElement;
+      x.innerText = 'x';
+      trainDiv.id = element + '-trainer';
+      x.style.height = '14px';
+      x.style.cssFloat = 'right';
+
+      x.style.borderRadius = '10px';
+      x.className = 'AssociatesXitButton';//only reachable through global styles idk y
+      //  x.style.backgroundImage = "url('../../assets/rev-logo.png')";
+      x.style.marginLeft = "-65px";
+      x.addEventListener('click', function () {
+        trainDiv.innerHTML = '';
+        console.log('remove role from actual cognito logic here');
+      });
+      trainDiv.innerHTML = "Trainer";
+      trainDiv.appendChild(x);
+      roleSpot.appendChild(trainDiv);
+    });
     this.adminArray.forEach(element => {
       // console.log("admins: ");
       // console.log(element);
       const roleSpotA = document.getElementById(element) as HTMLDataListElement;
-      if(roleSpotA != null){
-      multiRoleUsers.forEach(alreadyRemovedButton => {
-        console.log("COMPARING:  " + alreadyRemovedButton +"  TO  "+ element);
-            if(alreadyRemovedButton == element){
-             
-              console.log(element + ' HAS MORE THAN ONE ROLE ');
-            }else{
-             
-              roleSpotA.removeChild(roleSpotA.firstChild);}
-            
+      if (roleSpotA != null) {
+        multiRoleUsers.forEach(alreadyRemovedButton => {
+          console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
+          if (alreadyRemovedButton == element) {
+
+            console.log(element + ' HAS MORE THAN ONE ROLE ');
+          } else {
+
+            roleSpotA.removeChild(roleSpotA.firstChild);
+          }
+
         });
         const adminDiv = document.createElement('div') as HTMLDivElement;
-        const xx = document.createElement('button') as HTMLButtonElement; 
-        xx.innerText ='x';
-        adminDiv.id = element+'-admin';    
-         xx.style.height = '14px';
-        xx.style.cssFloat ='right';
-        
+        const xx = document.createElement('button') as HTMLButtonElement;
+        xx.innerText = 'x';
+        adminDiv.id = element + '-admin';
+        xx.style.height = '14px';
+        xx.style.cssFloat = 'right';
+
         xx.style.borderRadius = '10px';
-        xx.className ='AssociatesXitButton';
-        xx.addEventListener('click', function(){
+        xx.className = 'AssociatesXitButton';
+        xx.addEventListener('click', function () {
           adminDiv.innerHTML = '';
-          console.log('remove role from actual cognito logic here' ); } );
-          adminDiv.innerHTML = "Admin";
-          adminDiv.appendChild(xx);
-          roleSpotA.appendChild(adminDiv);
-        }
+          console.log('remove role from actual cognito logic here');
+        });
+        adminDiv.innerHTML = "Admin";
+        adminDiv.appendChild(xx);
+        roleSpotA.appendChild(adminDiv);
+      }
     });
-  
+
     this.stagingM.forEach(element => {
       console.log("staging manager: ");
       console.log(element);
     });
   }
   removeRole() {
-    console.log('remove role logic here' ); 
-    
+    console.log('remove role logic here');
+
   }
   generalStatus() {
     console.log("general status change");
