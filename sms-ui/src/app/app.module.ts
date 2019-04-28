@@ -40,10 +40,15 @@ import { AnswerData7Component } from './components/survey/survey-data/graph-comp
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
+<<<<<<< HEAD
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DaynoticeGraphComponent } from './components/daynotice-graph/daynotice-graph.component';
+=======
+>>>>>>> 75a1661945d398017d5ed1bfefae1473d35ee418
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 
 const routes: Routes = [
@@ -117,10 +122,15 @@ const routes: Routes = [
     AnswerData5Component,
     AnswerData6Component,
     AnswerData7Component,
+    DaynoticeGraphComponent,
     DaynoticeReportComponent,
+    FeedbackReportComponent,
     JobdescReportComponent,
+<<<<<<< HEAD
     DaynoticeGraphComponent,
     FeedbackReportComponent,
+=======
+>>>>>>> 75a1661945d398017d5ed1bfefae1473d35ee418
 
 
 
