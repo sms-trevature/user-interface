@@ -3,11 +3,11 @@ import { Address } from 'cluster';
 
 export interface Cohort {
     cohortId: number;
-    cohortName: string;
+    CName: string;
     address: Address;
-    cohortToken: string;
-    startDate: string;
-    endDate: string;
+    Token: string;
+    StartD: string;
+    EndD: string;
     trainer: User;
     coTrainer: User;
     Email: string;

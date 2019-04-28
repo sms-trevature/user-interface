@@ -2,9 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 
 import { NewInterviewService } from 'src/app/sms-client/clients/new-interview.service';
 import { Cohort } from 'src/app/sms-client/dto/Cohort';
-import { Router } from '@angular/router';
-import { InterviewComponent } from '../interview/interview.component';
-import { NewInterviewData } from 'src/app/sms-client/dto/NewInterviewData';
 
 @Component({
   selector: 'app-new-interview',
@@ -13,12 +10,13 @@ import { NewInterviewData } from 'src/app/sms-client/dto/NewInterviewData';
 })
 export class NewInterviewComponent implements OnInit {
 
-  private dateSelection: Date;
+  private dateSelection:Date;
   private minDate: Date;
   private time: Date = new Date();
   private showSpinners = false;
-  private myCohorts: Cohort[];
+  private myCohorts:Cohort[];
   private cohortId: number;
+
   private dropdown2NotReady = true;
   private buttonDisabled = true;
 
@@ -37,21 +35,26 @@ export class NewInterviewComponent implements OnInit {
 
   newInterview: NewInterviewData;
 
-  constructor(private newIntServ: NewInterviewService, private routerMod: Router) {
-    this.minDate = new Date();
-    this.minDate.setDate(this.minDate.getDate());
 
+  private _values1 = [];
+  private _values2 = [];
+
+  constructor(private newInt: NewInterviewService) {
+     this.minDate= new Date();
+     this.minDate.setDate(this.minDate.getDate());
+  
   }
 
   ngOnInit() {
-    this.newIntServ.findAllCohorts().subscribe(data => {
-      this.myCohorts = data;
+    this.newInt.findAllCohorts().subscribe(data => {
+      this.myCohorts=data;
       console.log(this.myCohorts);
 
-// tslint:disable-next-line: prefer-for-of
+
 
       for (let i = 0; i < this.myCohorts.length; i++) {
         this._cohortName.push(this.myCohorts[i].cohortName);
+
       }
     });
   }
@@ -80,10 +83,12 @@ export class NewInterviewComponent implements OnInit {
 
 
     window.location.reload();
+
   }
 
 // tslint:disable-next-line: ban-types
   firstDropDownChanged(val: String): boolean {
+
 
 
 // tslint:disable-next-line: prefer-for-of
@@ -126,4 +131,5 @@ export class NewInterviewComponent implements OnInit {
       this.buttonDisabled = false;
     }
   }
+
 }
