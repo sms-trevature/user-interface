@@ -3,6 +3,7 @@ import { Address } from 'src/app/sms-client/dto/Address';
 import { User } from 'src/app/sms-client/dto/User';
 import { async } from '@angular/core/testing';
 import { CognitoService } from 'src/app/services/cognito.service';
+import { HomeComponent } from '../home/home.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 
@@ -25,29 +26,20 @@ export class ProfileInfoComponent implements OnInit {
     }
   ];
   // user will somehow be retrieved through cognito session
-  currentUser: User; /* = [
-    {
-      userId: 2,
-      firstName: 'Goofy',
-      lastName: 'lastName',
-      coemail: 'email@email.com',
-      phoneNumber: '705837213',
-      trainingAddress: this.currentAddress[0],
-      personalAddress: this.currentAddress[0],
-      userStatus: ''
-    }
-  ];*/
 
-  constructor(private cognitoService: CognitoService, private nav: NavbarComponent) { 
-/*     console.log("User Info Before Assignment: " + this.nav.user.firstName);
-    this.currentUser = nav.user;
-    console.log("User Info After Assignment: " + this.currentUser.email); */
+  currentUser: User; 
+
+  constructor(private nav: NavbarComponent, private cognitoService: CognitoService ) { 
+    console.log(" constructor - undefined??? " +  nav.user.lastName);
+    this.currentUser = nav.user; 
+    console.log("salad and burgers: " + this.currentUser.email);
   }
 
   ngOnInit() {
-    console.log("User Info Before Assignment: " + this.nav.user.email);
+
+    console.log(" ngOnInit - undefined??? " +  this.nav.user.firstName);
     this.currentUser = this.nav.user;
-    console.log("User Info After Assignment: " + this.currentUser.email);
+    console.log('farts and cheese' + this.currentUser.firstName );
   }
   someMethodToGrabAddressForUserViaUserPKGrabbedFromCognitoCurrentUserSession() {
     // retrieve user info
@@ -61,10 +53,10 @@ export class ProfileInfoComponent implements OnInit {
     const lnInput = document.getElementById('lName') as HTMLInputElement;
     const email = document.getElementById('email') as HTMLInputElement;
     const phoneN = document.getElementById('phoneN') as HTMLInputElement;
-    if (fnInput.value !== this.currentUser[0].firstName
-      || lnInput.value !== this.currentUser[0].lastName
-      || email.value !== this.currentUser[0].email
-      || phoneN.value !== this.currentUser[0].phoneNumber) {
+    if (fnInput.value !== this.currentUser.firstName
+      || lnInput.value !== this.currentUser.lastName
+      || email.value !== this.currentUser.email
+      || phoneN.value !== this.currentUser.phoneNumber) {
       userChange = true;
       console.log('change is being made to user');
     }

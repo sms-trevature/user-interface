@@ -19,19 +19,22 @@ export class FakeServiceComponent implements OnInit {
         firstName: 'Frozone',
         lastName: 'Cable',
         role: 'Admin',
-        email: 'coldasice@email.com'
+        email: 'coldasice@email.com',
+        phone: '777658'
       },
       {
         firstName: 'Eraser',
         lastName: 'Animeguy',
         role: 'Trainer',
-        email: 'eraseyomama@email.com'
+        email: 'eraseyomama@email.com',
+        phone: '879878568'
       },
       {
         firstName: 'Static',
         lastName: 'Shock',
         role: 'Staging Managers',
-        email: 'Shocker@email.com'
+        email: 'Shocker@email.com',
+        phone: '76876576434'
       }
     ];
   }
