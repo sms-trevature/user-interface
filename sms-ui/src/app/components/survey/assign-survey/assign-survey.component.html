@@ -3,72 +3,68 @@
 
 
 <table class="table table-striped" *ngIf='listOfSurvey && listOfSurvey.length'>
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Date Created</th>
-      <th scope="col">Date Assigned</th>
-      <th scope="col">Date Closed</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor='let temp of listOfSurvey; index as i' data-toggle="modal" data-target="#exampleModal"
-      (click)='openSurvey(temp.surveyId)'>
-      <td>{{temp.title}}</td>
-      <td>{{temp.description}}</td>
-      <td>{{temp.dateCreated | showTimestamp}}</td>
-      <td>{{listOfSurveyHistory[i].dateAssigned | showTimestamp}}</td>
-      <td>{{temp.closingDate | showTimestamp}} </td>
-    </tr>
-    <!-- Button trigger modal -->
-  </tbody>
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date Created</th>
+            <th scope="col">Date Assigned</th>
+            <th scope="col">Date Closed</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let temp of listOfSurvey; index as i' data-toggle="modal" data-target="#exampleModal" (click)='openSurvey(temp.surveyId)'>
+            <td>{{temp.title}}</td>
+            <td>{{temp.description}}</td>
+            <td>{{temp.dateCreated | showTimestamp}}</td>
+            <td>{{listOfSurveyHistory[i].dateAssigned | showTimestamp}}</td>
+            <td>{{temp.closingDate | showTimestamp}} </td>
+        </tr>
+        <!-- Button trigger modal -->
+    </tbody>
 </table>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" *ngIf='curTemplate&&curTemplate[0].surveyId'>
-          {{curTemplate[0].surveyId.title}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf='curTemplate&&curTemplate[0].surveyId'>
+                    {{curTemplate[0].surveyId.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <ul *ngIf='curTemplate'>
-            <li *ngFor='let temp of curTemplate; index as i;'>
-              <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p>
-              <div>
-                <div id='textArea' *ngIf='temp.questionId.typeId==5'>
-                  <textarea [(ngModel)]='inputAns[i]'></textarea>
-                </div>
-                <fieldset id='radioButton' *ngIf='temp.questionId.typeId!=5&&temp.questionId.typeId!=3'>
-                  <div *ngFor='let ans of curTempAnswers[i]'>
-                    <input type="radio" [name]="temp.questionId.question" [value]='ans?.answer'
-                      [(ngModel)]='inputAns[i]'> {{ans?.answer+"  "}}
-                  </div>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ul *ngIf='curTemplate'>
+                        <li *ngFor='let temp of curTemplate; index as i;'>
+                            <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p>
+                            <div>
+                                <div id='textArea' *ngIf='temp.questionId.typeId==5'>
+                                    <textarea [(ngModel)]='inputAns[i]'></textarea>
+                                </div>
+                                <fieldset id='radioButton' *ngIf='temp.questionId.typeId!=5&&temp.questionId.typeId!=3'>
+                                    <div *ngFor='let ans of curTempAnswers[i]'>
+                                        <input type="radio" [name]="temp.questionId.question" [value]='ans?.answer' [(ngModel)]='inputAns[i]'> {{ans?.answer+" "}}
+                                    </div>
 
-                </fieldset>
-                <div id='checkbox' *ngIf='temp.questionId.typeId==3'>
-                  <div *ngFor='let ans of curTempAnswers[i];index as j'>
-                    <input type="checkbox" [name]="temp.questionId.question" [(ngModel)]='inputMultiAns[(i+1)*(j+1)]'>
-                    {{ans?.answer+"  "}}
-                  </div>
-                </div>
-              </div>
-            </li>
+                                </fieldset>
+                                <div id='checkbox' *ngIf='temp.questionId.typeId==3'>
+                                    <div *ngFor='let ans of curTempAnswers[i];index as j'>
+                                        <input type="checkbox" [name]="temp.questionId.question" [(ngModel)]='inputMultiAns[(i+1)*(j+1)]'> {{ans?.answer+" "}}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
 
-          </ul>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)='close()'>Close</button>
+                <button type="button" class="btn btn-primary" (click)='submit()'>Submit Survey</button>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)='close()'>Close</button>
-        <button type="button" class="btn btn-primary" (click)='submit()'>Submit Survey</button>
-      </div>
     </div>
-  </div>
 </div>
