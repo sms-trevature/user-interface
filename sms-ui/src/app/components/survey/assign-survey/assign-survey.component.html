@@ -52,6 +52,7 @@
                     <div id='checkbox' *ngIf='temp.questionId.typeId==3'>
                         <div *ngFor='let ans of curTempAnswers[i];index as j'>
                             <input type="checkbox" [name]="temp.questionId.question"  [(ngModel)] ='inputMultiAns[(i+1)*(j+1)]' > {{ans?.answer+"  "}}
+                            <input type="hidden" [name]="temp.questionId.questionId" [value] = 'i+1'  [(ngModel)] ='inputMultiAnsQNum[(i+1)*(j+1)]' >
                           </div>
                     </div>
                     </div>
