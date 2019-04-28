@@ -41,7 +41,7 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { DaynoticeGraphComponent } from './components/daynotice-graph/daynotice-graph.component';
+import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
