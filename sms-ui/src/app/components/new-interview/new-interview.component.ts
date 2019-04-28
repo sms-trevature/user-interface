@@ -37,8 +37,7 @@ export class NewInterviewComponent implements OnInit {
   newInterview: NewInterviewData;
 
 
-  private _values1 = [];
-  private _values2 = [];
+
 
   constructor(private newInt: NewInterviewService) {
      this.minDate= new Date();
@@ -83,7 +82,7 @@ export class NewInterviewComponent implements OnInit {
     });
 
 
-    window.location.reload();
+  //  window.location.reload();
 
   }
 
@@ -125,9 +124,9 @@ export class NewInterviewComponent implements OnInit {
   submitReadyCheck() {
 
 
-    if (this.dateSelection !== null && this.selectedCohort !== 'Select Cohort'
-      && this.selectedAssociate !== 'Select An Associate' && this.selectedLocation !== null
-      && this.dateSelection !== null && this.selectedClient !== null) {
+    if (this.dateSelection != null && this.selectedCohort != 'Select Cohort'
+      && this.selectedAssociate != 'Select An Associate' && this.selectedLocation !== null
+      && this.dateSelection != null && this.selectedClient != null) {
 
       this.buttonDisabled = false;
     }

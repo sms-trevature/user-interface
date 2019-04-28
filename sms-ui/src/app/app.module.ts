@@ -59,10 +59,6 @@ const routes: Routes = [
   {path: 'JobDescRoute', component: JobdescReportComponent},
   {path: 'FeedbackRoute', component: FeedbackReportComponent},
 
-  {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
-  {path: 'JobDescRoute', component: JobdescReportComponent},
-
-
   {
     path: 'ManageRoute', component: ManageComponent,
     children: [
@@ -121,13 +117,12 @@ const routes: Routes = [
     AnswerData5Component,
     AnswerData6Component,
     AnswerData7Component,
-    DaynoticeReportComponent,
-    JobdescReportComponent,
-
     DaynoticeGraphComponent,
     DaynoticeReportComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
+    DaynoticeGraphComponent,
+    FeedbackReportComponent,
 
 
 
