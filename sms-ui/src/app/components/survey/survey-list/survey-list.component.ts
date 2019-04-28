@@ -92,4 +92,9 @@ export class SurveyListComponent implements OnInit {
       }
     );
   }
+
+  // Method will Display all respondents of a survey to user
+  getRespondents(surveyId: number) {
+    console.log('This goes here');
+  }
 }

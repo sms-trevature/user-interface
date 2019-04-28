@@ -23,7 +23,7 @@ export class SurveyRespondentsComponent implements OnInit {
   }
 
   getSurveys(sId: number) {
-    this.surveyHistoryService.findBySurveyId(4).subscribe(
+    this.surveyHistoryService.findBySurveyId(sId).subscribe(
       data => {
         // data[i].dateCreated = new Date(data[i].dateCreated);
         // data[i].closingDate = new Date(data[i].closingDate);
