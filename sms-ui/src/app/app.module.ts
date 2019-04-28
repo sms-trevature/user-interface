@@ -40,8 +40,11 @@ import { AnswerData7Component } from './components/survey/survey-data/graph-comp
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
+import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { AutodataComponent } from './components/autodata/autodata.component';
+import { DaynoticeGraphComponent } from './components/daynotice-graph/daynotice-graph.component';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
@@ -112,7 +115,9 @@ const routes: Routes = [
     AnswerData6Component,
     AnswerData7Component,
     AutodataComponent,
-
+    DaynoticeReportComponent,
+    JobdescReportComponent,
+    DaynoticeGraphComponent,
 
   ],
   imports: [
@@ -123,7 +128,7 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
-    //Javier's thing 
+    // Javier's thing
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
@@ -132,7 +137,7 @@ const routes: Routes = [
 
   ],
   providers: [
-    CognitoService, FakeServiceComponent
+    CognitoService, FakeServiceComponent, NavbarComponent
   ],
   /* AppComponent */
   bootstrap: [AppComponent]

@@ -12,6 +12,9 @@ export class SurveyAnswerService {
 
   private context = 'survey-service/answers';
 
+  findAll(): Observable<Answer[]> {
+    return this.http.get<Answer[]>(`${this.context}`);
+  }
 
   findByQuestionId(qId: number): Observable<Answer[]> {
     return this.http.get<Answer[]>(`${this.context}/question/${qId}`);
