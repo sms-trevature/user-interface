@@ -63,8 +63,6 @@
           <th>Title</th>
           <th>Description</th>
           <th>Date Created</th>
-          <th>Closing Date</th>
-          <th>Published</th>
           <th>Analytics</th>
           <th>Respondents</th>
         </tr>
@@ -76,18 +74,25 @@
           <td data-toggle="modal"
           data-target="#exampleModalLong">{{temp.description}}</td>
           <td>{{temp.dateCreated | showTimestamp}}</td>
-          <td></td>
-          <td>if Published or not goes here</td>
-          <td><button type="button" class="assignSurveyBtn btn btn-secondary">Data</button></td>
-          <td><button type="button" class="assignSurveyBtn btn btn-secondary" (click)='getRespondents(i)'>Status</button></td>
+          <td><button type="button" class="assignSurveyBtn btn btn-secondary" (click) = 'getGraph(temp.surveyId,temp.title)'>Data</button></td>
+          <td><button type="button" class="assignSurveyBtn btn btn-secondary">Status</button></td>
         </tr>
       </tbody>
     </table>
-    <div class="assignButtonDiv">
-      <div><button type="button" class="assignSurveyBtn mb-3 btn btn-black">Assign To Cohorts</button></div>
-    </div>
   </div>
-</div>
+
+
+  <div id="graphs" *ngIf='qList&&qList.length'>
+    <h3>{{"Analytics: " + surveyTitle}}</h3>
+    <div *ngFor='let temp of qList; index as i;'>
+      <app-survey-data [question]='temp.question' [type]='temp.typeId' [arrOfAns]='ArrayOfResponseAnswerList[i]' [arrOfCountedResponse]='arrOfCounts[i]'></app-survey-data>
+    </div>
+  </div> <!-- end of graph-->
+
+
+</div> <!--end of main -->
+
+
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
