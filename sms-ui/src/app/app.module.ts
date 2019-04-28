@@ -44,11 +44,6 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
-<<<<<<< HEAD
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { DaynoticeGraphComponent } from './components/daynotice-graph/daynotice-graph.component';
-=======
->>>>>>> 75a1661945d398017d5ed1bfefae1473d35ee418
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 
 const routes: Routes = [
@@ -63,6 +58,10 @@ const routes: Routes = [
   {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
   {path: 'JobDescRoute', component: JobdescReportComponent},
   {path: 'FeedbackRoute', component: FeedbackReportComponent},
+
+  {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
+  {path: 'JobDescRoute', component: JobdescReportComponent},
+
 
   {
     path: 'ManageRoute', component: ManageComponent,
@@ -122,15 +121,13 @@ const routes: Routes = [
     AnswerData5Component,
     AnswerData6Component,
     AnswerData7Component,
+    DaynoticeReportComponent,
+    JobdescReportComponent,
+
     DaynoticeGraphComponent,
     DaynoticeReportComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
-<<<<<<< HEAD
-    DaynoticeGraphComponent,
-    FeedbackReportComponent,
-=======
->>>>>>> 75a1661945d398017d5ed1bfefae1473d35ee418
 
 
 
@@ -152,7 +149,7 @@ const routes: Routes = [
 
   ],
   providers: [
-    CognitoService, FakeServiceComponent
+    CognitoService, FakeServiceComponent, NavbarComponent
   ],
   /* AppComponent */
   bootstrap: [AppComponent]
