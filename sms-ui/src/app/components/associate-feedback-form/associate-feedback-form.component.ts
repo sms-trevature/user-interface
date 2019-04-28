@@ -78,6 +78,7 @@ export class AssociateFeedbackFormComponent implements OnInit {
     console.log('in the submit')
     console.log(this._interviewFormatStr)
     console.log(this.interviewFormat)
+    console.log(this.dayNotice)
     this.interviewFormat = {'formatDesc':this._interviewFormatStr};
     console.log('seperator')
     this.proposedFormat={'formatDesc':this._proposedFormatStr};;
