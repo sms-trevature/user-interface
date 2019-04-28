@@ -80,6 +80,7 @@ export class AssociateFeedbackService {
   }
 
   postAssociateInput(associateInput): Observable<AssociateFeedback> {
+<<<<<<< HEAD
     console.log("the asso input proposed format is " + associateInput.proposedFormat);
     console.log("the asso input interview format is " + associateInput.interviewFormat);
     console.log("the asso input desc format is " + associateInput.descriptionProvided);
@@ -94,6 +95,26 @@ export class AssociateFeedbackService {
       interviewFormat: associateInput.interviewFormat,
       proposedFormat: associateInput.proposedFormat,
       dayNotice: associateInput.dayNotice
+=======
+    console.log("the asso input proposed format is ")
+    console.log(associateInput.proposedFormat);
+    console.log("the asso input interview format is ")
+    console.log(associateInput.interviewFormat);
+    console.log("the asso input desc format is ")
+    console.log(associateInput.descriptionProvided);
+    console.log("the asso input dayNotice format is ")
+    console.log(associateInput.dayNotice);
+    console.log(associateInput._recievedNotifications)
+
+    console.log("inside of post associate");
+    return this.httpClient.post<AssociateFeedback>(this.url, {
+      'recievedNotifications': associateInput.recievedNotifications,
+      'descriptionProvided': associateInput.descriptionProvided,
+
+      'interviewFormat': associateInput.interviewFormat,
+      'proposedFormat': associateInput.proposedFormat
+     // 'dayNotice': associateInput.dayNotice
+>>>>>>> 7b3eb02e84ce962fb71442a3fb29b0edf69df9a4
 
     });
   }
