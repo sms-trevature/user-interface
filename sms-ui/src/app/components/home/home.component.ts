@@ -22,17 +22,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.cognito.currentUser$.subscribe(user => {
       this.userClient.findByEmail(user.email).subscribe(
         succResp => {
-          console.log("kjgjhg  "+succResp);
           this.user = succResp;
         },
         err => {
-          console.log(err);
         }
       );
     });
   }
-returnUserInfo(): User{
-  console.log("something called finally "); 
+returnUserInfo(): User {
   return this.user;
 }
   ngOnDestroy() {
