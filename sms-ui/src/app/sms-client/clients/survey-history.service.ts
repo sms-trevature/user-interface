@@ -13,8 +13,8 @@ export class SurveyHistoryService {
 
   private context = 'survey-service/history';
 
-findByEmail(email: string): Observable<SurveyHistory[]> {
-  return this.http.post<SurveyHistory[]>(`${this.context}/email`, email);
-}
+  findByEmail(email: string): Observable<SurveyHistory[]> {
+    return this.http.post<SurveyHistory[]>(`${this.context}/email`, email);
+  }
 
 }

@@ -46,6 +46,7 @@ import { DaynoticeReportComponent } from './components/daynotice-report/daynotic
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
+import { AutodataComponent } from './components/autodata/autodata.component';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
@@ -130,6 +131,7 @@ const routes: Routes = [
     DaynoticeReportComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
+    AutodataComponent,
 
 
 
