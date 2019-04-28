@@ -118,6 +118,7 @@ const routes: Routes = [
     AnswerData7Component,
     SurveyRespondentsComponent,
     DaynoticeReportComponent,
+    DaynoticeGraphComponent,
     JobdescReportComponent,
   ],
   imports: [

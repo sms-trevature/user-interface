@@ -13,13 +13,13 @@ export class SurveyRespondentsComponent implements OnInit {
   constructor(private surveyHistoryService: SurveyHistoryService) { }
 
   ngOnInit() {
-    this.surveyHistoryService.findBySurveyId(4).subscribe(
+    /*this.surveyHistoryService.findBySurveyId(4).subscribe(
       data => {
         // data[i].dateCreated = new Date(data[i].dateCreated);
         // data[i].closingDate = new Date(data[i].closingDate);
         this.listOfSurvey = data;
       }
-    );
+    );*/
   }
 
   getSurveys(sId: number) {

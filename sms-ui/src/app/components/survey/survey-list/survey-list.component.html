@@ -75,7 +75,7 @@
           data-target="#exampleModalLong">{{temp.description}}</td>
           <td>{{temp.dateCreated | showTimestamp}}</td>
           <td><button type="button" class="assignSurveyBtn btn btn-secondary" (click) = 'getGraph(temp.surveyId,temp.title)'>Data</button></td>
-          <td><button type="button" class="assignSurveyBtn btn btn-secondary">Status</button></td>
+          <td><button type="button" class="assignSurveyBtn btn btn-secondary" (click)='getRespondents(temp.surveyId)'>Status</button></td>
         </tr>
       </tbody>
     </table>
