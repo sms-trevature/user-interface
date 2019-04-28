@@ -96,8 +96,8 @@ export class AssociateFeedbackService {
       'descriptionProvided': associateInput.descriptionProvided,
 
       'interviewFormat': associateInput.interviewFormat,
-      'proposedFormat': associateInput.proposedFormat
-     // 'dayNotice': associateInput.dayNotice
+      'proposedFormat': associateInput.proposedFormat,
+      'dayNotice': associateInput.dayNotice
 
     });
   }
