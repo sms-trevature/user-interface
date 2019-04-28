@@ -1,4 +1,3 @@
-
 <app-navbar></app-navbar>
 
 <head>
@@ -9,45 +8,51 @@
 </head>
 
 <div class="container">
-  <h2>Associates with a Job Description</h2>                   
+  <h2>Associates with Feedback Requested</h2>                   
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>Interview ID</th>
         <th>Associate Email</th>
         <th>Associate Location</th>
-        <th>Job Description</th>
+        <th>Feedback Requested</th>
       </tr>
     </thead>
-    <tbody *ngFor="let temp of descProvidedList">
+    <tbody *ngFor="let temp of feedbackYesList">
       <tr>
         <td>{{temp.id}}</td>
         <td>{{temp.associateEmail}}</td>
         <td>{{temp.place}}</td>
-        <td>{{temp.associateInput.descriptionProvided}}</td>
+        <td>{{temp.feedback.feedbackRequested | date}}</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <div class="container">
-  <h2>Associates without a Job Description</h2>                   
+  <h2>Associates without Feedback Requested</h2>                   
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>Interview ID</th>
         <th>Associate Email</th>
         <th>Associate Location</th>
-        <th>Job Description</th>
+        <th>Feedback Requested</th>
       </tr>
     </thead>
-    <tbody *ngFor="let temp of noDescList">
+    <tbody *ngFor="let temp of feedbackNoList">
       <tr>
         <td>{{temp.id}}</td>
         <td>{{temp.associateEmail}}</td>
         <td>{{temp.place}}</td>
-        <td>{{temp.associateInput.descriptionProvided}}</td>
+        <td>{{temp.feedback.feedbackRequested | date}}</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+
+
+
+
+
