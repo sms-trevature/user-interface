@@ -1,3 +1,3 @@
 export interface InterviewFormat {
-    formatDesc: string
-} 
+    formatDesc: string;
+}
