@@ -54,8 +54,10 @@ const routes: Routes = [
   { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
   { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
   { path: 'InterviewListRoute', component: InterviewListComponent},
+
   {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
   {path: 'JobDescRoute', component: JobdescReportComponent},
+
 
   {
     path: 'ManageRoute', component: ManageComponent,
@@ -117,6 +119,7 @@ const routes: Routes = [
     AnswerData7Component,
     DaynoticeReportComponent,
     JobdescReportComponent,
+
     DaynoticeGraphComponent,
 
 
@@ -139,7 +142,7 @@ const routes: Routes = [
 
   ],
   providers: [
-    CognitoService, FakeServiceComponent
+    CognitoService, FakeServiceComponent, NavbarComponent
   ],
   /* AppComponent */
   bootstrap: [AppComponent]

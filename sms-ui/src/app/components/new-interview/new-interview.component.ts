@@ -22,6 +22,7 @@ export class NewInterviewComponent implements OnInit {
   private dropdown2NotReady = true;
   private buttonDisabled = true;
 
+
   private selectedCohort: string;
   private selectedAssociate: string;
   private selectedLocation: string;
@@ -30,6 +31,7 @@ export class NewInterviewComponent implements OnInit {
 // tslint:disable-next-line: variable-name
   private _cohortName = [];
 // tslint:disable-next-line: variable-name
+
   private _associateName = [];
 
 
@@ -45,7 +47,9 @@ export class NewInterviewComponent implements OnInit {
     this.newIntServ.findAllCohorts().subscribe(data => {
       this.myCohorts = data;
       console.log(this.myCohorts);
+
 // tslint:disable-next-line: prefer-for-of
+
       for (let i = 0; i < this.myCohorts.length; i++) {
         this._cohortName.push(this.myCohorts[i].cohortName);
       }
@@ -85,16 +89,20 @@ export class NewInterviewComponent implements OnInit {
 // tslint:disable-next-line: prefer-for-of
     for (let j = 0; j < this.myCohorts.length; j++) {
       if (val === this.myCohorts[j].cohortName) {
+
         this.cohortId = this.myCohorts[j].cohortId;
         break;
       }
     }
+
     if (val === 'Select Cohort') {
+
       this.dropdown2NotReady = true;
       this._associateName.length = 0;
       return false;
     }
     this.newIntServ.findCohortUsers(this.cohortId).subscribe(userdata => {
+
 
       this._associateName.length = 0;
 // tslint:disable-next-line: prefer-for-of
@@ -105,9 +113,11 @@ export class NewInterviewComponent implements OnInit {
 
     });
 
+
     return true;
   }
   submitReadyCheck() {
+
 
     if (this.dateSelection !== null && this.selectedCohort !== 'Select Cohort'
       && this.selectedAssociate !== 'Select An Associate' && this.selectedLocation !== null
