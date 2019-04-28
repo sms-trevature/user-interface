@@ -8,7 +8,7 @@ import { Interview } from '../dto/Interview';
 })
 export class InterviewService {
 
-  private urlVar = 'interview';
+  private urlVar = 'interview-service/interview';
 
   private interviewList = [
     {
@@ -421,8 +421,8 @@ export class InterviewService {
 
   constructor(private httpCli: HttpClient) { }
 
-  getInterviews(): Observable<Interview> {
-    return this.httpCli.get<Interview>(this.urlVar);
+  getInterviews(): Observable<Interview[]> {
+    return this.httpCli.get<Interview[]>(`${this.urlVar}`);
   }
 
   getInterviews2(): Interview[] {
