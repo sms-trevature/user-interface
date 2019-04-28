@@ -36,57 +36,34 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+
       </div>
+
       <div class="modal-body">
         <div>
           <ul *ngIf='curTemplate'>
             <li *ngFor='let temp of curTemplate; index as i;'>
               <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p>
               <div>
-<<<<<<< HEAD
-                <ul *ngIf='curTemplate'>
-                  <li *ngFor='let temp of curTemplate; index as i;'>
-                    <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p>
-                    <div>
-                    <div id='textArea' *ngIf='temp.questionId.typeId==5'>
-                      <textarea [(ngModel)]='inputAns[i]'></textarea>
-                    </div>
-                    <fieldset id='radioButton' *ngIf='temp.questionId.typeId!=5&&temp.questionId.typeId!=3'>
-                      <div *ngFor='let ans of curTempAnswers[i]'>
-                          <input type="radio" [name]="temp.questionId.question" [value]='ans?.answer' [(ngModel)] ='inputAns[i]'> {{ans?.answer+"  "}}
-                      </div>
-                      
-                    </fieldset>
-                    <div id='checkbox' *ngIf='temp.questionId.typeId==3'>
-                        <div *ngFor='let ans of curTempAnswers[i];index as j'>
-                            <input type="checkbox" [name]="temp.questionId.question"  [(ngModel)] ='inputMultiAns[(i+1)*(j+1)]' > {{ans?.answer+"  "}}
-                            <input type="hidden" [name]="temp.questionId.questionId" [value] = 'i+1'  [(ngModel)] ='inputMultiAnsQNum[(i+1)*(j+1)]' >
-                          </div>
-                    </div>
-                    </div>
-                  </li>
-              
-                </ul>
-=======
                 <div id='textArea' *ngIf='temp.questionId.typeId==5'>
                   <textarea [(ngModel)]='inputAns[i]'></textarea>
                 </div>
                 <fieldset id='radioButton' *ngIf='temp.questionId.typeId!=5&&temp.questionId.typeId!=3'>
                   <div *ngFor='let ans of curTempAnswers[i]'>
                     <input type="radio" [name]="temp.questionId.question" [value]='ans?.answer'
-                      [(ngModel)]='inputAns[i]'> {{ans?.answer+"  "}}
+                      [(ngModel)]='inputAns[i]'> {{ans?.answer+" "}}
                   </div>
 
                 </fieldset>
                 <div id='checkbox' *ngIf='temp.questionId.typeId==3'>
                   <div *ngFor='let ans of curTempAnswers[i];index as j'>
                     <input type="checkbox" [name]="temp.questionId.question" [(ngModel)]='inputMultiAns[(i+1)*(j+1)]'>
-                    {{ans?.answer+"  "}}
+                    {{ans?.answer+" "}}
                   </div>
                 </div>
->>>>>>> 14607f97542e2456d7a53b4dbf47e17dc07695a5
               </div>
             </li>
+
 
           </ul>
         </div>

@@ -76,7 +76,16 @@ export class AssignSurveyComponent implements OnInit {
       }
     );
   }
+  closeSurvey(index: number) {
+    this.listOfSurvey[index].closingDate = new Date();
+    // this.surveyService.save(this.listOfSurvey[index]).subscribe(
+    //   data => {
+    //     this.listOfSurvey[index] = data;
+    //     console.log(this.listOfSurvey[index]);
+    //   }
+    // );
 
+  }
   close() {
     window.location.reload();
   }
