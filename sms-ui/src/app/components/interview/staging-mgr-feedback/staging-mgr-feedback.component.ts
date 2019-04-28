@@ -17,9 +17,6 @@ export class StagingMgrFeedbackComponent implements OnInit {
     return this.feedbackVar;
   }
 
- // private feedback: InterviewFeedback;
-
-
   constructor(private sManagerServ: StagingmanagerService) { }
 
   ngOnInit() {
@@ -27,7 +24,5 @@ export class StagingMgrFeedbackComponent implements OnInit {
     this.sManagerServ.getMgrFeedback(2).subscribe(data => { this.feedbackVar = data; });
 
   }
-
-
 
 }
