@@ -27,7 +27,9 @@ export class NewInterviewComponent implements OnInit {
   private selectedLocation: string;
   private selectedClient: string;
 
+// tslint:disable-next-line: variable-name
   private _cohortName = [];
+// tslint:disable-next-line: variable-name
   private _associateName = [];
 
 
@@ -43,6 +45,7 @@ export class NewInterviewComponent implements OnInit {
     this.newIntServ.findAllCohorts().subscribe(data => {
       this.myCohorts = data;
       console.log(this.myCohorts);
+// tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < this.myCohorts.length; i++) {
         this._cohortName.push(this.myCohorts[i].cohortName);
       }
@@ -56,7 +59,7 @@ export class NewInterviewComponent implements OnInit {
     this.newIntServ.findCohortUsers(this.cohortId).subscribe(userdata => {
 // tslint:disable-next-line: prefer-for-of
       for (let l = 0; l < userdata.length; l++) {
-        if (userdata[l].firstName + ' ' + userdata[l].lastName == this.selectedAssociate) {
+        if (userdata[l].firstName + ' ' + userdata[l].lastName === this.selectedAssociate) {
           this.newInterview.associateEmail = userdata[l].email;
           break;
         }
@@ -86,7 +89,7 @@ export class NewInterviewComponent implements OnInit {
         break;
       }
     }
-    if (val == 'Select Cohort') {
+    if (val === 'Select Cohort') {
       this.dropdown2NotReady = true;
       this._associateName.length = 0;
       return false;
@@ -106,9 +109,9 @@ export class NewInterviewComponent implements OnInit {
   }
   submitReadyCheck() {
 
-    if (this.dateSelection != null && this.selectedCohort != 'Select Cohort'
-      && this.selectedAssociate != 'Select An Associate' && this.selectedLocation != null
-      && this.dateSelection != null && this.selectedClient != null) {
+    if (this.dateSelection !== null && this.selectedCohort !== 'Select Cohort'
+      && this.selectedAssociate !== 'Select An Associate' && this.selectedLocation !== null
+      && this.dateSelection !== null && this.selectedClient !== null) {
 
       this.buttonDisabled = false;
     }

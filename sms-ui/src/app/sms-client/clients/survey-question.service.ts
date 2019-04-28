@@ -16,6 +16,9 @@ export class QuestionOfSurveyService {
 
   private context = 'survey-service/questions';
 
+findAll(): Observable<Question[]> {
+  return this.http.get<Question[]>(`${this.context}`);
+}
 save(question: Question): Observable<Question> {
     return this.http.post<Question>(`${this.context}`, question);
   }
