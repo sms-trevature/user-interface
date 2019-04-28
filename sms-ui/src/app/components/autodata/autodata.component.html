@@ -1,13 +1,16 @@
+<app-navbar></app-navbar>
 <div>
-<table>
-<thead>
+<table id=autodataTable>
+<tr>
   <th>Associate Name</th>
   <th>Associate Email</th>
   <th>Interviews</th>
-</thead>
-<tbody>
-
-</tbody>
+</tr>
+  <tr let temp of filteredAssociates>
+    <td>{{temp.filteredAssociates}}</td>
+    <td></td>
+    <td></td>
+  </tr>
 </table>
 
 </div>
