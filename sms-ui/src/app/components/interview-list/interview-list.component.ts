@@ -36,21 +36,12 @@ export class InterviewListComponent implements OnInit {
   constructor(private interview: InterviewService) {}
 
   ngOnInit() {
-    this.interviewList = this.interview.getInterviews2();
-    this.filteredInterviewList = this.interviewList;
-    console.log(this.filteredInterviewList);
-  }
 
-  buttonClicked() {
-    /* this.interview.getInterviews().subscribe(
-      data => {
-        console.log(data);
+    this.interview.getInterviews().subscribe(data => {
+      this.interviewList = data;
+      this.filteredInterviewList = this.interviewList;
       }
-    ); */
-
-    this.interviewList = this.interview.getInterviews2();
-    this.filteredInterviewList = this.interviewList;
-    console.log(this.filteredInterviewList);
+    );
   }
 
   performFilter(filterBy: string): Interview[] {
