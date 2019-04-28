@@ -460,7 +460,7 @@ export class MngrSubAssociatesComponent implements OnInit {
 
     grabDataCell.appendChild(NewRole);
     // a service is needed to update user info by the email assocaited with their row - 
-  }
+  } 
   changeRole() {
 
     const newSpot = document.getElementById('selectedRoleRow') as HTMLSelectElement;

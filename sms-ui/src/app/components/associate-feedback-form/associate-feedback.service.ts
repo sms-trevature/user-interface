@@ -24,7 +24,7 @@ export class AssociateFeedback {
   get descriptionProvided(): boolean {
     return this._descriptionProvided;
   }
-
+ 
   set descriptionProvided(temp: boolean) {
    this._descriptionProvided = temp;
   }
