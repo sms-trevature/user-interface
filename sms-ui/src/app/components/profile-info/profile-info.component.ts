@@ -26,6 +26,7 @@ export class ProfileInfoComponent implements OnInit {
     }
   ];
   // user will somehow be retrieved through cognito session
+
   currentUser: User; 
 
   constructor(private nav: NavbarComponent, private cognitoService: CognitoService ) { 

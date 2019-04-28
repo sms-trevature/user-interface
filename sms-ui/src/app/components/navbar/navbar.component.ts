@@ -8,7 +8,7 @@ import { User } from 'src/app/sms-client/dto/User';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
+  
   constructor(private router: Router) { }
   
   public user: User;

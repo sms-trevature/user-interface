@@ -22,11 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.cognito.currentUser$.subscribe(user => {
       this.userClient.findByEmail(user.email).subscribe(
         succResp => {
-          console.log(succResp);
-          user = succResp;
-          console.log("we can pass this user: " + user.firstName);
-          this.nav.user = user;
-          //trying to pass via the nav bar.. 
+          console.log("kjgjhg  "+succResp);
           this.user = succResp;
         },
         err => {
