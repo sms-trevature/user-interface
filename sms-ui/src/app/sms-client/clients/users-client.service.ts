@@ -17,7 +17,6 @@ export class UsersClientService {
   }
 
   findByEmail(email: string) {
-    console.log("the email we are using to check is : " +email);
     return this.http.get<User>(`${this.context}/email/${email}`);
   }
 }
