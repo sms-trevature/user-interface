@@ -75,17 +75,8 @@ export class AssignSurveyComponent implements OnInit {
         }
       }
     );
-
-  closeSurvey(index: number) {
-    this.listOfSurvey[index].closingDate = new Date();
-    // this.surveyService.save(this.listOfSurvey[index]).subscribe(
-    //   data => {
-    //     this.listOfSurvey[index] = data;
-    //     console.log(this.listOfSurvey[index]);
-    //   }
-    // );
-
   }
+
   close() {
     window.location.reload();
   }
@@ -95,9 +86,9 @@ export class AssignSurveyComponent implements OnInit {
 // tslint:disable-next-line: forin
     for (const i in this.inputAns) {
       let tempAns;
-      if (this.curTemplate[i].questionId.typeId == 5) {
+      if (this.curTemplate[i].questionId.typeId === 5) {
         tempAns = new Answer(null, this.inputAns[i], this.curTemplate[i].questionId.questionId);
-        //need to send to db and get back then push to answerlist here
+        // need to send to db and get back then push to answerlist here
         answerList.push(tempAns);
       } else {
         for (const ansForCurQuestion of this.curTempAnswers[i]) {
@@ -109,10 +100,18 @@ export class AssignSurveyComponent implements OnInit {
       responseList.push(new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, tempAns));
     }
 
-
     console.log(this.inputAns);
     console.log(this.inputMultiAns);
     console.log(this.inputMultiAnsQNum);
+    for (let x = 0; x < this.inputMultiAns.length; x++) {
+      if (this.inputMultiAns[x]) {
+        const index = x / this.inputMultiAnsQNum[x] - 1;
+        const tempSurvey = this.curTemplate[this.inputMultiAnsQNum[x] - 1].surveyId;
+        const tempAns = this.curTempAnswers[this.inputMultiAnsQNum[x] - 1][index];
+        responseList.push(new Responses(null, localStorage.getItem('userEmail'), tempSurvey, tempAns));
+      }
+    }
+
     console.log(answerList);
     console.log(responseList);
   }
