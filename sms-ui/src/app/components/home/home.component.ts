@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
 import { CognitoService } from 'src/app/services/cognito.service';
 import { Subscription } from 'rxjs';
@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.userClient.findByEmail(user.email).subscribe(
         succResp => {
           this.user = succResp;
+          localStorage.setItem('userEmail', this.user.email);
+          console.log(localStorage.getItem('userEmail'));
         },
         err => {
         }

@@ -8,7 +8,10 @@ import { User } from 'src/app/sms-client/dto/User';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  
+
+
+  email: string;
+
   constructor(private router: Router) { }
   
   public user: User;
@@ -17,7 +20,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/surveyList');
   }
   ngOnInit() {
-    
+
+    this.email = localStorage.getItem('userEmail');
+
   }
 
 }
