@@ -64,6 +64,7 @@ table {
    max-width: 70%;
    margin: 2em auto;
   }
+
   .container {
    max-width: 720px;
   }
@@ -139,7 +140,11 @@ table {
    margin-bottom: 0;
    line-height: 1.5;
   }
-<<<<<<< HEAD
 
-=======
->>>>>>> 7b3eb02e84ce962fb71442a3fb29b0edf69df9a4
+  html, body {
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
