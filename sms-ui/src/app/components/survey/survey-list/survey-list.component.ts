@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SurveyService } from 'src/app/sms-client/clients/survey.service';
 import { Survey } from 'src/app/sms-client/dto/Survey';
 import { SurveyQuestionService } from 'src/app/sms-client/clients/surveyquestion.service';
@@ -7,6 +7,7 @@ import { Answer } from 'src/app/sms-client/dto/Answer';
 import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.service';
 import { Responses } from 'src/app/sms-client/dto/Response';
 import { SurveyResponseService } from 'src/app/sms-client/clients/survey-response.service';
+import { SurveyHistory } from 'src/app/sms-client/dto/SurveyHistory';
 
 @Component({
   selector: 'app-survey-list',
@@ -14,6 +15,8 @@ import { SurveyResponseService } from 'src/app/sms-client/clients/survey-respons
   styleUrls: ['./survey-list.component.scss']
 })
 export class SurveyListComponent implements OnInit {
+
+  @Output() surveyId: EventEmitter<any> = new EventEmitter();
 
   surveyTitle: string;
   listOfSurvey: Survey[];
@@ -25,9 +28,9 @@ export class SurveyListComponent implements OnInit {
   arrOfCounts: Array<number[]>;
 
   constructor(private surveyService: SurveyService,
-              private sqService: SurveyQuestionService,
-              private answerService: SurveyAnswerService,
-              private responseService: SurveyResponseService) {}
+    private sqService: SurveyQuestionService,
+    private answerService: SurveyAnswerService,
+    private responseService: SurveyResponseService) { }
 
   ngOnInit() {
     this.surveyService.findAll().subscribe(
@@ -56,7 +59,7 @@ export class SurveyListComponent implements OnInit {
       data => {
         this.curTemplate = data;
         this.curTempAnswers = new Array(data.length);
-// tslint:disable-next-line: forin
+        // tslint:disable-next-line: forin
         for (const i in data) {
           this.answerService.findByQuestionId(data[i].questionId.questionId).subscribe(
             curQuestionAnswerList => {
@@ -72,49 +75,52 @@ export class SurveyListComponent implements OnInit {
     this.surveyTitle = title;
     this.answerService.findAll().subscribe(
       ansList => {
-    this.responseService.findBySurveyId(surveyId).subscribe(
-      data => {
-        this.sqService.getTemplate(surveyId).subscribe(
-          sqList => {
-            this.ArrayOfResponseAnswerList = new Array (sqList.length);
-            this.arrOfCounts = new Array (sqList.length);
-            this.qList = new Array (sqList.length);
-            for (const sq of sqList) {
-              const tempAnsList = [];
-              const count = [];
-              if (sq.questionId.typeId === 5) {
-                for (const temp of ansList) {
-                  if (temp.questionId === sq.questionId.questionId) {
-                    tempAnsList.push(temp.answer);
-                  }
-                }
-               } else {
-                for (const res of data) {
-                  if (res.answerId.questionId === sq.questionId.questionId) {
-                    if (tempAnsList.length === 0 || res.answerId.answer !== tempAnsList[tempAnsList.length - 1]) {
-                      tempAnsList.push(res.answerId.answer);
-                      count.push(1);
-                    } else if ( res.answerId.answer === tempAnsList[tempAnsList.length - 1]) {
-                      count[count.length - 1]++;
+        this.responseService.findBySurveyId(surveyId).subscribe(
+          data => {
+            this.sqService.getTemplate(surveyId).subscribe(
+              sqList => {
+                this.ArrayOfResponseAnswerList = new Array(sqList.length);
+                this.arrOfCounts = new Array(sqList.length);
+                this.qList = new Array(sqList.length);
+                for (const sq of sqList) {
+                  const tempAnsList = [];
+                  const count = [];
+                  if (sq.questionId.typeId === 5) {
+                    for (const temp of ansList) {
+                      if (temp.questionId === sq.questionId.questionId) {
+                        tempAnsList.push(temp.answer);
+                      }
+                    }
+                  } else {
+                    for (const res of data) {
+                      if (res.answerId.questionId === sq.questionId.questionId) {
+                        if (tempAnsList.length === 0 || res.answerId.answer !== tempAnsList[tempAnsList.length - 1]) {
+                          tempAnsList.push(res.answerId.answer);
+                          count.push(1);
+                        } else if (res.answerId.answer === tempAnsList[tempAnsList.length - 1]) {
+                          count[count.length - 1]++;
+                        }
+                      }
                     }
                   }
+                  this.qList[sq.questionOrder - 1] = sq.questionId;
+                  this.ArrayOfResponseAnswerList[sq.questionOrder - 1] = tempAnsList;
+                  this.arrOfCounts[sq.questionOrder - 1] = count;
                 }
-               }
-              this.qList[sq.questionOrder - 1] = sq.questionId;
-              this.ArrayOfResponseAnswerList[sq.questionOrder - 1] = tempAnsList;
-              this.arrOfCounts[sq.questionOrder - 1] = count;
-            }
-            console.log(this.arrOfCounts);
+                console.log(this.arrOfCounts);
+              }
+            );
           }
         );
       }
     );
   }
-  );
+
+  getRespondents(surveyId: number) {
+    console.log('The current surveyId is: ' + surveyId);
+    this.surveyId.emit(surveyId);
   }
 
-  // Method will Display all respondents of a survey to user
-  getRespondents(surveyId: number) {
-    console.log('This goes here');
-  }
 }
+
+

@@ -17,4 +17,9 @@ export class SurveyHistoryService {
     return this.http.post<SurveyHistory[]>(`${this.context}/email`, email);
   }
 
+  // Observable to find every survey deployed under a particular id
+  findBySurveyId(sId: number): Observable<SurveyHistory[]> {
+    return this.http.get<SurveyHistory[]>(`${this.context}/survey/${sId}`);
+  }
+
 }
