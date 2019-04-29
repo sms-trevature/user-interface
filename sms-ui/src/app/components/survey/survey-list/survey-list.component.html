@@ -80,7 +80,7 @@
     </div>
 
 
-    <div id="graphs" *ngIf='qList&&qList.length'>
+  <div id="graphs" *ngIf='qList&&qList.length&&ArrayOfResponseAnswerList'>
         <h3>{{"Analytics: " + surveyTitle}}</h3>
         <div *ngFor='let temp of qList; index as i;'>
             <app-survey-data [question]='temp.question' [type]='temp.typeId' [arrOfAns]='ArrayOfResponseAnswerList[i]' [arrOfCountedResponse]='arrOfCounts[i]'></app-survey-data>

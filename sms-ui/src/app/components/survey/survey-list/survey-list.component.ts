@@ -53,31 +53,30 @@ export class SurveyListComponent implements OnInit {
             this.ArrayOfResponseAnswerList = new Array (sqList.length);
             this.arrOfCounts = new Array (sqList.length);
             this.qList = new Array (sqList.length);
-            for (const sq of sqList) {
-              const tempAnsList = [];
-              const count = [];
-              if (sq.questionId.typeId === 5) {
-                for (const temp of ansList) {
-                  if (temp.questionId === sq.questionId.questionId) {
-                    tempAnsList.push(temp.answer);
+            const tempArrOfAnsList = new Array (sqList.length);
+            for (const ans of ansList) {
+              // tslint:disable-next-line: forin
+              for (const i in sqList) {
+                this.qList[sqList[i].questionOrder - 1] = sqList[i].questionId;
+              // tslint:disable-next-line: max-line-length
+                if (ans.questionId === sqList[i].questionId.questionId && (!this.ArrayOfResponseAnswerList[i] || !this.ArrayOfResponseAnswerList[i].includes(ans.answer))) {
+                  if (!this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1]) {
+                    this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1] = [];
+                    tempArrOfAnsList[sqList[i].questionOrder - 1] = [];
                   }
-                }
-               } else {
-                 data.sort((a, b) => a.answerId.id - b.answerId.id);
-                 for (const res of data) {
-                  if (res.answerId.questionId === sq.questionId.questionId) {
-                    if (tempAnsList.length === 0 || !tempAnsList.includes(res.answerId.answer)) {
-                      tempAnsList.push(res.answerId.answer);
-                      count.push(1);
-                    } else if (tempAnsList.includes(res.answerId.answer)) {
-                      count[tempAnsList.indexOf(res.answerId.answer)]++;
-                    }
+                  this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1].push(ans.answer);
+                  tempArrOfAnsList[sqList[i].questionOrder - 1].push(ans.id);
                   }
+              }
+            }
+            for (const res of data) {
+              for (const index in this.ArrayOfResponseAnswerList) {
+                if (tempArrOfAnsList[index].includes(res.answerId.id)) {
+                  if (!this.arrOfCounts[index]) { this.arrOfCounts[index] = new Array (tempArrOfAnsList[index].length); }
+                  const tempIndex = this.ArrayOfResponseAnswerList[index].indexOf(res.answerId.answer);
+                  this.arrOfCounts[index][tempIndex] = this.arrOfCounts[index][tempIndex] ? this.arrOfCounts[index][tempIndex] + 1 : 1;
                 }
-               }
-              this.qList[sq.questionOrder - 1] = sq.questionId;
-              this.ArrayOfResponseAnswerList[sq.questionOrder - 1] = tempAnsList;
-              this.arrOfCounts[sq.questionOrder - 1] = count;
+              }
             }
           }
         );
@@ -86,4 +85,53 @@ export class SurveyListComponent implements OnInit {
   }
   );
   }
+
+
+// this was the original code, i feel that neither of these are optimal tho...
+  /*
+getGraph(surveyId: number, title: string) {
+this.surveyTitle = title;
+this.answerService.findAll().subscribe(
+ansList => {
+this.responseService.findBySurveyId(surveyId).subscribe(
+data => {
+this.sqService.getTemplate(surveyId).subscribe(
+sqList => {
+this.ArrayOfResponseAnswerList = new Array (sqList.length);
+this.arrOfCounts = new Array (sqList.length);
+this.qList = new Array (sqList.length);
+for (const sq of sqList) {
+const tempAnsList = [];
+const count = [];
+if (sq.questionId.typeId === 5) {
+for (const temp of ansList) {
+if (temp.questionId === sq.questionId.questionId) {
+tempAnsList.push(temp.answer);
+}
+}
+} else {
+data.sort((a, b) => a.answerId.id - b.answerId.id);
+for (const res of data) {
+if (res.answerId.questionId === sq.questionId.questionId) {
+if (tempAnsList.length === 0 || !tempAnsList.includes(res.answerId.answer)) {
+tempAnsList.push(res.answerId.answer);
+count.push(1);
+} else if (tempAnsList.includes(res.answerId.answer)) {
+count[tempAnsList.indexOf(res.answerId.answer)]++;
+}
+}
+}
+}
+this.qList[sq.questionOrder - 1] = sq.questionId;
+this.ArrayOfResponseAnswerList[sq.questionOrder - 1] = tempAnsList;
+this.arrOfCounts[sq.questionOrder - 1] = count;
+}
+}
+);
+}
+);
+}
+);
+}
+  */
 }
