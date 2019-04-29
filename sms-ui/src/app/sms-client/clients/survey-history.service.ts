@@ -22,4 +22,7 @@ export class SurveyHistoryService {
     return this.http.get<SurveyHistory[]>(`${this.context}/survey/${sId}`);
   }
 
+update(surveyHistory: SurveyHistory): Observable<SurveyHistory> {
+  return this.http.patch<SurveyHistory>(`${this.context}/taken`, surveyHistory);
+}
 }

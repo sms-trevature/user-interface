@@ -10,8 +10,6 @@ import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.se
 import { Responses } from 'src/app/sms-client/dto/Response';
 import { SurveyResponseService } from 'src/app/sms-client/clients/survey-response.service';
 
-
-
 @Component({
   selector: 'app-assign-survey',
   templateUrl: './assign-survey.component.html',
@@ -21,11 +19,14 @@ export class AssignSurveyComponent implements OnInit {
 
   listOfSurvey: Survey[];
   listOfSurveyHistory: SurveyHistory[];
+  curSH: SurveyHistory;
   curTemplate: SurveyQuestion[];
   curTempAnswers: Array<Answer[]>;
   inputAns: string[] = [];
   inputMultiAns: string[] = [];
   inputMultiAnsQNum: number[] = [];
+  listFilterVar: string;
+  filteredListOfSurvey: Survey[];
   constructor(
     private surveyService: SurveyService,
     private historyService: SurveyHistoryService,
@@ -50,22 +51,42 @@ export class AssignSurveyComponent implements OnInit {
               if (!temp.dateCompleted) {
                 this.listOfSurveyHistory.push(temp);
               }
+              this.filteredListOfSurvey = this.listOfSurvey;
             }
           }
         );
       }
     );
-
-
   }
-  openSurvey(surveyId: number) {
+
+  get listFilter(): string {
+    return this.listFilterVar;
+  }
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.filteredListOfSurvey = (this.listFilterVar) ?
+    this.performFilter(this.listFilterVar) : this.listOfSurvey;
+  }
+
+  performFilter(filterBy: string): Survey[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.listOfSurvey.filter((temp: Survey) =>
+      (temp.title.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.description.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    );
+  }
+
+  openSurvey(sh: SurveyHistory) {
+    this.curSH = sh;
+    const surveyId = sh.surveyId;
     this.curTemplate = [];
     this.curTempAnswers = [];
     this.sqService.getTemplate(surveyId).subscribe(
       data => {
         this.curTemplate = data;
-        // tslint:disable-next-line: forin
-        for (const i in data) {
+
+        for (const i of Object.keys(data)) {
           this.answerService.findByQuestionId(data[i].questionId.questionId).subscribe(
             curQuestionAnswerList => {
               this.curTempAnswers[i] = curQuestionAnswerList;
@@ -81,26 +102,30 @@ export class AssignSurveyComponent implements OnInit {
   }
   async submit() {
     const responseList: Responses[] = [];
-    const answerList: Answer[] = [];
 
     for (const i of Object.keys(this.inputAns)) {
-      let tempAns;
+      let tempAns: Answer = null;
       if (this.curTemplate[i].questionId.typeId === 5) {
         tempAns = new Answer(null, this.inputAns[i], this.curTemplate[i].questionId.questionId);
-        await this.answerService.save(tempAns).subscribe(
-          data => {tempAns = data; }
+        this.answerService.save(tempAns).subscribe(
+          data => {
+            this.responseService.save(
+              new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, data)
+            ).subscribe();
+          }
         );
-        answerList.push(tempAns);
       } else {
         for (const ansForCurQuestion of this.curTempAnswers[i]) {
           if (ansForCurQuestion.answer === this.inputAns[i]) {
             tempAns = ansForCurQuestion;
+            break;
           }
         }
       }
-      responseList.push(new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, tempAns));
+      if (tempAns.id) {
+        responseList.push(new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, tempAns));
+      }
     }
-
     for (const x in this.inputMultiAns) {
       if (this.inputMultiAns[x]) {
         const hide = document.getElementById(x.toString()) as HTMLInputElement;
@@ -114,9 +139,11 @@ export class AssignSurveyComponent implements OnInit {
     this.responseService.saveList(responseList).subscribe(
       hope => {
         if (hope) {
-          alert('successful');
+          window.location.reload();
         }
       }
     );
+    this.curSH.dateCompleted = new Date();
+    this.historyService.update(this.curSH).subscribe();
   }
 }

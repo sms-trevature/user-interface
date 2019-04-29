@@ -26,10 +26,12 @@ export class SurveyListComponent implements OnInit {
   qList: Question[];
   ArrayOfResponseAnswerList: Array<string[]>;
   arrOfCounts: Array<number[]>;
-
-  constructor(private surveyService: SurveyService,
-    private sqService: SurveyQuestionService,
+  listFilterVar: string;
+  filteredListOfSurvey: Survey[];
+  constructor(
+    private surveyService: SurveyService,
     private answerService: SurveyAnswerService,
+    private sqService: SurveyQuestionService,
     private responseService: SurveyResponseService) { }
 
   ngOnInit() {
@@ -71,6 +73,24 @@ export class SurveyListComponent implements OnInit {
     );
   }
 
+  get listFilter(): string {
+    return this.listFilterVar;
+  }
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.filteredListOfSurvey = (this.listFilterVar) ?
+      this.performFilter(this.listFilterVar) : this.listOfSurvey;
+  }
+
+  performFilter(filterBy: string): Survey[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.listOfSurvey.filter((temp: Survey) =>
+      (temp.title.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.description.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    );
+  }
+
   getGraph(surveyId: number, title: string) {
     this.surveyTitle = title;
     this.answerService.findAll().subscribe(
@@ -107,7 +127,6 @@ export class SurveyListComponent implements OnInit {
                   this.ArrayOfResponseAnswerList[sq.questionOrder - 1] = tempAnsList;
                   this.arrOfCounts[sq.questionOrder - 1] = count;
                 }
-                console.log(this.arrOfCounts);
               }
             );
           }
