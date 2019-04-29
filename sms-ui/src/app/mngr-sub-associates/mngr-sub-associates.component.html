@@ -1,15 +1,20 @@
 <body>
-  <button class="pure-button" (click)='open(content)' style="display: inline; font-size: 10px;">
-    <i class="material-icons">person</i>
-    Add Employee
-  </button>
+  
   <div id="InternalAssociates">
-
+    <div id= "legendHead" style="display: none;"><hr> <b>Roles Legend  </b><hr></div>
+    <br>
+    <div id="legend" style="display: none;">
+      <div class="adminRoleIcon">A</div> <b class="spaceLegendIndex"> - Administrator</b>
+       <div class="manstagRoleIcon">MS</div> <b class="spaceLegendIndex">- Staging Manager </b>
+       <div class="trainRoleIcon">T </div>  <b class="spaceLegendIndex">- Trainer</b> <br> <br>
+       <div class="ForAddingRoles" style="margin-left: 255px;"> Add </div> <b style="display: inline-block; position: relative; top: -26px;">- For Adding Roles</b>
+    </div>
     <div id="associatesHeader">
       <div style="display: inline;">
         <input type='text' [(ngModel)]='listFilter' id="filterByThisAssociate" />
       </div>
       <span style="display: inline; margin-left: 10px; margin-right: 10px;"> Internal Associates</span>
+     
       <div style="display: inline;">
         <!-- (change)="nrSelect(value)" -->
         <select id="selectElement" (change)="optionSelect()">
@@ -21,6 +26,10 @@
         </select>
       </div>
       <br>
+      <button class="pure-button" (click)='open(content)' style="display: inline; font-size: 10px; background: transparent;">
+        <i class="material-icons">person</i>
+        Add Employee
+      </button><br>
       <button id="standardizeB" (click)="returnView()" style="font-size: 10px; display: none;">Standardize</button>
 
       <button id="editButton" (click)="editAllRoles()" style=" font-size: 10px;"> Edit Mode </button>
@@ -28,10 +37,10 @@
     <table id="associateTable">
       <tr>
         <th class="spreadColumn">Name</th>
-        <th class="spreadColumn">Role</th>
+        <th class="spreadColumn">Role <div id="claricationDiv"> (Of precedence)</div> </th>
         <th class="spreadColumn">Email</th>
       </tr>
-      <tr *ngFor='let temp of filteredEmployees'>
+      <tr *ngFor='let temp of filteredEmployees'>                                                                                                                                                              <!--    //Jordan was here -->
 
           
         <td>{{temp.firstName}} {{temp.lastName}}</td>
@@ -47,13 +56,7 @@
     </table>
 
     <br>
-    <div id= "legendHead" style="display: none;"><hr> <b>Roles Legend  </b><hr></div>
-    <br>
-    <div id="legend" style="display: none;">
-      <div class="adminRoleIcon">A</div> <b> -Administrator</b>
-       <div class="manstagRoleIcon">MS</div> <b>- Staging Manager </b>
-       <div class="trainRoleIcon">T </div>  <b>- Trainer</b>
-    </div>
+ 
 
 
     <!-- modal zone---------------------------------------------------------- -->

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SomeAssociate } from '../sms-client/dto/Employees';
 import { FakeServiceComponent } from '../fake-service/fake-service.component';
 import { Button } from 'protractor';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { Address } from '../sms-client/dto/Address';
@@ -11,13 +11,11 @@ import { status } from '../sms-client/dto/Status';
 import { stringify } from 'querystring';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-mngr-sub-associates',
   templateUrl: './mngr-sub-associates.component.html',
   styleUrls: ['./mngr-sub-associates.component.scss']
 })
-
 
 export class MngrSubAssociatesComponent implements OnInit {
   _listFilter = '';
@@ -52,16 +50,12 @@ export class MngrSubAssociatesComponent implements OnInit {
 
       let objIndex = 0;
       while (data[objIndex] != null || data[objIndex] != undefined) {
-
         this.filteredEmployees.push(data[objIndex]);
-
         objIndex++;
       }
     });
     //===============================^
-
     this.http.get('cognito/users/groups/admin').toPromise().then(admins => {
-      // console.log("----inside admin retrieval----");
       let index = 0;
       while (admins['Users'][index] != undefined) {
         if (admins['Users'][index].Attributes[1]['Value'] == true || admins['Users'][index].Attributes[1]['Value'] == 'true') {
@@ -71,14 +65,10 @@ export class MngrSubAssociatesComponent implements OnInit {
         }
         index++;
       }
-      // console.log("emails of admins: ");
-      // this.adminArray.forEach(element => {
-      //   console.log(element);
-      // });
 
     });
     this.http.get('cognito/users/groups/trainer').toPromise().then(trainer => {
-      // console.log("----inside admin retrieval----");
+      alert(trainer);
       let index = 0;
       while (trainer['Users'][index] != undefined) {
         if (trainer['Users'][index].Attributes[1]['Value'] == true || trainer['Users'][index].Attributes[1]['Value'] == 'true') {
@@ -88,49 +78,27 @@ export class MngrSubAssociatesComponent implements OnInit {
         }
         index++;
       }
-      // console.log("emails of trainers: ");
-      // this.trainerArray.forEach(element => {
-      //   console.log(element);
-      // });
+
     });
-    this.http.get('cognito/users/groups/staging-manager').toPromise().then(sm => {
-      //  console.log("----inside admin retrieval----");
+    this.http.get('cognito/users/groups/staging-manager').toPromise().then(sm => {                                                                                                                                //Jordan was here
       let index = 0;
       while (sm['Users'][index] != undefined) {
         if (sm['Users'][index].Attributes[1]['Value'] == true || sm['Users'][index].Attributes[1]['Value'] == 'true') {
           this.stagingM.push(sm['Users'][index].Attributes[2]['Value']);
         } else {
           this.stagingM.push(sm['Users'][index].Attributes[1]['Value']);
+
         }
         index++;
       }
-      // console.log("emails of staging managers: ");
-      // this.stagingM.forEach(element => {
-      //   console.log(element);
-      // });
+
+      this.stagingM.forEach(element => {
+        console.log("returned  " + element);
+      });
+
     });
-
-    //----------------------tests
-    // console.log("emails of admins: ");
-    // this.adminArray.forEach(element => {
-    //   console.log(element);
-    // });
-    // console.log("(emails of trainers: ");
-    // this.trainerArray.forEach(element => {
-    //   console.log(element);
-    // });
-    // console.log("(emails of staging managers: )");
-    // this.stagingM.forEach(element => {
-    //   console.log(element);
-    // });
-    //====================================^
-
-
     this.allAssociates = this.filteredEmployees;
-    //    console.log("filtered employees even " + this.filteredEmployees[1] + "- variable of object: " + this.filteredEmployees[1].firstName );
-    // console.log("inside all associates: " + this.allAssociates[1]+"- first namne: " + this.allAssociates[1].firstName); 
   }
-
   ngOnInit() {
     this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
       this.addressList = data;
@@ -150,38 +118,60 @@ export class MngrSubAssociatesComponent implements OnInit {
         return 'Associate';
       }
   }
-  returnView(){
-    const childLock = document.getElementById('editButton') as HTMLButtonElement; 
+  returnView() {
+    const flipClari = document.getElementById('claricationDiv') as HTMLDivElement;
+    flipClari.style.display = "block";
+    const childLock = document.getElementById('editButton') as HTMLButtonElement;
     childLock.style.display = "block";
-    const returnButton = document.getElementById('standardizeB') as HTMLButtonElement; 
+    const returnButton = document.getElementById('standardizeB') as HTMLButtonElement;
     returnButton.style.display = "none";
+    //backup filteration resolution-----------
+    const pullOutFilter = document.getElementById('filterByThisAssociate') as HTMLInputElement;
+    pullOutFilter.style.display = "block";
+    const turnOffSelectFilter = document.getElementById('selectElement') as HTMLSelectElement;
+    turnOffSelectFilter.style.display = "block";
+    //backup filteration resolution-----------
+    this.router.navigateByUrl('/ManageRoute', { skipLocationChange: true }).then(() =>
+      this.router.navigate(['/ManageRoute', 'subMan1Internal']));
 
-   // this.router.navigate(['/ManageRoute', 'subMan1Internal']);
-    this.router.navigateByUrl('/ManageRoute',  {skipLocationChange: true}).then(()=>
-    this.router.navigate(['/ManageRoute', 'subMan1Internal'])); 
-  // window.location.reload(); 
-  
-  //this.router.navigateByUrl('/ManageRoute');
- // this.router.navigate(['/ManageRoute','']);
   }
   editAllRoles() {
-    const childLock = document.getElementById('editButton') as HTMLButtonElement; 
+    let int = 0;
+    let array = document.getElementsByClassName('cantBelieveItsNotButton');
+    while (array[int] != undefined && array[int] != null) {
+      //  array[int].parentNode.removeChild(array[int]);
+      if (array[int].parentNode.firstChild.textContent.toLowerCase().length == 10) {
+        console.log("bahahahahahhahaha");
+        int++; 
+      } else {
+        array[int].parentNode.removeChild(array[int]);
+        int++; 
+      }
+      
+    }
+    //backup filteration resolution--------------
+    const pullOutFilter = document.getElementById('filterByThisAssociate') as HTMLInputElement;
+    pullOutFilter.style.display = "none";
+    const turnOffSelectFilter = document.getElementById('selectElement') as HTMLSelectElement;
+    turnOffSelectFilter.style.display = "none";
+    //backup filteration resolution---------------
+    const flipClari = document.getElementById('claricationDiv') as HTMLDivElement;
+    flipClari.style.display = "none";
+    //-----
+    const childLock = document.getElementById('editButton') as HTMLButtonElement;
     childLock.style.display = "none";
-    const returnButton = document.getElementById('standardizeB') as HTMLButtonElement; 
-    document.getElementById('legend').style.display ="block";
+    const returnButton = document.getElementById('standardizeB') as HTMLButtonElement;
+    document.getElementById('legend').style.display = "block";
     document.getElementById('legendHead').style.display = "block";
     this.filteredEmployees.forEach(element => {
-      let idCaseAdjust = element.email.toUpperCase() +"";
-     let cast =  document.getElementById(idCaseAdjust) as HTMLDataListElement;
-     console.log("searching for " + element.email.toUpperCase());
-     cast.style.display = "block"
-     cast.style.margin = "6px";
+      let idCaseAdjust = element.email.toUpperCase() + "";
+      let cast = document.getElementById(idCaseAdjust) as HTMLDataListElement;
+      console.log("searching for " + element.email.toUpperCase());
+      cast.style.display = "block"
+      cast.style.margin = "6px";
     });
-      
-    
-    
-    returnButton.style.display = "block";
 
+    returnButton.style.display = "block";
     this.stagingM;
     this.adminArray;
     this.trainerArray;
@@ -195,9 +185,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         console.log(' ADDING ' + element + " to list of people that have roles");
 
       }
-      //while (roleSpot.firstChild) {
-      roleSpot.removeChild(roleSpot.firstChild);//gets rid of that one button
-
+      // roleSpot.removeChild(roleSpot.firstChild);//gets rid of that one button
       const trainDiv = document.createElement('div') as HTMLDivElement;
       const x = document.createElement('button') as HTMLButtonElement;
       x.innerText = 'x';
@@ -211,15 +199,34 @@ export class MngrSubAssociatesComponent implements OnInit {
       x.style.marginLeft = "-65px";
       x.addEventListener('click', function () {
         trainDiv.innerHTML = '';
-        console.log('remove role from actual cognito logic here');
+        //COGNITO HERE - remove from group - trainer
+        // let httpDrop: HttpClient;
+        // const requestOptions = {
+        //   params: new HttpParams()
+        // };
+        //--------test stuff
+        // new RequestOptions({
+        //   headers: '',
+        //   body: {
+        //     "email":"blake.kruppa@revature.com",
+        //     "groupName":"trainer"
+        //   }
+        // })
+        //----test stuff
+        //   console.log('FUNCTOIN ran.....');
+        // requestOptions.params.set('email:blake.kruppa@revature.com','groupName:trainer');
+        // httpDrop.delete('cognito/users/groups', requestOptions ).toPromise().then(change => {
+        //   console.log('remove role attempting?');
+        //   console.log(change); });
+
+        console.log('remove role occurred?');
       });
       trainDiv.innerHTML = "T";
       trainDiv.appendChild(x);
       roleSpot.appendChild(trainDiv);
     });
     this.adminArray.forEach(element => {
-      // console.log("admins: ");
-      // console.log(element);
+
       const roleSpotA = document.getElementById(element) as HTMLDataListElement;
       if (roleSpotA != null) {
         multiRoleUsers.forEach(alreadyRemovedButton => {
@@ -229,7 +236,7 @@ export class MngrSubAssociatesComponent implements OnInit {
             console.log(element + ' HAS MORE THAN ONE ROLE ');
           } else {
 
-            roleSpotA.removeChild(roleSpotA.firstChild);
+            //  roleSpotA.removeChild(roleSpotA.firstChild);
           }
 
         });
@@ -244,6 +251,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         xx.className = 'AssociatesXitButton';
         xx.addEventListener('click', function () {
           adminDiv.innerHTML = '';
+          //COGNITO HERE remove from group - admin
           console.log('remove role from actual cognito logic here');
         });
         adminDiv.innerHTML = "A";
@@ -264,11 +272,11 @@ export class MngrSubAssociatesComponent implements OnInit {
             console.log(element + ' HAS MORE THAN ONE ROLE ');
           } else {
 
-            roleSpotSM.removeChild(roleSpotSM.firstChild);
+            //roleSpotSM.removeChild(roleSpotSM.firstChild);
           }
         });
         const smDiv = document.createElement('div') as HTMLDivElement;
-        const xxx = document.createElement('button') as HTMLButtonElement; 
+        const xxx = document.createElement('button') as HTMLButtonElement;
         xxx.innerText = 'x';
         smDiv.id = element + '-admin';
         xxx.style.height = '14px';
@@ -278,6 +286,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         xxx.className = 'AssociatesXitButton';
         xxx.addEventListener('click', function () {
           smDiv.innerHTML = '';
+          //COGNITO HERE - remove from group - staging-manager
           console.log('remove role from actual cognito logic here');
         });
         smDiv.innerHTML = "SM";
@@ -438,7 +447,6 @@ export class MngrSubAssociatesComponent implements OnInit {
   optionSelect() {
     let e = (document.getElementById('selectElement')) as HTMLSelectElement;
     let index = e.selectedIndex;
-    // console.log('index: ' + index);//test
     let opt = e.options[index];
     let value = opt.value;
     if (value !== 'All') {
@@ -467,13 +475,11 @@ export class MngrSubAssociatesComponent implements OnInit {
       this.returnableButton = grabDataCell.firstChild as HTMLButtonElement;
     }
 
-
     console.log("email of user: " + email);
-    //  const grabDataCell = document.getElementById(email) as HTMLDataListElement;
     let currentRole: string;
     const childButton = grabDataCell.firstChild as HTMLButtonElement;
     currentRole = childButton.innerText;
-    //--This value is used later to return the previous role when a new selection is made - 
+
     this.returnableRoleValue = childButton.innerText;
     //this keeps track of the last selection - 
     this.returnableEmailValue = email;

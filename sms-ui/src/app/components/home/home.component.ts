@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           user = succResp;
           console.log("we can pass this user: " + user.firstName);
           this.nav.user = user;
+          console.log(user.trainingAddress );
           //trying to pass via the nav bar.. 
           this.user = succResp;
         },

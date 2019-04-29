@@ -21,6 +21,8 @@
         "@angular/router": "~7.2.0",
         "@ng-bootstrap/ng-bootstrap": "^4.1.1",
         "@syncfusion/ej2-angular-calendars": "^17.1.42",
+        "@syncfusion/ej2-ng-charts": "^16.2.50",
+        "angular-chart.js": "^1.1.1",
         "angular-custom-dropdown": "^1.1.1",
         "aws-amplify": "^1.1.26",
         "aws-amplify-angular": "^3.0.1",

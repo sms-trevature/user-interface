@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/surveyList');
   }
   ngOnInit() {
-    
+   
   }
 
 }
