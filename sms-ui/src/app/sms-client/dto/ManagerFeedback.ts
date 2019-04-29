@@ -1,8 +1,7 @@
 export interface ManagerFeedback {
-    dateRequested: Date;
-    feedbackStatus: string;
-    dateReceived: Date;
-    feedback: string;
-    feedbackDelivered: Date;
+    dateRequested: number;
+    feedbackStatus: String;
+    dateReceived: number;
+    feedback: String;
+    feedbackDelivered: number;
 }
-

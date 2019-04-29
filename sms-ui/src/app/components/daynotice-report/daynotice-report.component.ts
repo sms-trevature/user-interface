@@ -16,8 +16,9 @@ export class DaynoticeReportComponent implements OnInit {
 
   dayNoticeList: DayNotice[];
   filteredDayNoticeList: DayNotice[];
+
   noDayNoticeList: DayNotice[];
-  descProvidedList: DayNotice[];
+ 
 
   constructor(private dayNotice: DaynoticeService) { }
 
@@ -46,13 +47,11 @@ export class DaynoticeReportComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.get24HrNotice();
-
+   this.getAllInterviews();
   }
 
-  get24HrNotice() {
-    this.dayNotice.get24HrNotice().subscribe((data: DayNotice[]) => {
+  getAllInterviews() {
+    this.dayNotice.getAllInterviews().subscribe((data: DayNotice[]) => {
       this.dayNoticeList = data;
       this.noDayNoticeList = data;
       this.dayNoticeList = this.filterByDayNotice();
@@ -61,17 +60,12 @@ export class DaynoticeReportComponent implements OnInit {
     });
   }
 
-
   filterByDayNotice(): DayNotice[] {
     return this.dayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == true);
   }
 
   filterByNoNotice(): DayNotice[] {
     return this.noDayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == false);
-  }
-
-  descriptionProvidedTrue(): DayNotice[] {
-    return this.descProvidedList.filter((randomV: DayNotice) => (randomV.associateInput.descriptionProvided) == true);
   }
 }
 

@@ -1,9 +1,10 @@
 {
+
     "name": "sms-ui",
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve -o",
+        "start": "ng serve",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
@@ -57,4 +58,5 @@
         "tslint": "~5.11.0",
         "typescript": "~3.2.2"
     }
+
 }
