@@ -9,6 +9,7 @@ import { Address } from '../sms-client/dto/Address';
 import { VirtualAction } from 'rxjs';
 import { status } from '../sms-client/dto/Status';
 import { stringify } from 'querystring';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,7 +45,7 @@ export class MngrSubAssociatesComponent implements OnInit {
   private lastCell: any;
   private returnableEmailValue = '';
   private returnableButton = document.createElement('button') as HTMLButtonElement;
-  constructor(private _fakeService: FakeServiceComponent, private http: HttpClient, private modalService: NgbModal) {
+  constructor(private router: Router, private http: HttpClient, private modalService: NgbModal) {
 
     //----now retrieve all users in the actual DB 
     this.http.get('users').toPromise().then(data => {
@@ -149,7 +150,38 @@ export class MngrSubAssociatesComponent implements OnInit {
         return 'Associate';
       }
   }
+  returnView(){
+    const childLock = document.getElementById('editButton') as HTMLButtonElement; 
+    childLock.style.display = "block";
+    const returnButton = document.getElementById('standardizeB') as HTMLButtonElement; 
+    returnButton.style.display = "none";
+
+   // this.router.navigate(['/ManageRoute', 'subMan1Internal']);
+    this.router.navigateByUrl('/ManageRoute',  {skipLocationChange: true}).then(()=>
+    this.router.navigate(['/ManageRoute', 'subMan1Internal'])); 
+  // window.location.reload(); 
+  
+  //this.router.navigateByUrl('/ManageRoute');
+ // this.router.navigate(['/ManageRoute','']);
+  }
   editAllRoles() {
+    const childLock = document.getElementById('editButton') as HTMLButtonElement; 
+    childLock.style.display = "none";
+    const returnButton = document.getElementById('standardizeB') as HTMLButtonElement; 
+    document.getElementById('legend').style.display ="block";
+    document.getElementById('legendHead').style.display = "block";
+    this.filteredEmployees.forEach(element => {
+      let idCaseAdjust = element.email.toUpperCase() +"";
+     let cast =  document.getElementById(idCaseAdjust) as HTMLDataListElement;
+     console.log("searching for " + element.email.toUpperCase());
+     cast.style.display = "block"
+     cast.style.margin = "6px";
+    });
+      
+    
+    
+    returnButton.style.display = "block";
+
     this.stagingM;
     this.adminArray;
     this.trainerArray;
@@ -172,7 +204,7 @@ export class MngrSubAssociatesComponent implements OnInit {
       trainDiv.id = element + '-trainer';
       x.style.height = '14px';
       x.style.cssFloat = 'right';
-
+      trainDiv.className = "trainRoleIcon";
       x.style.borderRadius = '10px';
       x.className = 'AssociatesXitButton';//only reachable through global styles idk y
       //  x.style.backgroundImage = "url('../../assets/rev-logo.png')";
@@ -181,7 +213,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         trainDiv.innerHTML = '';
         console.log('remove role from actual cognito logic here');
       });
-      trainDiv.innerHTML = "Trainer";
+      trainDiv.innerHTML = "T";
       trainDiv.appendChild(x);
       roleSpot.appendChild(trainDiv);
     });
@@ -207,22 +239,51 @@ export class MngrSubAssociatesComponent implements OnInit {
         adminDiv.id = element + '-admin';
         xx.style.height = '14px';
         xx.style.cssFloat = 'right';
-
+        adminDiv.className = "adminRoleIcon";
         xx.style.borderRadius = '10px';
         xx.className = 'AssociatesXitButton';
         xx.addEventListener('click', function () {
           adminDiv.innerHTML = '';
           console.log('remove role from actual cognito logic here');
         });
-        adminDiv.innerHTML = "Admin";
+        adminDiv.innerHTML = "A";
         adminDiv.appendChild(xx);
         roleSpotA.appendChild(adminDiv);
       }
     });
 
     this.stagingM.forEach(element => {
-      console.log("staging manager: ");
+      console.log("-------------staging manager: ");
       console.log(element);
+      const roleSpotSM = document.getElementById(element) as HTMLDataListElement;
+      if (roleSpotSM != null) {
+        multiRoleUsers.forEach(alreadyRemovedButton => {
+          console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
+          if (alreadyRemovedButton == element) {
+
+            console.log(element + ' HAS MORE THAN ONE ROLE ');
+          } else {
+
+            roleSpotSM.removeChild(roleSpotSM.firstChild);
+          }
+        });
+        const smDiv = document.createElement('div') as HTMLDivElement;
+        const xxx = document.createElement('button') as HTMLButtonElement; 
+        xxx.innerText = 'x';
+        smDiv.id = element + '-admin';
+        xxx.style.height = '14px';
+        xxx.style.cssFloat = 'right';
+        smDiv.className = "manstagRoleIcon";
+        xxx.style.borderRadius = '10px';
+        xxx.className = 'AssociatesXitButton';
+        xxx.addEventListener('click', function () {
+          smDiv.innerHTML = '';
+          console.log('remove role from actual cognito logic here');
+        });
+        smDiv.innerHTML = "SM";
+        smDiv.appendChild(xxx);
+        roleSpotSM.appendChild(smDiv);
+      }
     });
   }
   removeRole() {

@@ -51,6 +51,7 @@ const routes: Routes = [
   { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
   { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
   { path: 'InterviewListRoute', component: InterviewListComponent},
+  
   {
     path: 'ManageRoute', component: ManageComponent,
     children: [
@@ -64,7 +65,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        component: SubMan2CohortComponent
+        component: MngrSubAssociatesComponent
       }
     ]
   },
