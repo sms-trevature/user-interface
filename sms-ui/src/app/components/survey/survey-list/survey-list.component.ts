@@ -78,9 +78,6 @@ export class SurveyListComponent implements OnInit {
                 }
               }
             }
-            console.log(this.qList);
-            console.log(this.ArrayOfResponseAnswerList);
-            console.log( this.arrOfCounts);
           }
         );
       }
@@ -88,4 +85,53 @@ export class SurveyListComponent implements OnInit {
   }
   );
   }
+
+
+// this was the original code, i feel that neither of these are optimal tho...
+  /*
+getGraph(surveyId: number, title: string) {
+this.surveyTitle = title;
+this.answerService.findAll().subscribe(
+ansList => {
+this.responseService.findBySurveyId(surveyId).subscribe(
+data => {
+this.sqService.getTemplate(surveyId).subscribe(
+sqList => {
+this.ArrayOfResponseAnswerList = new Array (sqList.length);
+this.arrOfCounts = new Array (sqList.length);
+this.qList = new Array (sqList.length);
+for (const sq of sqList) {
+const tempAnsList = [];
+const count = [];
+if (sq.questionId.typeId === 5) {
+for (const temp of ansList) {
+if (temp.questionId === sq.questionId.questionId) {
+tempAnsList.push(temp.answer);
+}
+}
+} else {
+data.sort((a, b) => a.answerId.id - b.answerId.id);
+for (const res of data) {
+if (res.answerId.questionId === sq.questionId.questionId) {
+if (tempAnsList.length === 0 || !tempAnsList.includes(res.answerId.answer)) {
+tempAnsList.push(res.answerId.answer);
+count.push(1);
+} else if (tempAnsList.includes(res.answerId.answer)) {
+count[tempAnsList.indexOf(res.answerId.answer)]++;
+}
+}
+}
+}
+this.qList[sq.questionOrder - 1] = sq.questionId;
+this.ArrayOfResponseAnswerList[sq.questionOrder - 1] = tempAnsList;
+this.arrOfCounts[sq.questionOrder - 1] = count;
+}
+}
+);
+}
+);
+}
+);
+}
+  */
 }
