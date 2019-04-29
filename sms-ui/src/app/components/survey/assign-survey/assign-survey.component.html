@@ -50,7 +50,7 @@
                   <div *ngFor='let ans of curTempAnswers[i]'>
                       <input type="radio" [name]="temp.questionId.question" [value]='ans?.answer' [(ngModel)] ='inputAns[i]'> {{ans?.answer+"  "}}
                   </div>
-                  
+
                 </fieldset>
                 <div id='checkbox' *ngIf='temp.questionId.typeId==3'>
                     <div *ngFor='let ans of curTempAnswers[i];index as j'>
@@ -62,7 +62,7 @@
                 </div>
                 </div>
               </li>
-          
+
             </ul>
               </div>
 
