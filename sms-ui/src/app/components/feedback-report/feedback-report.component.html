@@ -23,7 +23,9 @@
         <td>{{temp.id}}</td>
         <td>{{temp.associateEmail}}</td>
         <td>{{temp.place}}</td>
-        <td>{{temp.feedback.feedbackRequested | date}}</td>
+        <td *ngIf="feedback == null">N/A</td>
+        <td *ngIf="feedback != null">{{temp.feedback.feedbackRequested | date}}</td>
+
       </tr>
     </tbody>
   </table>
@@ -45,7 +47,7 @@
         <td>{{temp.id}}</td>
         <td>{{temp.associateEmail}}</td>
         <td>{{temp.place}}</td>
-        <td>{{temp.feedback.feedbackRequested | date}}</td>
+        <td *ngIf="feedback != null" >{{temp.feedback.feedbackRequested | date}}</td>
       </tr>
     </tbody>
   </table>
