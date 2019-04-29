@@ -35,7 +35,6 @@ export class CognitoService {
    
     /// ---Query by email for user info..
 
-    console.log(response);
     this.getCurrent();
 
     if (response.challengeName !== 'NEW_PASSWORD_REQUIRED') {
@@ -50,6 +49,7 @@ export class CognitoService {
   }
 
   async logout() {
+    
     await Auth.signOut();
     this.tokenStream.next(undefined);
     this.currentUserStream.next(undefined);
@@ -97,11 +97,10 @@ export class CognitoService {
 
   getCurrentSession(){
     Auth.currentSession().then(data=>{
-      console.log(data)})
+    })
   }
   someMethod(){
     Auth.currentCredentials().then(data=>{
-      console.log(data)
     })
   }
 }

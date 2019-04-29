@@ -13,7 +13,8 @@ export class AssociateFeedback {
   '_interviewFormat': InterviewFormat;
   '_proposedFormat': InterviewFormat;
 
-  constructor(descriptionProvided: boolean, recievedNotifications: string, dayNotice: boolean, interviewFormat: InterviewFormat, proposedFormat: InterviewFormat) {
+  constructor(descriptionProvided: boolean, recievedNotifications: string,
+              dayNotice: boolean, interviewFormat: InterviewFormat, proposedFormat: InterviewFormat) {
     this._descriptionProvided = descriptionProvided;
     this._recievedNotifications = recievedNotifications;
     this._dayNotice = dayNotice;
@@ -80,27 +81,27 @@ export class AssociateFeedbackService {
   }
 
   postAssociateInput(associateInput): Observable<AssociateFeedback> {
-    console.log("the asso input proposed format is ")
+
+    console.log('the asso input proposed format is ');
     console.log(associateInput.proposedFormat);
-    console.log("the asso input interview format is ")
+    console.log('the asso input interview format is ');
     console.log(associateInput.interviewFormat);
-    console.log("the asso input desc format is ")
+    console.log('the asso input desc format is ');
     console.log(associateInput.descriptionProvided);
-    console.log("the asso input dayNotice format is ")
+    console.log('the asso input dayNotice format is ');
     console.log(associateInput.dayNotice);
-    console.log(associateInput._recievedNotifications)
+    console.log(associateInput._recievedNotifications);
 
-    console.log("inside of post associate");
+
+    console.log('inside of post associate');
     return this.httpClient.post<AssociateFeedback>(this.url, {
-      'recievedNotifications': associateInput.recievedNotifications,
-      'descriptionProvided': associateInput.descriptionProvided,
+      recievedNotifications: '2019-08-03 14:00:00',
+      descriptionProvided: associateInput.descriptionProvided,
 
-      'interviewFormat': associateInput.interviewFormat,
-      'proposedFormat': associateInput.proposedFormat
-     // 'dayNotice': associateInput.dayNotice
-
-    });
+      interviewFormat: associateInput.interviewFormat,
+      proposedFormat: associateInput.proposedFormat,
+      dayNotice: associateInput.dayNotice}
+     );
   }
-
-
 }
+
