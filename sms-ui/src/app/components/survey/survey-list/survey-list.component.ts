@@ -25,10 +25,11 @@ export class SurveyListComponent implements OnInit {
   arrOfCounts: Array<number[]>;
   listFilterVar: string;
   filteredListOfSurvey: Survey[];
-  constructor(private surveyService: SurveyService,
-              private answerService: SurveyAnswerService,
-              private sqService: SurveyQuestionService,
-              private responseService: SurveyResponseService) {}
+  constructor(
+    private surveyService: SurveyService,
+    private answerService: SurveyAnswerService,
+    private sqService: SurveyQuestionService,
+    private responseService: SurveyResponseService) { }
 
   ngOnInit() {
     this.listOfSurvey = [];
@@ -50,7 +51,7 @@ export class SurveyListComponent implements OnInit {
   set listFilter(temp: string) {
     this.listFilterVar = temp;
     this.filteredListOfSurvey = (this.listFilterVar) ?
-    this.performFilter(this.listFilterVar) : this.listOfSurvey;
+      this.performFilter(this.listFilterVar) : this.listOfSurvey;
   }
 
   performFilter(filterBy: string): Survey[] {
@@ -66,48 +67,49 @@ export class SurveyListComponent implements OnInit {
     this.surveyTitle = title;
     this.answerService.findAll().subscribe(
       ansList => {
-    this.responseService.findBySurveyId(surveyId).subscribe(
-      data => {
-        this.sqService.getTemplate(surveyId).subscribe(
-          sqList => {
-            this.ArrayOfResponseAnswerList = new Array (sqList.length);
-            this.arrOfCounts = new Array (sqList.length);
-            this.qList = new Array (sqList.length);
-            const tempArrOfAnsList = new Array (sqList.length);
-            for (const ans of ansList) {
-              // tslint:disable-next-line: forin
-              for (const i in sqList) {
-                this.qList[sqList[i].questionOrder - 1] = sqList[i].questionId;
-              // tslint:disable-next-line: max-line-length
-                if (ans.questionId === sqList[i].questionId.questionId && (!this.ArrayOfResponseAnswerList[i] || !this.ArrayOfResponseAnswerList[i].includes(ans.answer))) {
-                  if (!this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1]) {
-                    this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1] = [];
-                    tempArrOfAnsList[sqList[i].questionOrder - 1] = [];
+        this.responseService.findBySurveyId(surveyId).subscribe(
+          data => {
+            this.sqService.getTemplate(surveyId).subscribe(
+              sqList => {
+                this.ArrayOfResponseAnswerList = new Array(sqList.length);
+                this.arrOfCounts = new Array(sqList.length);
+                this.qList = new Array(sqList.length);
+                const tempArrOfAnsList = new Array(sqList.length);
+                for (const ans of ansList) {
+
+                  for (const i of Object.keys(sqList)) {
+                    this.qList[sqList[i].questionOrder - 1] = sqList[i].questionId;
+
+                    if (ans.questionId === sqList[i].questionId.questionId && (!this.ArrayOfResponseAnswerList[i]
+                      || !this.ArrayOfResponseAnswerList[i].includes(ans.answer))) {
+                      if (!this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1]) {
+                        this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1] = [];
+                        tempArrOfAnsList[sqList[i].questionOrder - 1] = [];
+                      }
+                      this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1].push(ans.answer);
+                      tempArrOfAnsList[sqList[i].questionOrder - 1].push(ans.id);
+                    }
                   }
-                  this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1].push(ans.answer);
-                  tempArrOfAnsList[sqList[i].questionOrder - 1].push(ans.id);
+                }
+                for (const res of data) {
+                  for (const index in this.ArrayOfResponseAnswerList) {
+                    if (tempArrOfAnsList[index].includes(res.answerId.id)) {
+                      if (!this.arrOfCounts[index]) { this.arrOfCounts[index] = new Array(tempArrOfAnsList[index].length); }
+                      const tempIndex = this.ArrayOfResponseAnswerList[index].indexOf(res.answerId.answer);
+                      this.arrOfCounts[index][tempIndex] = this.arrOfCounts[index][tempIndex] ? this.arrOfCounts[index][tempIndex] + 1 : 1;
+                    }
                   }
-              }
-            }
-            for (const res of data) {
-              for (const index in this.ArrayOfResponseAnswerList) {
-                if (tempArrOfAnsList[index].includes(res.answerId.id)) {
-                  if (!this.arrOfCounts[index]) { this.arrOfCounts[index] = new Array (tempArrOfAnsList[index].length); }
-                  const tempIndex = this.ArrayOfResponseAnswerList[index].indexOf(res.answerId.answer);
-                  this.arrOfCounts[index][tempIndex] = this.arrOfCounts[index][tempIndex] ? this.arrOfCounts[index][tempIndex] + 1 : 1;
                 }
               }
-            }
+            );
           }
         );
       }
     );
   }
-  );
-  }
 
 
-// this was the original code, i feel that neither of these are optimal tho...
+  // this was the original code, i feel that neither of these are optimal tho...
   /*
 getGraph(surveyId: number, title: string) {
 this.surveyTitle = title;
