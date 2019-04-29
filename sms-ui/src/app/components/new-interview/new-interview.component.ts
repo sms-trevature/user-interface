@@ -82,7 +82,7 @@ export class NewInterviewComponent implements OnInit {
     });
 
 
-  //  window.location.reload();
+    window.location.reload();
 
   }
 

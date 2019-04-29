@@ -54,20 +54,20 @@
         <br>
         <div *ngIf="curQuestionType&&curQuestionType!=5" id="answerdesc">
           <br>
-            Possible Answer Value:
-            <div id="answerlist" *ngFor='let temp of curAnswerList'>{{temp.answer}}</div>
-            <br>
-            <br>
+           <p style="margin-left: 5px">Possible Answer Value:</p> 
+            <div style="margin-left: 5px" id="answerlist" *ngFor='let temp of curAnswerList'> <ul><li>{{temp.answer}}</li></ul></div>
             <div *ngIf="curQuestionType==2||curQuestionType==3">
-                <input class="form-control input-md" type='text' id="answerText" [(ngModel)]='inputAnswerString' />
+                <input style="margin-left: 5px" class="form-control input-md" type='text' id="answerText" [(ngModel)]='inputAnswerString' />
                 <br>
-                <button id="addAnswer" name="addbutton" class="btn btn-primary" (click)='addAnswer()'>Add to Answers</button>
+                <button id="addAnswer" name="addbutton" class="btn btn-dark" (click)='addAnswer()'>Add to Answers</button>
                 <button *ngIf="curAnswerList.length" id="removeAnswer" name="addbutton" class="btn btn-danger" (click)='undo()' >Undo</button>
             </div>
             </div>
             <br>
-            <button id="addquestion" name="addbutton" class="btn btn-primary" (click)='addQuestion()'>Add Question</button>
-    </div>
+            <div style="padding-left: 5px">
+            <button  id="addquestion" name="addbutton" class="btn btn-dark" (click)='addQuestion()'>Add Question</button>
+          </div>
+          </div>
     <br>
   <div id="questionlist">
       <div *ngFor='let temp of questionList; index as i'>{{"Q"+(i+1)+": "+temp.question}}
@@ -81,7 +81,7 @@
     <!-- Button -->
     <div class="submit-button">
       <!--<label class="col-md-4 control-label" for="singlebutton">Submission</label>-->
-        <button id="singlebutton" name="singlebutton" class="btn btn-primary" (click)='submit()'>Submit</button>
+        <button id="singlebutton" name="singlebutton" class="btn btn-dark" (click)='submit()'>Submit</button>
         <br><br>
         <button id="singlebutton" name="singlebutton" class="btn btn-danger" (click)='drop()'>Drop Current Survey</button>
       </div>
