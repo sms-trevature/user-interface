@@ -1,8 +1,8 @@
 <app-navbar> </app-navbar>
 
-<div class="container">
+<div class="container" *ngIf='listOfSurvey && listOfSurvey.length; else elseBlock'>
     Search: <input type="text" [(ngModel)]='listFilter'>
-  <table class="table table-striped" *ngIf='listOfSurvey && listOfSurvey.length'>
+  <table class="table table-striped" >
     <thead>
       <tr>
         <th scope="col">Title</th>
@@ -21,13 +21,11 @@
         <td>{{listOfSurveyHistory[i].dateAssigned | showTimestamp}}</td>
         <td>{{temp.closingDate | showTimestamp}} </td>
       </tr>
-      <!-- Button trigger modal -->
     </tbody>
   </table>
 </div>
 
 <!-- Modal -->
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -78,3 +76,7 @@
         <button type="submit" class="submitSurveyButton" data-dismiss="modal" (click)='close()'>Close</button>
         <button type="submit" class="submitSurveyButton" (click)='submit()'>Submit</button>
       </div>
+
+      <!-- No Surveys to display needs to look better -->
+      <ng-template #elseBlock>Content to render when condition is false.</ng-template>
+      
