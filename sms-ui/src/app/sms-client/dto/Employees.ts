@@ -3,5 +3,6 @@ export interface SomeAssociate {
     lastName: string;
     role: string;
     email: string;
+    phone: string; 
  }
  
