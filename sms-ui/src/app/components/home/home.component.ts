@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           console.log(localStorage.getItem('userEmail'));
         },
         err => {
-          console.log(err);
         }
       );
     });
