@@ -10,16 +10,16 @@
         <div class="col-3"></div>
         <div class="col-6">
 
-            <select class="custom-select" (change)="firstDropDownChanged($event.target.value)">
+            <select class="custom-select" [(ngModel)]='selectedCohort' (change)="firstDropDownChanged($event.target.value);submitReadyCheck()">
         <option selected>Select Cohort</option>
-        <option *ngFor='let v of _values1'>{{v}}</option>
+        <option *ngFor='let v of _cohortName'>{{v}}</option>
        
       </select>
             <br>
             <br>
-            <select class="custom-select" [disabled]="dropdown2NotReady">
+            <select class="custom-select" [disabled]="dropdown2NotReady" [(ngModel)]='selectedAssociate' (change)="submitReadyCheck()">
         <option selected>Select An Associate</option>
-        <option *ngFor='let v of _values2'>{{v}}</option>
+        <option *ngFor='let v of _associateName'>{{v}}</option>
         
       </select>
             <br>
@@ -44,17 +44,17 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Location</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Enter Location" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" (keypress)="submitReadyCheck()" [(ngModel)]='selectedLocation' placeholder="Enter Location" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Client</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Enter Client Name" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" [(ngModel)]='selectedClient' (keypress)="submitReadyCheck()" placeholder="Enter Client Name" aria-describedby="basic-addon1">
             </div>
 
-            <button type="button" (click)="try()" class="btn btn-dark">Confirm Interview</button>
+            <button type="button" [disabled]="buttonDisabled" (click)="sendInterviewData()" class="btn btn-dark">Confirm Interview</button>
 
         </div>
         <div class="col-3"></div>
