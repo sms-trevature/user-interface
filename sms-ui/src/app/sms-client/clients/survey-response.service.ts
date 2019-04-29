@@ -16,6 +16,9 @@ export class SurveyResponseService {
     return this.http.get<Responses[]>(`${this.context}/surveyId/${surveyId}`);
   }
 
+  save(res: Responses): Observable<Responses> {
+    return this.http.post<Responses>(`${this.context}`, res);
+  }
   saveList(resList: Responses[]): Observable<Responses[]> {
     return this.http.post<Responses[]>(`${this.context}/multi-response`, resList);
   }
