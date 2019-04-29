@@ -1,8 +1,8 @@
 <app-navbar> </app-navbar>
 
 <div class="container" *ngIf='listOfSurvey && listOfSurvey.length; else elseBlock'>
-    Search: <input type="text" [(ngModel)]='listFilter'>
-  <table class="table table-striped" >
+  <input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
+  <table class="table table-striped" id="box-shadow">
     <thead>
       <tr>
         <th scope="col">Title</th>
@@ -70,13 +70,24 @@
 
       </div>
       <div class="form-check"><input class="form-check-input position-static" id="ma" type="checkbox"
-          name="anonymousResponses"><label class="form-check-label" for="gridCheck" >Make my responses anonymous</label>
+          name="anonymousResponses"><label class="form-check-label" for="gridCheck">Make my responses anonymous</label>
       </div>
       <div class="modal-footer">
         <button type="submit" class="submitSurveyButton" data-dismiss="modal" (click)='close()'>Close</button>
-        <button type="submit" class="submitSurveyButton" (click)='submit()'>Submit</button>
+        <button type="submit" class="submitSurveyButton" data-dismiss="modal" (click)='submit()' (click)='close()'>Submit</button>
       </div>
 
       <!-- No Surveys to display needs to look better -->
-      <ng-template #elseBlock>Content to render when condition is false.</ng-template>
-      
+      <ng-template #elseBlock>
+        <div class="container" >
+          <table class="table table-striped" id="box-shadow">
+            <th><br></th>
+            <tr>
+              <td>
+          <h1>No Surveys Assigned</h1>
+        </td>
+        </tr>
+        </table>
+        </div>
+
+      </ng-template>

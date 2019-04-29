@@ -1,7 +1,7 @@
 <app-navbar> </app-navbar>
 <div id="main-content-container">
-    Search: <input type="text" [(ngModel)]='listFilter'>
-    <table class='table' *ngIf='listOfSurvey && listOfSurvey.length'>
+    <input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
+    <table class='table' *ngIf='listOfSurvey && listOfSurvey.length' id="box-shadow">
 
         <thead>
 
