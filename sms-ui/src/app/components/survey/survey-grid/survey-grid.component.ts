@@ -13,13 +13,17 @@ import { CookieStorage } from '@aws-amplify/auth';
   styleUrls: ['./survey-grid.component.scss']
 })
 export class SurveyGridComponent implements OnInit {
+
   listOfSurvey: Survey[];
   filteredListOfSurvey: Survey[];
   curTemplate: SurveyQuestion[];
   curTempAnswers: Array<Answer[]>;
-  constructor(private surveyService: SurveyService,
-              private sqService: SurveyQuestionService,
-              private answerService: SurveyAnswerService) { }
+  listFilterVar: string;
+
+  constructor(
+    private surveyService: SurveyService,
+    private sqService: SurveyQuestionService,
+    private answerService: SurveyAnswerService) { }
 
   ngOnInit() {
     this.listOfSurvey = [];
@@ -32,6 +36,24 @@ export class SurveyGridComponent implements OnInit {
         }
         this.filteredListOfSurvey = this.listOfSurvey;
       }
+    );
+  }
+
+  get listFilter(): string {
+    return this.listFilterVar;
+  }
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.filteredListOfSurvey = (this.listFilterVar) ?
+    this.performFilter(this.listFilterVar) : this.listOfSurvey;
+  }
+
+  performFilter(filterBy: string): Survey[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.listOfSurvey.filter((temp: Survey) =>
+      (temp.title.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.description.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
     );
   }
 

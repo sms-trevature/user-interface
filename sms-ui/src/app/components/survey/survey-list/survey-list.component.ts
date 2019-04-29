@@ -23,6 +23,8 @@ export class SurveyListComponent implements OnInit {
   qList: Question[];
   ArrayOfResponseAnswerList: Array<string[]>;
   arrOfCounts: Array<number[]>;
+  listFilterVar: string;
+  filteredListOfSurvey: Survey[];
   constructor(private surveyService: SurveyService,
               private answerService: SurveyAnswerService,
               private sqService: SurveyQuestionService,
@@ -37,8 +39,26 @@ export class SurveyListComponent implements OnInit {
             this.listOfSurvey.push(temp);
           }
         }
-
+        this.filteredListOfSurvey = this.listOfSurvey;
       }
+    );
+  }
+
+  get listFilter(): string {
+    return this.listFilterVar;
+  }
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.filteredListOfSurvey = (this.listFilterVar) ?
+    this.performFilter(this.listFilterVar) : this.listOfSurvey;
+  }
+
+  performFilter(filterBy: string): Survey[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.listOfSurvey.filter((temp: Survey) =>
+      (temp.title.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.description.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
     );
   }
 

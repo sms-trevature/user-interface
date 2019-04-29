@@ -1,7 +1,7 @@
 <app-navbar> </app-navbar>
 
 <div class="container">
-
+    Search: <input type="text" [(ngModel)]='listFilter'>
   <table class="table table-striped" *ngIf='listOfSurvey && listOfSurvey.length'>
     <thead>
       <tr>
@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor='let temp of listOfSurvey; index as i' data-toggle="modal" data-target="#exampleModal"
+      <tr *ngFor='let temp of filteredListOfSurvey; index as i' data-toggle="modal" data-target="#exampleModal"
         (click)='openSurvey(listOfSurveyHistory[i])'>
         <td>{{temp.title}}</td>
         <td>{{temp.description}}</td>

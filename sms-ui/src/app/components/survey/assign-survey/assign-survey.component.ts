@@ -10,8 +10,6 @@ import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.se
 import { Responses } from 'src/app/sms-client/dto/Response';
 import { SurveyResponseService } from 'src/app/sms-client/clients/survey-response.service';
 
-
-
 @Component({
   selector: 'app-assign-survey',
   templateUrl: './assign-survey.component.html',
@@ -27,6 +25,8 @@ export class AssignSurveyComponent implements OnInit {
   inputAns: string[] = [];
   inputMultiAns: string[] = [];
   inputMultiAnsQNum: number[] = [];
+  listFilterVar: string;
+  filteredListOfSurvey: Survey[];
   constructor(
     private surveyService: SurveyService,
     private historyService: SurveyHistoryService,
@@ -51,14 +51,32 @@ export class AssignSurveyComponent implements OnInit {
               if (!temp.dateCompleted) {
                 this.listOfSurveyHistory.push(temp);
               }
+              this.filteredListOfSurvey = this.listOfSurvey;
             }
           }
         );
       }
     );
-
-
   }
+
+  get listFilter(): string {
+    return this.listFilterVar;
+  }
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.filteredListOfSurvey = (this.listFilterVar) ?
+    this.performFilter(this.listFilterVar) : this.listOfSurvey;
+  }
+
+  performFilter(filterBy: string): Survey[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.listOfSurvey.filter((temp: Survey) =>
+      (temp.title.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.description.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    );
+  }
+
   openSurvey(sh: SurveyHistory) {
     this.curSH = sh;
     const surveyId = sh.surveyId;
