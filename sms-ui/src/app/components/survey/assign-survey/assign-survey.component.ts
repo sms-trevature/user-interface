@@ -21,6 +21,7 @@ export class AssignSurveyComponent implements OnInit {
 
   listOfSurvey: Survey[];
   listOfSurveyHistory: SurveyHistory[];
+  curSH: SurveyHistory;
   curTemplate: SurveyQuestion[];
   curTempAnswers: Array<Answer[]>;
   inputAns: string[] = [];
@@ -58,7 +59,9 @@ export class AssignSurveyComponent implements OnInit {
 
 
   }
-  openSurvey(surveyId: number) {
+  openSurvey(sh: SurveyHistory) {
+    this.curSH = sh;
+    const surveyId = sh.surveyId;
     this.curTemplate = [];
     this.curTempAnswers = [];
     this.sqService.getTemplate(surveyId).subscribe(
@@ -81,26 +84,30 @@ export class AssignSurveyComponent implements OnInit {
   }
   async submit() {
     const responseList: Responses[] = [];
-    const answerList: Answer[] = [];
 
     for (const i of Object.keys(this.inputAns)) {
-      let tempAns;
+      let tempAns: Answer = null;
       if (this.curTemplate[i].questionId.typeId === 5) {
         tempAns = new Answer(null, this.inputAns[i], this.curTemplate[i].questionId.questionId);
-        await this.answerService.save(tempAns).subscribe(
-          data => {tempAns = data; }
+        this.answerService.save(tempAns).subscribe(
+          data => {
+            this.responseService.save(
+              new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, data)
+            ).subscribe();
+          }
         );
-        answerList.push(tempAns);
       } else {
         for (const ansForCurQuestion of this.curTempAnswers[i]) {
           if (ansForCurQuestion.answer === this.inputAns[i]) {
             tempAns = ansForCurQuestion;
+            break;
           }
         }
       }
-      responseList.push(new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, tempAns));
+      if (tempAns.id) {
+        responseList.push(new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, tempAns));
+      }
     }
-
     for (const x in this.inputMultiAns) {
       if (this.inputMultiAns[x]) {
         const hide = document.getElementById(x.toString()) as HTMLInputElement;
@@ -114,9 +121,11 @@ export class AssignSurveyComponent implements OnInit {
     this.responseService.saveList(responseList).subscribe(
       hope => {
         if (hope) {
-          alert('successful');
+          window.location.reload();
         }
       }
     );
+    this.curSH.dateCompleted = new Date();
+    this.historyService.update(this.curSH).subscribe();
   }
 }

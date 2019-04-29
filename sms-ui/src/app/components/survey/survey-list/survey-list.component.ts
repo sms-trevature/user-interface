@@ -78,7 +78,6 @@ export class SurveyListComponent implements OnInit {
               this.ArrayOfResponseAnswerList[sq.questionOrder - 1] = tempAnsList;
               this.arrOfCounts[sq.questionOrder - 1] = count;
             }
-            console.log(this.arrOfCounts);
           }
         );
       }

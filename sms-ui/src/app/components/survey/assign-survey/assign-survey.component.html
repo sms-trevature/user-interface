@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <tr *ngFor='let temp of listOfSurvey; index as i' data-toggle="modal" data-target="#exampleModal"
-      (click)='openSurvey(temp?.surveyId)'>
+      (click)='openSurvey(listOfSurveyHistory[i])'>
       <td>{{temp.title}}</td>
       <td>{{temp.description}}</td>
       <td>{{temp.dateCreated | showTimestamp}}</td>
@@ -31,7 +31,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" *ngIf='curTemplate&&curTemplate[0].surveyId'>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf='curTemplate&&curTemplate[0]'>
           {{curTemplate[0].surveyId.title}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
