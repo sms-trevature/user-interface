@@ -5,15 +5,10 @@
 export const environment = {
 
   production: false,
-
    awsRegion: 'us-east-1',
-
   cognitoClientId: '4mafdnad6u1o1ugokulsmbrl96',
-
   cognitoUserPoolId: 'us-east-1_6hCFlGZHZ',
-
   smsGateway: 'http://localhost:8765',
-
 };
 
 /*

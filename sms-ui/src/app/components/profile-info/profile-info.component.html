@@ -40,7 +40,7 @@
         <b>Name Alias:</b> &nbsp;&nbsp; <input value="{{currentUser.personalAddress.alias}}" id="alias">
         <br>
         <br>
-        <b>Company Status:</b> &nbsp;&nbsp; <input value="Associate" readonly>
+        <b>Company Status:</b> &nbsp;&nbsp; <input value="Associate {{currentUser[0].userStatus}}" readonly id="companyStat">
         <br>
         <br>
         <button type="button" class="btn btn-info" (click)="someMethodToUpdateAddressOrUserInfo()">Update</button>

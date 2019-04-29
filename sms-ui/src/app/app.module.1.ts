@@ -76,7 +76,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        component: MngrSubAssociatesComponent
+        component: SubMan2CohortComponent
       }
     ]
   },

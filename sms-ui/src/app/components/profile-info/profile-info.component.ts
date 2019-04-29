@@ -35,6 +35,8 @@ export class ProfileInfoComponent implements OnInit {
   UpdateUser: UserObj; 
   UserPersonalAddress: AddressObject;
 
+ // currentUser: User; 
+
   constructor(private http: HttpClient, private nav: NavbarComponent, private cognitoService: CognitoService) {
     console.log(" constructor - undefined??? " + nav.user.lastName);
     this.currentUser = nav.user;

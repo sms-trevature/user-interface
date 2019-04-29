@@ -68,7 +68,7 @@ export class MngrSubAssociatesComponent implements OnInit {
 
     });
     this.http.get('cognito/users/groups/trainer').toPromise().then(trainer => {
-      alert(trainer);
+      
       let index = 0;
       while (trainer['Users'][index] != undefined) {
         if (trainer['Users'][index].Attributes[1]['Value'] == true || trainer['Users'][index].Attributes[1]['Value'] == 'true') {

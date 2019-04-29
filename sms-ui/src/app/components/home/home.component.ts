@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
 import { CognitoService } from 'src/app/services/cognito.service';
 import { Subscription } from 'rxjs';
@@ -22,22 +22,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.currentUserSubscription = this.cognito.currentUser$.subscribe(user => {
       this.userClient.findByEmail(user.email).subscribe(
         succResp => {
-          console.log(succResp);
-          user = succResp;
-          console.log("we can pass this user: " + user.firstName);
-          this.nav.user = user;
-          console.log(user.trainingAddress );
-          //trying to pass via the nav bar.. 
           this.user = succResp;
+          localStorage.setItem('userEmail', this.user.email);
+          localStorage.setItem('user', JSON.stringify(this.user));
         },
         err => {
-          console.log(err);
         }
       );
     });
   }
-returnUserInfo(): User{
-  console.log("something called finally "); 
+returnUserInfo(): User {
   return this.user;
 }
   ngOnDestroy() {

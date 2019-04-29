@@ -9,6 +9,9 @@ import { User } from 'src/app/sms-client/dto/User';
 })
 export class NavbarComponent implements OnInit {
 
+
+  email: string;
+
   constructor(private router: Router) { }
   
   public user: User;
@@ -17,7 +20,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/surveyList');
   }
   ngOnInit() {
-   
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.email = localStorage.getItem('userEmail');
+
   }
 
 }
