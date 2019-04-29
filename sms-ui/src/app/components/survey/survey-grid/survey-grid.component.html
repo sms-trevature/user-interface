@@ -2,10 +2,11 @@
 <div id="main-content-container">
     <table class='table' *ngIf='listOfSurvey && listOfSurvey.length'>
         <thead>
-
+            
             <th class="Title">Title</th>
             <th class="Description">Description</th>
             <th class="DateCreated">Date Created</th>
+            <th> Search: <input type="text" [(ngModel)]='listfilter'> </th>
 
         </thead>
         <tbody>

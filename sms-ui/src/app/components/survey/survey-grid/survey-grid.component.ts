@@ -14,6 +14,7 @@ import { CookieStorage } from '@aws-amplify/auth';
 })
 export class SurveyGridComponent implements OnInit {
   listOfSurvey: Survey[];
+  filteredListOfSurvey: Survey[];
   curTemplate: SurveyQuestion[];
   curTempAnswers: Array<Answer[]>;
   constructor(private surveyService: SurveyService,
@@ -29,6 +30,7 @@ export class SurveyGridComponent implements OnInit {
             this.listOfSurvey.push(temp);
           }
         }
+        this.filteredListOfSurvey = this.listOfSurvey;
       }
     );
   }
