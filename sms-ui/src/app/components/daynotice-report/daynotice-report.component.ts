@@ -61,8 +61,17 @@ export class DaynoticeReportComponent implements OnInit {
   }
 
   filterByDayNotice(): DayNotice[] {
+
     return this.dayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == true);
   }
+    // {
+    //   if (randomV.associateInput.dayNotice == null) {
+    //     document.getElementById('Notice').innerHTML = 'N/A';
+    //   } else {
+    //     randomV.associateInput.dayNotice == true;
+    //   }
+    // }
+    // )};
 
   filterByNoNotice(): DayNotice[] {
     return this.noDayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == false);

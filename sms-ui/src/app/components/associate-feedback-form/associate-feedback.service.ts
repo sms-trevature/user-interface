@@ -8,12 +8,12 @@ import { InterviewFormat } from 'src/app/sms-client/dto/InterviewFormat';
 })
 export class AssociateFeedback {
   '_descriptionProvided': boolean;
-  '_recievedNotifications': string;
+  '_recievedNotifications': Date;
   '_dayNotice': boolean;
   '_interviewFormat': InterviewFormat;
   '_proposedFormat': InterviewFormat;
 
-  constructor(descriptionProvided: boolean, recievedNotifications: string, dayNotice: boolean, interviewFormat: InterviewFormat, proposedFormat: InterviewFormat) {
+  constructor(descriptionProvided: boolean, recievedNotifications: Date, dayNotice: boolean, interviewFormat: InterviewFormat, proposedFormat: InterviewFormat) {
     this._descriptionProvided = descriptionProvided;
     this._recievedNotifications = recievedNotifications;
     this._dayNotice = dayNotice;
@@ -29,11 +29,11 @@ export class AssociateFeedback {
    this._descriptionProvided = temp;
   }
 
-  get recievedNotifications(): string {
+  get recievedNotifications(): Date {
     return this._recievedNotifications;
   }
 
-  set recievedNotifications(temp: string) {
+  set recievedNotifications(temp: Date) {
     this._recievedNotifications = temp;
   }
 

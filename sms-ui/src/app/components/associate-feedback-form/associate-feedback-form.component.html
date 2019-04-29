@@ -4,12 +4,11 @@
         <div class="main-center">
             <form class="" method="post" action="#">
 
-                <div class="form-group">
-                    <label for="name">Date of interview notification</label>
-                    <div class="input-group">
-                        <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
-                        <ejs-datepicker id='datepicker' placeholder='Select a date' [value]='value' [min]='minDate' [max]='maxDate'></ejs-datepicker>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Date</span>
                     </div>
+                    <input type="text" placeholder="Enter Date" bsDatepicker [minDate]="minDate" [(ngModel)]="recievedNotifications" class="form-control">
                 </div>
 
                 <div class="form-group">
@@ -50,8 +49,5 @@
 
             </form>
         </div>
-        <!--main-center"-->
     </div>
-    <!--main-->
 </div>
-<!--container-->
