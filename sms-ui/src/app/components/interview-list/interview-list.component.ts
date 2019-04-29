@@ -13,7 +13,6 @@ export class InterviewListComponent implements OnInit {
   private filteredInterviewList: Interview[] = [];
   private listFilterVar = '';
   private reviewFilterVar = 'all';
-  // private pageTitle = 'All Interviews';
 
   get listFilter(): string {
     return this.listFilterVar;
