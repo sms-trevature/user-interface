@@ -38,8 +38,11 @@ export class ProfileInfoComponent implements OnInit {
  // currentUser: User; 
 
   constructor(private http: HttpClient, private nav: NavbarComponent, private cognitoService: CognitoService) {
-    console.log(" constructor - undefined??? " + nav.user.lastName);
-    this.currentUser = nav.user;
+    
+    //this.currentUser = nav.user;\
+
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+  //  console.log(" constructor - undefined??? " + nav.user.lastName);
     console.log("salad and burgers: " + this.currentUser.personalAddress);
     if(this.currentUser.personalAddress == null){
       this.UserPersonalAddress = new AddressObject(0, 'No Alias', 'No Street', 'No Zip', 'No City', 'No State', 'No Country', false);

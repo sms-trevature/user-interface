@@ -410,7 +410,6 @@ export class MngrSubAssociatesComponent implements OnInit {
       } else if (Spstatus == 'Panel Pending') {
         id = 17;
       }
-
     }
 
     let body = {
