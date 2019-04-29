@@ -16,17 +16,14 @@ export class SurveyRespondentsComponent implements OnInit {
   constructor(private surveyHistoryService: SurveyHistoryService) { }
 
   ngOnInit() {
-    //Hard coded example to make sure connection was correct
+    //Hard coded example to make sure connection is Correct
+    // Currently a placeholder because I can't get event emitters to work here...
     this.surveyHistoryService.findBySurveyId(6).subscribe(
       data => {
         this.listOfResp = data;
         //console.log(data);
       }
     );
-  }
-
-  ngOnChanges() {
-    this.getSurveys(this.surveyId);
   }
 
   getSurveys(sId: number) {
