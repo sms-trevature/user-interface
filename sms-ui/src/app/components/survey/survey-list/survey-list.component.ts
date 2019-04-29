@@ -63,13 +63,14 @@ export class SurveyListComponent implements OnInit {
                   }
                 }
                } else {
-                for (const res of data) {
+                 data.sort((a, b) => a.answerId.id - b.answerId.id);
+                 for (const res of data) {
                   if (res.answerId.questionId === sq.questionId.questionId) {
-                    if (tempAnsList.length === 0 || res.answerId.answer !== tempAnsList[tempAnsList.length - 1]) {
+                    if (tempAnsList.length === 0 || !tempAnsList.includes(res.answerId.answer)) {
                       tempAnsList.push(res.answerId.answer);
                       count.push(1);
-                    } else if ( res.answerId.answer === tempAnsList[tempAnsList.length - 1]) {
-                      count[count.length - 1]++;
+                    } else if (tempAnsList.includes(res.answerId.answer)) {
+                      count[tempAnsList.indexOf(res.answerId.answer)]++;
                     }
                   }
                 }
