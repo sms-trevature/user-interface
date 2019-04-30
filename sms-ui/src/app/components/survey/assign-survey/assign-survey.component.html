@@ -1,7 +1,13 @@
 <app-navbar> </app-navbar>
 
 <div class="container" *ngIf='listOfSurvey && listOfSurvey.length; else elseBlock'>
-  <input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
+    <div _ngcontent-c1="" class="panel-body">
+        <div _ngcontent-c1="" class="row">
+          <div _ngcontent-c1="" class="col-md-2"><b _ngcontent-c1="">Search:</b></div>
+          <div _ngcontent-c1="" class="col-md-4"><input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
+          </div>
+        </div>
+      </div>
   <table class="table table-striped" id="box-shadow">
     <thead>
       <tr>
