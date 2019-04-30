@@ -1,5 +1,6 @@
 import { Address } from './Address';
 import { status } from './Status';
+
 export interface User {
   userId: number;
   firstName: string;

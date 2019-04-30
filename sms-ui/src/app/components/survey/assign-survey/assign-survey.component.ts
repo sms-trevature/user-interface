@@ -114,6 +114,7 @@ export class AssignSurveyComponent implements OnInit {
             ).subscribe();
           }
         );
+
       } else {
         for (const ansForCurQuestion of this.curTempAnswers[i]) {
           if (ansForCurQuestion.answer === this.inputAns[i]) {
@@ -126,6 +127,7 @@ export class AssignSurveyComponent implements OnInit {
         responseList.push(new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, tempAns));
       }
     }
+
     for (const x in this.inputMultiAns) {
       if (this.inputMultiAns[x]) {
         const hide = document.getElementById(x.toString()) as HTMLInputElement;
