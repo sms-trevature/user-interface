@@ -12,7 +12,7 @@ export class AssociateFeedbackFormComponent implements OnInit {
 
   private _minDate: Date;
   _descriptionProvided = false;
-  private recievedNotifications: Date;
+  private receivedNotifications: Date;
   _dayNotice = false;
   _interviewFormatStr = '';
   _proposedFormatStr = '';
@@ -25,7 +25,7 @@ export class AssociateFeedbackFormComponent implements OnInit {
   constructor(private associateFeedbackService: AssociateFeedbackService, private router: Router) {
     this._minDate = new Date();
     this._minDate.setDate(this._minDate.getDate());
-  
+
   }
 
   get minDate(): Date {
@@ -83,26 +83,18 @@ export class AssociateFeedbackFormComponent implements OnInit {
   postAssociateInput() {
 
     console.log('in the submit')
-    
+
     console.log(this._interviewFormatStr);
     console.log(this.interviewFormat);
     console.log(this.dayNotice);
-    console.log("THE DATE IS: " + this.recievedNotifications);
-    this.interviewFormat = {'formatDesc':this._interviewFormatStr};
+    console.log("THE DATE IS: " + this.receivedNotifications);
+    this.interviewFormat = { 'id': 2, 'formatDesc': this._interviewFormatStr };
     console.log('seperator')
-    this.proposedFormat={'formatDesc':this._proposedFormatStr};;
+    this.proposedFormat = { 'id': 2, 'formatDesc': this._proposedFormatStr };;
     console.log('made it past the formats')
-    let associateInput = new AssociateFeedback(this._descriptionProvided, this.recievedNotifications, this._dayNotice, this.interviewFormat, this.proposedFormat);
-    let tempString = '2019-08-03 14:00:00';
-    console.log('past the constructor')
-    associateInput.interviewFormat.formatDesc = this._interviewFormatStr;
-    associateInput.proposedFormat.formatDesc = this._proposedFormatStr;
-    console.log('interview Format')
-    console.log('proposed Format')
-    console.log(this.proposedFormat)
-
+    let associateInput = new AssociateFeedback(this._descriptionProvided, this.receivedNotifications, this._dayNotice, this.interviewFormat, this.proposedFormat);
     this.associateFeedbackService.postAssociateInput(associateInput).subscribe(data => {
-        data.recievedNotifications = this.recievedNotifications,
+      data.receivedNotifications = this.receivedNotifications,
         data.descriptionProvided = this._descriptionProvided,
         data.interviewFormat = this.interviewFormat,
         data.proposedFormat = this.proposedFormat,
