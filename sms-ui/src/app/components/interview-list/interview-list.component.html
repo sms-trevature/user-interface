@@ -27,48 +27,15 @@
         <thead class='rev-background-color'>
           <tr>
             <th>Reviewed</th>
-            <th>Associate Email</th>
-            <th>Manager Email</th>
-            <th>Location</th>
-            <th>Client</th>
-            <th>Date Notified</th>
-            <th>Date Scheduled</th>
-            <th>Date Reviewed</th>
+            <th (click)='sortByAssociateEmail()'>Associate Email</th>
+            <th (click)='sortByManagerEmail()'>Manager Email</th>
+            <th (click)='sortByLocation()'>Location</th>
+            <th (click)='sortByClient()'>Client</th>
+            <th (click)='sortByDateNotified()'>Date Notified</th>
+            <th (click)='sortByDateScheduled()'>Date Scheduled</th>
+            <th (click)='sortByDateReviewed()'>Date Reviewed</th>
             <th>Associate Feedback</th>
             <th>Interview Feedback</th>
-          </tr>
-          <tr>
-            <th></th>
-            <th>
-              <button (click)='sortByAssociateEmailAsc()'>▲</button>
-              <button (click)='sortByAssociateEmailDesc()'>▼</button>
-            </th>
-            <th>
-              <button class='sortbtn' (click)='sortByManagerEmailAsc()'>▲</button>
-              <button class='sortbtn' (click)='sortByManagerEmailDesc()'>▼</button>
-            </th>
-            <th>
-              <button class='sortbtn' (click)='sortByLocationAsc()'>▲</button>
-              <button class='sortbtn' (click)='sortByLocationDesc()'>▼</button>
-            </th>
-            <th>
-              <button class='sortbtn' (click)='sortByClientAsc()'>▲</button>
-              <button class='sortbtn' (click)='sortByClientDesc()'>▼</button>
-            </th>
-            <th>
-                <button class='sortbtn' (click)='sortByNotifiedAsc()'>▲</button>
-                <button class='sortbtn' (click)='sortByNotifiedDesc()'>▼</button>
-            </th>
-            <th>
-                <button class='sortbtn' (click)='sortByScheduledAsc()'>▲</button>
-                <button class='sortbtn' (click)='sortByScheduledDesc()'>▼</button>
-            </th>
-            <th>
-                <button class='sortbtn' (click)='sortByReviewedAsc()'>▲</button>
-                <button class='sortbtn' (click)='sortByReviewedDesc()'>▼</button>
-            </th>
-            <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
