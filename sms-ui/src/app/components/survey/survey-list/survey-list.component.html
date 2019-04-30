@@ -41,7 +41,7 @@
 
   </ul>
 </div> -->
-<!-- 
+<!--
   <div *ngFor='let temp of ArrayOfResponseAnswerList; index as i;'>
       <app-answer-data2 [pieChartLabels]='temp' [pieChartData]= 'arrOfCounts[i]'></app-answer-data2>
   </div> -->
@@ -73,20 +73,40 @@
                     <td data-toggle="modal" data-target="#exampleModalLong">{{temp.title}}</td>
                     <td data-toggle="modal" data-target="#exampleModalLong">{{temp.description}}</td>
                     <td>{{temp.dateCreated | showTimestamp}}</td>
-                    <td><button type="button" class="assignSurveyBtn btn btn-secondary" (click)='getGraph(temp.surveyId,temp.title)'>Data</button></td>
+                    <td><button type="button" class="assignSurveyBtn btn btn-secondary" (click)='getGraph(temp.surveyId,temp.title)' data-toggle="modal" data-target="#chartModal">Data</button></td>
                     <td><button type="button" class="assignSurveyBtn btn btn-secondary">Status</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-
+<!--
   <div id="graphs" *ngIf='qList&&qList.length&&ArrayOfResponseAnswerList'>
         <h3>{{"Analytics: " + surveyTitle}}</h3>
         <div *ngFor='let temp of qList; index as i;'>
             <app-survey-data [question]='temp.question' [type]='temp.typeId' [arrOfAns]='ArrayOfResponseAnswerList[i]' [arrOfCountedResponse]='arrOfCounts[i]'></app-survey-data>
         </div>
-    </div>
+    </div> -->
+
+    <div class="container">
+      <!-- Trigger the modal with a button -->
+      <!-- Modal -->
+      <div class="modal fade" id="chartModal" role="dialog" *ngIf='qList&&qList.length&&ArrayOfResponseAnswerList'>
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+               <h3>{{"Analytics: " + surveyTitle}}</h3>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" *ngFor='let temp of qList; index as i;'>
+              <app-survey-data [question]='temp.question' [type]='temp.typeId' [arrOfAns]='ArrayOfResponseAnswerList[i]' [arrOfCountedResponse]='arrOfCounts[i]'></app-survey-data>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <!-- end of graph-->
 
 
