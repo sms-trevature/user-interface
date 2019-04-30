@@ -38,7 +38,7 @@ export class DaynoticeReportComponent implements OnInit {
 
 
   filterByTrue(): ActualDayNotice[] {
-    return this.dayNoticeList.filter((randomV: ActualDayNotice) => (randomV.twentyFourAssoc) == false);
+    return this.dayNoticeList.filter((randomV: ActualDayNotice) => (randomV.twentyFourAssoc) == true);
 
   }
     // {
