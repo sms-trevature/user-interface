@@ -69,7 +69,7 @@ export class CognitoService {
 
   private setup() {
     
-    Auth.currentAuthenticatedUser()
+    Auth.currentAuthenticatedUser() 
       .then(user => {
         // initialize the jwt for axios
         Auth.currentSession()
