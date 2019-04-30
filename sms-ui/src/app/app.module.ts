@@ -47,6 +47,7 @@ import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-repo
 import { RegistrationComponent } from './components/registration/registration.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 
+
 const routes: Routes = [
   { path: 'profileInfo', component: RegistrationComponent },
   { path: '', component: LoginComponent },
@@ -61,8 +62,6 @@ const routes: Routes = [
   {path: 'NewRegistration', component: RegistrationComponent},
   {path: 'FeedbackRoute', component: FeedbackReportComponent},
 
-  {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
-  {path: 'JobDescRoute', component: JobdescReportComponent},
 
 
   {
@@ -126,11 +125,7 @@ const routes: Routes = [
     DaynoticeReportComponent,
     JobdescReportComponent,
     RegistrationComponent,
-
-    DaynoticeGraphComponent,
-    DaynoticeReportComponent,
     FeedbackReportComponent,
-    JobdescReportComponent,
 
 
 
