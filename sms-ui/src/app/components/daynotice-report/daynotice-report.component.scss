@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $revature-orange-light: #f3a55d;
 $revature-orange: #f26925;
 $drew-orange: #f3a55d;
@@ -37,3 +38,39 @@ $rounded-amount: 0.5em;
 .nogo{
     left:30%;
   }
+=======
+.modalbtn {
+    color: black;
+    border-radius: 10px;
+    background-color: #f3a55d;
+    font-weight: bold;
+    height: 40px;
+    width: 100%;
+    border: none;
+}
+
+.panel-body, th, h4 {
+    background-color: #f3a55d;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+
+.col-md-2 {
+    text-align: center;
+}
+
+.table-container {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.sortbtn {
+    font-size: 80%;
+}
+>>>>>>> 4af8f6aface628af275ec88fe80d6547501b2952
