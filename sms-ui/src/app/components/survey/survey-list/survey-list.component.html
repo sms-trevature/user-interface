@@ -81,10 +81,6 @@
     </table>
   </div>
 
-  <div id="respondents" *ngIf='respPressed'>
-    <app-survey-respondents [surveyId]='surveyId'></app-survey-respondents>
-  </div>
-
   <div id="graphs" *ngIf='qList&&qList.length'>
     <h3>{{"Analytics: " + surveyTitle}}</h3>
     <div *ngFor='let temp of qList; index as i;'>
@@ -96,6 +92,10 @@
 
 </div>
 <!--end of main -->
+
+<div id="respondents" *ngIf='respPressed'>
+  <app-survey-respondents [surveyId]='surveyId'></app-survey-respondents>
+</div>
 
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"

@@ -43,7 +43,6 @@ export class SurveyListComponent implements OnInit {
         this.listOfSurvey = data;
       }
     );
-    this.respPressed = false;
   }
 
   closeSurvey(index: number) {
