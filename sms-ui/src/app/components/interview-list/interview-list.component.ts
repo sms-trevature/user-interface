@@ -84,8 +84,9 @@ export class InterviewListComponent implements OnInit {
   ngOnInit() {
 
     this.interview.getInterviews().subscribe(data => {
-      this.interviewList = data;
-      this.filteredInterviewList = this.interviewList;
+      this.filteredInterviewList = data;
+      this.sortByScheduledDesc();
+      this.interviewList = this.filteredInterviewList;
       }
     );
   }
