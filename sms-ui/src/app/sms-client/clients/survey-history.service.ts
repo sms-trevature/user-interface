@@ -20,4 +20,7 @@ findByEmail(email: string): Observable<SurveyHistory[]> {
 update(surveyHistory: SurveyHistory): Observable<SurveyHistory> {
   return this.http.patch<SurveyHistory>(`${this.context}/taken`, surveyHistory);
 }
+save(surveyHistory: SurveyHistory): Observable<SurveyHistory> {
+  return this.http.post<SurveyHistory>(`${this.context}`, surveyHistory);
+}
 }

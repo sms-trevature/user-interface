@@ -1,5 +1,5 @@
 import { Address } from './Address';
-
+import { status } from './Status';
 export interface User {
   userId: number;
   firstName: string;
@@ -8,5 +8,5 @@ export interface User {
   phoneNumber: string;
   trainingAddress: Address;
   personalAddress: Address;
-  userStatus: string;
+  userStatus: status;
 }

@@ -19,4 +19,10 @@ export class UsersClientService {
   findByEmail(email: string) {
     return this.http.get<User>(`${this.context}/email/${email}`);
   }
+  findAll() {
+    return this.http.get<User[]>(`${this.context}`);
+  }
+  findAllByCohortId(cohortId: number) {
+    return this.http.get<User[]>(`${this.context}/cohorts/${cohortId}`);
+  }
 }

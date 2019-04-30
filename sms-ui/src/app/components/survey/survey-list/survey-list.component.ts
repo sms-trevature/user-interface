@@ -7,6 +7,12 @@ import { Answer } from 'src/app/sms-client/dto/Answer';
 import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.service';
 import { SurveyResponseService } from 'src/app/sms-client/clients/survey-response.service';
 import { QuestionOfSurveyService } from 'src/app/sms-client/clients/survey-question.service';
+import { Cohort } from 'src/app/sms-client/dto/Cohort';
+import { CohortService } from 'src/app/sms-client/clients/theCohort.service';
+import { User } from 'src/app/sms-client/dto/User';
+import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
+import { SurveyHistoryService } from 'src/app/sms-client/clients/survey-history.service';
+import { SurveyHistory } from 'src/app/sms-client/dto/SurveyHistory';
 
 @Component({
   selector: 'app-survey-list',
@@ -20,13 +26,23 @@ export class SurveyListComponent implements OnInit {
   curTemplate: SurveyQuestion[];
   curTempAnswers: Array<Answer[]>;
 
+  surveyId: number;
+  cohorts: Cohort[];
+  users: User[];
+  statusCheckList: boolean[] = [];
+  cohortCheckList: boolean[] = [];
+  userCheckList: boolean[] = [];
+
   qList: Question[];
   ArrayOfResponseAnswerList: Array<string[]>;
   arrOfCounts: Array<number[]>;
   constructor(private surveyService: SurveyService,
               private answerService: SurveyAnswerService,
               private sqService: SurveyQuestionService,
-              private responseService: SurveyResponseService) {}
+              private responseService: SurveyResponseService,
+              private cohortService: CohortService,
+              private usersClientService: UsersClientService,
+              private surveyHistoryService: SurveyHistoryService) {}
 
   ngOnInit() {
     this.listOfSurvey = [];
@@ -42,6 +58,59 @@ export class SurveyListComponent implements OnInit {
     );
   }
 
+  getCohort() {
+    this.cohortService.findAllCohorts().subscribe(
+      data => {
+        this.cohorts = data;
+      }
+    );
+  }
+
+  getUser(surveyId: number) {
+    this.usersClientService.findAll().subscribe(
+      data => {
+        this.users = data;
+      }
+    );
+    this.surveyId = surveyId;
+  }
+
+  assignSurvey() {
+    const userEmailList: string[] = [];
+    for (const i in this.cohortCheckList) {
+      if (this.cohortCheckList[i]) {
+        this.usersClientService.findAllByCohortId(this.cohorts[i].cohortId).subscribe(data => {
+          for (const user of data) {
+            this.pushSurveyHistory(user.email, this.surveyId);
+          }
+        });
+      }
+    }
+    // tslint:disable-next-line: forin
+    for (const j in this.users) {
+      const cur = this.users[j].userStatus.statusId;
+      if ((this.userCheckList[j]) || (cur <= 3 && cur >= 1 && this.statusCheckList[0]) ||
+      (cur <= 10 && cur >= 4 && this.statusCheckList[1]) ||
+      (cur <= 17 && cur >= 11 && this.statusCheckList[2]) ||
+      (cur <= 4 && cur >= 17 && this.statusCheckList[3])) {
+        if (!userEmailList.includes(this.users[j].email)) {
+          userEmailList.push(this.users[j].email);
+        }
+      }
+    }
+    console.log(userEmailList);
+    for (const email of userEmailList) {
+      this.pushSurveyHistory(email, this.surveyId);
+    }
+    window.location.reload();
+  }
+
+  pushSurveyHistory(email, surveyId) {
+    const surHistory = new SurveyHistory(null, surveyId, email, new Date(), null);
+    this.surveyHistoryService.save(surHistory).subscribe(
+      data => {console.log(data); }
+    );
+  }
   getGraph(surveyId: number, title: string) {
     this.surveyTitle = title;
     this.answerService.findAll().subscribe(

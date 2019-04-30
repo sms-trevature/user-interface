@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   email: string;
 
   constructor(private router: Router) { }
-  
+
   public user: User;
 
   showSurveyPage() {
@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
 
     this.email = localStorage.getItem('userEmail');
-
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
 }
