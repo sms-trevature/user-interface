@@ -108,3 +108,104 @@ $screen-xl-min: 1200px;
 // .AssociatesXitButton{
 //   background-image: url('./littlebackground.png');
 // }
+.trainRoleIcon{
+  background: yellow;
+  border-style: outset;
+  border-width: 3px; 
+  border-color: antiquewhite;
+  border-radius: 10px; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  padding-left: 10px; 
+  text-align: left;
+  width: 50px;
+  display: inline-block;
+}
+.manstagRoleIcon{
+  background: rgba(131, 0, 0, 0.781);
+  border-style: outset;
+  border-width: 3px; 
+  border-color: antiquewhite;
+  color: rgb(185, 122, 245);
+  border-radius: 10px; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  padding-left: 10px; 
+  text-align: left;
+  width: 60px;
+  display: inline-block;
+}
+.adminRoleIcon{
+  background: blue;
+  border-style: outset;
+  border-width: 3px; 
+  border-color: antiquewhite;
+  color: antiquewhite;
+  border-radius: 10px; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  padding-left: 10px; 
+  text-align: left;
+  width: 50px;
+  display: inline-block;
+}
+.adminRoleIcon:hover{
+  background: #62e2f3;
+  color: #565D61;
+  border-width: 1px; 
+  width: 46px;
+}
+.manstagRoleIcon:hover{
+  background: rgba(241, 26, 26, 0.781);
+  border-width: 1px; 
+  width: 56px;
+}
+.trainRoleIcon:hover{
+  background: rgba(255, 255, 0, 0.418);
+  border-width: 1px; 
+  width: 46px;
+}
+.ForAddingRoles{
+  width: 45px; 
+  height: 28px; 
+  border-style: outset;
+  border-width: 1px;
+  border-color: #e1e7e7;
+  background:  #f26925e3;
+  border-radius: 10px; 
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.ForAddingRoles:hover{ 
+  border-width: 3px; 
+  border-radius: 7.5px;
+  background-color:  #f3a65dbe;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.spaceLegendIndex{
+  margin-right: 10px; 
+  margin-left: 3px; 
+}
+#claricationDiv{
+  font-size: 9px; 
+  display: inline-block;
+}
+#trainWork{
+  border: 0px;
+outline: 0px;
+background: transparent;
+
+width: 200px; 
+position: relative;
+margin-right: -10px; 
+display: inline;
+}
+#trainWork:hover{
+  color: darkorange;
+  font-size: 110%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#adjustTL{
+  position: relative;
+  left: -158px; 
+}
