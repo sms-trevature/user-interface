@@ -8,11 +8,11 @@
     <div class='panel-body'>
       <div class='row'>
         <div class='col-md-2'><b>Search:</b></div>
-        <div class='col-md-4'>
+        <div class='col-md-2'>
           <input type='text' [(ngModel)]='listFilter' />
         </div>
         <div class='col-md-2'><b>Review Status:</b></div>
-        <div class='col-md-4'>
+        <div class='col-md-2'>
             <select autofocus type='text' [(ngModel)]='reviewFilter'>
                 <option value="all">Any</option>
                 <option value="reviewed">Reviewed</option>
@@ -62,8 +62,8 @@
                       <label for='notificationReceived'><b>Notification Received: {{notificationDate | date}} </b></label><br>
                       <label *ngIf='descriptionProvided' for='descriptionProvided'><b>Description Provided: Yes</b></label>
                       <label *ngIf='!descriptionProvided' for='descriptionProvided'><b>Description Provided: No</b></label><br><br>
-                      <label for='proposedFormat'><b>Proposed Format: {{proposedFormat}}</b></label><br>
-                      <label for='actualFormat'><b>Actual Format: {{actualFormat}}</b></label><br>
+                      <label for='proposedFormat'><b>Proposed Interview Format: {{proposedFormat}}</b></label><br>
+                      <label for='actualFormat'><b>Actual Interview Format: {{actualFormat}}</b></label><br>
                     </div>
                   </div>
                 </div>
@@ -80,11 +80,11 @@
                     <div class="modal-body" id='modal-text'>
                       <h4>Interview Feedback</h4>
                       <hr>
-                      <label for='dateRequested'><b>Date Requested: {{interviewFeedbackDateReq | date}} </b></label><br>
-                      <label for='feedbackReceived'><b>Date Received: {{interviewFeedbackDateRec | date}}</b></label><br>
-                      <label for='feedbackDelivered'><b>Feedback Delivered: {{interviewFeedbackDateDel | date}}</b></label><br>
-                      <label for='feedbackStatus'><b>Feedback Status: {{interviewFeedbackStatus}}</b></label><br><br>
-                      <label for='feedback'><b>Feedback Comments: {{interviewFeedbackComments}}</b></label><br>
+                      <label for='dateRequested'><b>Date Feedback Requested:</b> {{interviewFeedbackDateReq | date}}</label><br>
+                      <label for='feedbackReceived'><b>Date Feedback Received:</b> {{interviewFeedbackDateRec | date}}</label><br>
+                      <label for='feedbackDelivered'><b>Date Feedback Delivered:</b> {{interviewFeedbackDateDel | date}}</label><br>
+                      <label for='feedbackStatus'><b>Feedback Status:</b> {{interviewFeedbackStatus}}</label><br><br>
+                      <label for='feedback'><b>Comments:</b> {{interviewFeedbackComments}}</label><br>
                     </div>
                   </div>
                 </div>
