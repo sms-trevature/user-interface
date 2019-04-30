@@ -17,18 +17,8 @@ import { status } from 'src/app/sms-client/dto/Status';
   styleUrls: ['./profile-info.component.sass']
 })
 export class ProfileInfoComponent implements OnInit {
-  currentAddress: Address[] = [
-    {
-      addressId: 1,
-      alias: 'n.a',
-      street: '123 Buena Vista Way',
-      zip: '91193',
-      city: 'InterpolateCity',
-      state: 'California',
-      country: 'USA',
-      isTrainingLocation: false
-    }
-  ];
+  currentAddress: Address;
+
   // user will somehow be retrieved through cognito session
   addressList;
   currentUser: User;
@@ -85,6 +75,9 @@ export class ProfileInfoComponent implements OnInit {
     }
     
   }
+returnUserInfo(): User {
+  return this.currentUser;
+}
   someMethodToGrabAddressForUserViaUserPKGrabbedFromCognitoCurrentUserSession() {
     // retrieve user info
     // currentAddress[0] = service to retrieve address based on current user signed in
