@@ -116,6 +116,7 @@ export class SurveyListComponent implements OnInit {
         this.usersClientService.findAllByCohortId(this.cohorts[i].cohortId).subscribe(data => {
           for (const user of data) {
             this.pushSurveyHistory(user.email, this.surveyId);
+            userEmailList.push(user.email);
           }
         });
       }
