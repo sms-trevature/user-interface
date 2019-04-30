@@ -21,8 +21,6 @@ export class InterviewListComponent implements OnInit {
   private dateScheduledSortDir = false;
   private dateReviewedSortDir = false;
 
-  // private pageTitle = 'All Interviews';
-
   get listFilter(): string {
     return this.listFilterVar;
   }

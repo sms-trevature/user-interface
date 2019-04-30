@@ -57,7 +57,10 @@
 
 <div id="main-content-container">
     <div id="manage-users-container">
-        <table id="manage-users-table" class="tableUsers table table-striped">
+
+        <input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
+        <table id="manage-users-table" class="tableUsers table table-striped" id="box-shadow">
+
             <thead class="rev-background-color">
                 <tr>
                     <th>Title</th>
@@ -68,7 +71,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="rev-table-row" *ngFor='let temp of listOfSurvey; index as i'>
+                <tr class="rev-table-row" *ngFor='let temp of filteredListOfSurvey; index as i'>
                     <td data-toggle="modal" data-target="#exampleModalLong">{{temp.title}}</td>
                     <td data-toggle="modal" data-target="#exampleModalLong">{{temp.description}}</td>
                     <td>{{temp.dateCreated | showTimestamp}}</td>
@@ -80,7 +83,7 @@
     </div>
 
 
-    <div id="graphs" *ngIf='qList&&qList.length'>
+  <div id="graphs" *ngIf='qList&&qList.length&&ArrayOfResponseAnswerList'>
         <h3>{{"Analytics: " + surveyTitle}}</h3>
         <div *ngFor='let temp of qList; index as i;'>
             <app-survey-data [question]='temp.question' [type]='temp.typeId' [arrOfAns]='ArrayOfResponseAnswerList[i]' [arrOfCountedResponse]='arrOfCounts[i]'></app-survey-data>
