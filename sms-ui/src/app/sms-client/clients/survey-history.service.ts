@@ -13,11 +13,19 @@ export class SurveyHistoryService {
 
   private context = 'survey-service/history';
 
-findByEmail(email: string): Observable<SurveyHistory[]> {
-  return this.http.post<SurveyHistory[]>(`${this.context}/email`, email);
-}
+  findByEmail(email: string): Observable<SurveyHistory[]> {
+    return this.http.post<SurveyHistory[]>(`${this.context}/email`, email);
+  }
+
+  // Observable to find every survey deployed under a particular id
+  findBySurveyId(sId: number): Observable<SurveyHistory[]> {
+    return this.http.get<SurveyHistory[]>(`${this.context}/survey/${sId}`);
+  }
 
 update(surveyHistory: SurveyHistory): Observable<SurveyHistory> {
   return this.http.patch<SurveyHistory>(`${this.context}/taken`, surveyHistory);
+}
+save(surveyHistory: SurveyHistory): Observable<SurveyHistory> {
+  return this.http.post<SurveyHistory>(`${this.context}`, surveyHistory);
 }
 }
