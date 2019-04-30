@@ -111,39 +111,44 @@ export class SurveyListComponent implements OnInit {
 
   assignSurvey() {
     const userEmailList: string[] = [];
-    for (const i in this.cohortCheckList) {
-      if (this.cohortCheckList[i]) {
-        this.usersClientService.findAllByCohortId(this.cohorts[i].cohortId).subscribe(data => {
-          for (const user of data) {
-            this.pushSurveyHistory(user.email, this.surveyId);
-            userEmailList.push(user.email);
-          }
-        });
-      }
-    }
+    this.shownEmailList = [];
+    
     // tslint:disable-next-line: forin
     for (const j in this.users) {
       const cur = this.users[j].userStatus.statusId;
       if ((this.userCheckList[j]) || (cur <= 3 && cur >= 1 && this.statusCheckList[0]) ||
       (cur <= 10 && cur >= 4 && this.statusCheckList[1]) ||
       (cur <= 17 && cur >= 11 && this.statusCheckList[2]) ||
-      (cur <= 4 && cur >= 17 && this.statusCheckList[3])) {
+      (cur <= 17 && cur >= 4 && this.statusCheckList[3])) {
         if (!userEmailList.includes(this.users[j].email)) {
           userEmailList.push(this.users[j].email);
         }
       }
     }
-    console.log(userEmailList);
+
     for (const email of userEmailList) {
       this.pushSurveyHistory(email, this.surveyId);
     }
+
+    for (const i in this.cohortCheckList) {
+      if (this.cohortCheckList[i]) {
+        this.usersClientService.findAllByCohortId(this.cohorts[i].cohortId).subscribe(data => {
+          for (const user of data) {
+            if (!userEmailList.includes(user.email)) {
+              userEmailList.push(user.email);
+              this.pushSurveyHistory(user.email, this.surveyId);
+            }
+          }
+        });
+      }
+    }
+   
   }
 
   pushSurveyHistory(email, surveyId) {
-    this.shownEmailList = [];
     const surHistory = new SurveyHistory(null, surveyId, email, new Date(), null);
     this.surveyHistoryService.save(surHistory).subscribe(
-      data => {console.log(data);
+      data => {
                this.shownEmailList.push(data.userEmail);
       }
     );

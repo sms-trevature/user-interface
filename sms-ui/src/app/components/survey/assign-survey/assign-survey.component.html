@@ -73,8 +73,8 @@
           name="anonymousResponses"><label class="form-check-label" for="gridCheck">Make my responses anonymous</label>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="submitSurveyButton" data-dismiss="modal" (click)='close()'>Close</button>
-        <button type="submit" class="submitSurveyButton" data-dismiss="modal" (click)='submit()' (click)='close()'>Submit</button>
+        <button type="submit" class="submitSurveyButton" (click)='close()' data-dismiss="modal">Close</button>
+        <button type="submit" class="submitSurveyButton"  (click)='submit()' data-dismiss="modal">Submit</button>
       </div>
 
       <!-- No Surveys to display needs to look better -->
