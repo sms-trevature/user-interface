@@ -3,6 +3,7 @@
 <div class="container">
     Search: <input type="text" [(ngModel)]='listFilter'>
   <table class="table table-striped" *ngIf='listOfSurvey && listOfSurvey.length'>
+
     <thead>
       <tr>
         <th scope="col">Title</th>
@@ -21,7 +22,9 @@
         <td>{{listOfSurveyHistory[i].dateAssigned | showTimestamp}}</td>
         <td>{{temp.closingDate | showTimestamp}} </td>
       </tr>
+
       <!-- Button trigger modal -->
+
     </tbody>
   </table>
 </div>
@@ -40,7 +43,6 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-
 
     
       </div>
@@ -83,4 +85,5 @@
         <button type="submit" class="submitSurveyButton" data-dismiss="modal" (click)='close()'>Close</button>
         <button type="submit" class="submitSurveyButton" (click)='submit()'>Submit</button>
       </div>
+
 

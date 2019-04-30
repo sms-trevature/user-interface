@@ -97,9 +97,6 @@ export class AssignSurveyComponent implements OnInit {
     );
   }
 
-
-
-
   close() {
     window.location.reload();
   }

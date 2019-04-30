@@ -75,7 +75,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        component: SubMan2CohortComponent
+        component: MngrSubAssociatesComponent
       }
     ]
   },
@@ -125,6 +125,7 @@ const routes: Routes = [
     JobdescReportComponent,
     DaynoticeGraphComponent,
     FeedbackReportComponent,
+
 
   ],
   imports: [
