@@ -14,15 +14,13 @@ export class DaynoticeGraphComponent implements OnInit {
     responsive: true,
     maintainAspectRatio: false
   };
-  //@Input() inputAnswers: string[];
-  //@Input() inputCounts: number[];
 
-
-
+  //in the future, this will not be hard coded values
   public doughnutChartLabels= ['Insufficient Notice', 'Sufficient Notice'];
   public doughnutChartData= [10, 2];
   public doughnutChartType = 'doughnut';
 
+  //in the future, this will not be hard coded values
   public doughnutChartLabels1 = ['Insufficient Notice', 'Sufficient Notice'];
   public doughnutChartData1 = [10, 5];
   public doughnutChartType1 = 'doughnut';
