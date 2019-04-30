@@ -535,8 +535,12 @@ export class MngrSubAssociatesComponent implements OnInit {
     let opt = newSpot.options[index];
     //this values will be used to update the user's role per their email as the identifier.. 
     console.log("role has been changed to " + opt.value + " for:" + emailIdentifier);//onChange test -
-    this.http.put('cognito/users/groups/' + opt.value, '').toPromise().then(change => {
-
+    this.http.put('cognito/users/groups', {
+      'email':emailIdentifier,
+      'groupName':opt.value
+    }
+    ).toPromise().then(change => {
+      console.log(change);
     });
 
   }

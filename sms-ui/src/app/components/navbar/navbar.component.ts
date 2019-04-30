@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/sms-client/dto/User';
+import { CognitoService } from 'src/app/services/cognito.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   email: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private cognito:CognitoService) { }
   
   public user: User;
 
@@ -24,5 +25,9 @@ export class NavbarComponent implements OnInit {
     this.email = localStorage.getItem('userEmail');
 
   }
-
+  logout(){
+    this.cognito.logout().then(data=>{
+      console.log(data)
+    })
+  }
 }
