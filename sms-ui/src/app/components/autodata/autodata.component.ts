@@ -14,10 +14,14 @@ import { AssociateInterviewCount } from 'src/app/sms-client/dto/AssociateIntervi
 })
 export class AutodataComponent implements OnInit {
 
-  private AssociateInterviewCounts: AssociateInterviewCount[] = [];
+  listFilterVar = '';
+
+  AssociateInterviewCounts: AssociateInterviewCount[] = [];
+  AssociateInterviewCountsFilter: AssociateInterviewCount[] = [];
 
   constructor(private http: HttpClient, private interview: InterviewService, private autodata: AutodataService) {
-   /*  this.http.get('interview-service/interview').toPromise().then(data => {
+
+    /*  this.http.get('interview-service/interview').toPromise().then(data => {
         console.log("retrieved   " + data); 
         console.log(data[1]);
        console.log( data[1].associateEmail);
@@ -33,17 +37,36 @@ export class AutodataComponent implements OnInit {
       }
 
     }); */
-    
-   // console.log(this.filteredAssociates[2].associateEmail);
+
+    // console.log(this.filteredAssociates[2].associateEmail);
     //{{temp.filteredAssociates.associateEmail}}
-   }
+  }
+
+  get listFilter(): string {
+    return this.listFilterVar;
+  }
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.AssociateInterviewCountsFilter = (this.listFilterVar) ?
+      this.performFilter(this.listFilterVar) : this.AssociateInterviewCounts;
+  }
 
   ngOnInit() {
     this.interview.getInterviewCounts().subscribe(data => {
       this.AssociateInterviewCounts = data;
+      this.AssociateInterviewCountsFilter = data;
       //console.log("kenneth.james.currie@gmail.com");
       console.log(this.AssociateInterviewCounts);
     });
+  }
+
+  performFilter(filterBy: string): AssociateInterviewCount[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.AssociateInterviewCounts.filter((temp: AssociateInterviewCount) =>
+      (temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.associateName.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    );
   }
 
 }
