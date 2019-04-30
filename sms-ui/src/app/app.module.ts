@@ -48,7 +48,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 
 const routes: Routes = [
-  { path: 'profileInfo', component: ProfileInfoComponent },
+  { path: 'profileInfo', component: RegistrationComponent },
   { path: '', component: LoginComponent },
   { path: 'reportsRoute', component: ReportsComponent },
   { path: 'InterViewRoute', component: InterviewComponent },

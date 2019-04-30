@@ -9,8 +9,8 @@ signing in for the first time  -->
             <div class="input-group-prepend">
                 <span class="input-group-text">First and last name</span>
             </div>
-            <input type="text" aria-label="First name" class="form-control">
-            <input type="text" aria-label="Last name" class="form-control">
+            <input type="text" [(ngModel)]="firstName" aria-label="First name" class="form-control">
+            <input type="text" [(ngModel)]="lastName" aria-label="Last name" class="form-control">
         </div>
 
         <br>
@@ -19,29 +19,30 @@ signing in for the first time  -->
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input type="text" class="form-control" [(ngModel)]="uEmail" aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default">
         </div>
 
         <br>
 
-        <div class="input-group mb-3">
+        <!-- I took out date because I could not find birthday in the datbase -->
+        <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">Birthday</span>
             </div>
             <input #birthdate type="date" id="start" name="trip-start" value="2018-07-22" min="1960-01-01"
                 max="2020-12-31">
-        </div>
+        </div> -->
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">Phone Number (000)-000-0000</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
+            <input type="text" class="form-control" [(ngModel)]="phoneNumber" aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default">
         </div>
         <br>
-        <button class="btn rev-btn btn-lg btn-block" type="submit" id="register-btn">Register</button>
+        <button class="btn rev-btn btn-lg btn-block" type="submit" (click)="userRegistration()" id="register-btn">Register</button>
 
     </div>
 </div>
