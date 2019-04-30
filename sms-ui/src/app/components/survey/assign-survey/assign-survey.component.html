@@ -45,7 +45,7 @@
                 <h5 class="card-header">{{"Q"+(i+1)+": "+temp.questionId.question}}</h5>
                 <div class="card-body">
                   <div class="form-group"><input type="text" class="form-control" name="24"
-                      placeholder="Enter your response here" value=""></div>
+                      placeholder="Enter your response here" [(ngModel)]='inputAns[i]'></div>
                 </div>
               </div>
               <div class="card form-group mb-3" *ngIf='temp.questionId.typeId!=5&&temp.questionId.typeId!=3'>
@@ -60,8 +60,9 @@
                 <h5 class="card-header">{{"Q"+(i+1)+": "+temp.questionId.question}}</h5>
                 <div class="card-body" *ngFor='let ans of curTempAnswers[i];index as j'>
                   <div class="form-check"><input class="form-check-input" type="checkbox"
-                      [name]="temp.questionId.question" [(ngModel)]='inputMultiAns[(i+1)*(j+1)]'><label
-                      class="form-check-label">{{ans?.answer+"  "}}</label></div>
+                      [name]="temp.questionId.question" [(ngModel)]='inputMultiAns[(i+1)*(j+1)]'>
+                      <input type="hidden" [id]='(i+1)*(j+1)' [value]="i+1">
+                      <label class="form-check-label">{{ans?.answer+"  "}}</label></div>
                 </div>
               </div>
             </form>
