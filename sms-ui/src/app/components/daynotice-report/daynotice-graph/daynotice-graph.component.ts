@@ -9,6 +9,7 @@ import { ChartDataSets } from 'chart.js';
 })
 export class DaynoticeGraphComponent implements OnInit {
 
+
   chartOptions = {
     responsive: true,
     maintainAspectRatio: false
@@ -30,8 +31,6 @@ export class DaynoticeGraphComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.doughnutChartLabels= this.inputAnswers;
-    //this.doughnutChartData = this.inputCounts;
   }
 
 }
