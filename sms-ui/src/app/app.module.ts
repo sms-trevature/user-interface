@@ -60,7 +60,7 @@ const routes: Routes = [
   {path: 'FeedbackRoute', component: FeedbackReportComponent},
   {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
   {path: 'JobDescRoute', component: JobdescReportComponent},
-
+  
 
   {
     path: 'ManageRoute', component: ManageComponent,
