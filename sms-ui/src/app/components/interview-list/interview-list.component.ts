@@ -17,9 +17,9 @@ export class InterviewListComponent implements OnInit {
   private managerEmailSortDir = true;
   private locationSortDir = true;
   private clientSortDir = true;
-  private dateNotifiedSortDir = true;
+  private dateNotifiedSortDir = false;
   private dateScheduledSortDir = false;
-  private dateReviewedSortDir = true;
+  private dateReviewedSortDir = false;
 
   // private pageTitle = 'All Interviews';
 
@@ -69,6 +69,7 @@ export class InterviewListComponent implements OnInit {
 
   private notificationDateVar: number;
   private descriptionProvidedVar: boolean;
+  private fullDayNoticeVar: boolean;
   private proposedFormatVar: string;
   private actualFormatVar: string;
 
@@ -78,6 +79,10 @@ export class InterviewListComponent implements OnInit {
 
   get descriptionProvided() {
     return this.descriptionProvidedVar;
+  }
+
+  get fullDayNotice() {
+    return this.fullDayNoticeVar;
   }
 
   get proposedFormat() {
@@ -114,6 +119,7 @@ export class InterviewListComponent implements OnInit {
 
     this.notificationDateVar = this.filteredInterviewList[index].associateInput.receivedNotifications;
     this.descriptionProvidedVar = this.filteredInterviewList[index].associateInput.descriptionProvided;
+    this.fullDayNoticeVar = this.filteredInterviewList[index].associateInput.dayNotice;
     this.proposedFormatVar = this.filteredInterviewList[index].associateInput.proposedFormat.formatDesc;
     this.actualFormatVar = this.filteredInterviewList[index].associateInput.interviewFormat.formatDesc;
   }
