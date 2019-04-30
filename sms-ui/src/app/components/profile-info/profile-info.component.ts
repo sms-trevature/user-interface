@@ -5,6 +5,8 @@ import { async } from '@angular/core/testing';
 import { CognitoService } from 'src/app/services/cognito.service';
 import { HomeComponent } from '../home/home.component';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { Subscription } from 'rxjs';
+import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
 
 
 @Component({
@@ -13,34 +15,32 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./profile-info.component.sass']
 })
 export class ProfileInfoComponent implements OnInit {
-  currentAddress: Address[] = [
-    {
-      addressId: 1,
-      alias: 'n.a',
-      street: '123 Buena Vista Way',
-      zip: '91193',
-      city: 'InterpolateCity',
-      state: 'California',
-      country: 'USA',
-      isTrainingLocation: false
-    }
-  ];
+  currentAddress: Address;
+
   // user will somehow be retrieved through cognito session
+  private currentUserSubscription: Subscription;
 
   currentUser: User; 
 
-  constructor(private nav: NavbarComponent, private cognitoService: CognitoService ) { 
-    console.log(" constructor - undefined??? " +  nav.user.lastName);
-    this.currentUser = nav.user; 
-    console.log("salad and burgers: " + this.currentUser.email);
+  constructor(private nav: NavbarComponent, private cognito: CognitoService, private userClient: UsersClientService) { 
   }
 
   ngOnInit() {
-
-    console.log(" ngOnInit - undefined??? " +  this.nav.user.firstName);
-    this.currentUser = this.nav.user;
-    console.log('farts and cheese' + this.currentUser.firstName );
+    this.currentUserSubscription = this.cognito.currentUser$.subscribe(user => {
+      this.userClient.findByEmail(user.email).subscribe(
+        succResp => {
+          this.currentUser = succResp;
+          localStorage.setItem('userEmail', this.currentUser.email);
+          console.log(localStorage.getItem('userEmail'));
+        },
+        err => {
+        }
+      );
+    });
   }
+returnUserInfo(): User {
+  return this.currentUser;
+}
   someMethodToGrabAddressForUserViaUserPKGrabbedFromCognitoCurrentUserSession() {
     // retrieve user info
     // currentAddress[0] = service to retrieve address based on current user signed in
@@ -66,12 +66,12 @@ export class ProfileInfoComponent implements OnInit {
     const cntry = document.getElementById('country') as HTMLInputElement;
     const zp = document.getElementById('zip') as HTMLInputElement;
     const als = document.getElementById('alias') as HTMLInputElement;
-    if (addrs.value !== this.currentAddress[0].street
-      || cty.value !== this.currentAddress[0].city
-      || stt.value !== this.currentAddress[0].state
-      || cntry.value !== this.currentAddress[0].country
-      || zp.value !== this.currentAddress[0].zip
-      || als.value !== this.currentAddress[0].alias) {
+    if (addrs.value !== this.currentAddress.street
+      || cty.value !== this.currentAddress.city
+      || stt.value !== this.currentAddress.state
+      || cntry.value !== this.currentAddress.country
+      || zp.value !== this.currentAddress.zip
+      || als.value !== this.currentAddress.alias) {
       console.log('change is being made to the address');
       addChange = true;
     }

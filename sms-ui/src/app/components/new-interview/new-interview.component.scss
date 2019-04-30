@@ -1,3 +1,7 @@
+$revature-orange-light: #f3a55d;
+$revature-orange: #f26925;
+$drew-orange: #f3a55d;
+
 .btn-default {
     background-color: grey; 
 }
@@ -7,7 +11,7 @@ timepicker{
 }
 
 .newInterview{
-    background-color: rgb(255, 194, 137);
+    background-color: $revature-orange-light;
     border-radius: 10px 10px 10px 10px;
 -moz-border-radius: 10px 10px 10px 10px;
 -webkit-border-radius: 10px 10px 10px 10px;
