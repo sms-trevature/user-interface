@@ -8,7 +8,6 @@
       <th>Has Template</th>
       <th>Date Created</th>
       <th>Date Closed</th>
-
     </tr>
   </thead>
   <tbody>
@@ -27,7 +26,6 @@
         <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
         <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
       </td>
-
     </tr>
   </tbody>
 </table> -->
@@ -38,7 +36,6 @@
       <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p><br>
       <p *ngFor='let ans of curTempAnswers[i]'>{{ans?.answer+"  "}}</p>
     </li>
-
   </ul>
 </div> -->
 <!--
@@ -57,9 +54,8 @@
 
 <div id="main-content-container">
     <div id="manage-users-container">
-
-        <input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
-        <table id="manage-users-table" class="tableUsers table table-striped" id="box-shadow">
+      <input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
+      <table id="manage-users-table" class="tableUsers table table-striped" id="box-shadow">
 
             <thead class="rev-background-color">
                 <tr>
