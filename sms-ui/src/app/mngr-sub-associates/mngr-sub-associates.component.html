@@ -1,20 +1,24 @@
 <body>
-  
+
   <div id="InternalAssociates">
-    <div id= "legendHead" style="display: none;"><hr> <b>Roles Legend  </b><hr></div>
+    <div id="legendHead" style="display: none;">
+      <hr> <b>Roles Legend </b>
+      <hr>
+    </div>
     <br>
     <div id="legend" style="display: none;">
       <div class="adminRoleIcon">A</div> <b class="spaceLegendIndex"> - Administrator</b>
-       <div class="manstagRoleIcon">MS</div> <b class="spaceLegendIndex">- Staging Manager </b>
-       <div class="trainRoleIcon">T </div>  <b class="spaceLegendIndex">- Trainer</b> <br> <br>
-       <div class="ForAddingRoles" style="margin-left: 255px;"> Add </div> <b style="display: inline-block; position: relative; top: -26px;">- For Adding Roles</b>
+      <div class="manstagRoleIcon">MS</div> <b class="spaceLegendIndex">- Staging Manager </b>
+      <div class="trainRoleIcon">T </div> <b class="spaceLegendIndex">- Trainer</b> <br> <br>
+      <div class="ForAddingRoles" style="margin-left: 255px;"> Add </div> <b
+        style="display: inline-block; position: relative; top: -26px;">- For Adding Roles</b>
     </div>
     <div id="associatesHeader">
       <div style="display: inline;">
         <input type='text' [(ngModel)]='listFilter' id="filterByThisAssociate" />
       </div>
       <span style="display: inline; margin-left: 10px; margin-right: 10px;"> Internal Associates</span>
-     
+
       <div style="display: inline;">
         <!-- (change)="nrSelect(value)" -->
         <select id="selectElement" (change)="optionSelect()">
@@ -26,7 +30,8 @@
         </select>
       </div>
       <br>
-      <button class="pure-button" (click)='open(content)' style="display: inline; font-size: 10px; background: transparent;">
+      <button class="pure-button" (click)='open(content)'
+        style="display: inline; font-size: 10px; background: transparent;">
         <i class="material-icons">person</i>
         Add Employee
       </button><br>
@@ -37,27 +42,26 @@
     <table id="associateTable">
       <tr>
         <th class="spreadColumn">Name</th>
-        <th class="spreadColumn">Role <div id="claricationDiv"> (Of precedence)</div> </th>
+        <th class="spreadColumn">Role <div id="claricationDiv"> (Of precedence)</div>
+        </th>
         <th class="spreadColumn">Email</th>
       </tr>
-      <tr *ngFor='let temp of filteredEmployees'>                                                                                                                                                              <!--    //Jordan was here -->
+      <tr *ngFor='let temp of filteredEmployees'>
+        <!--    //Jordan was here -->
 
-          
+
         <td>{{temp.firstName}} {{temp.lastName}}</td>
         <td id={{temp.email}}><button class="cantBelieveItsNotButton" (click)="editRole(temp.email)">
             {{functionTest(temp.email)}}</button></td>
         <td>{{temp.email}}</td>
-      <!-- <div id="{{temp.email+'Button'}}">   -->
+        <!-- <div id="{{temp.email+'Button'}}">   -->
         <td id={{temp.email|uppercase}} style="display: none;">
-          <button id={{temp.email+d|uppercase}} class="ForAddingRoles"> Add</button></td>
-       <!-- </div>  -->
+          <button (click)="addARole(temp.email)" class="ForAddingRoles"> Add</button></td>
+        <!-- </div>  | id={{temp.firstName|uppercase}} -->
       </tr>
 
     </table>
-
     <br>
- 
-
 
     <!-- modal zone---------------------------------------------------------- -->
     <ng-template #content let-modal>
@@ -103,7 +107,7 @@
               </div>
               <br>
               <div class="input-group" id="specificStatusElmnt1">
-                <select name='SpecStatus' ngModel>
+                <select id="specStaging" name='SpecStatus' ngModel>
                   <option value="Dropped">Dropped</option>
                   <option value="Training">Training</option>
                   <option value="Complete">Complete</option>
@@ -111,7 +115,7 @@
               </div>
               <br>
               <div class="input-group" id="specificStatusElmnt2">
-                <select name='SpecStatus' ngModel>
+                <select id="specTraining" name='SpecStatus' ngModel>
                   <option value="Staging">Staging</option>
                   <option value="Bench">Bench</option>
                   <option value="Waiting for Paperwork">Waiting for Paperwork</option>
@@ -126,14 +130,14 @@
               <br>
               <div class="input-group">
                 <label for="location">Training Location</label>
-                <select ngModel name='location'>
+                <select ngModel name='location' id="locationTrainingChoice">
                   <option *ngFor='let temp of addressList' [value]="temp.addressId">{{temp.city}}, {{temp.state}}
                   </option>
                 </select>
               </div>
               <br>
               <label for="Role">Choose Role</label><br>
-              <select name='Role' ngModel>
+              <select name='Role' ngModel id="ChooseInitialRole">
                 <option value="1">Associate</option>
                 <option value="2">Staging Manager</option>
                 <option value="3">Admin </option>
@@ -149,7 +153,7 @@
                 <input id="pzip" ngModal name="pzip" placeholder="73013">
               </div>
               <br>
-              <button type='submit'>Submit</button>
+              <button type='submit' (click)="SendUser()">Submit</button>
             </div>
           </form>
         </div>
@@ -160,13 +164,13 @@
 
         </div>
       </div> -->
-
+        <div id="deliveredMessage"> Delivered</div>
         <div class="modal-footer">
 
-          <button type="button" class="btn btn-outline-dark" (click)="close()">Save</button>
+          <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
 
         </div>
       </div>
     </ng-template>
     <!-- modal zone-------------------------------------------------------- -->
-<!-- </body> -->
+    <!-- </body> -->

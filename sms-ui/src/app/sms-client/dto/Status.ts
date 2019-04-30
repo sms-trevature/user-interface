@@ -4,10 +4,10 @@ export class status {
     specific_status: string; 
     virtual: boolean;
 
-    constructor(statusid: number, genstatus: string, specstatus: string, virtual: boolean){
-            this.status_id = statusid; 
-            this.generic_status = genstatus; 
-            this.specific_status = specstatus; 
+    constructor(status_id: number, generic_status: string, specific_status: string, virtual: boolean){
+            this.status_id = status_id; 
+            this.generic_status = generic_status; 
+            this.specific_status = specific_status; 
             this.virtual = virtual; 
     }
     

@@ -84,7 +84,9 @@
                 <th class="spreadColumnChrt">Email</th>
             </tr>
             <tr *ngFor='let temp of filteredCohort'>
-                <button id="ateam" (click)="openModal(temp['cohortName'], content)">
+                <button 
+                class= "ateam"
+                (click)="openModal(temp['cohortName'], content)">
                     <td>{{temp['cohortName']}}</td>
                 </button>
                 <td>{{temp.address.city}},{{temp.address.state}}</td>

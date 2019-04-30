@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { Address } from 'src/app/sms-client/dto/Address';
 import { User } from 'src/app/sms-client/dto/User';
 import { async } from '@angular/core/testing';
@@ -34,7 +34,7 @@ export class ProfileInfoComponent implements OnInit {
   currentUser: User;
   UpdateUser: UserObj; 
   UserPersonalAddress: AddressObject;
-
+  neverchangedTrainingAddress= true; 
  // currentUser: User; 
 
   constructor(private http: HttpClient, private nav: NavbarComponent, private cognitoService: CognitoService) {
@@ -54,6 +54,7 @@ export class ProfileInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(" this here huh :  " + this.currentUser.userStatus.generic_status);
     this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
       // alert(data);
       this.addressList = data;
@@ -64,10 +65,12 @@ export class ProfileInfoComponent implements OnInit {
     console.log('farts and cheese' + this.currentUser.firstName);
   }
   changeTrainingAddress() {
+    this.neverchangedTrainingAddress=false; 
     const removeButtonFromHere = document.getElementById('trainWork') as HTMLDivElement;
     removeButtonFromHere.removeChild(removeButtonFromHere.firstChild);
     //remove the button for sure then.. 
     const select = document.createElement('select') as HTMLSelectElement;
+    select.id = "trainingAddressChoice";
     removeButtonFromHere.style.marginRight = '-130px';
     removeButtonFromHere.style.position = "relative";
     removeButtonFromHere.style.left = '-160px';
@@ -93,6 +96,13 @@ export class ProfileInfoComponent implements OnInit {
     let userChange = false;
     let addChange = false;
     // -----------------
+    let trainaddress;
+    let selectedTraining; 
+    if (this.neverchangedTrainingAddress == false) {
+      trainaddress = document.getElementById('trainingAddressChoice') as HTMLSelectElement;
+     console.log("SELECTED " + trainaddress.options[trainaddress.selectedIndex].value);
+      selectedTraining = trainaddress.options[trainaddress.selectedIndex].value;
+     }
     const fnInput = document.getElementById('fName') as HTMLInputElement;
     const lnInput = document.getElementById('lName') as HTMLInputElement;
     const email = document.getElementById('email') as HTMLInputElement;
@@ -126,10 +136,21 @@ export class ProfileInfoComponent implements OnInit {
           newPersonalAddress = new AddressObject(0, als.value, stt.value, zp.value, cty.value, 
             stt.value, cntry.value, false); 
       }
+      let determinedTrainingArea;
       this.currentUser.userStatus;
-    //let keepStts: status = new status( ); 
+    //let keepStts: status = new status( );
+    this.addressList.forEach(element => {
+      console.log("looking through " + element.alias);
+      if(element.alias == selectedTraining) {
+            console.log("alias of array: "  +element.alias);
+            console.log("vs");
+            console.log("selected : " +selectedTraining);
+             determinedTrainingArea = element; 
+      }
+    });
+  
     this.UpdateUser = new UserObj(this.currentUser.userId, fnInput.value, lnInput.value, 
-      email.value, phoneN.value, this.currentUser.trainingAddress, newPersonalAddress, this.currentUser.userStatus); 
+      email.value, phoneN.value, determinedTrainingArea, newPersonalAddress, this.currentUser.userStatus); 
       console.log("our new user object is: " +  this.UpdateUser);
       this.http.post('user-service/users',  this.UpdateUser).toPromise().then(data => {
         console.log("server side error - ^ - v - ");

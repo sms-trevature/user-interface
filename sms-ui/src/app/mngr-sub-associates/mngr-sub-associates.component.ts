@@ -10,6 +10,9 @@ import { VirtualAction } from 'rxjs';
 import { status } from '../sms-client/dto/Status';
 import { stringify } from 'querystring';
 import { Router } from '@angular/router';
+import { UserObj } from '../sms-client/dto/UserObj';
+import { AddressObject } from '../sms-client/dto/AddressObj';
+import { stat } from 'fs';
 
 @Component({
   selector: 'app-mngr-sub-associates',
@@ -27,6 +30,9 @@ export class MngrSubAssociatesComponent implements OnInit {
     this._listFilter = temp;
     this.filteredEmployees = this._listFilter ? this.performFilter(this._listFilter) : this.allAssociates;
   }
+
+  statusstatus = new Array; 
+  enterUser: UserObj;
   stagingM = new Array;
   adminArray = new Array;
   trainerArray = new Array;
@@ -39,6 +45,7 @@ export class MngrSubAssociatesComponent implements OnInit {
   globalFart: string = '';
   returnableDataVariable;
   ngswitchCase = '';
+  silverSnakes; 
   private returnableRoleValue = '';
   private lastCell: any;
   private returnableEmailValue = '';
@@ -68,7 +75,7 @@ export class MngrSubAssociatesComponent implements OnInit {
 
     });
     this.http.get('cognito/users/groups/trainer').toPromise().then(trainer => {
-      
+
       let index = 0;
       while (trainer['Users'][index] != undefined) {
         if (trainer['Users'][index].Attributes[1]['Value'] == true || trainer['Users'][index].Attributes[1]['Value'] == 'true') {
@@ -102,9 +109,117 @@ export class MngrSubAssociatesComponent implements OnInit {
   ngOnInit() {
     this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
       this.addressList = data;
-    })
+    });
+    this.http.get('user-service/status').toPromise().then(status => {
+        console.log(" secretary: " +status[0]); 
+         let indexer =0; 
+         this.silverSnakes = status[1];
+        while( status[indexer] != undefined && status[indexer] != null){
+          // console.log("run...............");
+          //    console.log(status[indexer].status_id);
+             this.statusstatus.push(status[indexer]);
+              indexer++; 
+        }
+       // alert(status);
+    });
   }
+  addARole(thisAddButton){
+      alert("add for : " +thisAddButton);
+      
+  }
+  SendUser() {
+    const first = document.getElementById('FName') as HTMLInputElement;
+    const last = document.getElementById('LName') as HTMLInputElement;
+    const email = document.getElementById('Email') as HTMLInputElement;
+    const phone = document.getElementById('phone') as HTMLInputElement;
+    const slct = document.getElementById('GeneralSelection') as HTMLSelectElement;
+    const selectedTraining = slct.options[slct.selectedIndex].value;
+    let specStatus;
+    let specChoice;
+    if (selectedTraining == "Training") {
+      specStatus = document.getElementById('specStaging') as HTMLSelectElement;
+      specChoice = specStatus.options[specStatus.selectedIndex].value;
+    } else {
+      specStatus = document.getElementById('specTraining') as HTMLSelectElement;
+      specChoice = specStatus.options[specStatus.selectedIndex].value;
+    }
+    this.virtualStatus;
+    const ltc = document.getElementById('locationTrainingChoice') as HTMLSelectElement;
+   // const tc = ltc.options[ltc.selectedIndex].value;
 
+    const initialRole = document.createElement('ChooseInitialRole') as HTMLSelectElement;
+    const role = initialRole.value;
+    //ignoring personal address for now.. 
+    let id = 0;
+    if (selectedTraining == 'Training') {
+      if (specChoice == 'Dropped') {
+        id = 1;
+      } else if (specChoice == 'Training') {
+        id = 2;
+      } else if (specChoice == 'Complete') {
+        id = 3;
+      }
+    } else if (selectedTraining == 'Staging' && this.virtualStatus == false) {
+      if (specChoice == 'Staging') {
+        id = 4;
+      } else if (specChoice == 'Bench') {
+        id = 5;
+      } else if (specChoice == 'Waiting for Paperwork') {
+        id = 6;
+      } else if (specChoice == 'Confirmed') {
+        id = 7;
+      } else if (specChoice == 'Project Started') {
+        id = 8;
+      } else if (specChoice == 'Paused') {
+        id = 9;
+      } else if (specChoice == 'Panel') {
+        id = 10;
+      }
+
+    } else if (selectedTraining == 'Staging' && this.virtualStatus == true) {
+      if (specChoice == 'Training') {
+        id = 11;
+      } else if (specChoice == 'Bench') {
+        id = 12;
+      } else if (specChoice == 'Waiting for Paperwork') {
+        id = 13;
+      } else if (specChoice == 'Confirmed') {
+        id = 14;
+      } else if (specChoice == 'Project Started') {
+        id = 15;
+      } else if (specChoice == 'Paused') {
+        id = 16;
+      } else if (specChoice == 'Panel Pending') {
+        id = 17;
+      }
+    }
+    let whicheverForNow: AddressObject;
+
+   
+    this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
+      this.addressList = data;
+    });
+    this.addressList.forEach(element => {
+      whicheverForNow= element;
+    });
+    console.log("specific status: "+ specChoice);
+    console.log("general status " +selectedTraining );
+    // let userStatus:status = new status(2, 'Training', 'Training', false);
+    // console.log("L;ASKDJFLKA;SDJFLK;ASJDL KF;JA SLKDFJASDF S");
+    // console.log(userStatus + " <-----------------");
+    // console.log(userStatus.generic_status +" - " + userStatus.specific_status); 
+    console.log(" -=-=-=-=-  " + this.statusstatus[id]);
+    
+    this.enterUser = new UserObj(0, first.value, last.value,
+      email.value, phone.value, whicheverForNow,null, this.silverSnakes);
+
+    this.http.post('users/insert', this.enterUser).toPromise().then(data => {
+    
+      alert("not updated.. needs.. "+data);
+    
+    });
+
+  }
   functionTest(email) {
     console.log("FUNCTION FOR ROLE CALLED ");
     if (this.adminArray.indexOf(email) != -1) {
@@ -137,17 +252,38 @@ export class MngrSubAssociatesComponent implements OnInit {
   }
   editAllRoles() {
     let int = 0;
+    // let array = new Array; 
     let array = document.getElementsByClassName('cantBelieveItsNotButton');
-    while (array[int] != undefined && array[int] != null) {
+    //&& array[int] != null
+    while (array[int] != null) {
+
       //  array[int].parentNode.removeChild(array[int]);
       if (array[int].parentNode.firstChild.textContent.toLowerCase().length == 10) {
         console.log("bahahahahahhahaha");
-        int++; 
+        console.log("not removed  " + array[int].parentNode.firstChild.textContent.length);
+        int++;
       } else {
+        console.log("removing " + array[int].parentNode.firstChild.textContent.length);
         array[int].parentNode.removeChild(array[int]);
-        int++; 
+
+        int++;
       }
-      
+    }
+    let int2 = 0;
+    let array2 = document.getElementsByClassName('cantBelieveItsNotButton');
+    while (array2[int2] != null && array2[int2] != undefined) {
+
+      //  array[int].parentNode.removeChild(array[int]);
+      if (array2[int2].parentNode.firstChild.textContent.toLowerCase().length == 10) {
+        console.log("bahahahahahhahaha");
+        console.log("not removed  " + array2[int2].parentNode.firstChild.textContent.length);
+        int2++;
+      } else {
+        console.log("removing " + array2[int2].parentNode.firstChild.textContent.length);
+        array2[int2].parentNode.removeChild(array2[int2]);
+
+        int2++;
+      }
     }
     //backup filteration resolution--------------
     const pullOutFilter = document.getElementById('filterByThisAssociate') as HTMLInputElement;
@@ -358,74 +494,77 @@ export class MngrSubAssociatesComponent implements OnInit {
     });
   }
   addAssociate(associate: NgForm) {
-    console.log("value test: " + associate.value['dp1']);
-    const fName = associate.value['dp1'];
-    const lName = associate.value['dp2'];
-    const email = associate.value['dp3'];
-    const phone = associate.value['dp4'];
-    const TrainLocation = associate.value['location'];
-    const GeStatus = associate.value['status'];
-    const Spstatus = associate.value['SpecStatus'];
-    const check = this.virtualStatus;
-    const role = associate.value['Role'];
-    let id = 0;
-    if (GeStatus == 'Training') {
-      if (Spstatus == 'Dropped') {
-        id = 1;
-      } else if (Spstatus == 'Training') {
-        id = 2;
-      } else if (Spstatus == 'Complete') {
-        id = 3;
-      }
-    } else if (GeStatus == 'Staging' && check == false) {
-      if (Spstatus == 'Staging') {
-        id = 4;
-      } else if (Spstatus == 'Bench') {
-        id = 5;
-      } else if (Spstatus == 'Waiting for Paperwork') {
-        id = 6;
-      } else if (Spstatus == 'Confirmed') {
-        id = 7;
-      } else if (Spstatus == 'Project Started') {
-        id = 8;
-      } else if (Spstatus == 'Paused') {
-        id = 9;
-      } else if (Spstatus == 'Panel') {
-        id = 10;
-      }
-
-    } else if (GeStatus == 'Staging' && check == true) {
-      if (Spstatus == 'Training') {
-        id = 11;
-      } else if (Spstatus == 'Bench') {
-        id = 12;
-      } else if (Spstatus == 'Waiting for Paperwork') {
-        id = 13;
-      } else if (Spstatus == 'Confirmed') {
-        id = 14;
-      } else if (Spstatus == 'Project Started') {
-        id = 15;
-      } else if (Spstatus == 'Paused') {
-        id = 16;
-      } else if (Spstatus == 'Panel Pending') {
-        id = 17;
-      }
-    }
-
-    let body = {
-      'userId': 100,
-      'firstName': fName,
-      'lastName': lName,
-      'email': email,
-      'phoneNumber': phone,
-      'trainingAddress': TrainLocation,
-      'personalAddress': null,
-      'userStatus': null
-    }
-    this.http.post(`users`, body).toPromise().then(data => {
-
-    })
+    console.log("here cus it has to be");
   }
+  // addAssociate(associate: NgForm) {
+  //   console.log("value test: " + associate.value['dp1']);
+  //   const fName = associate.value['dp1'];
+  //   const lName = associate.value['dp2'];
+  //   const email = associate.value['dp3'];
+  //   const phone = associate.value['dp4'];
+  //   const TrainLocation = associate.value['location'];
+  //   const GeStatus = associate.value['status'];
+  //   const Spstatus = associate.value['SpecStatus'];
+  //   const check = this.virtualStatus;
+  //   const role = associate.value['Role'];
+  //   let id = 0;
+  //   if (GeStatus == 'Training') {
+  //     if (Spstatus == 'Dropped') {
+  //       id = 1;
+  //     } else if (Spstatus == 'Training') {
+  //       id = 2;
+  //     } else if (Spstatus == 'Complete') {
+  //       id = 3;
+  //     }
+  //   } else if (GeStatus == 'Staging' && check == false) {
+  //     if (Spstatus == 'Staging') {
+  //       id = 4;
+  //     } else if (Spstatus == 'Bench') {
+  //       id = 5;
+  //     } else if (Spstatus == 'Waiting for Paperwork') {
+  //       id = 6;
+  //     } else if (Spstatus == 'Confirmed') {
+  //       id = 7;
+  //     } else if (Spstatus == 'Project Started') {
+  //       id = 8;
+  //     } else if (Spstatus == 'Paused') {
+  //       id = 9;
+  //     } else if (Spstatus == 'Panel') {
+  //       id = 10;
+  //     }
+
+  //   } else if (GeStatus == 'Staging' && check == true) {
+  //     if (Spstatus == 'Training') {
+  //       id = 11;
+  //     } else if (Spstatus == 'Bench') {
+  //       id = 12;
+  //     } else if (Spstatus == 'Waiting for Paperwork') {
+  //       id = 13;
+  //     } else if (Spstatus == 'Confirmed') {
+  //       id = 14;
+  //     } else if (Spstatus == 'Project Started') {
+  //       id = 15;
+  //     } else if (Spstatus == 'Paused') {
+  //       id = 16;
+  //     } else if (Spstatus == 'Panel Pending') {
+  //       id = 17;
+  //     }
+  //   }
+
+  //   let body = {
+  //     'userId': 100,
+  //     'firstName': fName,
+  //     'lastName': lName,
+  //     'email': email,
+  //     'phoneNumber': phone,
+  //     'trainingAddress': TrainLocation,
+  //     'personalAddress': null,
+  //     'userStatus': null
+  //   }
+  //   this.http.post(`users`, body).toPromise().then(data => {
+
+  //   })
+  // }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

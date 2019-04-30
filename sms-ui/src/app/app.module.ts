@@ -46,6 +46,7 @@ import { DaynoticeReportComponent } from './components/daynotice-report/daynotic
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 
+
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
   { path: '', component: LoginComponent },
@@ -123,11 +124,12 @@ const routes: Routes = [
     AnswerData7Component,
     DaynoticeReportComponent,
     JobdescReportComponent,
-
+    
     DaynoticeGraphComponent,
     DaynoticeReportComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
+   
 
 
 
@@ -140,10 +142,12 @@ const routes: Routes = [
     ChartsModule,
     SmsClientModule, AppRoutingModule,
     RouterModule.forRoot(routes),
+
     // Javier's thing
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
+    
     DatePickerModule
 
 
