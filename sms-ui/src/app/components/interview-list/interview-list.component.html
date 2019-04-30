@@ -60,7 +60,8 @@
                       <h4>Associate Feedback</h4>
                       <hr>
                       <label for='notificationReceived'><b>Notification Received: {{notificationDate | date}} </b></label><br>
-                      <label for='descriptionProvided'><b>Description Provided: {{descriptionProvided}}</b></label><br><br>
+                      <label *ngIf='descriptionProvided' for='descriptionProvided'><b>Description Provided: Yes</b></label>
+                      <label *ngIf='!descriptionProvided' for='descriptionProvided'><b>Description Provided: No</b></label><br><br>
                       <label for='proposedFormat'><b>Proposed Format: {{proposedFormat}}</b></label><br>
                       <label for='actualFormat'><b>Actual Format: {{actualFormat}}</b></label><br>
                     </div>
