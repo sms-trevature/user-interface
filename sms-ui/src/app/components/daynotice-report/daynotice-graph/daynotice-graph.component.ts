@@ -8,21 +8,29 @@ import { ChartDataSets } from 'chart.js';
   styleUrls: ['./daynotice-graph.component.scss']
 })
 export class DaynoticeGraphComponent implements OnInit {
-  @Input() inputAnswers: string[];
-  @Input() inputCounts: number[];
+
+
+  chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false
+  };
+  //@Input() inputAnswers: string[];
+  //@Input() inputCounts: number[];
 
 
 
-  public doughnutChartLabels: Label[];
-  public doughnutChartData: SingleDataSet;
+  public doughnutChartLabels= ['Insufficient Notice', 'Sufficient Notice'];
+  public doughnutChartData= [10, 2];
   public doughnutChartType = 'doughnut';
+
+  public doughnutChartLabels1 = ['Insufficient Notice', 'Sufficient Notice'];
+  public doughnutChartData1 = [10, 5];
+  public doughnutChartType1 = 'doughnut';
 
   constructor() { }
 
   ngOnInit() {
 
-    this.doughnutChartLabels= this.inputAnswers;
-    this.doughnutChartData = this.inputCounts;
   }
 
 }

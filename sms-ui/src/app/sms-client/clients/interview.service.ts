@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Interview } from '../dto/Interview';
+import { AssociateInterviewCount } from '../dto/AssociateInterviewCount';
 
 @Injectable({
   providedIn: 'root'
@@ -427,5 +428,9 @@ export class InterviewService {
 
   getInterviews2(): Interview[] {
     return this.interviewList;
+  }
+
+  getInterviewCounts(): Observable<AssociateInterviewCount[]> {
+    return this.httpCli.get<AssociateInterviewCount[]>(`${this.urlVar}/reports/InterviewsPerAssociate`);
   }
 }

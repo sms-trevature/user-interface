@@ -14,6 +14,7 @@ export class AssociateFeedback {
   '_proposedFormat': InterviewFormat;
 
   constructor(descriptionProvided: boolean, receivedNotifications: Date, dayNotice: boolean, interviewFormat: InterviewFormat, proposedFormat: InterviewFormat) {
+
     this._descriptionProvided = descriptionProvided;
     this._receivedNotifications = receivedNotifications;
     this._dayNotice = dayNotice;
@@ -99,6 +100,7 @@ export class AssociateFeedbackService {
     return this.httpClient.post<AssociateFeedback>(this.url, {
       receivedNotifications: associateInput.receivedNotifications,
       descriptionProvided: associateInput.descriptionProvided,
+
       interviewFormat: associateInput.interviewFormat,
       proposedFormat: associateInput.proposedFormat,
       dayNotice: associateInput.dayNotice}
