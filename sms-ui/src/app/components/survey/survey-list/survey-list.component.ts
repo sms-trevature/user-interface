@@ -137,9 +137,13 @@ export class SurveyListComponent implements OnInit {
   }
 
   getRespondents(surveyId: number) {
-    console.log('The current surveyId is: ' + surveyId);
-    this.surveyId = surveyId;
-    this.respPressed = true;
+    if (this.respPressed !== true) {
+      console.log('The current surveyId is: ' + surveyId);
+      this.surveyId = surveyId;
+      this.respPressed = true;
+    } else {
+      this.respPressed = false;
+    }
   }
 
 }
