@@ -59,13 +59,13 @@
                     <div class="modal-body" id='modal-text'>
                       <h4>Associate Feedback</h4>
                       <hr>
-                      <label for='notificationReceived'><b>Notification Received: {{notificationDate | date}} </b></label><br>
-                      <label *ngIf='fullDayNotice' for='fullDayNotice'><b>Was 24 Hour Notice Provided: Yes</b></label>
-                      <label *ngIf='!fullDayNotice' for='fullDayNotice'><b>Was 24 Hour Notice Provided: No</b></label><br>
-                      <label *ngIf='descriptionProvided' for='descriptionProvided'><b>Was Description Provided: Yes</b></label>
-                      <label *ngIf='!descriptionProvided' for='descriptionProvided'><b>Was Description Provided: No</b></label><br><br>
-                      <label for='proposedFormat'><b>Proposed Interview Format: {{proposedFormat}}</b></label><br>
-                      <label for='actualFormat'><b>Actual Interview Format: {{actualFormat}}</b></label><br>
+                      <label for='notificationReceived'><b>Notification Received:</b> {{notificationDate | date}}</label><br>
+                      <label *ngIf='fullDayNotice' for='fullDayNotice'><b>Was 24 Hour Notice Provided:</b> Yes</label>
+                      <label *ngIf='!fullDayNotice' for='fullDayNotice'><b>Was 24 Hour Notice Provided:</b> No</label><br>
+                      <label *ngIf='descriptionProvided' for='descriptionProvided'><b>Was Description Provided:</b> Yes</label>
+                      <label *ngIf='!descriptionProvided' for='descriptionProvided'><b>Was Description Provided:</b> No</label><br><br>
+                      <label for='proposedFormat'><b>Proposed Interview Format:</b> {{proposedFormat}}</label><br>
+                      <label for='actualFormat'><b>Actual Interview Format:</b> {{actualFormat}}</label><br>
                     </div>
                   </div>
                 </div>
