@@ -2,56 +2,52 @@
 <div class="container associatefeedback">
     <div class="main">
         <div class="main-center">
-            
 
-                <div class="form-group">
-                    <label class="bolding" for="name">Date of interview notification</label>
-                    <div class="input-group">
-                        <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
-                        <ejs-datepicker id='datepicker' placeholder='Select a date' [value]='value' [min]='minDate' [max]='maxDate'></ejs-datepicker>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="bolding" for="24hourNotce">24 Hour Notice?</label>
-                        <br>
-                        <label style="padding-right: 3px">Yes</label> 
-                        <input type="radio"  name="dayNoticeYes" value="true" [(ngModel)]="dayNotice" /> <br>
-                        <label style="padding-right: 3px">No</label>
-                         <input type="radio"  name="dayNoticeNo" value="false" [(ngModel)]="dayNotice" />
-                  
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Date</span>
                 </div>
+                <input type="text" placeholder="Enter Date" bsDatepicker [minDate]="minDate" [(ngModel)]="receivedNotifications" class="form-control">
+            </div>
 
-                <div class="form-group">
-                    <label class="bolding" for="username">Job Description Provided?</label> <br>
-                        <label style="padding-right: 3px">Yes</label>
-                        <input type="radio" name="descriptionYes" value="true" [(ngModel)]="descriptionProvided" /> <br>
-                        <label style="padding-right: 3px">No</label>
-                        <input type="radio"  name="descriptionNo" value="false" [(ngModel)]="descriptionProvided" /> <br>
-                </div>
+            <div class="form-group">
+                <label class="bolding" for="24hourNotce">24 Hour Notice?</label>
+                <br>
+                <label style="padding-right: 3px">Yes</label>
+                <input type="radio" name="dayNoticeYes" value="true" [(ngModel)]="dayNotice" /> <br>
+                <label style="padding-right: 3px">No</label>
+                <input type="radio" name="dayNoticeNo" value="false" [(ngModel)]="dayNotice" />
 
-                <div class="form-group">
-                    <label class="bolding" for="password">Actual interview format?</label>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" name="interviewFormat" placeholder="Enter actual interview format" [(ngModel)]="interviewFormatStr" />
-                    </div>
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="bolding" for="confirm">Proposed interview format?</label>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" name="proposedFormat" placeholder="Enter proposed interview format" [(ngModel)]="proposedFormatStr" />
-                    </div>
+            <div class="form-group">
+                <label class="bolding" for="username">Job Description Provided?</label> <br>
+                <label style="padding-right: 3px">Yes</label>
+                <input type="radio" name="descriptionYes" value="true" [(ngModel)]="descriptionProvided" /> <br>
+                <label style="padding-right: 3px">No</label>
+                <input type="radio" name="descriptionNo" value="false" [(ngModel)]="descriptionProvided" /> <br>
+            </div>
+
+            <div class="form-group">
+                <label class="bolding" for="password">Actual interview format?</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="interviewFormat" placeholder="Enter actual interview format" [(ngModel)]="interviewFormatStr" />
                 </div>
-                <div style="text-align: center">
+            </div>
+
+            <div class="form-group">
+                <label class="bolding" for="confirm">Proposed interview format?</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="proposedFormat" placeholder="Enter proposed interview format" [(ngModel)]="proposedFormatStr" />
+                </div>
+            </div>
+            <div style="text-align: center">
                 <button class="btn btn-dark" (click)="postAssociateInput()">Submit Feedback</button>
             </div>
-        
+
         </div>
-        <!--main-center"-->
     </div>
-    <!--main-->
 </div>
-<!--container-->

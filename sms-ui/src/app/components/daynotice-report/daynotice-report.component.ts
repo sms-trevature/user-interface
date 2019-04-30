@@ -36,9 +36,19 @@ export class DaynoticeReportComponent implements OnInit {
     });
   }
 
+
   filterByTrue(): ActualDayNotice[] {
     return this.dayNoticeList.filter((randomV: ActualDayNotice) => (randomV.twentyFourAssoc) == false);
+
   }
+    // {
+    //   if (randomV.associateInput.dayNotice == null) {
+    //     document.getElementById('Notice').innerHTML = 'N/A';
+    //   } else {
+    //     randomV.associateInput.dayNotice == true;
+    //   }
+    // }
+    // )};
 
 
   performFilter(filterBy: string): ActualDayNotice[] {
