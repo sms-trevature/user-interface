@@ -35,6 +35,7 @@ export class SurveyListComponent implements OnInit {
   statusCheckList: boolean[] = [];
   cohortCheckList: boolean[] = [];
   userCheckList: boolean[] = [];
+  shownEmailList: string[] = [];
 
   qList: Question[];
   ArrayOfResponseAnswerList: Array<string[]>;
@@ -49,11 +50,15 @@ export class SurveyListComponent implements OnInit {
               private usersClientService: UsersClientService,
               private surveyHistoryService: SurveyHistoryService) {}
   ngOnInit() {
+    this.listOfSurvey = [];
     this.surveyService.findAll().subscribe(
       data => {
-        // data[i].dateCreated = new Date(data[i].dateCreated);
-        // data[i].closingDate = new Date(data[i].closingDate);
-        this.listOfSurvey = data;
+        for (const temp of data) {
+          if (!temp.template) {
+            this.listOfSurvey.push(temp);
+          }
+        }
+        this.filteredListOfSurvey = this.listOfSurvey;
       }
     );
   }
@@ -131,13 +136,15 @@ export class SurveyListComponent implements OnInit {
     for (const email of userEmailList) {
       this.pushSurveyHistory(email, this.surveyId);
     }
-    window.location.reload();
   }
 
   pushSurveyHistory(email, surveyId) {
+    this.shownEmailList = [];
     const surHistory = new SurveyHistory(null, surveyId, email, new Date(), null);
     this.surveyHistoryService.save(surHistory).subscribe(
-      data => {console.log(data); }
+      data => {console.log(data);
+               this.shownEmailList.push(data.userEmail);
+      }
     );
   }
   get listFilter(): string {
@@ -212,6 +219,10 @@ export class SurveyListComponent implements OnInit {
     }
   }
 
+  reload() {
+    window.location.reload();
+    this.shownEmailList = [];
+  }
 }
 
 
