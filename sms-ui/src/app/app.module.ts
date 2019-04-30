@@ -42,11 +42,6 @@ import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
-
-import { AutodataComponent } from './components/autodata/autodata.component';
-import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
-import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
-
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
