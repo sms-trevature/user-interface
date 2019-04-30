@@ -1,54 +1,44 @@
 <app-navbar></app-navbar>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
+
+<div class='col-md-2'>Search: </div>
+      <div class='col-md-4'>
+        <input type='text' [(ngModel)]='listFilter' />
+      </div>
 
 <div class="container">
   <h2>Associates with a 24 Hour Notice</h2>                   
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Interview ID</th>
         <th>Associate Email</th>
-        <th>Associate Location</th>
-        <th>24 Hour Notice</th>
+        <th>Associate Name</th>
+        <th>24 Hour Associate</th>
+        <th>24 Hour Manager</th>
+        <th>Interview Date</th>
       </tr>
     </thead>
     <tbody *ngFor="let temp of dayNoticeList">
       <tr>
-        <td>{{temp.id}}</td>
-        <td>{{temp.associateEmail}}</td>
-        <td>{{temp.place}}</td>
-        <td>{{temp.associateInput.dayNotice}}</td>
+        <td>{{temp.assocEmail}}</td>
+        <td>{{temp.assocName}}</td>
+        <td>{{temp.twentyFourAssoc}}</td>
+        <td>{{temp.twentyFourManager}}</td>
+        <td>{{temp.interviewDate | date}}</td>
       </tr>
     </tbody>
   </table>
 </div>
-
-<div class="container">
-  <h2>Associates without a 24 Hour Notice</h2>                   
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Interview ID</th>
-        <th>Associate Email</th>
-        <th>Associate Location</th>
-        <th>24 Hour Notice</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let temp of noDayNoticeList">
-      <tr>
-        <td>{{temp.id}}</td>
-        <td>{{temp.associateEmail}}</td>
-        <td>{{temp.place}}</td>
-        <td>{{temp.associateInput.dayNotice}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<<<<<<< HEAD
 
 <!-- <app-daynotice-graph></app-daynotice-graph> -->
+=======
+<app-daynotice-graph></app-daynotice-graph>
+
+>>>>>>> fb8922473776c0af677cc82c640eb77fefc9ef1f
