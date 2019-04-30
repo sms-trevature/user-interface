@@ -11,6 +11,7 @@ import { SurveyListComponent } from './components/survey/survey-list/survey-list
 import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component'; // temporary -Steph
 import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
 import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
+import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 
 
 const routes: Routes = [
@@ -56,6 +57,10 @@ const routes: Routes = [
     path: 'survey-template',
     component: SurveyGridComponent
 
+  },
+  {
+    path: 'daynoticeRoute', 
+    component: DaynoticeGraphComponent
   }
 
 ];

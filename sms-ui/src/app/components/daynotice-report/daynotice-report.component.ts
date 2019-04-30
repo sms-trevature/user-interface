@@ -32,14 +32,16 @@ export class DaynoticeReportComponent implements OnInit {
   get24Hr() {
     this.dayNotice.get24HrNotice().subscribe((data: ActualDayNotice[]) => {
       this.dayNoticeList = data;
-      this.dayNoticeList = this.filterByTrue();
+     // this.dayNoticeList = this.filterByTrue();
+      this.dayNoticeListFilter = data;
     });
   }
 
+
   filterByTrue(): ActualDayNotice[] {
     return this.dayNoticeList.filter((randomV: ActualDayNotice) => (randomV.twentyFourAssoc) == false);
-  }
 
+  }
 
   performFilter(filterBy: string): ActualDayNotice[] {
     filterBy = filterBy.toLocaleLowerCase();
@@ -47,7 +49,7 @@ export class DaynoticeReportComponent implements OnInit {
       (temp.assocEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
         || temp.assocName.toLocaleLowerCase().indexOf(filterBy) !== -1
       )
-    );
+    ); 
   }
 }
 

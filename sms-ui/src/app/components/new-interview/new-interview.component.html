@@ -2,8 +2,11 @@
 
 
 <div class="container-fluid newInterview">
-  <div class="row">
-    <div class="col-3">
+    <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col-6 text-center" id="">CREATE NEW INTERVIEW FOR AN ASSOCIATE</div>
+        <div class="col-3"></div>
     </div>
     <div class="col-6 text-center" id=""><b>Create New Interview For an associate</b></div>
     <br><br> 
@@ -13,29 +16,27 @@
     <div class="col-3"></div>
     <div class="col-6">
 
-      <select class="custom-select" [(ngModel)]='selectedCohort' (change)="firstDropDownChanged($event.target.value);submitReadyCheck()">
+            <select class="custom-select" [(ngModel)]='selectedCohort' (change)="firstDropDownChanged($event.target.value);submitReadyCheck()">
         <option selected>Select Cohort</option>
         <option *ngFor='let v of _cohortName'>{{v}}</option>
        
       </select>
-      <br>
-      <br>
-      <select class="custom-select" [disabled]="dropdown2NotReady" [(ngModel)]='selectedAssociate' (change)="submitReadyCheck()">
+            <br>
+            <br>
+            <select class="custom-select" [disabled]="dropdown2NotReady" [(ngModel)]='selectedAssociate' (change)="submitReadyCheck()">
         <option selected>Select An Associate</option>
         <option *ngFor='let v of _associateName'>{{v}}</option>
         
       </select>
-      <br>
-      <br>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">Date</span>
-        </div>
-        <input type="text" placeholder="Enter Date" bsDatepicker [minDate]="minDate"
-         [(ngModel)]="dateSelection"
-         class="form-control" >
-      </div>
-<!-- 
+            <br>
+            <br>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Date</span>
+                </div>
+                <input type="text" placeholder="Enter Date" bsDatepicker [minDate]="minDate" [(ngModel)]="dateSelection" class="form-control">
+            </div>
+            <!-- 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span  style="margin-right: 10px"  class="input-group-text" id="basic-addon1">Time</span>
@@ -45,12 +46,12 @@
         <pre class="alert alert-info">Time is: {{time}}</pre> 
       </div> -->
 
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">Location</span>
-        </div>
-        <input type="text" class="form-control" (keypress)="submitReadyCheck()" [(ngModel)]='selectedLocation' placeholder="Enter Location" aria-describedby="basic-addon1">
-      </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Location</span>
+                </div>
+                <input type="text" class="form-control" (keypress)="submitReadyCheck()" [(ngModel)]='selectedLocation' placeholder="Enter Location" aria-describedby="basic-addon1">
+            </div>
 
       <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -60,10 +61,7 @@
         </div>
         <button type="button" [disabled]="buttonDisabled"  (click)="sendInterviewData()" class="btn btn-dark">Confirm Interview</button>
 
-
     </div>
-    <div class="col-3"></div>
-  </div>
 
 
 </div>
