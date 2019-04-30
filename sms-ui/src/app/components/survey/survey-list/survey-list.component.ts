@@ -16,7 +16,8 @@ import { SurveyHistory } from 'src/app/sms-client/dto/SurveyHistory';
 })
 export class SurveyListComponent implements OnInit {
 
-  @Output() surveyId: EventEmitter<any> = new EventEmitter();
+  surveyId: number;
+  respPressed: boolean;
 
   surveyTitle: string;
   listOfSurvey: Survey[];
@@ -42,6 +43,7 @@ export class SurveyListComponent implements OnInit {
         this.listOfSurvey = data;
       }
     );
+    this.respPressed = false;
   }
 
   closeSurvey(index: number) {
@@ -137,7 +139,8 @@ export class SurveyListComponent implements OnInit {
 
   getRespondents(surveyId: number) {
     console.log('The current surveyId is: ' + surveyId);
-    this.surveyId.emit(surveyId);
+    this.surveyId = surveyId;
+    this.respPressed = true;
   }
 
 }

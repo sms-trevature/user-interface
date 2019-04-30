@@ -81,6 +81,9 @@
     </table>
   </div>
 
+  <div id="respondents" *ngIf='respPressed'>
+    <app-survey-respondents [surveyId]='surveyId'></app-survey-respondents>
+  </div>
 
   <div id="graphs" *ngIf='qList&&qList.length'>
     <h3>{{"Analytics: " + surveyTitle}}</h3>
@@ -93,7 +96,6 @@
 
 </div>
 <!--end of main -->
-<app-survey-respondents (surveyId)='getSurveys($event)'></app-survey-respondents>
 
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"

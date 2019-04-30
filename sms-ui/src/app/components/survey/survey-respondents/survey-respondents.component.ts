@@ -5,7 +5,6 @@ import { SurveyHistoryService } from 'src/app/sms-client/clients/survey-history.
 @Component({
   selector: 'app-survey-respondents',
   templateUrl: './survey-respondents.component.html',
-  //template: `<app-survey-list (surveyId)='getSurveys($event)'></app-survey-list>`,
   styleUrls: ['./survey-respondents.component.scss']
 })
 export class SurveyRespondentsComponent implements OnInit {
@@ -16,12 +15,9 @@ export class SurveyRespondentsComponent implements OnInit {
   constructor(private surveyHistoryService: SurveyHistoryService) { }
 
   ngOnInit() {
-    //Hard coded example to make sure connection is Correct
-    // Currently a placeholder because I can't get event emitters to work here...
-    this.surveyHistoryService.findBySurveyId(6).subscribe(
+    this.surveyHistoryService.findBySurveyId(this.surveyId).subscribe(
       data => {
         this.listOfResp = data;
-        //console.log(data);
       }
     );
   }
