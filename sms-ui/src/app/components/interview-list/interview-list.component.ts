@@ -101,6 +101,7 @@ export class InterviewListComponent implements OnInit {
       this.filteredInterviewList = data;
       this.sortByDateScheduled();
       this.interviewList = this.filteredInterviewList;
+      console.log(this.interviewList);
       }
     );
   }
