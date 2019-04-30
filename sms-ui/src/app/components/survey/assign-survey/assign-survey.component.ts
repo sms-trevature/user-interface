@@ -83,7 +83,7 @@ export class AssignSurveyComponent implements OnInit {
     this.curTemplate = [];
     this.curTempAnswers = [];
     this.sqService.getTemplate(surveyId).subscribe(
-      data => {
+      data => {console.log(data);
         this.curTemplate = data;
 
         for (const i of Object.keys(data)) {
