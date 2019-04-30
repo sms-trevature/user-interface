@@ -4,11 +4,12 @@
 <tr>
   <th>Associate Name</th>
   <th>Associate Email</th>
-  <th>Interviews</th>
+  <th>Interview Count</th>
 </tr>
-  <tr let temp of filteredAssociates>
-    <td>{{temp.filteredAssociates}}</td>
-    <td></td>
+  <tr *ngFor = 'let temp of AssociateInterviewCounts'>
+    <td>{{temp.associateName}}</td>
+    <td>{{temp.associateEmail}}</td>
+    <td>{{temp.interviewCount}}</td>
     <td></td>
   </tr>
 </table>
