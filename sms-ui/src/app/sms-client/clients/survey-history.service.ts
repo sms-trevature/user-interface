@@ -17,4 +17,7 @@ findByEmail(email: string): Observable<SurveyHistory[]> {
   return this.http.post<SurveyHistory[]>(`${this.context}/email`, email);
 }
 
+update(surveyHistory: SurveyHistory): Observable<SurveyHistory> {
+  return this.http.patch<SurveyHistory>(`${this.context}/taken`, surveyHistory);
+}
 }
