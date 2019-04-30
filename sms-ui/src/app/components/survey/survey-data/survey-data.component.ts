@@ -16,8 +16,11 @@ export class SurveyDataComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-// tslint:disable-next-line: max-line-length
-    if (this.type === 5) {this.isFeedback = true; } else if (this.type === 2 || this.type === 6) { this.isPieChart = true; } else { this.isBarChart = true; }
+    if (this.type === 5) {
+    this.isFeedback = true;
+    } else if (this.type === 2 || this.type === 6) {
+    this.isPieChart = true;
+    } else { this.isBarChart = true; }
 
   }
 
