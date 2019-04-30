@@ -23,29 +23,9 @@
         <td>{{temp.id}}</td>
         <td>{{temp.associateEmail}}</td>
         <td>{{temp.place}}</td>
-        <td>{{temp.feedback.feedbackRequested | date}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+        <td *ngIf="feedback == null">N/A</td>
+        <td *ngIf="feedback != null">{{temp.feedback.feedbackRequested | date}}</td>
 
-<div class="container">
-  <h2>Associates without Feedback Requested</h2>                   
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Interview ID</th>
-        <th>Associate Email</th>
-        <th>Associate Location</th>
-        <th>Feedback Requested</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let temp of feedbackNoList">
-      <tr>
-        <td>{{temp.id}}</td>
-        <td>{{temp.associateEmail}}</td>
-        <td>{{temp.place}}</td>
-        <td>{{temp.feedback.feedbackRequested | date}}</td>
       </tr>
     </tbody>
   </table>

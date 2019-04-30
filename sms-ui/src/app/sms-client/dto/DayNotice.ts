@@ -9,6 +9,14 @@ export interface DayNotice {
    feedback: Feedback;
 }
 
+export interface ActualDayNotice {
+    assocEmail: string;
+    assocName: string;
+    twentyFourAssoc: boolean;
+    twentyFourManager: boolean;
+    interviewDate: number;
+}
+
 
 
 
