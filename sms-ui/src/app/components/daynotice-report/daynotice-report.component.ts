@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DaynoticeService } from 'src/app/services/daynotice.service';
 import { Router } from '@angular/router';
-import { DayNotice } from 'src/app/sms-client/dto/DayNotice';
+import { DayNotice, ActualDayNotice } from 'src/app/sms-client/dto/DayNotice';
 
 @Component({
   selector: 'app-daynotice-report',
@@ -10,62 +10,54 @@ import { DayNotice } from 'src/app/sms-client/dto/DayNotice';
 })
 export class DaynoticeReportComponent implements OnInit {
 
-  _id = 0;
-  _associateEmail = '';
-  _place = '';
-
-  dayNoticeList: DayNotice[];
-  filteredDayNoticeList: DayNotice[];
-
-  noDayNoticeList: DayNotice[];
- 
+  dayNoticeList: ActualDayNotice[];
+  listFilterVar = '';
+  dayNoticeListFilter: ActualDayNotice[];
 
   constructor(private dayNotice: DaynoticeService) { }
 
-  get id(): number {
-    return this._id;
+  get listFilter(): string {
+    return this.listFilterVar;
   }
-
-  set id(temp: number) {
-    this._id = temp;
-  }
-
-  get associateEmail(): string {
-    return this._associateEmail;
-  }
-
-  set associateEmail(temp: string) {
-    this._associateEmail = temp;
-  }
-
-  get place(): string {
-    return this._place;
-  }
-
-  set place(temp: string) {
-    this._place = temp;
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.dayNoticeListFilter = (this.listFilterVar) ?
+      this.performFilter(this.listFilterVar) : this.dayNoticeList;
   }
 
   ngOnInit() {
-   this.getAllInterviews();
+   this.get24Hr();
   }
 
-  getAllInterviews() {
-    this.dayNotice.getAllInterviews().subscribe((data: DayNotice[]) => {
+  get24Hr() {
+    this.dayNotice.get24HrNotice().subscribe((data: ActualDayNotice[]) => {
       this.dayNoticeList = data;
-      this.noDayNoticeList = data;
-      this.dayNoticeList = this.filterByDayNotice();
-      this.noDayNoticeList = this.filterByNoNotice();
-
+      this.dayNoticeList = this.filterByTrue();
     });
   }
 
-  filterByDayNotice(): DayNotice[] {
-    return this.dayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == true);
-  }
 
-  filterByNoNotice(): DayNotice[] {
-    return this.noDayNoticeList.filter((randomV: DayNotice) => (randomV.associateInput.dayNotice) == false);
+  filterByTrue(): ActualDayNotice[] {
+    return this.dayNoticeList.filter((randomV: ActualDayNotice) => (randomV.twentyFourAssoc) == true);
+
+  }
+    // {
+    //   if (randomV.associateInput.dayNotice == null) {
+    //     document.getElementById('Notice').innerHTML = 'N/A';
+    //   } else {
+    //     randomV.associateInput.dayNotice == true;
+    //   }
+    // }
+    // )};
+
+
+  performFilter(filterBy: string): ActualDayNotice[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.dayNoticeList.filter((temp: ActualDayNotice) =>
+      (temp.assocEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.assocName.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    );
   }
 }
 

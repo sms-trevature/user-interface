@@ -17,6 +17,13 @@ export class UsersClientService {
   }
 
   findByEmail(email: string) {
+    console.log("the email we are using to check is : " +email);
     return this.http.get<User>(`${this.context}/email/${email}`);
+  }
+  findAll() {
+    return this.http.get<User[]>(`${this.context}`);
+  }
+  findAllByCohortId(cohortId: number) {
+    return this.http.get<User[]>(`${this.context}/cohorts/${cohortId}`);
   }
 }

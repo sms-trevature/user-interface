@@ -12,13 +12,20 @@ export let browserRefresh = false;
 })
 
 export class AppComponent {
-  subscription:Subscription;
+  subscription: Subscription;
   title = 'sms-ui';
-  constructor(private router:Router, private cognito:CognitoService){
-  this.subscription = router.events.subscribe((event) => {
-    if (event instanceof NavigationStart) {
-      browserRefresh = !router.navigated;
+  constructor(private router: Router, private cognito: CognitoService) {
+    this.subscription = router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        browserRefresh = !router.navigated;
+      }
+    });
+    cognito.currentUser$.toPromise().then(data=>{
+      console.log(data)
+    })
+    if (cognito.currentUser$ == undefined) {
+      console.log('in the logged out if statement')
+      this.router.navigateByUrl('/login')
     }
-});
-}
+  }
 }

@@ -8,15 +8,15 @@ import { InterviewFormat } from 'src/app/sms-client/dto/InterviewFormat';
 })
 export class AssociateFeedback {
   '_descriptionProvided': boolean;
-  '_recievedNotifications': string;
+  '_receivedNotifications': Date;
   '_dayNotice': boolean;
   '_interviewFormat': InterviewFormat;
   '_proposedFormat': InterviewFormat;
 
-  constructor(descriptionProvided: boolean, recievedNotifications: string,
-              dayNotice: boolean, interviewFormat: InterviewFormat, proposedFormat: InterviewFormat) {
+  constructor(descriptionProvided: boolean, receivedNotifications: Date, dayNotice: boolean, interviewFormat: InterviewFormat, proposedFormat: InterviewFormat) {
+
     this._descriptionProvided = descriptionProvided;
-    this._recievedNotifications = recievedNotifications;
+    this._receivedNotifications = receivedNotifications;
     this._dayNotice = dayNotice;
     this._interviewFormat = interviewFormat;
     this._proposedFormat = proposedFormat;
@@ -30,12 +30,12 @@ export class AssociateFeedback {
    this._descriptionProvided = temp;
   }
 
-  get recievedNotifications(): string {
-    return this._recievedNotifications;
+  get receivedNotifications(): Date {
+    return this._receivedNotifications;
   }
 
-  set recievedNotifications(temp: string) {
-    this._recievedNotifications = temp;
+  set receivedNotifications(temp: Date) {
+    this._receivedNotifications = temp;
   }
 
   get dayNotice(): boolean {
@@ -82,20 +82,23 @@ export class AssociateFeedbackService {
 
   postAssociateInput(associateInput): Observable<AssociateFeedback> {
 
-    console.log('the asso input proposed format is ');
-    console.log(associateInput.proposedFormat);
-    console.log('the asso input interview format is ');
-    console.log(associateInput.interviewFormat);
-    console.log('the asso input desc format is ');
-    console.log(associateInput.descriptionProvided);
-    console.log('the asso input dayNotice format is ');
-    console.log(associateInput.dayNotice);
-    console.log(associateInput._recievedNotifications);
+    // console.log('the asso input proposed format is ');
+    // console.log(associateInput.proposedFormat);
+    // console.log('the asso input interview format is ');
+    // console.log(associateInput.interviewFormat);
+    // console.log('the asso input desc format is ');
+    // console.log(associateInput.descriptionProvided);
+    // console.log('the asso input dayNotice format is ');
+    // console.log(associateInput.dayNotice);
+    console.log('DESCRIPTION FOR INTERVIEW IS: ' + associateInput.interviewFormat.formatDesc);
+    console.log('ID FOR INTERVIEW IS: ' + associateInput.interviewFormat.id)
+    console.log('DESCRIPTION FOR PROSPOSED IS: ' + associateInput.proposedFormat.formatDesc);
+    console.log('ID FOR PROPOSED IS: ' + associateInput.proposedFormat.id)
 
 
-    console.log('inside of post associate');
+    // console.log('inside of post associate');
     return this.httpClient.post<AssociateFeedback>(this.url, {
-      recievedNotifications: '2019-08-03 14:00:00',
+      receivedNotifications: associateInput.receivedNotifications,
       descriptionProvided: associateInput.descriptionProvided,
 
       interviewFormat: associateInput.interviewFormat,
