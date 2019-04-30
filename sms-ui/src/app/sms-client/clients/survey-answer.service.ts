@@ -20,7 +20,10 @@ export class SurveyAnswerService {
     return this.http.get<Answer[]>(`${this.context}/question/${qId}`);
   }
 
+  save(ans: Answer): Observable<Answer> {
+    return this.http.post<Answer>(`${this.context}`, ans);
+  }
   saveList(answerList: Answer[]): Observable<Answer[]> {
-    return this.http.post<Answer[]>(`${this.context}/multi-answers/`, answerList);
+    return this.http.post<Answer[]>(`${this.context}/multi-answers`, answerList);
   }
 }
