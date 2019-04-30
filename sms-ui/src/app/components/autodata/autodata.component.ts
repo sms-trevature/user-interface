@@ -7,12 +7,14 @@ import { AutodataService } from 'src/app/sms-client/clients/autodata.service';
 import { AssociateInterviewCount } from 'src/app/sms-client/dto/AssociateInterviewCount';
 
 
+
 @Component({
   selector: 'app-autodata',
   templateUrl: './autodata.component.html',
   styleUrls: ['./autodata.component.scss']
 })
 export class AutodataComponent implements OnInit {
+
 
   private AssociateInterviewCounts: AssociateInterviewCount[] = [];
 
@@ -22,6 +24,7 @@ export class AutodataComponent implements OnInit {
         console.log(data[1]);
        console.log( data[1].associateEmail);
       
+
       let objIndex = 0;
 
       while (data[objIndex] != null || data[objIndex] != undefined) {
@@ -31,6 +34,7 @@ export class AutodataComponent implements OnInit {
         objIndex++;
 
       }
+
 
     }); */
     
