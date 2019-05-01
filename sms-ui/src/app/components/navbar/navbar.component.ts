@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   }
   logout(){
     this.cognito.logout().then(data=>{
-      console.log(data)
+      console.log(data) 
     })
   }
 }
