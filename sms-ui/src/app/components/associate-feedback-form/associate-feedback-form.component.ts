@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AssociateFeedbackService, AssociateFeedback } from './associate-feedback.service';
 import { Router } from '@angular/router';
 import { InterviewFormat } from 'src/app/sms-client/dto/InterviewFormat';
+import { AssignSurveyComponent } from '../survey/assign-survey/assign-survey.component';
 
 @Component({
   selector: 'app-associate-feedback-form',
@@ -77,22 +78,11 @@ export class AssociateFeedbackFormComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.postAssociateInput();
   }
 
   postAssociateInput() {
-
-    console.log('in the submit')
-
-    console.log(this._interviewFormatStr);
-    console.log(this.interviewFormat);
-    console.log(this.dayNotice);
-    console.log("THE DATE IS: " + this.receivedNotifications);
-    this.interviewFormat = { 'id': 2, 'formatDesc': this._interviewFormatStr };
-    console.log(this.interviewFormat.formatDesc);
-    console.log('seperator')
-    this.proposedFormat = { 'id': 2, 'formatDesc': this._proposedFormatStr };;
-    console.log('made it past the formats')
+    this.assignInterviewFormat();
+    this.assignProposedFormat();
     let associateInput = new AssociateFeedback(this._descriptionProvided, this.receivedNotifications, this._dayNotice, this.interviewFormat, this.proposedFormat);
     this.associateFeedbackService.postAssociateInput(associateInput).subscribe(data => {
       data.receivedNotifications = this.receivedNotifications,
@@ -103,9 +93,27 @@ export class AssociateFeedbackFormComponent implements OnInit {
 
     });
   }
+  assignInterviewFormat() {
+    if (this._interviewFormatStr == 'On Site') {
+      this.interviewFormat = { 'id': 1, 'formatDesc': this._interviewFormatStr };
+    } else if (this._interviewFormatStr == 'In Person') {
+      this.interviewFormat = { 'id': 2, 'formatDesc': this._interviewFormatStr };
+    } else if (this._interviewFormatStr == 'Video Call') {
+      this.interviewFormat = { 'id': 3, 'formatDesc': this._interviewFormatStr };
+    } else if (this._interviewFormatStr == 'Phone Call') {
+      this.interviewFormat = { 'id': 4, 'formatDesc': this._interviewFormatStr };
+    }
+  }
 
-  newInterviewFeedback() {
-    console.log("inside of new interview feedback");
-
+  assignProposedFormat() {
+    if (this._proposedFormatStr == 'On Site') {
+      this.proposedFormat = { 'id': 1, 'formatDesc': this._proposedFormatStr };
+    } else if (this._proposedFormatStr == 'In Person') {
+      this.proposedFormat = { 'id': 2, 'formatDesc': this._proposedFormatStr };
+    } else if (this._proposedFormatStr == 'Video Call') {
+      this.proposedFormat = { 'id': 3, 'formatDesc': this._proposedFormatStr };
+    } else if (this._proposedFormatStr == 'Phone Call') {
+      this.proposedFormat = { 'id': 4, 'formatDesc': this._proposedFormatStr };
+    }
   }
 }
