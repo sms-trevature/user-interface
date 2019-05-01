@@ -12,6 +12,7 @@ export let browserRefresh = false;
 })
 
 export class AppComponent {
+
   subscription: Subscription;
   title = 'sms-ui';
   constructor(private router: Router, private cognito: CognitoService) {
@@ -22,4 +23,5 @@ export class AppComponent {
       }
     });
   }
+
 }

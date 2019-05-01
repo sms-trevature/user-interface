@@ -35,12 +35,39 @@ img {
 }
 
 .surveys {
-    width: 1980px;
-    height: 400px;
+  /*   width: 1980px;
+    height: 500px;
     background: url("../../../assets/surveyimg.jpg");
     background-size: 1980px;
     background-position: bottom;
+    background-attachment: fixed; */
+    
+    height: 500px;
+    width: 1980px;
+    background:
+    linear-gradient(
+        rgba(191, 191, 191, .70),
+        rgba(191, 191, 191, .70),
+    ),
+    url("../../../assets/surveyimg.jpg");
+    background-size: 1980px;
+    background-position: bottom;
     background-attachment: fixed;
+}
+.centered{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.below-centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
 }
 
 .container {
@@ -64,4 +91,12 @@ a {
     &:hover {
         color: $revature-orange-light;
     }
+}
+
+h1{
+    color:black;
+     /* #f3a55d; */
+    font-size:60px;
+    white-space: nowrap;
+    overflow: hidden;
 }

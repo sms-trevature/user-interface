@@ -6,17 +6,12 @@ $drew-orange: #f3a55d;
     background-color: grey; 
 }
 
-timepicker{
-    background-color: rgba(221, 217, 217, 0.705);
-}
-
-.newInterview{
+.newInterview {
     background-color: white;
-
     border-radius: 10px 10px 10px 10px;
--moz-border-radius: 10px 10px 10px 10px;
--webkit-border-radius: 10px 10px 10px 10px;
-border: .5px solid #d3d3d3;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: .5px solid #d3d3d3;
     padding: 1rem; //need to find proper measurements for border
     width: 700px;
     //-webkit-box-shadow: 11px 7px 42px 5px rgba(0,0,0,0.22);
@@ -35,3 +30,17 @@ hr {
     width: 50%;
     border-color: orange;
   }
+
+  #title {
+      text-align: center;
+  }
+
+  .panel-body, th, h2 {
+    background-color: #f3a55d;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    border-radius: 10px 10px 10px 10px;
+
+ }
