@@ -41,68 +41,28 @@ h1 {
 }
 
 .surveys {
-<<<<<<< HEAD
-    width: 1980px;
-    height: 450px;
-    background: url("../../../assets/surveyimg.jpg");
-    background-size: 100%;
-    background-position: bottom 20% right 100px;
-    /* -webkit-filter: brightness(100%); */
-}
-
-.surveys:hover,
-.interviews:hover,
-.manage:hover,
-.reports:hover {
-    opacity: .7;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    transition: all 1s ease;
-}
-
-.surveys:hover .btn,
-.reports:hover .btn,
-.manage:hover .btn,
-.interviews:hover .btn {
-    opacity: 1;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    transition: all 1s ease;
-    display: inline-block;
-=======
-  /*   width: 1980px;
+    /*   width: 1980px;
     height: 500px;
     background: url("../../../assets/surveyimg.jpg");
     background-size: 1980px;
     background-position: bottom;
     background-attachment: fixed; */
-    
     height: 500px;
     width: 1980px;
-    background:
-    linear-gradient(
-        rgba(191, 191, 191, .70),
-        rgba(191, 191, 191, .70),
-    ),
-    url("../../../assets/surveyimg.jpg");
+    background: linear-gradient( rgba(191, 191, 191, .70), rgba(191, 191, 191, .70), ), url("../../../assets/surveyimg.jpg");
     background-size: 1980px;
     background-position: bottom;
     background-attachment: fixed;
->>>>>>> 292ffa693063ca1cb2d1ada4889797758172d7ab
 }
-.centered{
+
+.centered {
     position: absolute;
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-
 }
 
-.below-centered{
+.below-centered {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -176,10 +136,10 @@ a {
     }
 }
 
-h1{
-    color:black;
-     /* #f3a55d; */
-    font-size:60px;
+h1 {
+    color: black;
+    /* #f3a55d; */
+    font-size: 60px;
     white-space: nowrap;
     overflow: hidden;
 }
