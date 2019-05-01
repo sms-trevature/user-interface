@@ -28,6 +28,10 @@
         <td>{{listOfSurveyHistory[i].dateAssigned | showTimestamp}}</td>
         <td>{{temp.closingDate | showTimestamp}} </td>
       </tr>
+<<<<<<< HEAD
+=======
+
+>>>>>>> InterviewDev
     </tbody>
   </table>
 </div>
@@ -98,4 +102,17 @@
           </table>
         </div>
 
+      <ng-template #elseBlock>
+        <div class="container" >
+          <table class="table table-striped" id="box-shadow">
+            <th><br></th>
+            <tr>
+              <td>
+          <h1>No Surveys Assigned</h1>
+        </td>
+        </tr>
+        </table>
+        </div>
+
       </ng-template>
+

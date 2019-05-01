@@ -41,6 +41,7 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { RegistrationComponent } from './components/registration/registration.component';
 import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
@@ -121,6 +122,27 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
+ /* import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
+import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
+import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
+import { AutodataComponent } from './components/autodata/autodata.component';
+
+const routes: Routes = [
+  { path: 'profileInfo', component: RegistrationComponent },
+  //change RegistrationComponent back to the profile component
+  { path: '', component: LoginComponent },
+  { path: 'reportsRoute', component: ReportsComponent },
+  { path: 'InterViewRoute', component: InterviewComponent },
+  { path: 'CreateInterviewRoute', component: NewInterviewComponent},
+  { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
+  { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
+  { path: 'InterviewListRoute', component: InterviewListComponent},
+  {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
+  {path: 'JobDescRoute', component: JobdescReportComponent},
+  {path: 'NewRegistration', component: RegistrationComponent},
+  {path: 'FeedbackRoute', component: FeedbackReportComponent},
+  { path: 'AutoDataRoute', component: AutodataComponent}, */
+  
 
   {
     path: 'ManageRoute',
@@ -193,11 +215,13 @@ const routes: Routes = [
 
     DaynoticeReportComponent,
     JobdescReportComponent,
-    DaynoticeGraphComponent,
+    RegistrationComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
     AutodataComponent,
     InterviewListForCurUserComponent,
+    DaynoticeGraphComponent
+   
 
 
   ],
@@ -221,7 +245,7 @@ const routes: Routes = [
   providers: [
     CognitoService, FakeServiceComponent, NavbarComponent, AuthGuard
   ],
-  /* AppComponent */
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

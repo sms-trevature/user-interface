@@ -12,8 +12,9 @@ import { SurveyDataComponent } from './components/survey/survey-data/survey-data
 import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
 import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
-//Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
+import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 
+//Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
 
 const routes: Routes = [
   {
@@ -66,6 +67,11 @@ const routes: Routes = [
     path: 'survey-template',
     component: SurveyGridComponent,
     canActivate: [AuthGuard]
+
+  },
+  {
+    path: 'daynoticeRoute', 
+    component: DaynoticeGraphComponent
   }
 
 ];
