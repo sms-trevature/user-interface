@@ -3,11 +3,11 @@
 
 <body style="text-align:center; ">
   <div class="centeredBody" >
-    <div class="profile-container" style="background-image: linear-gradient(0deg, #f3a65d7e 20%,rgba(240, 206, 111, 0.767), white);">
+    <div class="profile-container" style="background: #f3a55d;">
       <div class="userinfo">
         <b id="adjustTL">Training Location:</b> &nbsp;&nbsp; <div id="trainWork"> <button
             (click)="changeTrainingAddress()"
-            style="position: relative; left: -160px; border: outset; border-radius: 10px; background:transparent;">{{currentUser.trainingAddress.alias}}</button></div>
+            style="position: relative; left: -160px; border: outset; border-radius: 10px; background:#f26925; font: white">{{currentUser.trainingAddress.alias}}</button></div>
         <br>
         <br>
         <b>First Name:</b> &nbsp; <input value="{{currentUser.firstName}}" id="fName">
@@ -40,7 +40,7 @@
         <b>Name Alias:</b> &nbsp;&nbsp; <input value="{{currentUser.personalAddress.alias}}" id="alias">
         <br>
         <br>
-        <b>Company Status:</b> &nbsp;&nbsp; <input value="Associate {{currentUser.userStatus}}" readonly id="companyStat">
+        <b>Company Status:</b> &nbsp;&nbsp; <input value="{{currentUser.userStatus}}" readonly id="companyStat">
         <br>
         <br>
         <button type="button" class="btn btn-info" (click)="someMethodToUpdateAddressOrUserInfo()">Update</button>
