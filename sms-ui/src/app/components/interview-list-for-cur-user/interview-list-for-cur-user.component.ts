@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Interview } from 'src/app/sms-client/dto/Interview';
 import { InterviewService } from 'src/app/sms-client/clients/interview.service';
+import { Interview } from 'src/app/sms-client/dto/Interview';
 
 @Component({
   selector: 'app-interview-list-for-cur-user',
@@ -8,11 +8,18 @@ import { InterviewService } from 'src/app/sms-client/clients/interview.service';
   styleUrls: ['./interview-list-for-cur-user.component.scss']
 })
 export class InterviewListForCurUserComponent implements OnInit {
-
+  
   private interviewList: Interview[] = [];
   private filteredInterviewList: Interview[] = [];
   private listFilterVar = '';
   private reviewFilterVar = 'all';
+  private associateEmailSortDir = true;
+  private managerEmailSortDir = true;
+  private locationSortDir = true;
+  private clientSortDir = true;
+  private dateNotifiedSortDir = true;
+  private dateScheduledSortDir = false;
+  private dateReviewedSortDir = true;
 
   get listFilter(): string {
     return this.listFilterVar;
@@ -79,7 +86,9 @@ export class InterviewListForCurUserComponent implements OnInit {
     return this.actualFormatVar;
   }
 
-  constructor(private interview: InterviewService) {}
+  constructor(private interview: InterviewService) {
+    this.ngOnInit();
+  }
 
   ngOnInit() {
     let email = localStorage.getItem('userEmail');
@@ -90,11 +99,12 @@ export class InterviewListForCurUserComponent implements OnInit {
           this.filteredInterviewList.push(temp);
         }
       }
-      this.sortByScheduledDesc();
+      this.sortByDateScheduled();
       this.interviewList = this.filteredInterviewList;
       }
     );
   }
+
   openAssociateInputModal(id: number) {
     let index = -1;
 
@@ -143,8 +153,14 @@ export class InterviewListForCurUserComponent implements OnInit {
     );
   }
 
-  sortByAssociateEmailAsc() {
-    this.filteredInterviewList.sort(this.compareByAssociateEmailAsc);
+  sortByAssociateEmail() {
+    if (this.associateEmailSortDir) {
+      this.filteredInterviewList.sort(this.compareByAssociateEmailAsc);
+      this.associateEmailSortDir = false;
+    } else {
+      this.filteredInterviewList.sort(this.compareByAssociateEmailDesc);
+      this.associateEmailSortDir = true;
+    }
   }
 
   compareByAssociateEmailAsc(a: Interview, b: Interview) {
@@ -157,10 +173,6 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 
-  sortByAssociateEmailDesc() {
-    this.filteredInterviewList.sort(this.compareByAssociateEmailDesc);
-  }
-
   compareByAssociateEmailDesc(a: Interview, b: Interview) {
     if (a.associateEmail.toLocaleLowerCase() < b.associateEmail.toLocaleLowerCase()) {
       return 1;
@@ -171,8 +183,14 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 
-  sortByManagerEmailAsc() {
-    this.filteredInterviewList.sort(this.compareByManagerEmailAsc);
+  sortByManagerEmail() {
+    if (this.managerEmailSortDir) {
+      this.filteredInterviewList.sort(this.compareByManagerEmailAsc);
+      this.managerEmailSortDir = false;
+    } else {
+      this.filteredInterviewList.sort(this.compareByManagerEmailDesc);
+      this.managerEmailSortDir = true;
+    }
   }
 
   compareByManagerEmailAsc(a: Interview, b: Interview) {
@@ -185,10 +203,6 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 
-  sortByManagerEmailDesc() {
-    this.filteredInterviewList.sort(this.compareByManagerEmailDesc);
-  }
-
   compareByManagerEmailDesc(a: Interview, b: Interview) {
     if (a.managerEmail.toLocaleLowerCase() < b.managerEmail.toLocaleLowerCase()) {
       return 1;
@@ -199,8 +213,14 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 
-  sortByLocationAsc() {
-    this.filteredInterviewList.sort(this.compareByLocationAsc);
+  sortByLocation() {
+    if (this.locationSortDir) {
+      this.filteredInterviewList.sort(this.compareByLocationAsc);
+      this.locationSortDir = false;
+    } else {
+      this.filteredInterviewList.sort(this.compareByLocationDesc);
+      this.locationSortDir = true;
+    }
   }
 
   compareByLocationAsc(a: Interview, b: Interview) {
@@ -213,10 +233,6 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 
-  sortByLocationDesc() {
-    this.filteredInterviewList.sort(this.compareByLocationDesc);
-  }
-
   compareByLocationDesc(a: Interview, b: Interview) {
     if (a.place.toLocaleLowerCase() < b.place.toLocaleLowerCase()) {
       return 1;
@@ -227,9 +243,14 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 
-  sortByClientAsc() {
-    this.filteredInterviewList.sort(this.compareByClientAsc);
-  }
+  sortByClient() {
+    if (this.clientSortDir) {
+      this.filteredInterviewList.sort(this.compareByClientAsc);
+      this.clientSortDir = false;
+    } else {
+      this.filteredInterviewList.sort(this.compareByClientDesc);
+      this.clientSortDir = true;
+    }  }
 
   compareByClientAsc(a: Interview, b: Interview) {
     if (a.client.clientName.toLocaleLowerCase() > b.client.clientName.toLocaleLowerCase()) {
@@ -239,10 +260,6 @@ export class InterviewListForCurUserComponent implements OnInit {
     } else {
       return 0;
     }
-  }
-
-  sortByClientDesc() {
-    this.filteredInterviewList.sort(this.compareByClientDesc);
   }
 
   compareByClientDesc(a: Interview, b: Interview) {
@@ -255,9 +272,14 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 
-  sortByNotifiedAsc() {
-    this.filteredInterviewList.sort(this.compareByNotifiedAsc);
-  }
+  sortByDateNotified() {
+    if (this.dateNotifiedSortDir) {
+      this.filteredInterviewList.sort(this.compareByNotifiedAsc);
+      this.dateNotifiedSortDir = false;
+    } else {
+      this.filteredInterviewList.sort(this.compareByNotifiedDesc);
+      this.dateNotifiedSortDir = true;
+    }  }
 
   compareByNotifiedAsc(a: Interview, b: Interview) {
     if (a.notified > b.notified) {
@@ -267,10 +289,6 @@ export class InterviewListForCurUserComponent implements OnInit {
     } else {
       return 0;
     }
-  }
-
-  sortByNotifiedDesc() {
-    this.filteredInterviewList.sort(this.compareByNotifiedDesc);
   }
 
   compareByNotifiedDesc(a: Interview, b: Interview) {
@@ -283,9 +301,14 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 
-  sortByScheduledAsc() {
-    this.filteredInterviewList.sort(this.compareByScheduledAsc);
-  }
+  sortByDateScheduled() {
+    if (this.dateScheduledSortDir) {
+      this.filteredInterviewList.sort(this.compareByScheduledAsc);
+      this.dateScheduledSortDir = false;
+    } else {
+      this.filteredInterviewList.sort(this.compareByScheduledDesc);
+      this.dateScheduledSortDir = true;
+    }  }
 
   compareByScheduledAsc(a: Interview, b: Interview) {
     if (a.scheduled > b.scheduled) {
@@ -295,10 +318,6 @@ export class InterviewListForCurUserComponent implements OnInit {
     } else {
       return 0;
     }
-  }
-
-  sortByScheduledDesc() {
-    this.filteredInterviewList.sort(this.compareByScheduledDesc);
   }
 
   compareByScheduledDesc(a: Interview, b: Interview) {
@@ -311,9 +330,14 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 
-  sortByReviewedAsc() {
-    this.filteredInterviewList.sort(this.compareByReviewedAsc);
-  }
+  sortByDateReviewed() {
+    if (this.dateReviewedSortDir) {
+      this.filteredInterviewList.sort(this.compareByReviewedAsc);
+      this.dateReviewedSortDir = false;
+    } else {
+      this.filteredInterviewList.sort(this.compareByReviewedDesc);
+      this.dateReviewedSortDir = true;
+    }  }
 
   compareByReviewedAsc(a: Interview, b: Interview) {
     if (a.reviewed > b.reviewed) {
@@ -323,10 +347,6 @@ export class InterviewListForCurUserComponent implements OnInit {
     } else {
       return 0;
     }
-  }
-
-  sortByReviewedDesc() {
-    this.filteredInterviewList.sort(this.compareByReviewedDesc);
   }
 
   compareByReviewedDesc(a: Interview, b: Interview) {
@@ -339,7 +359,3 @@ export class InterviewListForCurUserComponent implements OnInit {
     }
   }
 }
-
-
-
-
