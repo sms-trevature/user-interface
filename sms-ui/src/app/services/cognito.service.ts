@@ -108,9 +108,7 @@ export class CognitoService {
       return user;
     })
   }
-  getLocalStorage():String{
-    console.log('the token: ')
-    console.log(localStorage.getItem('token'))
-    return localStorage.getItem('token')
+  getLocalStorage():Storage{
+    return localStorage;
   }
 }
