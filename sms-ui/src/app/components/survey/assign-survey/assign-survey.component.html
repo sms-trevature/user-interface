@@ -1,19 +1,19 @@
 <app-navbar> </app-navbar>
 
 <div class="container" *ngIf='listOfSurvey && listOfSurvey.length; else elseBlock'>
-    <<<<<<< HEAD <div _ngcontent-c1="" class="panel-body">
+    <div _ngcontent-c1="" class="panel-body">
         <div _ngcontent-c1="" class="row">
             <div _ngcontent-c1="" class="col-md-2"><b _ngcontent-c1="">Search:</b></div>
             <div _ngcontent-c1="" class="col-md-4"><input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
             </div>
-            =======
+
             <div class='panel-body'>
                 <div class='row'>
                     <div class='col-md-3'><b>Search:</b></div>
                     <div class='col-md-2' id='search-container'>
                         <input id="searchbar" class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
                     </div>
-                    >>>>>>> 25b6453ee429d7481ab8a900e0f7a32fe725bb2c
+
                 </div>
             </div>
             <table class="table table-striped" id="box-shadow">
@@ -109,5 +109,4 @@
                         </tr>
                     </table>
                 </div>
-
             </ng-template>

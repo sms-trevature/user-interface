@@ -181,19 +181,20 @@ export class SurveyListComponent implements OnInit {
             this.ArrayOfResponseAnswerList = new Array (sqList.length);
             this.arrOfCounts = new Array (sqList.length);
             this.qList = new Array (sqList.length);
-            const tempArrOfAnsList = new Array (sqList.length);
-            for (const ans of ansList) {
+            let tempArrOfAnsList = new Array (sqList.length);
+            for (const i in sqList) {
+              let tempI = sqList[i].questionOrder - 1;
+              this.qList[tempI] = sqList[i].questionId;
+              for (const ans of ansList) {
               // tslint:disable-next-line: forin
-              for (const i in sqList) {
-                this.qList[sqList[i].questionOrder - 1] = sqList[i].questionId;
               // tslint:disable-next-line: max-line-length
                 if (ans.questionId === sqList[i].questionId.questionId && (!this.ArrayOfResponseAnswerList[i] || !this.ArrayOfResponseAnswerList[i].includes(ans.answer))) {
-                  if (!this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1]) {
-                    this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1] = [];
-                    tempArrOfAnsList[sqList[i].questionOrder - 1] = [];
+                  if (!this.ArrayOfResponseAnswerList[tempI]) {
+                    this.ArrayOfResponseAnswerList[tempI] = [];
+                    tempArrOfAnsList[tempI] = [];
                   }
-                  this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1].push(ans.answer);
-                  tempArrOfAnsList[sqList[i].questionOrder - 1].push(ans.id);
+                  this.ArrayOfResponseAnswerList[tempI].push(ans.answer);
+                  tempArrOfAnsList[tempI].push(ans.id);
                   }
               }
             }
@@ -201,11 +202,13 @@ export class SurveyListComponent implements OnInit {
               for (const index in this.ArrayOfResponseAnswerList) {
                 if (tempArrOfAnsList[index].includes(res.answerId.id)) {
                   if (!this.arrOfCounts[index]) { this.arrOfCounts[index] = new Array (tempArrOfAnsList[index].length); }
-                  const tempIndex = this.ArrayOfResponseAnswerList[index].indexOf(res.answerId.answer);
+                  const tempIndex = tempArrOfAnsList[index].indexOf(res.answerId.id);
                   this.arrOfCounts[index][tempIndex] = this.arrOfCounts[index][tempIndex] ? this.arrOfCounts[index][tempIndex] + 1 : 1;
                 }
               }
             }
+            console.log(this.ArrayOfResponseAnswerList);
+            console.log(this.arrOfCounts);
           }
         );
       }

@@ -6,21 +6,31 @@
     <div class="container">
         <br>
         <div class="row surveys">
-            <div class="btn btn-2"><a routerLink="/surveyList">SURVEYS</a></div>
+            <div class="centered">
+                <h1>Staging Management System</h1>
+            </div>
+            <div class="below-centered">Revature associates who have completed training and are awaiting a job assignment.</div>
+            <!-- <div class="btn"><a routerLink="surveyList">SURVEYS</a></div> -->
         </div>
-        <br>
-        <div class="row manage">
-            <div class="btn btn-2"><a routerLink="/ManageRoute">MANAGE</a></div>
+        <div class="row manage" *ngIf='fullAccess'>
+            <div class="btn"><a routerLink="reportRoute">MANAGE</a></div>
         </div>
-        <br>
-        <div class="row interviews">
-            <div class="btn btn-2"><a routerLink="/InterviewListRoute">INTERVIEWS</a></div>
+        <div class="row interviews" *ngIf='fullAccess;else elseBlock'>
+            <div class="btn"><a routerLink="reportRoute">INTERVIEWS</a></div>
         </div>
-        <br>
-        <div class="row reports">
-            <div class="btn btn-2"><a routerLink="/reportRoute">REPORTS</a></div>
+
+
+        <ng-template #elseBlock>
+            <div class="row interviews">
+                <div class="btn"><a routerLink=" interviewlistForCurUser">INTERVIEWS</a></div>
+            </div>
+        </ng-template>
+
+
+        <div class="row reports" *ngIf='fullAccess'>
+            <div class="btn"><a routerLink="reportRoute">REPORTS</a></div>
+
         </div>
-        <br>
 
 
 

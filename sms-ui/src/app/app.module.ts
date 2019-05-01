@@ -40,15 +40,95 @@ import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { RegistrationComponent } from './components/registration/registration.component';
 import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 import { AutodataComponent } from './components/autodata/autodata.component';
+import { InterviewListForCurUserComponent } from './components/interview-list-for-cur-user/interview-list-for-cur-user.component';
+import { AuthGuard } from './services/guards/auth-guard.service';
+import { NgHttpLoaderModule } from 'ng-http-loader';
+
+//loading screen citation: https://github.com/mpalourdio/ng-http-loader
+//refresh capabilities citation: https://stackblitz.com/edit/angular-r6-detect-browser-refresh?file=src%2Fapp%2Fapp.component.ts
+//Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
+const routes: Routes = [ 
+  {path: 'interviewlistForCurUser',
+   component:InterviewListForCurUserComponent},
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'profileInfo',
+    component: ProfileInfoComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reportsRoute',
+    component: ReportsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'InterViewRoute',
+    component: InterviewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'CreateInterviewRoute',
+    component: NewInterviewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'AssociateFeedbackRoute',
+    component: AssociateFeedbackFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'ManagerFeedbackRouting',
+    component: StagingMgrFeedbackComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'InterviewListRoute',
+    component: InterviewListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'AutoDataRoute',
+    component: AutodataComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'FeedbackRoute',
+    component: FeedbackReportComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'DayNoticeRoute',
+    component: DaynoticeReportComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'JobDescRoute',
+    component: JobdescReportComponent,
+    canActivate: [AuthGuard]
+  },
+
+ /* import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
+import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
+import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
+import { AutodataComponent } from './components/autodata/autodata.component';
 
 const routes: Routes = [
-  { path: 'profileInfo', component: ProfileInfoComponent },
+  { path: 'profileInfo', component: RegistrationComponent },
+  //change RegistrationComponent back to the profile component
   { path: '', component: LoginComponent },
   { path: 'reportsRoute', component: ReportsComponent },
   { path: 'InterViewRoute', component: InterviewComponent },
@@ -56,14 +136,17 @@ const routes: Routes = [
   { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
   { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
   { path: 'InterviewListRoute', component: InterviewListComponent},
-  { path: 'AutoDataRoute', component: AutodataComponent},
-  {path: 'FeedbackRoute', component: FeedbackReportComponent},
   {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
   {path: 'JobDescRoute', component: JobdescReportComponent},
-
+  {path: 'NewRegistration', component: RegistrationComponent},
+  {path: 'FeedbackRoute', component: FeedbackReportComponent},
+  { path: 'AutoDataRoute', component: AutodataComponent}, */
+  
 
   {
-    path: 'ManageRoute', component: ManageComponent,
+    path: 'ManageRoute',
+    component: ManageComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'subMan1Internal',
@@ -79,7 +162,11 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'SurveyRoute', component: SurveyListComponent }
+  {
+    path: 'SurveyRoute',
+    component: SurveyListComponent,
+    canActivate: [AuthGuard]
+  }
   // need to change back to SurveyComponentlater later, now just testing functionalities
 
 ];
@@ -127,10 +214,13 @@ const routes: Routes = [
 
     DaynoticeReportComponent,
     JobdescReportComponent,
-    DaynoticeGraphComponent,
+    RegistrationComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
     AutodataComponent,
+    InterviewListForCurUserComponent,
+    DaynoticeGraphComponent
+   
 
 
   ],
@@ -146,14 +236,15 @@ const routes: Routes = [
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
-    DatePickerModule
+    NgHttpLoaderModule.forRoot(),
+    DatePickerModule,
 
 
   ],
   providers: [
-    CognitoService, FakeServiceComponent, NavbarComponent
+    CognitoService, FakeServiceComponent, NavbarComponent, AuthGuard
   ],
-  /* AppComponent */
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

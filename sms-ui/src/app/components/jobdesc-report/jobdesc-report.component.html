@@ -9,7 +9,25 @@
 </head>
 
 <div class="container">
-  <h2>Associates with/without Job Description</h2>                   
+
+    <h2>Job Description Report </h2>  
+
+    <div class='panel-body'>
+        <div class='row'>
+          <div class='col-md-2'><b>Search:</b></div>
+          <div class='col-md-4'>
+            <input type='text' [(ngModel)]='listFilter' />
+          </div>
+          <div class='col-md-2'><b>Job Description:</b></div>
+          <div class='col-md-4'>
+              <select autofocus type='text' [(ngModel)]='reviewFilter'>
+                  <option value="all">All</option>
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+          </div>
+        </div>
+      </div>                  
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -20,7 +38,7 @@
 
       </tr>
     </thead>
-    <tbody *ngFor="let temp of descProvidedList">
+    <tbody *ngFor="let temp of descProvidedListFilter">
       <tr>
         <td>{{temp.id}}</td>
         <td>{{temp.associateEmail}}</td>
