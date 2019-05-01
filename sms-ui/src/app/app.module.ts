@@ -48,8 +48,10 @@ import { SurveyRespondentsComponent } from './components/survey/survey-responden
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 import { AutodataComponent } from './components/autodata/autodata.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
+import { NgHttpLoaderModule } from 'ng-http-loader';
+import { LoadingLogoComponent } from './components/loading-logo/loading-logo.component';
 
-const routes: Routes = [
+const routes: Routes = [ 
   {
     path: 'login',
     component: LoginComponent
@@ -190,7 +192,7 @@ const routes: Routes = [
     FeedbackReportComponent,
     JobdescReportComponent,
     AutodataComponent,
-
+    LoadingLogoComponent
 
   ],
   imports: [
@@ -205,7 +207,8 @@ const routes: Routes = [
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
-    DatePickerModule
+    NgHttpLoaderModule.forRoot(),
+    DatePickerModule,
 
 
   ],

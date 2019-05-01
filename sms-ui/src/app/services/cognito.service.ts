@@ -32,6 +32,7 @@ export class CognitoService {
 
   async login(username: string, password: string) {
     const response = await Auth.signIn(username, password);
+    this.setup();
 
     /// ---Query by email for user info..
 
@@ -51,7 +52,7 @@ export class CognitoService {
   async logout() {
     localStorage.setItem('token','');
     localStorage.setItem('user','');
-    localStorage.setItem('userEmail','');
+    localStorage.clear();
     await Auth.signOut();
     this.tokenStream.next(undefined);
     this.currentUserStream.next(undefined);
@@ -108,9 +109,9 @@ export class CognitoService {
       return user;
     })
   }
-  getLocalStorage():String{
+  get localStorage():Storage{
     console.log('the token: ')
     console.log(localStorage.getItem('token'))
-    return localStorage.getItem('token')
+    return localStorage
   }
 }
