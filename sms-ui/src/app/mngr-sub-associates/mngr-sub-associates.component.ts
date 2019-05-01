@@ -118,22 +118,6 @@ export class MngrSubAssociatesComponent implements OnInit {
     const emailIdentifier = newSpot.className;
     let index = newSpot.selectedIndex;
     let opt = newSpot.options[index];
-<<<<<<< HEAD
-    // let http: HttpClient;
-    //this values will be used to update the user's role per their email as the identifier.. 
-    console.log("role has been changed to " + opt.value + " for:" + emailIdentifier);//onChange test -
-
-    if (opt.value == 'Admin') {
-      this.http.put('cognito/users/groups/', '{"email": "' + emailIdentifier + '", "groupName": "trainer"}').toPromise().then(status => {
-        alert(' check  ');
-      });
-      this.addAAdmin(emailIdentifier);
-    } else if (opt.value == 'Associate') {
-      alert("called...associate");
-      this.addATrainer(emailIdentifier);
-    } else if (opt.value == 'Staging-Manager') {
-      alert("called...staging manager");
-=======
 
     if (opt.value == 'Admin') {
       this.http.put('cognito/users/groups/', '{"email": "' + emailIdentifier + '", "groupName": "trainer"}').toPromise().then(status => {
@@ -143,7 +127,6 @@ export class MngrSubAssociatesComponent implements OnInit {
     } else if (opt.value == 'Associate') {
       this.addATrainer(emailIdentifier);
     } else if (opt.value == 'Staging-Manager') {
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
       this.addSM(emailIdentifier);
     }
   }
@@ -194,11 +177,6 @@ export class MngrSubAssociatesComponent implements OnInit {
 
     const initialRole = document.getElementById('ChooseInitialRole') as HTMLSelectElement;
     const currentIndex = initialRole.options[initialRole.selectedIndex].value;
-<<<<<<< HEAD
-    //  const role = initialRole.value;
-    //ignoring personal address for now.. 
-=======
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
     let id = 0;
     if (selectedTraining == 'Training') {
       if (specChoice == 'Dropped') {
@@ -281,24 +259,9 @@ export class MngrSubAssociatesComponent implements OnInit {
       const requestOptions = {
         headers: new HttpHeaders(HeaderDic),
       };
-<<<<<<< HEAD
-      alert("!! " + email.value);
-      // let jsonfee = { "email": `${email.value}` } ;
-
-      // alert("this JSON "+jsonfee);
-      if (currentIndex == '1') {
-        //'"'+email.value+'"'
-        // this.http.post('/cognito/users',jsonfee , requestOptions).toPromise().then(data => {
-        //   alert("registering this user");
-        // });  
-
-        //  this.http.post(`cohorts/removeuser/${this.cohort['cohortToken']}`, {
-
-=======
 
       if (currentIndex == '1') {
 
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
       } else if (currentIndex == '2') {
         this.addSM(email.value);
       } else if (currentIndex == '3') {
@@ -309,20 +272,10 @@ export class MngrSubAssociatesComponent implements OnInit {
         this.addATrainer(email.value);
       }
 
-<<<<<<< HEAD
-      // console.log("running register function");
-      // this.http.post('cognito/users', 'email.value').toPromise().then(data => {
-      //   alert("register successfully!? ");
-      // });
-
-    });//lak
-
-=======
      
 
     });
 
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
   }
   functionTest(email) {
 
@@ -385,17 +338,9 @@ export class MngrSubAssociatesComponent implements OnInit {
     while (array2[int2] != null && array2[int2] != undefined) {
 
       if (array2[int2].parentNode.firstChild.textContent.toLowerCase().length == 10) {
-<<<<<<< HEAD
-        // console.log("bahahahahahhahaha");
-        // console.log("not removed  " + array2[int2].parentNode.firstChild.textContent.length);
-        int2++;
-      } else {
-        //   console.log("removing " + array2[int2].parentNode.firstChild.textContent.length);
-=======
       
         int2++;
       } else {
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
         array2[int2].parentNode.removeChild(array2[int2]);
 
         int2++;
@@ -418,10 +363,6 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.filteredEmployees.forEach(element => {
       let idCaseAdjust = element.email.toUpperCase() + "";
       let cast = document.getElementById(idCaseAdjust) as HTMLDataListElement;
-<<<<<<< HEAD
-      console.log("searching for " + element.email.toUpperCase());
-=======
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
       cast.style.display = "block"
       cast.style.margin = "6px";
     });
@@ -432,20 +373,11 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.trainerArray;
     let multiRoleUsers = new Array;
     this.trainerArray.forEach(element => {
-<<<<<<< HEAD
-      // console.log("trainers: ");
-      // console.log(element);
-      const roleSpot = document.getElementById(element) as HTMLDataListElement;
-      if (roleSpot != null && roleSpot != undefined) {
-        multiRoleUsers.push(element);
-        //   console.log(' ADDING ' + element + " to list of people that have roles");
-=======
       
       const roleSpot = document.getElementById(element) as HTMLDataListElement;
       
       if (roleSpot != null && roleSpot != undefined) {
         multiRoleUsers.push(element);
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
 
       }
       // roleSpot.removeChild(roleSpot.firstChild);//gets rid of that one button
@@ -458,7 +390,6 @@ export class MngrSubAssociatesComponent implements OnInit {
       trainDiv.className = "trainRoleIcon";
       x.style.borderRadius = '10px';
       x.className = 'AssociatesXitButton';//only reachable through global styles idk y
-<<<<<<< HEAD
       //  x.style.backgroundImage = "url('../../assets/rev-logo.png')";
       x.style.marginLeft = "-65px";
       x.addEventListener('click', function () {
@@ -487,15 +418,6 @@ export class MngrSubAssociatesComponent implements OnInit {
       });
       trainDiv.innerHTML = "T";
       trainDiv.appendChild(x);
-=======
-      x.style.marginLeft = "-65px";
-      x.addEventListener('click', function () {
-        trainDiv.innerHTML = '';
-      });
-      trainDiv.innerHTML = "T";
-      trainDiv.appendChild(x);
-     // alert(roleSpot);
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
       roleSpot.appendChild(trainDiv);
     });
     this.adminArray.forEach(element => {
@@ -503,20 +425,10 @@ export class MngrSubAssociatesComponent implements OnInit {
       const roleSpotA = document.getElementById(element) as HTMLDataListElement;
       if (roleSpotA != null) {
         multiRoleUsers.forEach(alreadyRemovedButton => {
-<<<<<<< HEAD
-          //   console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
-          if (alreadyRemovedButton == element) {
-
-            //  console.log(element + ' HAS MORE THAN ONE ROLE ');
-          } else {
-
-            //  roleSpotA.removeChild(roleSpotA.firstChild);
-=======
           if (alreadyRemovedButton == element) {
 
           } else {
 
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
           }
 
         });
@@ -531,11 +443,6 @@ export class MngrSubAssociatesComponent implements OnInit {
         xx.className = 'AssociatesXitButton';
         xx.addEventListener('click', function () {
           adminDiv.innerHTML = '';
-<<<<<<< HEAD
-          //COGNITO HERE remove from group - admin
-          //    console.log('remove role from actual cognito logic here');
-=======
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
         });
         adminDiv.innerHTML = "A";
         adminDiv.appendChild(xx);
@@ -544,20 +451,6 @@ export class MngrSubAssociatesComponent implements OnInit {
     });
 
     this.stagingM.forEach(element => {
-<<<<<<< HEAD
-      console.log("-------------staging manager: ");
-      console.log(element);
-      const roleSpotSM = document.getElementById(element) as HTMLDataListElement;
-      if (roleSpotSM != null) {
-        multiRoleUsers.forEach(alreadyRemovedButton => {
-          console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
-          if (alreadyRemovedButton == element) {
-
-            //  console.log(element + ' HAS MORE THAN ONE ROLE ');
-          } else {
-
-            //roleSpotSM.removeChild(roleSpotSM.firstChild);
-=======
       const roleSpotSM = document.getElementById(element) as HTMLDataListElement;
       if (roleSpotSM != null) {
         multiRoleUsers.forEach(alreadyRemovedButton => {
@@ -565,7 +458,6 @@ export class MngrSubAssociatesComponent implements OnInit {
 
           } else {
 
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
           }
         });
         const smDiv = document.createElement('div') as HTMLDivElement;
@@ -579,11 +471,6 @@ export class MngrSubAssociatesComponent implements OnInit {
         xxx.className = 'AssociatesXitButton';
         xxx.addEventListener('click', function () {
           smDiv.innerHTML = '';
-<<<<<<< HEAD
-          //COGNITO HERE - remove from group - staging-manager
-          //     console.log('remove role from actual cognito logic here');
-=======
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
         });
         smDiv.innerHTML = "SM";
         smDiv.appendChild(xxx);
@@ -592,10 +479,6 @@ export class MngrSubAssociatesComponent implements OnInit {
     });
   }
   removeRole() {
-<<<<<<< HEAD
-    //   console.log('remove role logic here');
-=======
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
 
   }
   displaySelectChange(lastName, firstName) {
@@ -608,10 +491,6 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.nextMenuToRemove = firstName + 'notAfunction(' + lastName + ')';
   }
   generalStatus() {
-<<<<<<< HEAD
-    //  console.log("general status change");
-=======
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
     const controlFlow = document.getElementById('GeneralSelection') as HTMLSelectElement;
     let index = controlFlow.selectedIndex;
     let opt = controlFlow.options[index];
@@ -628,17 +507,9 @@ export class MngrSubAssociatesComponent implements OnInit {
     }
   }
   specStatus() {
-<<<<<<< HEAD
-    //  console.log("change");
 
   }
   checkboxChecked() {
-    //  console.log("virtual status toggled");
-=======
-
-  }
-  checkboxChecked() {
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
     if (this.virtualStatus == null || this.virtualStatus == false) {
       this.virtualStatus = true;
 
@@ -649,10 +520,6 @@ export class MngrSubAssociatesComponent implements OnInit {
 
   }
   closeMenu(last, first) {
-<<<<<<< HEAD
-    //  console.log(" work ");
-=======
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
     const divToClose = document.getElementById(last + 'notAfunction(' + first + ')') as HTMLDivElement;
     divToClose.style.display = "none";
   }
@@ -683,82 +550,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     });
   }
   addAssociate(associate: NgForm) {
-<<<<<<< HEAD
-    //  console.log("here cus it has to be");
   }
-  // addAssociate(associate: NgForm) {
-  //   console.log("value test: " + associate.value['dp1']);
-  //   const fName = associate.value['dp1'];
-  //   const lName = associate.value['dp2'];
-  //   const email = associate.value['dp3'];
-  //   const phone = associate.value['dp4'];
-  //   const TrainLocation = associate.value['location'];
-  //   const GeStatus = associate.value['status'];
-  //   const Spstatus = associate.value['SpecStatus'];
-  //   const check = this.virtualStatus;
-  //   const role = associate.value['Role'];
-  //   let id = 0;
-  //   if (GeStatus == 'Training') {
-  //     if (Spstatus == 'Dropped') {
-  //       id = 1;
-  //     } else if (Spstatus == 'Training') {
-  //       id = 2;
-  //     } else if (Spstatus == 'Complete') {
-  //       id = 3;
-  //     }
-  //   } else if (GeStatus == 'Staging' && check == false) {
-  //     if (Spstatus == 'Staging') {
-  //       id = 4;
-  //     } else if (Spstatus == 'Bench') {
-  //       id = 5;
-  //     } else if (Spstatus == 'Waiting for Paperwork') {
-  //       id = 6;
-  //     } else if (Spstatus == 'Confirmed') {
-  //       id = 7;
-  //     } else if (Spstatus == 'Project Started') {
-  //       id = 8;
-  //     } else if (Spstatus == 'Paused') {
-  //       id = 9;
-  //     } else if (Spstatus == 'Panel') {
-  //       id = 10;
-  //     }
-
-  //   } else if (GeStatus == 'Staging' && check == true) {
-  //     if (Spstatus == 'Training') {
-  //       id = 11;
-  //     } else if (Spstatus == 'Bench') {
-  //       id = 12;
-  //     } else if (Spstatus == 'Waiting for Paperwork') {
-  //       id = 13;
-  //     } else if (Spstatus == 'Confirmed') {
-  //       id = 14;
-  //     } else if (Spstatus == 'Project Started') {
-  //       id = 15;
-  //     } else if (Spstatus == 'Paused') {
-  //       id = 16;
-  //     } else if (Spstatus == 'Panel Pending') {
-  //       id = 17;
-  //     }
-  //   }
-
-  //   let body = {
-  //     'userId': 100,
-  //     'firstName': fName,
-  //     'lastName': lName,
-  //     'email': email,
-  //     'phoneNumber': phone,
-  //     'trainingAddress': TrainLocation,
-  //     'personalAddress': null,
-  //     'userStatus': null
-  //   }
-  //   this.http.post(`users`, body).toPromise().then(data => {
-
-  //   })
-  // }
-
-=======
-  }
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -790,10 +582,6 @@ export class MngrSubAssociatesComponent implements OnInit {
   }
   editRole(email) {
     let selectedInquiry = document.getElementById(this.returnableEmailValue) as HTMLDataListElement;
-<<<<<<< HEAD
-    console.log("when nothign is slectec: " + selectedInquiry); //test-
-=======
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
     const grabDataCell = document.getElementById(email) as HTMLDataListElement;
 
     if (selectedInquiry !== null) {
@@ -808,30 +596,15 @@ export class MngrSubAssociatesComponent implements OnInit {
       this.returnableButton = grabDataCell.firstChild as HTMLButtonElement;
     }
 
-<<<<<<< HEAD
-    // console.log("email of user: " + email);
-=======
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
     let currentRole: string;
     const childButton = grabDataCell.firstChild as HTMLButtonElement;
     currentRole = childButton.innerText;
 
     this.returnableRoleValue = childButton.innerText;
-<<<<<<< HEAD
-    //this keeps track of the last selection - 
-    this.returnableEmailValue = email;
-    //--
-    //  console.log("the button currently holds: " + childButton.innerHTML);
-    while (grabDataCell.firstChild) {
-
-      currentRole = grabDataCell.firstChild.textContent;
-      // console.log("CURRENT ROLE: " + currentRole);
-=======
     this.returnableEmailValue = email;
     while (grabDataCell.firstChild) {
 
       currentRole = grabDataCell.firstChild.textContent;
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
       grabDataCell.removeChild(grabDataCell.firstChild);
     }
     const NewRole = document.createElement('select') as HTMLSelectElement;
@@ -852,22 +625,10 @@ export class MngrSubAssociatesComponent implements OnInit {
     ArrayOfOptions.forEach(PossibleFirstOptionElement => {
       //too short
       PossibleFirstOptionElement.innerText = PossibleFirstOptionElement.innerText + " ";
-<<<<<<< HEAD
-      // console.log("inside foreach: " + PossibleFirstOptionElement.textContent.length);
-      // console.log('against..');
-      // console.log(" - " + currentRole.length);
-      if (PossibleFirstOptionElement.innerText.length == childButton.innerText.length) {
-        // console.log("current option should be " + PossibleFirstOptionElement.textContent);
-        NewRole.appendChild(PossibleFirstOptionElement);//append the current one so that it shows first - 
-      } else {
-        ArrayOfNoneCurrentOptions.push(PossibleFirstOptionElement);
-        //should result in three that we have not appendd yet - 
-=======
       if (PossibleFirstOptionElement.innerText.length == childButton.innerText.length) {
         NewRole.appendChild(PossibleFirstOptionElement);//append the current one so that it shows first - 
       } else {
         ArrayOfNoneCurrentOptions.push(PossibleFirstOptionElement);
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
       }
     });
     ArrayOfNoneCurrentOptions.forEach(OptionElement => {
@@ -876,72 +637,6 @@ export class MngrSubAssociatesComponent implements OnInit {
 
 
     grabDataCell.appendChild(NewRole);
-<<<<<<< HEAD
-    // a service is needed to update user info by the email assocaited with their row - 
-  } 
-  // changeRole() {
-
-  //   const newSpot = document.getElementById('selectedRoleRow') as HTMLSelectElement;
-  //   const emailIdentifier = newSpot.className;
-  //   let index = newSpot.selectedIndex;
-  //   let opt = newSpot.options[index];
-  //   //this values will be used to update the user's role per their email as the identifier.. 
-  //   console.log("role has been changed to " + opt.value + " for:" + emailIdentifier);//onChange test -
-  //   this.http.put('cognito/users/groups', {
-  //     'email':emailIdentifier,
-  //     'groupName':opt.value
-  //   }
-  //   ).toPromise().then(change => {
-  //     console.log(change);
-  //   });
-
-  // }
-
-  inputNewRole() {
-    //how to enter on 'enter' key
-    //myInputElement.addEventListener('keyup', this.inputNewRole);
-    //  console.log("enterkey pressed");
-
-
-  }
-  addAssociateByForm(form: NgForm) {
-    let first = form.value['dp1'];
-    let last = form.value['dp2'];
-    let email = form.value['dp3'];
-    let phone = form.value['dp4'];
-
-    for (let temp of this.addressList) {
-      if (temp.city == form.value['location']) {
-        var tLoc= temp;
-      }
-      console.log('the location did not match');
-    }
-    this.http.get(`user-service/status/2`).toPromise().then(data=>{
-      var status = data;
-    })
-
-    let body = {
-      'userId':0,
-      'firstName': first,
-      'lastName': last,
-      'email': email,
-      'phoneNumber': phone,
-      'trainingAddress': tLoc,
-      'personalAddress': null,
-      'userStatus':status,
-      'cohorts':null
-    }
-    console.log('this is the body')
-    console.log(body);
-    this.http.post('users', body).toPromise().then(data =>
-      console.log(data))
-  }
-
-
-
-}
-
-=======
   } 
 
   inputNewRole() {
@@ -981,5 +676,4 @@ export class MngrSubAssociatesComponent implements OnInit {
 
 
 }
->>>>>>> e87e84a37f15cc9b3fda383a72113bb6e8ad8c1a
 
