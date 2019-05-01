@@ -19,18 +19,18 @@
             <div style="display: inline;">
                 <!-- (change)="nrSelect(value)" -->
                 <select id="selectElement" (change)="optionSelect()">
-        <option value="All">All</option>
-        <option value="Associates">Associates</option>
-        <option value="Trainers">Trainers</option>
-        <option value="Staging Managers">Staging Managers</option>
-        <option value="Admins">Admins</option>
-      </select>
+          <option value="All">All</option>
+          <option value="Associates">Associates</option>
+          <option value="Trainers">Trainers</option>
+          <option value="Staging Managers">Staging Managers</option>
+          <option value="Admins">Admins</option>
+        </select>
             </div>
             <br>
             <button class="pure-button" id="addEmployee" (click)='open(content)' style="display: inline; font-size: 10px; background: transparent; border: transparent; ">
-      <i class="material-icons">person</i>
-      Add Employee
-    </button><br>
+        <i class="material-icons">person</i>
+        Add Employee
+      </button><br>
             <button id="standardizeB" (click)="returnView()" style="font-size: 10px; display: none;">Standardize</button>
             <button id="editButton" (click)="editAllRoles()" style=" font-size: 10px;"> Edit Mode </button>
         </div>
@@ -46,7 +46,7 @@
                 <!--    //Jordan was here -->
                 <td>{{temp.firstName}} {{temp.lastName}}</td>
                 <td id={{temp.email}}><button class="cantBelieveItsNotButton" (click)="editRole(temp.email)">
-          {{functionTest(temp.email)}}</button></td>
+            {{functionTest(temp.email)}}</button></td>
                 <td>{{temp.email}}</td>
                 <!-- <div id="{{temp.email+'Button'}}">   -->
                 <td id={{temp.email|uppercase}} style="display: none;">
@@ -74,8 +74,8 @@
             <div [ngSwitch]="ngswitchCase">
                 <div class="modal-header">
                     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+            <span aria-hidden="true">&times;</span>
+          </button>
                 </div>
                 <div class="modal-body" *ngSwitchCase="'addAssociate'">
                     <h4 class="modal-title" id="modal-basic-title">Add Employee</h4>
@@ -104,29 +104,29 @@
                             <label for="status">Status</label>
                             <div class="input-group">
                                 <select name='status' id="GeneralSelection" (change)="generalStatus()" ngModel>
-                <option value="Training">Training</option>
-                <option value="Staging">Staging</option>
-              </select>
+                  <option value="Training">Training</option>
+                  <option value="Staging">Staging</option>
+                </select>
                             </div>
                             <br>
                             <div class="input-group" id="specificStatusElmnt1">
                                 <select id="specStaging" name='SpecStatus' ngModel>
-                <option value="Dropped">Dropped</option>
-                <option value="Training">Training</option>
-                <option value="Complete">Complete</option>
-              </select>
+                  <option value="Dropped">Dropped</option>
+                  <option value="Training">Training</option>
+                  <option value="Complete">Complete</option>
+                </select>
                             </div>
                             <br>
                             <div class="input-group" id="specificStatusElmnt2">
                                 <select id="specTraining" name='SpecStatus' ngModel>
-                <option value="Staging">Staging</option>
-                <option value="Bench">Bench</option>
-                <option value="Waiting for Paperwork">Waiting for Paperwork</option>
-                <option value="Confirmed">Confirmed</option>
-                <option value="Project Started">Project Started</option>
-                <option value="Paused">Paused</option>
-                <option value="Panel Pending">Panel Pending</option>
-              </select>
+                  <option value="Staging">Staging</option>
+                  <option value="Bench">Bench</option>
+                  <option value="Waiting for Paperwork">Waiting for Paperwork</option>
+                  <option value="Confirmed">Confirmed</option>
+                  <option value="Project Started">Project Started</option>
+                  <option value="Paused">Paused</option>
+                  <option value="Panel Pending">Panel Pending</option>
+                </select>
                                 <label for="virtual">Virtual</label>
                                 <input type="checkbox" (change)="checkboxChecked()" name="virtual" />
                             </div>
@@ -134,18 +134,18 @@
                             <div class="input-group">
                                 <label for="location">Training Location</label>
                                 <select ngModel name='location' id="locationTrainingChoice">
-                <option *ngFor='let temp of addressList' [value]="temp.city">{{temp.city}}, {{temp.state}}
-                </option>
-              </select>
+                  <option *ngFor='let temp of addressList' [value]="temp.city">{{temp.city}}, {{temp.state}}
+                  </option>
+                </select>
                             </div>
                             <br>
                             <label for="Role">Choose Role</label><br>
                             <select name='Role' ngModel id="ChooseInitialRole">
-              <option value="1">Associate</option>
-              <option value="2">Staging Manager</option>
-              <option value="3">Admin </option>
-              <option value="4">Trainer</option>
-            </select>
+                <option value="1">Associate</option>
+                <option value="2">Staging Manager</option>
+                <option value="3">Admin </option>
+                <option value="4">Trainer</option>
+              </select>
                             <br> <br>
                             <button type="button" id="hideBut" (click)="hidePAddress()" style="display: none;"> Hide</button>
                             <button type="button" id="showP" (click)="dispalyPAddress()"> Include Personal Address </button>
@@ -161,10 +161,10 @@
                     </form>
                 </div>
                 <!-- <div *ngSwitchCase="'editAssociates'">
-      <div *ngIf='modalShow'>
-        <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
-      </div>
-    </div> -->
+        <div *ngIf='modalShow'>
+          <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
+        </div>
+      </div> -->
 
                 <body>
                     <div id="InternalAssociates">
@@ -187,18 +187,18 @@
                             <div style="display: inline;">
                                 <!-- (change)="nrSelect(value)" -->
                                 <select id="selectElement" (change)="optionSelect()">
-        <option value="All">All</option>
-        <option value="Associates">Associates</option>
-        <option value="Trainers">Trainers</option>
-        <option value="Staging Managers">Staging Managers</option>
-        <option value="Admins">Admins</option>
-      </select>
+          <option value="All">All</option>
+          <option value="Associates">Associates</option>
+          <option value="Trainers">Trainers</option>
+          <option value="Staging Managers">Staging Managers</option>
+          <option value="Admins">Admins</option>
+        </select>
                             </div>
                             <br>
                             <button class="pure-button" id="addEmployee" (click)='open(content)' style="display: inline; font-size: 10px; background: transparent; border: transparent; ">
-      <i class="material-icons">person</i>
-      Add Employee
-    </button><br>
+        <i class="material-icons">person</i>
+        Add Employee
+      </button><br>
                             <button id="standardizeB" (click)="returnView()" style="font-size: 10px; display: none;">Standardize</button>
                             <button id="editButton" (click)="editAllRoles()" style=" font-size: 10px;"> Edit Mode </button>
                         </div>
@@ -214,7 +214,7 @@
                                 <!--    //Jordan was here -->
                                 <td>{{temp.firstName}} {{temp.lastName}}</td>
                                 <td id={{temp.email}}><button class="cantBelieveItsNotButton" (click)="editRole(temp.email)">
-          {{functionTest(temp.email)}}</button></td>
+            {{functionTest(temp.email)}}</button></td>
                                 <td>{{temp.email}}</td>
                                 <!-- <div id="{{temp.email+'Button'}}">   -->
                                 <td id={{temp.email|uppercase}} style="display: none;">
@@ -242,8 +242,8 @@
                             <div [ngSwitch]="ngswitchCase">
                                 <div class="modal-header">
                                     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+            <span aria-hidden="true">&times;</span>
+          </button>
                                 </div>
                                 <div class="modal-body" *ngSwitchCase="'addAssociate'">
                                     <h4 class="modal-title" id="modal-basic-title">Add Employee</h4>
@@ -272,29 +272,29 @@
                                             <label for="status">Status</label>
                                             <div class="input-group">
                                                 <select name='status' id="GeneralSelection" (change)="generalStatus()" ngModel>
-                <option value="Training">Training</option>
-                <option value="Staging">Staging</option>
-              </select>
+                  <option value="Training">Training</option>
+                  <option value="Staging">Staging</option>
+                </select>
                                             </div>
                                             <br>
                                             <div class="input-group" id="specificStatusElmnt1">
                                                 <select id="specStaging" name='SpecStatus' ngModel>
-                <option value="Dropped">Dropped</option>
-                <option value="Training">Training</option>
-                <option value="Complete">Complete</option>
-              </select>
+                  <option value="Dropped">Dropped</option>
+                  <option value="Training">Training</option>
+                  <option value="Complete">Complete</option>
+                </select>
                                             </div>
                                             <br>
                                             <div class="input-group" id="specificStatusElmnt2">
                                                 <select id="specTraining" name='SpecStatus' ngModel>
-                <option value="Staging">Staging</option>
-                <option value="Bench">Bench</option>
-                <option value="Waiting for Paperwork">Waiting for Paperwork</option>
-                <option value="Confirmed">Confirmed</option>
-                <option value="Project Started">Project Started</option>
-                <option value="Paused">Paused</option>
-                <option value="Panel Pending">Panel Pending</option>
-              </select>
+                  <option value="Staging">Staging</option>
+                  <option value="Bench">Bench</option>
+                  <option value="Waiting for Paperwork">Waiting for Paperwork</option>
+                  <option value="Confirmed">Confirmed</option>
+                  <option value="Project Started">Project Started</option>
+                  <option value="Paused">Paused</option>
+                  <option value="Panel Pending">Panel Pending</option>
+                </select>
                                                 <label for="virtual">Virtual</label>
                                                 <input type="checkbox" (change)="checkboxChecked()" name="virtual" />
                                             </div>
@@ -302,18 +302,18 @@
                                             <div class="input-group">
                                                 <label for="location">Training Location</label>
                                                 <select ngModel name='location' id="locationTrainingChoice">
-                <option *ngFor='let temp of addressList' [value]="temp.city">{{temp.city}}, {{temp.state}}
-                </option>
-              </select>
+                  <option *ngFor='let temp of addressList' [value]="temp.city">{{temp.city}}, {{temp.state}}
+                  </option>
+                </select>
                                             </div>
                                             <br>
                                             <label for="Role">Choose Role</label><br>
                                             <select name='Role' ngModel id="ChooseInitialRole">
-              <option value="1">Associate</option>
-              <option value="2">Staging Manager</option>
-              <option value="3">Admin </option>
-              <option value="4">Trainer</option>
-            </select>
+                <option value="1">Associate</option>
+                <option value="2">Staging Manager</option>
+                <option value="3">Admin </option>
+                <option value="4">Trainer</option>
+              </select>
                                             <br> <br>
                                             <button type="button" id="hideBut" (click)="hidePAddress()" style="display: none;"> Hide</button>
                                             <button type="button" id="showP" (click)="dispalyPAddress()"> Include Personal Address </button>
@@ -329,11 +329,10 @@
                                     </form>
                                 </div>
                                 <!-- <div *ngSwitchCase="'editAssociates'">
-
-      <div *ngIf='modalShow'>
-        <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
-      </div>
-    </div> -->
+        <div *ngIf='modalShow'>
+          <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
+        </div>
+      </div> -->
                                 <div id="deliveredMessage"> Delivered</div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
@@ -348,9 +347,5 @@
                         </div>
                     </div>
 
-
-
-
                     <!-- modal zone-------------------------------------------------------- -->
                     <!-- </body> -->
-

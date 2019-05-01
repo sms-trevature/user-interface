@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 import { UserObj } from '../sms-client/dto/UserObj';
 import { AddressObject } from '../sms-client/dto/AddressObj';
 import { stat } from 'fs';
-
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 import { Alert } from 'selenium-webdriver';
 import { CognitoService } from '../services/cognito.service';
@@ -25,9 +24,6 @@ import { CognitoService } from '../services/cognito.service';
 })
 
 export class MngrSubAssociatesComponent implements OnInit {
-  performFilter(_listFilter: string): SomeAssociate[] {
-    throw new Error("Method not implemented.");
-  }
   _listFilter = '';
 
   get listFilter(): string {
@@ -37,7 +33,6 @@ export class MngrSubAssociatesComponent implements OnInit {
     this._listFilter = temp;
     this.filteredEmployees = this._listFilter ? this.performFilter(this._listFilter) : this.allAssociates;
   }
-
   private http2: HttpClient;
   statusstatus = new Array;
   enterUser: UserObj;
@@ -145,7 +140,6 @@ export class MngrSubAssociatesComponent implements OnInit {
   ngOnInit() {
     this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
       this.addressList = data;
-
     });
     this.http.get('user-service/status').toPromise().then(status => {
       console.log(" secretary: " + status[0]);
@@ -423,7 +417,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.trainerArray.forEach(element => {
       // console.log("trainers: ");
       // console.log(element);
-      const roleSpot = document.getElementById(element) as HTMLDataListElement;
+      const roleSpot = document.getElementById(element.email) as HTMLDataListElement;
       if (roleSpot != null && roleSpot != undefined) {
         multiRoleUsers.push(element);
         //   console.log(' ADDING ' + element + " to list of people that have roles");
@@ -431,6 +425,7 @@ export class MngrSubAssociatesComponent implements OnInit {
       }
       // roleSpot.removeChild(roleSpot.firstChild);//gets rid of that one button
       const trainDiv = document.createElement('div') as HTMLDivElement;
+      alert(roleSpot);
       const x = document.createElement('button') as HTMLButtonElement;
       x.innerText = 'x';
       trainDiv.id = element + '-trainer';
@@ -537,10 +532,8 @@ export class MngrSubAssociatesComponent implements OnInit {
         smDiv.appendChild(xxx);
         roleSpotSM.appendChild(smDiv);
       }
-      // alert(status);
     });
   }
-
   removeRole() {
     //   console.log('remove role logic here');
 
@@ -581,12 +574,9 @@ export class MngrSubAssociatesComponent implements OnInit {
       this.virtualStatus = true;
 
     } else {
-      specStatus = document.getElementById('specTraining') as HTMLSelectElement;
-      specChoice = specStatus.options[specStatus.selectedIndex].value;
+      this.virtualStatus = false;
+
     }
-    this.virtualStatus;
-    const ltc = document.getElementById('locationTrainingChoice') as HTMLSelectElement;
-    // const tc = ltc.options[ltc.selectedIndex].value;
 
   }
   closeMenu(last, first) {
@@ -693,11 +683,21 @@ export class MngrSubAssociatesComponent implements OnInit {
   //   })
   // }
 
-    this.http.post('users/insert', this.enterUser).toPromise().then(data => {
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
-      alert("Worked " + data);
+  performFilter(filterBy: string): SomeAssociate[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.allAssociates.filter((metaEmployee: SomeAssociate) =>
+      (metaEmployee.firstName.toLocaleLowerCase().concat(metaEmployee.lastName.toLocaleLowerCase())).indexOf(filterBy) !== -1);
 
-    });
   }
   optionSelect() {
     let e = (document.getElementById('selectElement')) as HTMLSelectElement;
@@ -712,48 +712,17 @@ export class MngrSubAssociatesComponent implements OnInit {
       this.filteredEmployees = this.allAssociates;
     }
   }
-  returnView() {
-    const flipClari = document.getElementById('claricationDiv') as HTMLDivElement;
-    flipClari.style.display = "block";
-    const childLock = document.getElementById('editButton') as HTMLButtonElement;
-    childLock.style.display = "block";
-    const returnButton = document.getElementById('standardizeB') as HTMLButtonElement;
-    returnButton.style.display = "none";
-    //backup filteration resolution-----------
-    const pullOutFilter = document.getElementById('filterByThisAssociate') as HTMLInputElement;
-    pullOutFilter.style.display = "block";
-    const turnOffSelectFilter = document.getElementById('selectElement') as HTMLSelectElement;
-    turnOffSelectFilter.style.display = "block";
-    //backup filteration resolution-----------
-    this.router.navigateByUrl('/ManageRoute', { skipLocationChange: true }).then(() =>
-      this.router.navigate(['/ManageRoute', 'subMan1Internal']));
+  editRole(email) {
+    let selectedInquiry = document.getElementById(this.returnableEmailValue) as HTMLDataListElement;
+    console.log("when nothign is slectec: " + selectedInquiry); //test-
+    const grabDataCell = document.getElementById(email) as HTMLDataListElement;
 
-  }
-  editAllRoles() {
-    //cantBelieveItsNotButton
+    if (selectedInquiry !== null) {
+      selectedInquiry.appendChild(this.returnableButton);
+      while (selectedInquiry.firstChild) {
 
-    let working3 = document.getElementsByClassName('cantBelieveItsNotButton');
-    let aroundVariable = working3.length;
-    let meat = 0;
-    console.log("3. hould return something variable  " + working3.length);
-    while (meat < 55) {
-      console.log("THIS--- SHOULD --- RUN  " + document.getElementById('cantBelieveItsNotButton'));
-      let int = 0;
-      // let array = new Array; 
-      let array = document.getElementsByClassName('cantBelieveItsNotButton');
-      //&& array[int] != null
-      while (array[int] != null) {
-
-        //  array[int].parentNode.removeChild(array[int]);
-        if (array[int].parentNode.firstChild.textContent.toLowerCase().length == 10) {
-
-          int++;
-        } else {
-          array[int].parentNode.removeChild(array[int]);
-          int++;
-        }
+        selectedInquiry.removeChild(selectedInquiry.firstChild);
       }
-
       selectedInquiry.appendChild(this.returnableButton);
       this.returnableButton = grabDataCell.firstChild as HTMLButtonElement;
     } else {
@@ -765,9 +734,10 @@ export class MngrSubAssociatesComponent implements OnInit {
     const childButton = grabDataCell.firstChild as HTMLButtonElement;
     currentRole = childButton.innerText;
 
-    }
+    this.returnableRoleValue = childButton.innerText;
+    //this keeps track of the last selection - 
+    this.returnableEmailValue = email;
     //--
-
     //  console.log("the button currently holds: " + childButton.innerHTML);
     while (grabDataCell.firstChild) {
 
@@ -873,5 +843,4 @@ export class MngrSubAssociatesComponent implements OnInit {
 
 
 }
-
 

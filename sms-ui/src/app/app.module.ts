@@ -217,7 +217,7 @@ const routes: Routes = [
     JobdescReportComponent,
     RegistrationComponent,
     FeedbackReportComponent,
-    DaynoticeGraphComponent
+    DaynoticeGraphComponent,
    
 
 
