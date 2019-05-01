@@ -47,11 +47,9 @@ import { DaynoticeReportComponent } from './components/daynotice-report/daynotic
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
 import { AutodataComponent } from './components/autodata/autodata.component';
-<<<<<<< HEAD
-import { DaynoticeGraphComponent} from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
-=======
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
+import { CanActivate } from '@angular/router/src/utils/preactivation';
 
 const routes: Routes = [
   {
@@ -117,35 +115,6 @@ const routes: Routes = [
     component: JobdescReportComponent,
     canActivate: [AuthGuard]
   },
->>>>>>> d0c4fffd08c24fff2d5b0480111bdd3b60c387db
-
- /* import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
-import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
-import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
-import { AutodataComponent } from './components/autodata/autodata.component';
-
-const routes: Routes = [
-  { path: 'profileInfo', component: RegistrationComponent },
-  //change RegistrationComponent back to the profile component
-  { path: '', component: LoginComponent },
-  { path: 'reportsRoute', component: ReportsComponent },
-  { path: 'InterViewRoute', component: InterviewComponent },
-  { path: 'CreateInterviewRoute', component: NewInterviewComponent},
-  { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
-  { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
-  { path: 'InterviewListRoute', component: InterviewListComponent},
-  {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
-  {path: 'JobDescRoute', component: JobdescReportComponent},
-  {path: 'NewRegistration', component: RegistrationComponent},
-  {path: 'FeedbackRoute', component: FeedbackReportComponent},
-<<<<<<< HEAD
-  {path: 'AutoDataRoute', component: AutodataComponent},
-  {path: 'daynoticeRoute', component: DaynoticeGraphComponent},
-=======
-  { path: 'AutoDataRoute', component: AutodataComponent}, */
->>>>>>> d0c4fffd08c24fff2d5b0480111bdd3b60c387db
-  
-
   {
     path: 'ManageRoute',
     component: ManageComponent,
@@ -169,10 +138,15 @@ const routes: Routes = [
     path: 'SurveyRoute',
     component: SurveyListComponent,
     canActivate: [AuthGuard]
-  }
+  },
   // need to change back to SurveyComponentlater later, now just testing functionalities
-
+  {path: 'NewRegistration', 
+  component: RegistrationComponent,
+  canActivate: [AuthGuard]
+  }
 ];
+
+
 
 @NgModule({
   declarations: [
@@ -220,10 +194,7 @@ const routes: Routes = [
     RegistrationComponent,
     FeedbackReportComponent,
     DaynoticeGraphComponent
-<<<<<<< HEAD
-=======
    
->>>>>>> d0c4fffd08c24fff2d5b0480111bdd3b60c387db
 
 
   ],

@@ -7,41 +7,7 @@ img {
     max-height: 100%;
 }
 
-.reports {
-    width: 1980px;
-    height: 400px;
-    background: url("../../../assets/reportsimg.jpg");
-    background-size: 1980px;
-    background-position: bottom;
-    background-attachment: fixed;
-}
-
-.interviews {
-    width: 1980px;
-    height: 400px;
-    background: url("../../../assets/interviewsimg.jpg");
-    background-size: 100%;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-.manage {
-    width: 1980px;
-    height: 400px;
-    background: url("../../../assets/manageimg.jpg");
-    background-size: 100%;
-    background-position: top;
-    background-attachment: fixed;
-}
-
 .surveys {
-  /*   width: 1980px;
-    height: 500px;
-    background: url("../../../assets/surveyimg.jpg");
-    background-size: 1980px;
-    background-position: bottom;
-    background-attachment: fixed; */
-    
     height: 500px;
     width: 1980px;
     background:
@@ -68,6 +34,7 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     color: black;
+    font-size: 16px;
 }
 
 .container {
@@ -75,8 +42,6 @@ img {
 }
 
 .btn {
-    margin-left: 37%;
-    margin-top: 8%;
     font-size: 20px;
     text-decoration: none;
     &:hover {
@@ -84,9 +49,16 @@ img {
     }
 }
 
+.buttons {
+    margin-top: 400px;
+    margin-left: 475px;
+}
+
 a {
     border: 3px solid;
-    border-color: white;
+    border-color: #f3a55d;
+    color: black;
+    background-color: white;
     padding: 5px;
     &:hover {
         color: $revature-orange-light;
@@ -94,9 +66,10 @@ a {
 }
 
 h1{
-    color:black;
-     /* #f3a55d; */
+    color:#f3a55d;
     font-size:60px;
+    text-shadow: 1px 1px #696969;
     white-space: nowrap;
-    overflow: hidden;
+    position: relative;
+    
 }
