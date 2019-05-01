@@ -25,14 +25,14 @@ export class CognitoService {
   public token$ = this.tokenStream.asObservable();
 
   private newPasswordUser: any = null;
-// private grabUserJson:
-  constructor( ) {
+  // private grabUserJson:
+  constructor() {
     this.setup();
   }
 
   async login(username: string, password: string) {
     const response = await Auth.signIn(username, password);
-   
+
     /// ---Query by email for user info..
 
     this.getCurrent();
@@ -49,7 +49,9 @@ export class CognitoService {
   }
 
   async logout() {
-    
+    localStorage.setItem('token','');
+    localStorage.setItem('user','');
+    localStorage.setItem('userEmail','');
     await Auth.signOut();
     this.tokenStream.next(undefined);
     this.currentUserStream.next(undefined);
@@ -68,8 +70,8 @@ export class CognitoService {
   }
 
   private setup() {
-    
-    Auth.currentAuthenticatedUser() 
+
+    Auth.currentAuthenticatedUser()
       .then(user => {
         // initialize the jwt for axios
         Auth.currentSession()
@@ -95,12 +97,20 @@ export class CognitoService {
       });
   }
 
-  getCurrentSession(){
-    Auth.currentSession().then(data=>{
+  getCurrentSession() {
+    Auth.currentSession().then(data => {
+      console.log(data)
     })
   }
-  someMethod(){
-    Auth.currentCredentials().then(data=>{
+  someMethod() {
+    Auth.currentUserInfo().then(user => {
+      console.log(user);
+      return user;
     })
+  }
+  getLocalStorage():String{
+    console.log('the token: ')
+    console.log(localStorage.getItem('token'))
+    return localStorage.getItem('token')
   }
 }
