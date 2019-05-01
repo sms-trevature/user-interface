@@ -66,6 +66,7 @@ export class AutodataComponent implements OnInit {
     });
   }
 
+
   performFilter(filterBy: string): AssociateInterviewCount[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.AssociateInterviewCounts.filter((temp: AssociateInterviewCount) =>
