@@ -16,6 +16,8 @@ import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice
 //Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
 
 
+//Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
+
 const routes: Routes = [
   {
     path: 'login',

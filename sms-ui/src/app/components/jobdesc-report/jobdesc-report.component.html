@@ -8,10 +8,26 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
-<div class='container'>Search: <input class='searchBar' type='text' [(ngModel)]='listFilter'> </div>
-
 <div class="container">
-  <h2>Job Description Report</h2>                   
+
+    <h2>Job Description Report </h2>  
+
+    <div class='panel-body'>
+        <div class='row'>
+          <div class='col-md-2'><b>Search:</b></div>
+          <div class='col-md-3'>
+            <input type='text' [(ngModel)]='listFilter' />
+          </div>
+          <div class='col-md-2'><b>Job Description:</b></div>
+          <div class='col-md-3'>
+              <select autofocus type='text' [(ngModel)]='reviewFilter'>
+                  <option value="all">All</option>
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+          </div>
+        </div>
+      </div>                  
   <table class="table table-bordered">
     <thead>
       <tr>

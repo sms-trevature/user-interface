@@ -22,5 +22,4 @@ findAll(): Observable<Question[]> {
 save(question: Question): Observable<Question> {
     return this.http.post<Question>(`${this.context}`, question);
   }
-
 }

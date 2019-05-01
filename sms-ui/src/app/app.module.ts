@@ -48,6 +48,7 @@ import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-repo
 import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 import { AutodataComponent } from './components/autodata/autodata.component';
+import { InterviewListForCurUserComponent } from './components/interview-list-for-cur-user/interview-list-for-cur-user.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 
@@ -55,6 +56,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
 //refresh capabilities citation: https://stackblitz.com/edit/angular-r6-detect-browser-refresh?file=src%2Fapp%2Fapp.component.ts
 //Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
 const routes: Routes = [ 
+  {path: 'interviewlistForCurUser',
+   component:InterviewListForCurUserComponent},
   {
     path: 'login',
     component: LoginComponent
@@ -219,7 +222,11 @@ const routes: Routes = [
 
 
     JobdescReportComponent,
-    AutodataComponent
+    AutodataComponent,
+    InterviewListForCurUserComponent,
+    DaynoticeGraphComponent
+   
+
 
   ],
   imports: [

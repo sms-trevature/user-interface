@@ -13,6 +13,7 @@ export class DaynoticeReportComponent implements OnInit {
   dayNoticeList: ActualDayNotice[];
   listFilterVar = '';
   dayNoticeListFilter: ActualDayNotice[];
+  boolFilterVar = 'all';
 
   constructor(private dayNotice: DaynoticeService) { }
 
@@ -22,6 +23,15 @@ export class DaynoticeReportComponent implements OnInit {
   set listFilter(temp: string) {
     this.listFilterVar = temp;
     this.dayNoticeListFilter = (this.listFilterVar) ?
+      this.performFilter(this.listFilterVar) : this.dayNoticeList;
+  }
+
+  get reviewFilter(): string {
+    return this.boolFilterVar;
+  }
+  set reviewFilter(temp: string) {
+    this.boolFilterVar = temp;
+    this.dayNoticeListFilter = this.boolFilterVar ?
       this.performFilter(this.listFilterVar) : this.dayNoticeList;
   }
 
@@ -47,7 +57,10 @@ export class DaynoticeReportComponent implements OnInit {
     filterBy = filterBy.toLocaleLowerCase();
     return this.dayNoticeList.filter((temp: ActualDayNotice) =>
       (temp.assocEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
-        || temp.assocName.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.assocName.toLocaleLowerCase().indexOf(filterBy) !== -1) &&
+         (this.boolFilterVar === 'all'
+        || (this.boolFilterVar === 'true' && temp.twentyFourAssoc == true)
+        || (this.boolFilterVar === 'false' && temp.twentyFourAssoc == false)
       )
     ); 
   }

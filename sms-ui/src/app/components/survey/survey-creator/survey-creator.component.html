@@ -3,7 +3,8 @@
   <div class="form-horizontal">
 
     <!-- Form Name -->
-    <legend>Survey Build</legend>
+    <!-- Should say creator -FINAL -->
+    <legend>Survey Creator</legend>
     <!-- Text input-->
     <div class="survey_title">
       <label class="col-md-4 control-label" for="textinput">Survey Title</label>
@@ -96,9 +97,9 @@
         <br>
       </div>
       <br>
-   
+   <!-- Add buttons should be light not dark - FINAL-->
       <div style="padding-left: 5px">
-        <button id="addquestion" name="addbutton" class="btn btn-dark" (click)='addQuestion()'>Add Question</button>
+        <button id="addquestion" name="addbutton" class="btn btn-light" (click)='addQuestion()'>Add Question</button>
       </div>
       <br>
       <div id="questionlist">
@@ -111,12 +112,17 @@
       </div>
       <br>
       <!-- Button -->
+
+   <!--    type="button" [disabled]="buttonDisabled" (click)="sendInterviewData()" class="btn rev-btn btn-lg btn-block" >Confirm
+          Interview</button> -->
+
+
       <div class="submit-button">
-        <!--<label class="col-md-4 control-label" for="singlebutton">Submission</label>-->
-        <button id="singlebutton" name="singlebutton" class="btn btn-dark" (click)='submit()'>Submit</button>
+        <!-- Buttons should be light -- FINAL-->
+        <button id="singlebutton" name="singlebutton" class="btn btn-light" (click)='submit()'>Submit</button>
         <br><br>
-        <button id="singlebutton" name="singlebutton" class="btn btn-danger" (click)='drop()'>Drop Current
-          Survey</button>
+        <!-- Exit should not say exit but reset --FINAL-->
+        <button id="singlebutton" name="singlebutton" class="btn btn-danger" (click)='drop()'>Reset</button>
       </div>
 
     </div>
