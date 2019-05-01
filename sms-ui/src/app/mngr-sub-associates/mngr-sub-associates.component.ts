@@ -77,11 +77,12 @@ export class MngrSubAssociatesComponent implements OnInit {
 
     });
     this.http.get('cognito/users/groups/trainer').toPromise().then(trainer => {
-
+     
       let index = 0;
       while (trainer['Users'][index] != undefined) {
         if (trainer['Users'][index].Attributes[1]['Value'] == true || trainer['Users'][index].Attributes[1]['Value'] == 'true') {
           this.trainerArray.push(trainer['Users'][index].Attributes[2]['Value']);
+          
         } else {
           this.trainerArray.push(trainer['Users'][index].Attributes[1]['Value']);
         }
@@ -372,7 +373,9 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.trainerArray;
     let multiRoleUsers = new Array;
     this.trainerArray.forEach(element => {
-      const roleSpot = document.getElementById(element.email) as HTMLDataListElement;
+      
+      const roleSpot = document.getElementById(element) as HTMLDataListElement;
+      
       if (roleSpot != null && roleSpot != undefined) {
         multiRoleUsers.push(element);
 
@@ -393,6 +396,7 @@ export class MngrSubAssociatesComponent implements OnInit {
       });
       trainDiv.innerHTML = "T";
       trainDiv.appendChild(x);
+     // alert(roleSpot);
       roleSpot.appendChild(trainDiv);
     });
     this.adminArray.forEach(element => {
