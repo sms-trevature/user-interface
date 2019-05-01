@@ -14,6 +14,7 @@ export let browserRefresh = false;
 })
 
 export class AppComponent {
+
   public spinkit = Spinkit;
   subscription: Subscription;
   title = 'sms-ui';
@@ -25,4 +26,5 @@ export class AppComponent {
       }
     });
   }
+
 }

@@ -1,8 +1,9 @@
 <app-navbar> </app-navbar>
 
-<div class="container">
-    Search: <input type="text" [(ngModel)]='listFilter'>
-  <table class="table table-striped" *ngIf='listOfSurvey && listOfSurvey.length'>
+
+<div class="container" *ngIf='listOfSurvey && listOfSurvey.length'>
+     <input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
+  <table class="table table-striped">
 
     <thead>
       <tr>
@@ -23,14 +24,11 @@
         <td>{{temp.closingDate | showTimestamp}} </td>
       </tr>
 
-      <!-- Button trigger modal -->
-
     </tbody>
   </table>
 </div>
 
 <!-- Modal -->
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -79,13 +77,27 @@
 
       </div>
       <div class="form-check"><input class="form-check-input position-static" id="ma" type="checkbox"
-          name="anonymousResponses"><label class="form-check-label" for="gridCheck" >Make my responses anonymous</label>
+          name="anonymousResponses"><label class="form-check-label" for="gridCheck">Make my responses anonymous</label>
       </div>
       <div class="modal-footer">
         <button type="submit" class="submitSurveyButton" data-dismiss="modal" (click)='close()'>Close</button>
-        <button type="submit" class="submitSurveyButton" (click)='submit()'>Submit</button>
+        <button type="submit" class="submitSurveyButton" data-dismiss="modal" (click)='submit()' (click)='close()'>Submit</button>
       </div>
 
       
 
+
+      <ng-template #elseBlock>
+        <div class="container" >
+          <table class="table table-striped" id="box-shadow">
+            <th><br></th>
+            <tr>
+              <td>
+          <h1>No Surveys Assigned</h1>
+        </td>
+        </tr>
+        </table>
+        </div>
+
+      </ng-template>
 
