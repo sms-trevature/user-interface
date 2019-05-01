@@ -372,7 +372,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.trainerArray;
     let multiRoleUsers = new Array;
     this.trainerArray.forEach(element => {
-      const roleSpot = document.getElementById(element.email) as HTMLDataListElement;
+      const roleSpot = document.getElementById(element) as HTMLDataListElement;
       if (roleSpot != null && roleSpot != undefined) {
         multiRoleUsers.push(element);
 
