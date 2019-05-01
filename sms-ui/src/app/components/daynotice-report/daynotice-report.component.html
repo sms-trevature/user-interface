@@ -7,13 +7,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
-<div class='col-md-2'>Search: </div>
-      <div class='col-md-4'>
-        <input type='text' [(ngModel)]='listFilter' />
+
+      <div class='container'>Search: <input class='searchBar' type='text' [(ngModel)]='listFilter'> 
+      
+       
+            <h3> align="center"><a routerLink="/daynoticeRoute">Visual Data</a></h3>
+           
       </div>
 
+
+
 <div class="container">
-  <h2>Associates with a 24 Hour Notice</h2>                   
+
+    <h2>24 Hour Notice Report </h2>  
+          
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -24,7 +31,7 @@
         <th>Interview Date</th>
       </tr>
     </thead>
-    <tbody *ngFor="let temp of dayNoticeList">
+    <tbody *ngFor="let temp of dayNoticeListFilter">
       <tr>
         <td>{{temp.assocEmail}}</td>
         <td>{{temp.assocName}}</td>
@@ -36,6 +43,7 @@
   </table>
 </div>
 
-<app-daynotice-graph></app-daynotice-graph>
+
+<!-- <app-daynotice-graph></app-daynotice-graph> -->
 
 

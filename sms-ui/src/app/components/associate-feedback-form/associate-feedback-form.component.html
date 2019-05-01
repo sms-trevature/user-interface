@@ -34,6 +34,9 @@
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                     <!--  <input type="text" class="form-control" name="interviewFormat" placeholder="Enter actual interview format" [(ngModel)]="interviewFormatStr" /> -->
+
+                    <select class="form-control" name="interviewFormat" [(ngModel)]="interviewFormatStr">
+                        <option value="" disabled selected>Select one</option>
                     <select class="form-control" name="interviewFormat" [(ngModel)]="interviewFormatStr" placeholder="Select One">
                         <option value = "On Site">On Site</option>
                         <option value = "In Person">In Person</option>
@@ -47,7 +50,14 @@
                 <label class="bolding" for="confirm">Proposed interview format?</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" name="proposedFormat" placeholder="Enter proposed interview format" [(ngModel)]="proposedFormatStr" />
+                    <!-- <input type="text" class="form-control" name="proposedFormat" placeholder="Enter proposed interview format" [(ngModel)]="proposedFormatStr" /> -->
+                    <select class="form-control" name="proposedFormat" [(ngModel)]="proposedFormatStr">
+                        <option value="" disabled selected>Select one</option>
+                        <option value = "On Site">On Site</option>
+                        <option value = "In Person">In Person</option>
+                        <option value = "Video Call">Video Call</option>
+                        <option value = "Phone Call">Phone Call</option>
+                    </select>
                 </div>
             </div>
             <div style="text-align: center">
