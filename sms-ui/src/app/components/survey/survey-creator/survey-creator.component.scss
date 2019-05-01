@@ -6,7 +6,7 @@
     padding: 1rem;
     width: 700px;
     height: auto;
-    box-shadow: 5px 10px 18px #888888; //This should be the most recent change - Steph - FINAL
+    /* box-shadow: 5px 10px 18px #888888; */ //This should be the most recent change - Steph - FINAL - no shadows - David
 }
 
 #dropdown {
@@ -22,17 +22,17 @@
     left: 1.7%;
     display: inline-block;
 }
+
 #questionlist {
-  
     position: relative;
     width: 600px;
     margin: 5px;
     padding-left: 5px;
     left: 1.7%;
     border-radius: 17px 17px 17px 17px;
--moz-border-radius: 17px 17px 17px 17px;
--webkit-border-radius: 17px 17px 17px 17px;
-border: 1px solid #000000;
+    -moz-border-radius: 17px 17px 17px 17px;
+    -webkit-border-radius: 17px 17px 17px 17px;
+    border: 1px solid #000000;
 }
 
 #textarea {
@@ -43,33 +43,37 @@ border: 1px solid #000000;
     position: relative;
     left: 1.7%;
 }
+
 #answerlist {
     position: relative;
     left: 1.7%;
 }
+
 #addquestion {
     position: relative;
     left: 1.7%;
 }
+
 #answerdesc {
     position: relative;
     width: 600px;
     margin: 5px;
     left: 1.7%;
     border-radius: 17px 17px 17px 17px;
--moz-border-radius: 17px 17px 17px 17px;
--webkit-border-radius: 17px 17px 17px 17px;
-border: 1px solid #000000;
-
+    -moz-border-radius: 17px 17px 17px 17px;
+    -webkit-border-radius: 17px 17px 17px 17px;
+    border: 1px solid #000000;
 }
+
 #addAnswer {
     position: relative;
-
 }
+
 #removeAnswer {
     position: relative;
     left: 1%;
 }
+
 #answerText {
     width: auto;
 }
