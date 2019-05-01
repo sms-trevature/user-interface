@@ -8,7 +8,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Date</span>
                 </div>
-                <input type="text" placeholder="Enter Date" bsDatepicker [minDate]="minDate" [(ngModel)]="receivedNotifications" class="form-control">
+                <input type="text" placeholder="Enter Date" bsDatepicker [maxDate]="maxDate" [(ngModel)]="receivedNotifications" class="form-control">
             </div>
 
             <div class="form-group">
@@ -33,7 +33,13 @@
                 <label class="bolding" for="password">Actual interview format?</label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                    <input type="text" class="form-control" name="interviewFormat" placeholder="Enter actual interview format" [(ngModel)]="interviewFormatStr" />
+                    <!--  <input type="text" class="form-control" name="interviewFormat" placeholder="Enter actual interview format" [(ngModel)]="interviewFormatStr" /> -->
+                    <select class="form-control" name="interviewFormat" [(ngModel)]="interviewFormatStr" placeholder="Select One">
+                        <option value = "On Site">On Site</option>
+                        <option value = "In Person">In Person</option>
+                        <option value = "Video Call">Video Call</option>
+                        <option value = "Phone Call">Phone Call</option>
+                    </select>
                 </div>
             </div>
 
@@ -50,4 +56,4 @@
 
         </div>
     </div>
-</div>
+</div>0
