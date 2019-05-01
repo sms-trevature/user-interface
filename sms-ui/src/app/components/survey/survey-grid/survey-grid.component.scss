@@ -326,3 +326,23 @@ hr {
     margin-bottom: 10px;
   }
 
+.panel-body, th, h4 {
+    background-color: #f3a55d;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.form-control[_ngcontent-c1] {
+    width: 82%;
+    margin-bottom: 10px;
+    right: 34px;
+    position: relative;
+    top: 12px;
+}
+b, strong {
+    font-weight: bolder;
+    position: relative;
+    top: 23px;
+    left: 25px;
+}
