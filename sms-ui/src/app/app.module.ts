@@ -48,24 +48,80 @@ import { SurveyRespondentsComponent } from './components/survey/survey-responden
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 import { AutodataComponent } from './components/autodata/autodata.component';
 import { InterviewListForCurUserComponent } from './components/interview-list-for-cur-user/interview-list-for-cur-user.component';
+import { AuthGuard } from './services/guards/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'profileInfo', component: ProfileInfoComponent },
-  { path: '', component: LoginComponent },
-  { path: 'reportsRoute', component: ReportsComponent },
-  { path: 'InterViewRoute', component: InterviewComponent },
-  { path: 'CreateInterviewRoute', component: NewInterviewComponent},
-  { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
-  { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
-  { path: 'InterviewListRoute', component: InterviewListComponent},
-  { path: 'AutoDataRoute', component: AutodataComponent},
-  {path: 'FeedbackRoute', component: FeedbackReportComponent},
-  {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
-  {path: 'JobDescRoute', component: JobdescReportComponent},
-  {path: 'interviewlistForCurUser', component:InterviewListForCurUserComponent},
+  {path: 'interviewlistForCurUser',
+   component:InterviewListForCurUserComponent},
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'profileInfo',
+    component: ProfileInfoComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reportsRoute',
+    component: ReportsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'InterViewRoute',
+    component: InterviewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'CreateInterviewRoute',
+    component: NewInterviewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'AssociateFeedbackRoute',
+    component: AssociateFeedbackFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'ManagerFeedbackRouting',
+    component: StagingMgrFeedbackComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'InterviewListRoute',
+    component: InterviewListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'AutoDataRoute',
+    component: AutodataComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'FeedbackRoute',
+    component: FeedbackReportComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'DayNoticeRoute',
+    component: DaynoticeReportComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'JobDescRoute',
+    component: JobdescReportComponent,
+    canActivate: [AuthGuard]
+  },
+
 
   {
-    path: 'ManageRoute', component: ManageComponent,
+    path: 'ManageRoute',
+    component: ManageComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'subMan1Internal',
@@ -81,7 +137,11 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'SurveyRoute', component: SurveyListComponent }
+  {
+    path: 'SurveyRoute',
+    component: SurveyListComponent,
+    canActivate: [AuthGuard]
+  }
   // need to change back to SurveyComponentlater later, now just testing functionalities
 
 ];
@@ -154,7 +214,7 @@ const routes: Routes = [
 
   ],
   providers: [
-    CognitoService, FakeServiceComponent, NavbarComponent
+    CognitoService, FakeServiceComponent, NavbarComponent, AuthGuard
   ],
   /* AppComponent */
   bootstrap: [AppComponent]
