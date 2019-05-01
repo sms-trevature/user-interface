@@ -275,17 +275,17 @@ export class MngrSubAssociatesComponent implements OnInit {
       email.value, phone.value, trainingLocationChoice, personalAddressEnforced, this.silverSnakes);
 
     this.http.post('users/insert', this.enterUser).toPromise().then(data => {
-        const HeaderDic = {
-          'Content-Type': 'application/json',
-           'x-api-key': `pApHsxBeoe1U3znB36G0l3lCO5WPp6Zb3gtmDgIp`,
-         };
-         const requestOptions = {                                                                                                                                                                                 
-          headers: new HttpHeaders(HeaderDic), 
-        };
-        alert("!! " + email.value);
-        // let jsonfee = { "email": `${email.value}` } ;
-        
-          // alert("this JSON "+jsonfee);
+      const HeaderDic = {
+        'Content-Type': 'application/json',
+        'x-api-key': `pApHsxBeoe1U3znB36G0l3lCO5WPp6Zb3gtmDgIp`,
+      };
+      const requestOptions = {
+        headers: new HttpHeaders(HeaderDic),
+      };
+      alert("!! " + email.value);
+      // let jsonfee = { "email": `${email.value}` } ;
+
+      // alert("this JSON "+jsonfee);
       if (currentIndex == '1') {
         //'"'+email.value+'"'
         // this.http.post('/cognito/users',jsonfee , requestOptions).toPromise().then(data => {
@@ -293,7 +293,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         // });  
 
         //  this.http.post(`cohorts/removeuser/${this.cohort['cohortToken']}`, {
-    
+
       } else if (currentIndex == '2') {
         this.addSM(email.value);
       } else if (currentIndex == '3') {
@@ -379,9 +379,9 @@ export class MngrSubAssociatesComponent implements OnInit {
       if (array2[int2].parentNode.firstChild.textContent.toLowerCase().length == 10) {
         // console.log("bahahahahahhahaha");
         // console.log("not removed  " + array2[int2].parentNode.firstChild.textContent.length);
-         int2++;
+        int2++;
       } else {
-     //   console.log("removing " + array2[int2].parentNode.firstChild.textContent.length);
+        //   console.log("removing " + array2[int2].parentNode.firstChild.textContent.length);
         array2[int2].parentNode.removeChild(array2[int2]);
 
         int2++;
@@ -420,7 +420,7 @@ export class MngrSubAssociatesComponent implements OnInit {
       const roleSpot = document.getElementById(element) as HTMLDataListElement;
       if (roleSpot != null && roleSpot != undefined) {
         multiRoleUsers.push(element);
-     //   console.log(' ADDING ' + element + " to list of people that have roles");
+        //   console.log(' ADDING ' + element + " to list of people that have roles");
 
       }
       // roleSpot.removeChild(roleSpot.firstChild);//gets rid of that one button
@@ -457,7 +457,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         //   console.log('remove role attempting?');
         //   console.log(change); });
 
-      //  console.log('remove role occurred?');
+        //  console.log('remove role occurred?');
       });
       trainDiv.innerHTML = "T";
       trainDiv.appendChild(x);
@@ -468,10 +468,10 @@ export class MngrSubAssociatesComponent implements OnInit {
       const roleSpotA = document.getElementById(element) as HTMLDataListElement;
       if (roleSpotA != null) {
         multiRoleUsers.forEach(alreadyRemovedButton => {
-       //   console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
+          //   console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
           if (alreadyRemovedButton == element) {
 
-          //  console.log(element + ' HAS MORE THAN ONE ROLE ');
+            //  console.log(element + ' HAS MORE THAN ONE ROLE ');
           } else {
 
             //  roleSpotA.removeChild(roleSpotA.firstChild);
@@ -490,7 +490,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         xx.addEventListener('click', function () {
           adminDiv.innerHTML = '';
           //COGNITO HERE remove from group - admin
-      //    console.log('remove role from actual cognito logic here');
+          //    console.log('remove role from actual cognito logic here');
         });
         adminDiv.innerHTML = "A";
         adminDiv.appendChild(xx);
@@ -507,7 +507,7 @@ export class MngrSubAssociatesComponent implements OnInit {
           console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
           if (alreadyRemovedButton == element) {
 
-          //  console.log(element + ' HAS MORE THAN ONE ROLE ');
+            //  console.log(element + ' HAS MORE THAN ONE ROLE ');
           } else {
 
             //roleSpotSM.removeChild(roleSpotSM.firstChild);
@@ -525,7 +525,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         xxx.addEventListener('click', function () {
           smDiv.innerHTML = '';
           //COGNITO HERE - remove from group - staging-manager
-     //     console.log('remove role from actual cognito logic here');
+          //     console.log('remove role from actual cognito logic here');
         });
         smDiv.innerHTML = "SM";
         smDiv.appendChild(xxx);
@@ -534,7 +534,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     });
   }
   removeRole() {
- //   console.log('remove role logic here');
+    //   console.log('remove role logic here');
 
   }
   displaySelectChange(lastName, firstName) {
@@ -547,7 +547,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.nextMenuToRemove = firstName + 'notAfunction(' + lastName + ')';
   }
   generalStatus() {
-  //  console.log("general status change");
+    //  console.log("general status change");
     const controlFlow = document.getElementById('GeneralSelection') as HTMLSelectElement;
     let index = controlFlow.selectedIndex;
     let opt = controlFlow.options[index];
@@ -564,11 +564,11 @@ export class MngrSubAssociatesComponent implements OnInit {
     }
   }
   specStatus() {
-  //  console.log("change");
+    //  console.log("change");
 
   }
   checkboxChecked() {
-  //  console.log("virtual status toggled");
+    //  console.log("virtual status toggled");
     if (this.virtualStatus == null || this.virtualStatus == false) {
       this.virtualStatus = true;
 
@@ -579,7 +579,7 @@ export class MngrSubAssociatesComponent implements OnInit {
 
   }
   closeMenu(last, first) {
-  //  console.log(" work ");
+    //  console.log(" work ");
     const divToClose = document.getElementById(last + 'notAfunction(' + first + ')') as HTMLDivElement;
     divToClose.style.display = "none";
   }
@@ -610,7 +610,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     });
   }
   addAssociate(associate: NgForm) {
-  //  console.log("here cus it has to be");
+    //  console.log("here cus it has to be");
   }
   // addAssociate(associate: NgForm) {
   //   console.log("value test: " + associate.value['dp1']);
@@ -728,7 +728,7 @@ export class MngrSubAssociatesComponent implements OnInit {
       this.returnableButton = grabDataCell.firstChild as HTMLButtonElement;
     }
 
-   // console.log("email of user: " + email);
+    // console.log("email of user: " + email);
     let currentRole: string;
     const childButton = grabDataCell.firstChild as HTMLButtonElement;
     currentRole = childButton.innerText;
@@ -737,11 +737,11 @@ export class MngrSubAssociatesComponent implements OnInit {
     //this keeps track of the last selection - 
     this.returnableEmailValue = email;
     //--
-  //  console.log("the button currently holds: " + childButton.innerHTML);
+    //  console.log("the button currently holds: " + childButton.innerHTML);
     while (grabDataCell.firstChild) {
 
       currentRole = grabDataCell.firstChild.textContent;
-     // console.log("CURRENT ROLE: " + currentRole);
+      // console.log("CURRENT ROLE: " + currentRole);
       grabDataCell.removeChild(grabDataCell.firstChild);
     }
     const NewRole = document.createElement('select') as HTMLSelectElement;
@@ -766,7 +766,7 @@ export class MngrSubAssociatesComponent implements OnInit {
       // console.log('against..');
       // console.log(" - " + currentRole.length);
       if (PossibleFirstOptionElement.innerText.length == childButton.innerText.length) {
-       // console.log("current option should be " + PossibleFirstOptionElement.textContent);
+        // console.log("current option should be " + PossibleFirstOptionElement.textContent);
         NewRole.appendChild(PossibleFirstOptionElement);//append the current one so that it shows first - 
       } else {
         ArrayOfNoneCurrentOptions.push(PossibleFirstOptionElement);
@@ -802,8 +802,45 @@ export class MngrSubAssociatesComponent implements OnInit {
   inputNewRole() {
     //how to enter on 'enter' key
     //myInputElement.addEventListener('keyup', this.inputNewRole);
-  //  console.log("enterkey pressed");
+    //  console.log("enterkey pressed");
+
 
   }
+  addAssociateByForm(form: NgForm) {
+    let first = form.value['dp1'];
+    let last = form.value['dp2'];
+    let email = form.value['dp3'];
+    let phone = form.value['dp4'];
+
+    for (let temp of this.addressList) {
+      if (temp.city == form.value['location']) {
+        var tLoc= temp;
+      }
+      console.log('the location did not match');
+    }
+    this.http.get(`user-service/status/2`).toPromise().then(data=>{
+      var status = data;
+    })
+
+    let body = {
+      'userId':0,
+      'firstName': first,
+      'lastName': last,
+      'email': email,
+      'phoneNumber': phone,
+      'trainingAddress': tLoc,
+      'personalAddress': null,
+      'userStatus':status,
+      'cohorts':null
+    }
+    console.log('this is the body')
+    console.log(body);
+    this.http.post('users', body).toPromise().then(data =>
+      console.log(data))
+  }
+
+
+
 }
+
 
