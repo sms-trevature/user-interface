@@ -13,8 +13,8 @@ export class NavbarComponent implements OnInit {
 
   email: string;
 
+
   constructor(private router: Router, private cognito:CognitoService) { }
-  
   public user: User;
 
   showSurveyPage() {
@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.email = localStorage.getItem('userEmail');
-
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
   logout(){
     this.cognito.logout().then(data=>{
