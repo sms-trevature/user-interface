@@ -77,11 +77,12 @@ export class MngrSubAssociatesComponent implements OnInit {
 
     });
     this.http.get('cognito/users/groups/trainer').toPromise().then(trainer => {
-
+     
       let index = 0;
       while (trainer['Users'][index] != undefined) {
         if (trainer['Users'][index].Attributes[1]['Value'] == true || trainer['Users'][index].Attributes[1]['Value'] == 'true') {
           this.trainerArray.push(trainer['Users'][index].Attributes[2]['Value']);
+          
         } else {
           this.trainerArray.push(trainer['Users'][index].Attributes[1]['Value']);
         }
@@ -372,7 +373,9 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.trainerArray;
     let multiRoleUsers = new Array;
     this.trainerArray.forEach(element => {
-      const roleSpot = document.getElementById(element.email) as HTMLDataListElement;
+      
+      const roleSpot = document.getElementById(element) as HTMLDataListElement;
+      
       if (roleSpot != null && roleSpot != undefined) {
         multiRoleUsers.push(element);
 
@@ -387,9 +390,31 @@ export class MngrSubAssociatesComponent implements OnInit {
       trainDiv.className = "trainRoleIcon";
       x.style.borderRadius = '10px';
       x.className = 'AssociatesXitButton';//only reachable through global styles idk y
+      //  x.style.backgroundImage = "url('../../assets/rev-logo.png')";
       x.style.marginLeft = "-65px";
       x.addEventListener('click', function () {
         trainDiv.innerHTML = '';
+        //COGNITO HERE - remove from group - trainer
+        // let httpDrop: HttpClient;
+        // const requestOptions = {
+        //   params: new HttpParams()
+        // };
+        //--------test stuff
+        // new RequestOptions({
+        //   headers: '',
+        //   body: {
+        //     "email":"blake.kruppa@revature.com",
+        //     "groupName":"trainer"
+        //   }
+        // })
+        //----test stuff
+        //   console.log('FUNCTOIN ran.....');
+        // requestOptions.params.set('email:blake.kruppa@revature.com','groupName:trainer');
+        // httpDrop.delete('cognito/users/groups', requestOptions ).toPromise().then(change => {
+        //   console.log('remove role attempting?');
+        //   console.log(change); });
+
+        //  console.log('remove role occurred?');
       });
       trainDiv.innerHTML = "T";
       trainDiv.appendChild(x);
