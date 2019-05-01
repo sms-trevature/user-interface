@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { NavigationStart, Router } from '@angular/router';
 import { CognitoService } from './services/cognito.service';
 import { Spinkit } from 'ng-http-loader';
-import {LoadingLogoComponent} from './components/loading-logo/loading-logo.component';
 export let browserRefresh = false;
 
 @Component({
@@ -13,7 +12,7 @@ export let browserRefresh = false;
 })
 
 export class AppComponent {
-  public spinkit = LoadingLogoComponent;
+  public spinkit = Spinkit;
   subscription: Subscription;
   title = 'sms-ui';
   constructor(private router: Router, private cognito: CognitoService) {

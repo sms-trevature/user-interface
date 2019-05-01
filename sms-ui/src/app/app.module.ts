@@ -49,7 +49,6 @@ import { FeedbackReportComponent } from './components/feedback-report/feedback-r
 import { AutodataComponent } from './components/autodata/autodata.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
 import { NgHttpLoaderModule } from 'ng-http-loader';
-import { LoadingLogoComponent } from './components/loading-logo/loading-logo.component';
 
 const routes: Routes = [ 
   {
@@ -191,8 +190,7 @@ const routes: Routes = [
     DaynoticeGraphComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
-    AutodataComponent,
-    LoadingLogoComponent
+    AutodataComponent
 
   ],
   imports: [
