@@ -48,6 +48,7 @@ import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-repo
 import { AuthGuard } from './services/guards/auth-guard.service';
 import { AutodataComponent } from './components/autodata/autodata.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
+import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
 
 const routes: Routes = [
   {
