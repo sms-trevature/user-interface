@@ -1,66 +1,8 @@
 <app-navbar> </app-navbar>
-<!-- <table class='table' *ngIf='listOfSurvey && listOfSurvey.length'>
-  <thead>
-    <tr>
-      <th>Survey Id</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Has Template</th>
-      <th>Date Created</th>
-      <th>Date Closed</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor='let temp of listOfSurvey; index as i'>
-      <td>{{temp.surveyId}}</td>
-      <td>{{temp.title}}</td>
-      <td>{{temp.description}}</td>
-      <td>
-        <p *ngIf="!temp.template; else elseBlock1">
-          <button (click)='getGraph(temp.surveyId)'>show graphs</button>
-        </p>
-        <ng-template #elseBlock1><button (click)='checkTemplate(temp.surveyId)'>Check Template</button></ng-template>
-      </td>
-      <td>{{temp.dateCreated | showTimestamp}}</td>
-      <td>
-        <p *ngIf="temp.closingDate; else elseBlock2">{{temp.listOfSurvey | showTimestamp}}</p>
-        <ng-template #elseBlock2><button (click)='closeSurvey(i)'>Close Now</button></ng-template>
-      </td>
-
-    </tr>
-  </tbody>
-</table> -->
-
-<!-- <div>
-  <ul *ngIf='curTemplate'>
-    <li *ngFor='let temp of curTemplate; index as i;'>
-      <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p><br>
-      <p *ngFor='let ans of curTempAnswers[i]'>{{ans?.answer+"  "}}</p>
-    </li>
-
-  </ul>
-</div> -->
-<!--
-  <div *ngFor='let temp of ArrayOfResponseAnswerList; index as i;'>
-      <app-answer-data2 [pieChartLabels]='temp' [pieChartData]= 'arrOfCounts[i]'></app-answer-data2>
-  </div> -->
-
-<!-- </ul>
-</div> -->
-<!--
-  <div *ngFor='let temp of ArrayOfResponseAnswerList; index as i;'>
-      <app-answer-data2 [pieChartLabels]='temp' [pieChartData]= 'arrOfCounts[i]'></app-answer-data2>
-  </div> -->
-
-
-
 <div id="main-content-container">
     <div id="manage-users-container">
-
       <input class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
         <table id="manage-users-table" class="tableUsers table table-striped">
-
             <thead class="rev-background-color">
                 <tr>
                     <th>Title</th>
@@ -81,7 +23,6 @@
             </tbody>
         </table>
     </div>
-
 <!--
   <div id="graphs" *ngIf='qList&&qList.length&&ArrayOfResponseAnswerList'>
         <h3>{{"Analytics: " + surveyTitle}}</h3>
@@ -89,7 +30,6 @@
             <app-survey-data [question]='temp.question' [type]='temp.typeId' [arrOfAns]='ArrayOfResponseAnswerList[i]' [arrOfCountedResponse]='arrOfCounts[i]'></app-survey-data>
         </div>
     </div> -->
-
     <div class="container">
       <!-- Trigger the modal with a button -->
       <!-- Modal -->
@@ -108,18 +48,12 @@
           </div>
         </div>
       </div>
-
     <!-- end of graph-->
-
-
 </div>
 <!--end of main -->
-
 <div id="respondents" *ngIf='respPressed'>
   <app-survey-respondents [surveyId]='surveyId'></app-survey-respondents>
 </div>
-
-
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -148,7 +82,6 @@
               <p *ngFor = "let temp of users; index as i"><input [id]="temp.email" class="userDropInput" type="checkbox" [(ngModel)] ='userCheckList[i]'>{{temp.email}}</p>
             </div>
         </div>
-
         <div *ngIf = 'shownEmailList&&shownEmailList.length'>
           successfully send to: <div *ngFor = "let temp of shownEmailList">{{temp}}</div>
           <button type="button" class="assignSurveyBtn btn btn-secondary" (click)= reload()>Exit</button>
