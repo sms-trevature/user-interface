@@ -1,5 +1,5 @@
 .container {
-    background-color: rgb(255, 194, 137);
+    background-color: #f3a55d;
     border-radius: 10px 10px 10px 10px;
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
@@ -7,9 +7,6 @@
     padding: 1rem;
     width: 700px;
     height: auto;
-    -webkit-box-shadow: 11px 7px 42px 5px rgba(0, 0, 0, 0.77);
-    -moz-box-shadow: 11px 7px 42px 5px rgba(0, 0, 0, 0.77);
-    box-shadow: 11px 7px 42px 5px rgba(0, 0, 0, 0.77);
 }
 
 #dropdown {
