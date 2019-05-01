@@ -1,12 +1,5 @@
 <app-navbar></app-navbar>
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-
 <div class="container">
 
   <h2>Associate Interview Count </h2>
@@ -20,16 +13,17 @@
     </div>
   </div>
 
-  <table class="table table-bordered">
-    <thead>
+  <table id="manage-users-table" class="tableUsers table table-striped" id="box-shadow">
+
+    <thead class="rev-background-color">
       <tr>
         <th>Associate Name</th>
         <th>Associate Email</th>
         <th>Interview Count</th>
       </tr>
     </thead>
-    <tbody *ngFor='let temp of AssociateInterviewCountsFilter'>
-      <tr>
+    <tbody>
+      <tr class="rev-table-row" *ngFor='let temp of AssociateInterviewCountsFilter'>
         <td>{{temp.associateName}}</td>
         <td>{{temp.associateEmail}}</td>
         <td>{{temp.interviewCount}}</td>
