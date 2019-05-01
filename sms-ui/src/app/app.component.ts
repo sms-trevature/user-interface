@@ -19,15 +19,9 @@ export class AppComponent {
     this.subscription = router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         browserRefresh = !router.navigated;
+        
       }
     });
-    cognito.currentUser$.toPromise().then(data=>{
-      console.log(data)
-    })
-    if (cognito.currentUser$ == undefined) {
-      console.log('in the logged out if statement')
-      this.router.navigateByUrl('/login')
-    }
   }
 
 }
