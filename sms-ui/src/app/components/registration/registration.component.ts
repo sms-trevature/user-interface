@@ -5,6 +5,7 @@ import { UsersClientService } from 'src/app/sms-client/clients/users-client.serv
 import { Subscription } from 'rxjs/internal/Subscription';
 import { userInfo } from 'os';
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -50,12 +51,19 @@ export class RegistrationComponent implements OnInit {
     
 // tslint:disable-next-line: whitespace
     if(this.uEmail === (this.currentUser.email)){
-      this.firstName = this.currentUser.firstName;
-      this.lastName = this.currentUser.lastName;
-      this.phoneNumber = this.currentUser.phoneNumber;
+      this.currentUser.firstName = this.firstName;
+      this.currentUser.lastName = this.lastName;
+      this.currentUser.phoneNumber = this.phoneNumber;
 
-
-      //How the heck do i send this info?
+      this.userClient.updateUser(this.currentUser).subscribe(data => {
+        console.log("sad face");
+      });
+      //testing and it's working
+      
+      console.log(this.currentUser.email);
+      console.log(this.currentUser.firstName);
+      console.log(this.currentUser.lastName);
+       
       
     }
 
