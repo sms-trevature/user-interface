@@ -1,6 +1,7 @@
 
 
-<!-- <body>
+
+ <body>
   <div id="InternalAssociates">
     <div id="legendHead" style="display: none;">
       <hr> <b>Roles Legend </b>
@@ -32,7 +33,43 @@
         </select>
 
       </div>
+      <table id="associateTable">
+        <tr>
+          <th class="spreadColumn">Name</th>
+          <th class="spreadColumn">Role <div id="claricationDiv"> (Of precedence)</div>
+          </th>
+          <th class="spreadColumn">Email</th>
+        </tr>
+        <tr *ngFor='let temp of filteredEmployees'>
+          <!--    //Jordan was here -->
+          <td>{{temp.firstName}} {{temp.lastName}}</td>
+          <td id={{temp.email}}><button class="cantBelieveItsNotButton" (click)="editRole(temp.email)">
+              {{functionTest(temp.email)}}</button></td>
+          <td>{{temp.email}}</td>
+          <!-- <div id="{{temp.email+'Button'}}">   -->
+          <td id={{temp.email|uppercase}} style="display: none;">
+            <!-- //--I think I need to save this button v-v-v-v---- -->
+            <button (click)="displaySelectChange(temp.lastName, temp.firstName)" id="ThisID(temp.email)"
+              class="ForAddingRoles">Add</button>
+            <div id="{{temp.firstName}}notAfunction({{temp.lastName}})" class="FloatingRoles" style="display: none; ">
+              <div
+                style="background: blanchedalmond; border: goldenrod; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 8px; ">
+                Grant <i> {{temp.firstName}} {{temp.lastName}} </i>
+                <br>
+                <button (click)="addATrainer(temp.email)" class="roleOption"> <b>Trainer Role</b></button>
+                <br>
+                <button (click)=addAAdmin(temp.email) class="roleOption"> <b>Admin Role</b> </button>
+                <!-- </div>  | id={{temp.firstName|uppercase}} --><br>
+                <button (click)=addSM(temp.email) class="roleOption"> <b>Staging Manager </b> </button>
+                <br>
+                <button id="exitMenuButton" (click)="closeMenu(temp.firstName,temp.lastName)" style="width: 120px; height: 30px; background: gray; color: orangered;"> Exit</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
       <br>
+
       <button class="pure-button" (click)='open(content)'
         style="display: inline; font-size: 10px; background: transparent;">
         <i class="material-icons">person</i>
@@ -64,9 +101,6 @@
     </table>
 
     <br>
-
-
-
 
 
     <ng-template #content let-modal>
@@ -163,4 +197,4 @@
             </div>
           </form>
         </div>
-</body> -->
+</body>
