@@ -10,6 +10,7 @@ import { InterviewFormat } from 'src/app/sms-client/dto/InterviewFormat';
 })
 export class AssociateFeedbackFormComponent implements OnInit {
 
+  private _maxDate: Date;
   private _minDate: Date;
   _descriptionProvided = false;
   private receivedNotifications: Date;
@@ -23,17 +24,16 @@ export class AssociateFeedbackFormComponent implements OnInit {
   interviewFormat: InterviewFormat;
   proposedFormat: InterviewFormat;
   constructor(private associateFeedbackService: AssociateFeedbackService, private router: Router) {
-    this._minDate = new Date();
-    this._minDate.setDate(this._minDate.getDate());
-
+    this._maxDate = new Date();
+    this._maxDate.setDate(this._maxDate.getDate());
   }
 
-  get minDate(): Date {
-    return this._minDate;
+  get maxDate(): Date {
+    return this._maxDate;
   }
 
-  set minDate(temp: Date) {
-    this._minDate = temp;
+  set maxDate(temp: Date) {
+    this._maxDate = temp;
   }
 
   get descriptionProvided(): boolean {
@@ -89,6 +89,7 @@ export class AssociateFeedbackFormComponent implements OnInit {
     console.log(this.dayNotice);
     console.log("THE DATE IS: " + this.receivedNotifications);
     this.interviewFormat = { 'id': 2, 'formatDesc': this._interviewFormatStr };
+    console.log(this.interviewFormat.formatDesc);
     console.log('seperator')
     this.proposedFormat = { 'id': 2, 'formatDesc': this._proposedFormatStr };;
     console.log('made it past the formats')
