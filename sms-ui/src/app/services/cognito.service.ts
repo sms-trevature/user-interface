@@ -105,4 +105,5 @@ export class CognitoService {
     Auth.currentCredentials().then(data=>{
     })
   }
+ 
 }
