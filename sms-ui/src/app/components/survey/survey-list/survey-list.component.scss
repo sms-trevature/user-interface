@@ -70,12 +70,14 @@ table th {
 .modal.show .modal-dialog {
     transform: none;
 }
+
 .table td,
 .table th {
     padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
 }
+
 .assignSurveyBtn {
     color: black;
     border-radius: 10px;
@@ -85,32 +87,39 @@ table th {
     width: 100%;
     border: none;
 }
+
 .buttonDiv {
     float: right;
 }
-#box-shadow {
-    box-shadow:  5px 10px 18px #888888;
-  }
-  
-  .form-control {
+
+
+/* #box-shadow {
+    box-shadow:  5px 10px 18px #888888;  no shadows - David
+  } */
+
+.form-control {
     width: 15%;
     margin-bottom: 10px;
-  }
- 
-  p {
+}
+
+p {
     margin-top: 0;
     margin-bottom: 1rem;
     /* text-align: center; */
     left: 6px;
     position: relative;
 }
-.panel-body, th, h4 {
+
+.panel-body,
+th,
+h4 {
     background-color: #f3a55d;
     color: black;
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
 }
+
 .form-control[_ngcontent-c1] {
     width: 82%;
     margin-bottom: 10px;
@@ -118,7 +127,9 @@ table th {
     position: relative;
     top: 12px;
 }
-b, strong {
+
+b,
+strong {
     font-weight: bolder;
     position: relative;
     top: 23px;
@@ -128,24 +139,26 @@ b, strong {
 #searchbar {
     width: 50%;
     margin-bottom: 10px;
-  right: 70px;
+    right: 70px;
     position: relative;
     top: 12px;
 }
+
 .col-md-2 {
     flex: 41 0 16.666667%;
     max-width: 33.666667%;
     right: 70px;
     position: relative;
-   
 }
-b, strong {
-  
-  font-weight: bolder;
-  position: relative;
-  top: 23px;
-  left: -15px;
+
+b,
+strong {
+    font-weight: bolder;
+    position: relative;
+    top: 23px;
+    left: -15px;
 }
+
 .col-md-3 {
     flex: 0 0 25%;
     max-width: 25%;
