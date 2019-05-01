@@ -77,6 +77,7 @@ export class CognitoService {
             localStorage.setItem('token', data.getIdToken().getJwtToken());
             this.tokenStream.next(data.getIdToken().getJwtToken());
             const currentUser = data.getIdToken().payload;
+            localStorage.setItem('role',currentUser['cognito:groups']);
             this.currentUserStream.next(currentUser);
           });
         // create interval to refresh the jwt periodically

@@ -147,6 +147,6 @@ export class AssignSurveyComponent implements OnInit {
       }
     );
     this.curSH.dateCompleted = new Date();
-    this.historyService.update(this.curSH).subscribe(d=>{console.log(d);});
+    this.historyService.update(this.curSH).subscribe();
   }
 }

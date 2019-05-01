@@ -47,6 +47,7 @@ import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-repo
 import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 import { AutodataComponent } from './components/autodata/autodata.component';
+import { InterviewListForCurUserComponent } from './components/interview-list-for-cur-user/interview-list-for-cur-user.component';
 
 const routes: Routes = [
   { path: 'profileInfo', component: ProfileInfoComponent },
@@ -61,7 +62,7 @@ const routes: Routes = [
   {path: 'FeedbackRoute', component: FeedbackReportComponent},
   {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
   {path: 'JobDescRoute', component: JobdescReportComponent},
-
+  {path: 'interviewlistForCurUser', component:InterviewListForCurUserComponent},
 
   {
     path: 'ManageRoute', component: ManageComponent,
@@ -132,6 +133,7 @@ const routes: Routes = [
     FeedbackReportComponent,
     JobdescReportComponent,
     AutodataComponent,
+    InterviewListForCurUserComponent,
 
 
   ],

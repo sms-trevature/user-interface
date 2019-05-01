@@ -11,13 +11,22 @@
         <div class="row surveys">
             <div class="btn"><a routerLink="surveyList">SURVEYS</a></div>
         </div>
-        <div class="row manage">
+        <div class="row manage" *ngIf='fullAccess'>
             <div class="btn"><a routerLink="reportRoute">MANAGE</a></div>
         </div>
-        <div class="row interviews">
+        <div class="row interviews" *ngIf='fullAccess;else elseBlock'>
             <div class="btn"><a routerLink="reportRoute">INTERVIEWS</a></div>
         </div>
-        <div class="row reports">
+
+
+        <ng-template #elseBlock>
+            <div class="row interviews">
+                <div class="btn"><a routerLink=" interviewlistForCurUser">INTERVIEWS</a></div>
+            </div>
+        </ng-template>
+       
+
+        <div class="row reports" *ngIf='fullAccess'>
             <div class="btn"><a routerLink="reportRoute">REPORTS</a></div>
 
         </div>
