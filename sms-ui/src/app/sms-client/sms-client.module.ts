@@ -6,6 +6,8 @@ import { SurveyService } from './clients/survey.service';
 import { SurveyQuestionService } from './clients/surveyquestion.service';
 import { SurveyAnswerService } from './clients/survey-answer.service';
 import { SurveyResponseService } from './clients/survey-response.service';
+import { CohortService } from './clients/theCohort.service';
+
 
 @NgModule({
   declarations: [],
@@ -18,6 +20,7 @@ import { SurveyResponseService } from './clients/survey-response.service';
     SurveyQuestionService,
     SurveyAnswerService,
     SurveyResponseService,
+    CohortService,
     {provide: HTTP_INTERCEPTORS, useClass: SmsInterceptor, multi: true}
   ]
 })
