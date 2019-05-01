@@ -26,4 +26,10 @@ export class UsersClientService {
     console.log("in the user service");
      return this.http.patch<User>(`${this.context}`, currentUser);
   }
+  findAll() {
+    return this.http.get<User[]>(`${this.context}`);
+  }
+  findAllByCohortId(cohortId: number) {
+    return this.http.get<User[]>(`${this.context}/cohorts/${cohortId}`);
+  }
 }
