@@ -52,8 +52,14 @@ $screen-xl-min: 1200px;
     box-shadow: 0 0 0.2rem 0.1rem $revature-orange-light;
   }
 }
-
-
+.roleOption{
+    width: 95px; 
+    height: 55px; 
+    border: solid; 
+    border-width: 2px; 
+    border-radius: 10px; 
+    
+}
 .rev-btn:not(.dropdown), .rev-btn > button.dropdown-toggle {
   background-color: $revature-orange-light ;
   border-color: $revature-orange-light;
@@ -222,4 +228,21 @@ font-size: 16px;
   &:hover {
       color: $revature-orange;}
 
+}
+#addEmployee:hover{
+    color: wheat;
+    border: inset; 
+    border-width: 4px; 
+    border-color: wheat;
+}
+.FloatingRoles{
+  // float: right; 
+  position: fixed; 
+  right: 10px; 
+  top: 200px; 
+}
+.roleOption:hover{
+  background: rgba(240, 187, 41, 0.603);
+  color: seagreen ; 
+  font-size: 98%; 
 }

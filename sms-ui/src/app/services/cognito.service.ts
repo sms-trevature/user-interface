@@ -56,7 +56,9 @@ export class CognitoService {
   }
   async getCurrent() {
   }
-
+  async kyle(email){
+    Auth.signUp(email);
+  }
   async setNewPassword(password: string) {
     const response = await Auth.completeNewPassword(
       this.newPasswordUser,

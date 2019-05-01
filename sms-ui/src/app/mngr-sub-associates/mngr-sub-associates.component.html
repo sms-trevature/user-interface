@@ -17,21 +17,21 @@
       <div style="display: inline;">
         <input type='text' [(ngModel)]='listFilter' id="filterByThisAssociate" />
       </div>
-      <span style="display: inline; margin-left: 10px; margin-right: 10px;"> Internal Associates</span>
+      <span style="display: inline; margin-left: 10px; margin-right: 10px;"><b> Internal Associates</b> </span>
 
       <div style="display: inline;">
         <!-- (change)="nrSelect(value)" -->
         <select id="selectElement" (change)="optionSelect()">
           <option value="All">All</option>
           <option value="Associates">Associates</option>
-          <option value="Trainer">Trainer</option>
+          <option value="Trainers">Trainers</option>
           <option value="Staging Managers">Staging Managers</option>
-          <option value="Admin">Admin</option>
+          <option value="Admins">Admins</option>
         </select>
       </div>
       <br>
-      <button class="pure-button" (click)='open(content)'
-        style="display: inline; font-size: 10px; background: transparent;">
+      <button class="pure-button" id="addEmployee" (click)='open(content)'
+        style="display: inline; font-size: 10px; background: transparent; border: transparent; ">
         <i class="material-icons">person</i>
         Add Employee
       </button><br>
@@ -48,16 +48,32 @@
       </tr>
       <tr *ngFor='let temp of filteredEmployees'>
         <!--    //Jordan was here -->
-
-
         <td>{{temp.firstName}} {{temp.lastName}}</td>
         <td id={{temp.email}}><button class="cantBelieveItsNotButton" (click)="editRole(temp.email)">
             {{functionTest(temp.email)}}</button></td>
         <td>{{temp.email}}</td>
         <!-- <div id="{{temp.email+'Button'}}">   -->
         <td id={{temp.email|uppercase}} style="display: none;">
-          <button (click)="addARole(temp.email)" class="ForAddingRoles"> Add</button></td>
-        <!-- </div>  | id={{temp.firstName|uppercase}} -->
+          <!-- //--I think I need to save this button v-v-v-v---- -->
+          <button (click)="displaySelectChange(temp.lastName, temp.firstName)" id="ThisID(temp.email)"
+            class="ForAddingRoles">Add</button>
+
+          <div id="{{temp.firstName}}notAfunction({{temp.lastName}})" class="FloatingRoles" style="display: none; ">
+            <div
+              style="background: blanchedalmond; border: goldenrod; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 8px; ">
+              Grant <i> {{temp.firstName}} {{temp.lastName}} </i>
+              <br>
+              <button (click)="addATrainer(temp.email)" class="roleOption"> <b>Trainer Role</b></button>
+              <br>
+              <button (click)=addAAdmin(temp.email) class="roleOption"> <b>Admin Role</b> </button>
+              <!-- </div>  | id={{temp.firstName|uppercase}} --><br>
+              <button (click)=addSM(temp.email) class="roleOption"> <b>Staging Manager </b> </button>
+              <br>
+              <button id="exitMenuButton" (click)="closeMenu(temp.firstName,temp.lastName)" style="width: 120px; height: 30px; background: gray; color: orangered;"> Exit</button>
+            </div>
+          </div>
+
+        </td>
       </tr>
 
     </table>
@@ -131,7 +147,7 @@
               <div class="input-group">
                 <label for="location">Training Location</label>
                 <select ngModel name='location' id="locationTrainingChoice">
-                  <option *ngFor='let temp of addressList' [value]="temp.addressId">{{temp.city}}, {{temp.state}}
+                  <option *ngFor='let temp of addressList' [value]="temp.alias">{{temp.city}}, {{temp.state}}
                   </option>
                 </select>
               </div>
@@ -149,7 +165,7 @@
               <div class="input-group" id="pAddress">
                 <input id="pstreet" ngModel name="pstreet" placeholder="643 Deer Street"> <br>
                 <input id="pcity" ngModal name="pcity" placeholder="New York"><br>
-                <input id=" pstate" ngModal name="pstate" placeholder="North Carolina"><br>
+                <input id="pstate" ngModal name="pstate" placeholder="North Carolina"><br>
                 <input id="pzip" ngModal name="pzip" placeholder="73013">
               </div>
               <br>
