@@ -7,19 +7,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
-
-      <div class='container'>Search: <input class='searchBar' type='text' [(ngModel)]='listFilter'> 
-      
-       
-            <h3> align="center"><a routerLink="/daynoticeRoute">Visual Data</a></h3>
-           
-      </div>
-
-
-
 <div class="container">
 
     <h2>24 Hour Notice Report </h2>  
+
+    <div class='panel-body'>
+        <div class='row'>
+          <div class='col-md-2'><b>Search:</b></div>
+          <div class='col-md-4'>
+            <input type='text' [(ngModel)]='listFilter' />
+          </div>
+          <div class='col-md-2'><b>Day Notice:</b></div>
+          <div class='col-md-4'>
+              <select autofocus type='text' [(ngModel)]='reviewFilter'>
+                  <option value="all">All</option>
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+          </div>
+        </div>
+      </div>
           
   <table class="table table-bordered">
     <thead>
@@ -35,8 +42,10 @@
       <tr>
         <td>{{temp.assocEmail}}</td>
         <td>{{temp.assocName}}</td>
-        <td>{{temp.twentyFourAssoc}}</td>
-        <td>{{temp.twentyFourManager}}</td>
+        <td *ngIf="temp.twentyFourAssoc == null"> N/A</td>
+        <td *ngIf="temp.twentyFourAssoc != null">{{temp.twentyFourAssoc}}</td>
+        <td *ngIf="temp.twentyFourManager == null"> N/A</td>
+        <td *ngIf="temp.twentyFourManager != null">{{temp.twentyFourManager}}</td>
         <td>{{temp.interviewDate | date}}</td>
       </tr>
     </tbody>

@@ -1,13 +1,13 @@
 export class status {
-    status_id: number ;
-    generic_status: string;
-    specific_status: string; 
+    statusId: number ;
+    generalStatus: string;
+    specificStatus: string; 
     virtual: boolean;
 
     constructor(statusid: number, genstatus: string, specstatus: string, virtual: boolean){
-            this.status_id = statusid; 
-            this.generic_status = genstatus; 
-            this.specific_status = specstatus; 
+            this.statusId = statusid; 
+            this.generalStatus = genstatus; 
+            this.specificStatus = specstatus; 
             this.virtual = virtual; 
     }
     

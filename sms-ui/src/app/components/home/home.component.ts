@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.user = succResp;
           localStorage.setItem('userEmail', this.user.email);
           localStorage.setItem('user', JSON.stringify(this.user));
+
         },
         err => {
         }

@@ -1,6 +1,8 @@
+
 <div>
     <app-navbar></app-navbar>
 </div>
+
 <table class="table table-striped" id="resptable">
     <thead align="center">
         <tr id="tableheader">
@@ -9,40 +11,16 @@
             <th scope="col">Date Completed</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody align="center">
 
         <!-- ngFor loop to iterate through and display all respondents of survey-->
-        <div *ngFor='let surveys of surveyList'>
-            <tr>
-                <td align="center">
-
-                </td>
-                
-                <td align="center">
-
-                </td>
-
-                <td align="center">
-
-                </td>
-            </tr>
-        </div>
+        <tr *ngFor='let resp of listOfResp; index as i'>
+            <td class="dataElement">{{resp.userEmail}}</td>
+            <td class="dataElement">{{resp.dateAssigned | showTimestamp}}</td>
+            <td class="dataElement">{{resp.dateCompleted | showTimestamp}}</td>
+        </tr>
 
     </tbody>
 </table>
 
-<!--
-    <div *ngFor='let posts of postList'>
-        <div *ngFor='let pp of posts.slice().reverse()'>
-            <div class='posts'>
-                <img [src]="pp['bluUserPost'].imgUrl">
-                <label id="name"><a routerLink='/profile'>{{pp['bluUserPost'].username}} </a></label>
-                <p class='text-align-left'>{{pp.timeOfPost}} </p>
-                <p>SUBJECT:<br>{{pp['messageSubject']}} </p>
-                <p>MESSAGE:<br>{{pp.messageDescription}} </p>
-                <img src="https://imgur.com/fODEkb4.png"
-                    (click)="incCount()" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{count}}
-            </div>
-        </div>
-    </div>-->
-<router-outlet></router-outlet>
+<!--<router-outlet></router-outlet>-->
