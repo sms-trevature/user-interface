@@ -93,7 +93,11 @@ export class AssociateFeedbackFormComponent implements OnInit {
         data.dayNotice = this._dayNotice
 
     });
+
+    window.location.reload();
+  
   }
+
   assignInterviewFormat() {
     if (this._interviewFormatStr == 'On Site') {
       this.interviewFormat = { 'id': 1, 'formatDesc': this._interviewFormatStr };
