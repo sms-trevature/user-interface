@@ -32,6 +32,7 @@ export class CognitoService {
 
   async login(username: string, password: string) {
     const response = await Auth.signIn(username, password);
+    this.setup();
 
     /// ---Query by email for user info..
 
@@ -49,9 +50,7 @@ export class CognitoService {
   }
 
   async logout() {
-    localStorage.setItem('token','');
-    localStorage.setItem('user','');
-    localStorage.setItem('userEmail','');
+    localStorage.clear();
     await Auth.signOut();
     this.tokenStream.next(undefined);
     this.currentUserStream.next(undefined);
@@ -79,6 +78,7 @@ export class CognitoService {
             localStorage.setItem('token', data.getIdToken().getJwtToken());
             this.tokenStream.next(data.getIdToken().getJwtToken());
             const currentUser = data.getIdToken().payload;
+            localStorage.setItem('role',currentUser['cognito:groups']);
             this.currentUserStream.next(currentUser);
           });
         // create interval to refresh the jwt periodically
@@ -108,9 +108,8 @@ export class CognitoService {
       return user;
     })
   }
-  getLocalStorage():String{
-    console.log('the token: ')
-    console.log(localStorage.getItem('token'))
-    return localStorage.getItem('token')
+
+  get localStorage():Storage{
+    return localStorage;
   }
 }
