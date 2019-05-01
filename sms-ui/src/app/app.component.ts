@@ -3,8 +3,9 @@ import { Subscription } from 'rxjs';
 import { NavigationStart, Router } from '@angular/router';
 import { CognitoService } from './services/cognito.service';
 import { Spinkit } from 'ng-http-loader';
-import {LoadingLogoComponent} from './components/loading-logo/loading-logo.component';
 export let browserRefresh = false;
+//loading screen citation: https://github.com/mpalourdio/ng-http-loader
+//refresh capabilities citation: https://stackblitz.com/edit/angular-r6-detect-browser-refresh?file=src%2Fapp%2Fapp.component.ts
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export let browserRefresh = false;
 })
 
 export class AppComponent {
-  public spinkit = LoadingLogoComponent;
+  public spinkit = Spinkit;
   subscription: Subscription;
   title = 'sms-ui';
   constructor(private router: Router, private cognito: CognitoService) {

@@ -108,7 +108,7 @@ export class CognitoService {
     })
   }
 
-  get LocalStorage():Storage{
+  get localStorage():Storage{
     return localStorage;
   }
 }

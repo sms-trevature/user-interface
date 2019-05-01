@@ -49,8 +49,10 @@ import { FeedbackReportComponent } from './components/feedback-report/feedback-r
 import { AutodataComponent } from './components/autodata/autodata.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
 import { NgHttpLoaderModule } from 'ng-http-loader';
-import { LoadingLogoComponent } from './components/loading-logo/loading-logo.component';
 
+//loading screen citation: https://github.com/mpalourdio/ng-http-loader
+//refresh capabilities citation: https://stackblitz.com/edit/angular-r6-detect-browser-refresh?file=src%2Fapp%2Fapp.component.ts
+//Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
 const routes: Routes = [ 
   {
     path: 'login',
@@ -191,8 +193,7 @@ const routes: Routes = [
     DaynoticeGraphComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
-    AutodataComponent,
-    LoadingLogoComponent
+    AutodataComponent
 
   ],
   imports: [
