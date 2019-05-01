@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { SomeAssociate } from '../sms-client/dto/Employees';
 import { FakeServiceComponent } from '../fake-service/fake-service.component';
 import { Button } from 'protractor';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from '@angular/forms';
 import { Address } from '../sms-client/dto/Address';
@@ -10,6 +10,12 @@ import { VirtualAction } from 'rxjs';
 import { status } from '../sms-client/dto/Status';
 import { stringify } from 'querystring';
 import { Router } from '@angular/router';
+import { UserObj } from '../sms-client/dto/UserObj';
+import { AddressObject } from '../sms-client/dto/AddressObj';
+import { stat } from 'fs';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+import { Alert } from 'selenium-webdriver';
+import { CognitoService } from '../services/cognito.service';
 
 @Component({
   selector: 'app-mngr-sub-associates',
@@ -27,18 +33,23 @@ export class MngrSubAssociatesComponent implements OnInit {
     this._listFilter = temp;
     this.filteredEmployees = this._listFilter ? this.performFilter(this._listFilter) : this.allAssociates;
   }
+  private http2: HttpClient;
+  statusstatus = new Array;
+  enterUser: UserObj;
   stagingM = new Array;
   adminArray = new Array;
   trainerArray = new Array;
   virtualStatus;
   wholeName = '';
+  nextMenuToRemove;
   addressList;
   closeResult: string;
   allAssociates: SomeAssociate[] = [];
   filteredEmployees: SomeAssociate[] = [];
-  globalFart: string = '';
+  globalFart: string = ''; //jordan ponder wrote this variable and takes full responsibility for consequences related to it
   returnableDataVariable;
   ngswitchCase = '';
+  silverSnakes;
   private returnableRoleValue = '';
   private lastCell: any;
   private returnableEmailValue = '';
@@ -68,7 +79,7 @@ export class MngrSubAssociatesComponent implements OnInit {
 
     });
     this.http.get('cognito/users/groups/trainer').toPromise().then(trainer => {
-      
+
       let index = 0;
       while (trainer['Users'][index] != undefined) {
         if (trainer['Users'][index].Attributes[1]['Value'] == true || trainer['Users'][index].Attributes[1]['Value'] == 'true') {
@@ -93,20 +104,216 @@ export class MngrSubAssociatesComponent implements OnInit {
       }
 
       this.stagingM.forEach(element => {
-        console.log("returned  " + element);
+
       });
 
     });
     this.allAssociates = this.filteredEmployees;
+
+
+
   }
+  changeRole() {
+
+    const newSpot = document.getElementById('selectedRoleRow') as HTMLSelectElement;
+    const emailIdentifier = newSpot.className;
+    let index = newSpot.selectedIndex;
+    let opt = newSpot.options[index];
+    // let http: HttpClient;
+    //this values will be used to update the user's role per their email as the identifier.. 
+    console.log("role has been changed to " + opt.value + " for:" + emailIdentifier);//onChange test -
+
+    if (opt.value == 'Admin') {
+      this.http.put('cognito/users/groups/', '{"email": "' + emailIdentifier + '", "groupName": "trainer"}').toPromise().then(status => {
+        alert(' check  ');
+      });
+      this.addAAdmin(emailIdentifier);
+    } else if (opt.value == 'Associate') {
+      alert("called...associate");
+      this.addATrainer(emailIdentifier);
+    } else if (opt.value == 'Staging-Manager') {
+      alert("called...staging manager");
+      this.addSM(emailIdentifier);
+    }
+  }
+
   ngOnInit() {
     this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
       this.addressList = data;
-    })
+    });
+    this.http.get('user-service/status').toPromise().then(status => {
+      console.log(" secretary: " + status[0]);
+      let indexer = 0;
+      this.silverSnakes = status[1];
+      while (status[indexer] != undefined && status[indexer] != null) {
+        // console.log("run...............");
+        //    console.log(status[indexer].status_id);
+        this.statusstatus.push(status[indexer]);
+        indexer++;
+      }
+      // alert(status);
+    });
   }
+  addATrainer(thisAddButton) {
+    // alert("add for : " +thisAddButton);
+    //  {{context}}/cognito/users/groups/
+    alert('about to run ');
+    this.http.put('cognito/users/groups/', '{"email": "' + thisAddButton + '", "groupName": "trainer"}').toPromise().then(status => {
+      alert(' check  ');
+    });
+    // this.http.delete('cognito/users/groups/', {"email": "dfeli014@fiu.edu", "groupName": "trainer"}).toPromise().then(status =>{
+    // });
+  }
+  addAAdmin(admin) {
+    alert('about to run ');
+    this.http.put('cognito/users/groups/', '{"email": "' + admin + '", "groupName": "admin"}').toPromise().then(status => {
+      alert(' check  ');
+    });
+  }
+  addSM(sm) {
+    alert('about to run ');
+    this.http.put('cognito/users/groups/', '{"email": "' + sm + '", "groupName": "staging-manager"}').toPromise().then(status => {
+      alert(' check  ');
+    });
+  }
+  SendUser() {
+    const first = document.getElementById('FName') as HTMLInputElement;
+    const last = document.getElementById('LName') as HTMLInputElement;
+    const email = document.getElementById('Email') as HTMLInputElement;
+    const phone = document.getElementById('phone') as HTMLInputElement;
+    const slct = document.getElementById('GeneralSelection') as HTMLSelectElement;
+    const selectedTraining = slct.options[slct.selectedIndex].value;
+    let specStatus;
+    let specChoice;
+    if (selectedTraining == "Training") {
+      specStatus = document.getElementById('specStaging') as HTMLSelectElement;
+      specChoice = specStatus.options[specStatus.selectedIndex].value;
+    } else {
+      specStatus = document.getElementById('specTraining') as HTMLSelectElement;
+      specChoice = specStatus.options[specStatus.selectedIndex].value;
+    }
+    this.virtualStatus;
+    const ltc = document.getElementById('locationTrainingChoice') as HTMLSelectElement;
+    // const tc = ltc.options[ltc.selectedIndex].value;
 
+    const initialRole = document.getElementById('ChooseInitialRole') as HTMLSelectElement;
+    const currentIndex = initialRole.options[initialRole.selectedIndex].value;
+    //  const role = initialRole.value;
+    //ignoring personal address for now.. 
+    let id = 0;
+    if (selectedTraining == 'Training') {
+      if (specChoice == 'Dropped') {
+        id = 1;
+      } else if (specChoice == 'Training') {
+        id = 2;
+      } else if (specChoice == 'Complete') {
+        id = 3;
+      }
+    } else if (selectedTraining == 'Staging' && this.virtualStatus == false) {
+      if (specChoice == 'Staging') {
+        id = 4;
+      } else if (specChoice == 'Bench') {
+        id = 5;
+      } else if (specChoice == 'Waiting for Paperwork') {
+        id = 6;
+      } else if (specChoice == 'Confirmed') {
+        id = 7;
+      } else if (specChoice == 'Project Started') {
+        id = 8;
+      } else if (specChoice == 'Paused') {
+        id = 9;
+      } else if (specChoice == 'Panel') {
+        id = 10;
+      }
+
+    } else if (selectedTraining == 'Staging' && this.virtualStatus == true) {
+      if (specChoice == 'Training') {
+        id = 11;
+      } else if (specChoice == 'Bench') {
+        id = 12;
+      } else if (specChoice == 'Waiting for Paperwork') {
+        id = 13;
+      } else if (specChoice == 'Confirmed') {
+        id = 14;
+      } else if (specChoice == 'Project Started') {
+        id = 15;
+      } else if (specChoice == 'Paused') {
+        id = 16;
+      } else if (specChoice == 'Panel Pending') {
+        id = 17;
+      }
+    }
+    //-----personal stuff enforced-------
+    const pstreet = document.getElementById('pstreet') as HTMLInputElement;
+    const pcity = document.getElementById('pcity') as HTMLInputElement;
+    const pstate = document.getElementById('pstate') as HTMLInputElement;
+    const pzip = document.getElementById('pzip') as HTMLInputElement;
+
+    //----------
+    let whicheverForNow: AddressObject;
+    let personalAddressEnforced: AddressObject = new AddressObject(0, '', '', '', '', '', '', false);
+    personalAddressEnforced.street = pstreet.value;
+    personalAddressEnforced.city = pcity.value;
+    personalAddressEnforced.state = pstate.value;
+    personalAddressEnforced.zip = pzip.value;
+    personalAddressEnforced.country = "United States";
+    personalAddressEnforced.isTrainingLocation = false;
+    personalAddressEnforced.alias = "My Personal Address";
+    this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
+      this.addressList = data;
+    });
+
+    let trainingLocationChoice;
+    this.addressList.forEach(element => {
+      let whicheverForNow = element;
+      if (ltc.value == (whicheverForNow.alias)) {
+        trainingLocationChoice = whicheverForNow;
+      }
+    });
+
+    this.enterUser = new UserObj(0, first.value, last.value,
+      email.value, phone.value, trainingLocationChoice, personalAddressEnforced, this.silverSnakes);
+
+    this.http.post('users/insert', this.enterUser).toPromise().then(data => {
+      const HeaderDic = {
+        'Content-Type': 'application/json',
+        'x-api-key': `pApHsxBeoe1U3znB36G0l3lCO5WPp6Zb3gtmDgIp`,
+      };
+      const requestOptions = {
+        headers: new HttpHeaders(HeaderDic),
+      };
+      alert("!! " + email.value);
+      // let jsonfee = { "email": `${email.value}` } ;
+
+      // alert("this JSON "+jsonfee);
+      if (currentIndex == '1') {
+        //'"'+email.value+'"'
+        // this.http.post('/cognito/users',jsonfee , requestOptions).toPromise().then(data => {
+        //   alert("registering this user");
+        // });  
+
+        //  this.http.post(`cohorts/removeuser/${this.cohort['cohortToken']}`, {
+
+      } else if (currentIndex == '2') {
+        this.addSM(email.value);
+      } else if (currentIndex == '3') {
+
+        this.addAAdmin(email.value);
+      } else if (currentIndex == '4') {
+
+        this.addATrainer(email.value);
+      }
+
+      // console.log("running register function");
+      // this.http.post('cognito/users', 'email.value').toPromise().then(data => {
+      //   alert("register successfully!? ");
+      // });
+
+    });//lak
+
+  }
   functionTest(email) {
-    console.log("FUNCTION FOR ROLE CALLED ");
+
     if (this.adminArray.indexOf(email) != -1) {
       return "Admin";
     } else
@@ -136,18 +343,49 @@ export class MngrSubAssociatesComponent implements OnInit {
 
   }
   editAllRoles() {
-    let int = 0;
-    let array = document.getElementsByClassName('cantBelieveItsNotButton');
-    while (array[int] != undefined && array[int] != null) {
-      //  array[int].parentNode.removeChild(array[int]);
-      if (array[int].parentNode.firstChild.textContent.toLowerCase().length == 10) {
-        console.log("bahahahahahhahaha");
-        int++; 
-      } else {
-        array[int].parentNode.removeChild(array[int]);
-        int++; 
+    //cantBelieveItsNotButton
+
+    let working3 = document.getElementsByClassName('cantBelieveItsNotButton');
+    let aroundVariable = working3.length;
+    let meat = 0;
+    console.log("3. hould return something variable  " + working3.length);
+    while (meat < 55) {
+      console.log("THIS--- SHOULD --- RUN  " + document.getElementById('cantBelieveItsNotButton'));
+      let int = 0;
+      // let array = new Array; 
+      let array = document.getElementsByClassName('cantBelieveItsNotButton');
+      //&& array[int] != null
+      while (array[int] != null) {
+
+        //  array[int].parentNode.removeChild(array[int]);
+        if (array[int].parentNode.firstChild.textContent.toLowerCase().length == 10) {
+
+          int++;
+        } else {
+          array[int].parentNode.removeChild(array[int]);
+          int++;
+        }
       }
-      
+      aroundVariable = document.getElementsByClassName('cantBelieveItsNotButton').length;
+      meat++;
+
+    }
+    //--
+    let int2 = 0;
+    let array2 = document.getElementsByClassName('cantBelieveItsNotButton');
+    while (array2[int2] != null && array2[int2] != undefined) {
+
+      //  array[int].parentNode.removeChild(array[int]);
+      if (array2[int2].parentNode.firstChild.textContent.toLowerCase().length == 10) {
+        // console.log("bahahahahahhahaha");
+        // console.log("not removed  " + array2[int2].parentNode.firstChild.textContent.length);
+        int2++;
+      } else {
+        //   console.log("removing " + array2[int2].parentNode.firstChild.textContent.length);
+        array2[int2].parentNode.removeChild(array2[int2]);
+
+        int2++;
+      }
     }
     //backup filteration resolution--------------
     const pullOutFilter = document.getElementById('filterByThisAssociate') as HTMLInputElement;
@@ -177,12 +415,12 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.trainerArray;
     let multiRoleUsers = new Array;
     this.trainerArray.forEach(element => {
-      console.log("trainers: ");
-      console.log(element);
+      // console.log("trainers: ");
+      // console.log(element);
       const roleSpot = document.getElementById(element) as HTMLDataListElement;
       if (roleSpot != null && roleSpot != undefined) {
         multiRoleUsers.push(element);
-        console.log(' ADDING ' + element + " to list of people that have roles");
+        //   console.log(' ADDING ' + element + " to list of people that have roles");
 
       }
       // roleSpot.removeChild(roleSpot.firstChild);//gets rid of that one button
@@ -219,7 +457,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         //   console.log('remove role attempting?');
         //   console.log(change); });
 
-        console.log('remove role occurred?');
+        //  console.log('remove role occurred?');
       });
       trainDiv.innerHTML = "T";
       trainDiv.appendChild(x);
@@ -230,10 +468,10 @@ export class MngrSubAssociatesComponent implements OnInit {
       const roleSpotA = document.getElementById(element) as HTMLDataListElement;
       if (roleSpotA != null) {
         multiRoleUsers.forEach(alreadyRemovedButton => {
-          console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
+          //   console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
           if (alreadyRemovedButton == element) {
 
-            console.log(element + ' HAS MORE THAN ONE ROLE ');
+            //  console.log(element + ' HAS MORE THAN ONE ROLE ');
           } else {
 
             //  roleSpotA.removeChild(roleSpotA.firstChild);
@@ -252,7 +490,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         xx.addEventListener('click', function () {
           adminDiv.innerHTML = '';
           //COGNITO HERE remove from group - admin
-          console.log('remove role from actual cognito logic here');
+          //    console.log('remove role from actual cognito logic here');
         });
         adminDiv.innerHTML = "A";
         adminDiv.appendChild(xx);
@@ -269,7 +507,7 @@ export class MngrSubAssociatesComponent implements OnInit {
           console.log("COMPARING:  " + alreadyRemovedButton + "  TO  " + element);
           if (alreadyRemovedButton == element) {
 
-            console.log(element + ' HAS MORE THAN ONE ROLE ');
+            //  console.log(element + ' HAS MORE THAN ONE ROLE ');
           } else {
 
             //roleSpotSM.removeChild(roleSpotSM.firstChild);
@@ -287,7 +525,7 @@ export class MngrSubAssociatesComponent implements OnInit {
         xxx.addEventListener('click', function () {
           smDiv.innerHTML = '';
           //COGNITO HERE - remove from group - staging-manager
-          console.log('remove role from actual cognito logic here');
+          //     console.log('remove role from actual cognito logic here');
         });
         smDiv.innerHTML = "SM";
         smDiv.appendChild(xxx);
@@ -296,11 +534,20 @@ export class MngrSubAssociatesComponent implements OnInit {
     });
   }
   removeRole() {
-    console.log('remove role logic here');
+    //   console.log('remove role logic here');
 
   }
+  displaySelectChange(lastName, firstName) {
+    if (this.nextMenuToRemove != null) {
+      const roleOpt = document.getElementById(this.nextMenuToRemove) as HTMLDivElement;
+      roleOpt.style.display = "none";
+    }
+    const roleOpt = document.getElementById(firstName + 'notAfunction(' + lastName + ')') as HTMLDivElement;
+    roleOpt.style.display = "block";
+    this.nextMenuToRemove = firstName + 'notAfunction(' + lastName + ')';
+  }
   generalStatus() {
-    console.log("general status change");
+    //  console.log("general status change");
     const controlFlow = document.getElementById('GeneralSelection') as HTMLSelectElement;
     let index = controlFlow.selectedIndex;
     let opt = controlFlow.options[index];
@@ -317,11 +564,11 @@ export class MngrSubAssociatesComponent implements OnInit {
     }
   }
   specStatus() {
-    console.log("change");
+    //  console.log("change");
 
   }
   checkboxChecked() {
-    console.log("virtual status toggled");
+    //  console.log("virtual status toggled");
     if (this.virtualStatus == null || this.virtualStatus == false) {
       this.virtualStatus = true;
 
@@ -330,6 +577,11 @@ export class MngrSubAssociatesComponent implements OnInit {
 
     }
 
+  }
+  closeMenu(last, first) {
+    //  console.log(" work ");
+    const divToClose = document.getElementById(last + 'notAfunction(' + first + ')') as HTMLDivElement;
+    divToClose.style.display = "none";
   }
   dispalyPAddress() {
     const personalAdd = document.getElementById('pAddress') as HTMLDivElement;
@@ -358,74 +610,77 @@ export class MngrSubAssociatesComponent implements OnInit {
     });
   }
   addAssociate(associate: NgForm) {
-    console.log("value test: " + associate.value['dp1']);
-    const fName = associate.value['dp1'];
-    const lName = associate.value['dp2'];
-    const email = associate.value['dp3'];
-    const phone = associate.value['dp4'];
-    const TrainLocation = associate.value['location'];
-    const GeStatus = associate.value['status'];
-    const Spstatus = associate.value['SpecStatus'];
-    const check = this.virtualStatus;
-    const role = associate.value['Role'];
-    let id = 0;
-    if (GeStatus == 'Training') {
-      if (Spstatus == 'Dropped') {
-        id = 1;
-      } else if (Spstatus == 'Training') {
-        id = 2;
-      } else if (Spstatus == 'Complete') {
-        id = 3;
-      }
-    } else if (GeStatus == 'Staging' && check == false) {
-      if (Spstatus == 'Staging') {
-        id = 4;
-      } else if (Spstatus == 'Bench') {
-        id = 5;
-      } else if (Spstatus == 'Waiting for Paperwork') {
-        id = 6;
-      } else if (Spstatus == 'Confirmed') {
-        id = 7;
-      } else if (Spstatus == 'Project Started') {
-        id = 8;
-      } else if (Spstatus == 'Paused') {
-        id = 9;
-      } else if (Spstatus == 'Panel') {
-        id = 10;
-      }
-
-    } else if (GeStatus == 'Staging' && check == true) {
-      if (Spstatus == 'Training') {
-        id = 11;
-      } else if (Spstatus == 'Bench') {
-        id = 12;
-      } else if (Spstatus == 'Waiting for Paperwork') {
-        id = 13;
-      } else if (Spstatus == 'Confirmed') {
-        id = 14;
-      } else if (Spstatus == 'Project Started') {
-        id = 15;
-      } else if (Spstatus == 'Paused') {
-        id = 16;
-      } else if (Spstatus == 'Panel Pending') {
-        id = 17;
-      }
-    }
-
-    let body = {
-      'userId': 100,
-      'firstName': fName,
-      'lastName': lName,
-      'email': email,
-      'phoneNumber': phone,
-      'trainingAddress': TrainLocation,
-      'personalAddress': null,
-      'userStatus': null
-    }
-    this.http.post(`users`, body).toPromise().then(data => {
-
-    })
+    //  console.log("here cus it has to be");
   }
+  // addAssociate(associate: NgForm) {
+  //   console.log("value test: " + associate.value['dp1']);
+  //   const fName = associate.value['dp1'];
+  //   const lName = associate.value['dp2'];
+  //   const email = associate.value['dp3'];
+  //   const phone = associate.value['dp4'];
+  //   const TrainLocation = associate.value['location'];
+  //   const GeStatus = associate.value['status'];
+  //   const Spstatus = associate.value['SpecStatus'];
+  //   const check = this.virtualStatus;
+  //   const role = associate.value['Role'];
+  //   let id = 0;
+  //   if (GeStatus == 'Training') {
+  //     if (Spstatus == 'Dropped') {
+  //       id = 1;
+  //     } else if (Spstatus == 'Training') {
+  //       id = 2;
+  //     } else if (Spstatus == 'Complete') {
+  //       id = 3;
+  //     }
+  //   } else if (GeStatus == 'Staging' && check == false) {
+  //     if (Spstatus == 'Staging') {
+  //       id = 4;
+  //     } else if (Spstatus == 'Bench') {
+  //       id = 5;
+  //     } else if (Spstatus == 'Waiting for Paperwork') {
+  //       id = 6;
+  //     } else if (Spstatus == 'Confirmed') {
+  //       id = 7;
+  //     } else if (Spstatus == 'Project Started') {
+  //       id = 8;
+  //     } else if (Spstatus == 'Paused') {
+  //       id = 9;
+  //     } else if (Spstatus == 'Panel') {
+  //       id = 10;
+  //     }
+
+  //   } else if (GeStatus == 'Staging' && check == true) {
+  //     if (Spstatus == 'Training') {
+  //       id = 11;
+  //     } else if (Spstatus == 'Bench') {
+  //       id = 12;
+  //     } else if (Spstatus == 'Waiting for Paperwork') {
+  //       id = 13;
+  //     } else if (Spstatus == 'Confirmed') {
+  //       id = 14;
+  //     } else if (Spstatus == 'Project Started') {
+  //       id = 15;
+  //     } else if (Spstatus == 'Paused') {
+  //       id = 16;
+  //     } else if (Spstatus == 'Panel Pending') {
+  //       id = 17;
+  //     }
+  //   }
+
+  //   let body = {
+  //     'userId': 100,
+  //     'firstName': fName,
+  //     'lastName': lName,
+  //     'email': email,
+  //     'phoneNumber': phone,
+  //     'trainingAddress': TrainLocation,
+  //     'personalAddress': null,
+  //     'userStatus': null
+  //   }
+  //   this.http.post(`users`, body).toPromise().then(data => {
+
+  //   })
+  // }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -449,10 +704,9 @@ export class MngrSubAssociatesComponent implements OnInit {
     let opt = e.options[index];
     let value = opt.value;
     if (value !== 'All') {
-      console.log('VALUE: ' + value);//test
       this.filteredEmployees = this.allAssociates.filter((metaEmployee: SomeAssociate) =>
-        metaEmployee.role == value);
-
+        (document.getElementById(metaEmployee.email).innerText + 's') == value);
+      //return e to index, All/ 0  
     } else {
       this.filteredEmployees = this.allAssociates;
     }
@@ -474,7 +728,7 @@ export class MngrSubAssociatesComponent implements OnInit {
       this.returnableButton = grabDataCell.firstChild as HTMLButtonElement;
     }
 
-    console.log("email of user: " + email);
+    // console.log("email of user: " + email);
     let currentRole: string;
     const childButton = grabDataCell.firstChild as HTMLButtonElement;
     currentRole = childButton.innerText;
@@ -483,15 +737,15 @@ export class MngrSubAssociatesComponent implements OnInit {
     //this keeps track of the last selection - 
     this.returnableEmailValue = email;
     //--
-    console.log("the button currently holds: " + childButton.innerHTML);
+    //  console.log("the button currently holds: " + childButton.innerHTML);
     while (grabDataCell.firstChild) {
 
       currentRole = grabDataCell.firstChild.textContent;
-      console.log("CURRENT ROLE: " + currentRole);
+      // console.log("CURRENT ROLE: " + currentRole);
       grabDataCell.removeChild(grabDataCell.firstChild);
     }
     const NewRole = document.createElement('select') as HTMLSelectElement;
-    NewRole.onchange = this.changeRole;
+    NewRole.addEventListener('click', this.changeRole);//on change 
     NewRole.setAttribute('id', 'selectedRoleRow');
     NewRole.setAttribute('class', email);
     const optAdmin = document.createElement('option') as HTMLOptionElement;
@@ -508,11 +762,11 @@ export class MngrSubAssociatesComponent implements OnInit {
     ArrayOfOptions.forEach(PossibleFirstOptionElement => {
       //too short
       PossibleFirstOptionElement.innerText = PossibleFirstOptionElement.innerText + " ";
-      console.log("inside foreach: " + PossibleFirstOptionElement.textContent.length);
-      console.log('against..');
-      console.log(" - " + currentRole.length);
+      // console.log("inside foreach: " + PossibleFirstOptionElement.textContent.length);
+      // console.log('against..');
+      // console.log(" - " + currentRole.length);
       if (PossibleFirstOptionElement.innerText.length == childButton.innerText.length) {
-        console.log("current option should be " + PossibleFirstOptionElement.textContent);
+        // console.log("current option should be " + PossibleFirstOptionElement.textContent);
         NewRole.appendChild(PossibleFirstOptionElement);//append the current one so that it shows first - 
       } else {
         ArrayOfNoneCurrentOptions.push(PossibleFirstOptionElement);
@@ -527,29 +781,66 @@ export class MngrSubAssociatesComponent implements OnInit {
     grabDataCell.appendChild(NewRole);
     // a service is needed to update user info by the email assocaited with their row - 
   } 
-  changeRole() {
+  // changeRole() {
 
-    const newSpot = document.getElementById('selectedRoleRow') as HTMLSelectElement;
-    const emailIdentifier = newSpot.className;
-    let index = newSpot.selectedIndex;
-    let opt = newSpot.options[index];
-    //this values will be used to update the user's role per their email as the identifier.. 
-    console.log("role has been changed to " + opt.value + " for:" + emailIdentifier);//onChange test -
-    this.http.put('cognito/users/groups', {
-      'email':emailIdentifier,
-      'groupName':opt.value
-    }
-    ).toPromise().then(change => {
-      console.log(change);
-    });
+  //   const newSpot = document.getElementById('selectedRoleRow') as HTMLSelectElement;
+  //   const emailIdentifier = newSpot.className;
+  //   let index = newSpot.selectedIndex;
+  //   let opt = newSpot.options[index];
+  //   //this values will be used to update the user's role per their email as the identifier.. 
+  //   console.log("role has been changed to " + opt.value + " for:" + emailIdentifier);//onChange test -
+  //   this.http.put('cognito/users/groups', {
+  //     'email':emailIdentifier,
+  //     'groupName':opt.value
+  //   }
+  //   ).toPromise().then(change => {
+  //     console.log(change);
+  //   });
 
-  }
+  // }
 
   inputNewRole() {
     //how to enter on 'enter' key
     //myInputElement.addEventListener('keyup', this.inputNewRole);
-    console.log("enterkey pressed");
+    //  console.log("enterkey pressed");
+
 
   }
+  addAssociateByForm(form: NgForm) {
+    let first = form.value['dp1'];
+    let last = form.value['dp2'];
+    let email = form.value['dp3'];
+    let phone = form.value['dp4'];
+
+    for (let temp of this.addressList) {
+      if (temp.city == form.value['location']) {
+        var tLoc= temp;
+      }
+      console.log('the location did not match');
+    }
+    this.http.get(`user-service/status/2`).toPromise().then(data=>{
+      var status = data;
+    })
+
+    let body = {
+      'userId':0,
+      'firstName': first,
+      'lastName': last,
+      'email': email,
+      'phoneNumber': phone,
+      'trainingAddress': tLoc,
+      'personalAddress': null,
+      'userStatus':status,
+      'cohorts':null
+    }
+    console.log('this is the body')
+    console.log(body);
+    this.http.post('users', body).toPromise().then(data =>
+      console.log(data))
+  }
+
+
+
 }
+
 

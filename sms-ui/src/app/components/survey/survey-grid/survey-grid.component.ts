@@ -6,6 +6,7 @@ import { SurveyService } from 'src/app/sms-client/clients/survey.service';
 import { SurveyQuestionService } from 'src/app/sms-client/clients/surveyquestion.service';
 import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.service';
 import { CookieStorage } from '@aws-amplify/auth';
+import { QuestionOfSurveyService } from 'src/app/sms-client/clients/survey-question.service';
 
 @Component({
   selector: 'app-survey-grid',
@@ -23,7 +24,8 @@ export class SurveyGridComponent implements OnInit {
   constructor(
     private surveyService: SurveyService,
     private sqService: SurveyQuestionService,
-    private answerService: SurveyAnswerService) { }
+    private answerService: SurveyAnswerService,
+    private qOSService: QuestionOfSurveyService) { }
 
   ngOnInit() {
     this.listOfSurvey = [];
@@ -70,11 +72,21 @@ export class SurveyGridComponent implements OnInit {
     const temp = this.curTemplate[0].surveyId;
     temp.published = !temp.published;
     temp.template = !temp.template;
-    this.surveyService.save(temp).subscribe(
-      data => {
-        alert('successful');
+    this.sqService.getTemplate(temp.surveyId).subscribe(
+      qSConjuctions=>{
+        this.surveyService.save(temp).subscribe(
+          data => {
+            alert("success");
+            for(let temp of qSConjuctions){
+              let sq = new SurveyQuestion(null, data, temp.questionId,temp.questionOrder);
+              this.sqService.save(sq).subscribe();
+            }
+          }
+        );
+        
       }
     );
+    
   }
   checkTemplate(surveyId: number) {
     this.curTemplate = [];
@@ -87,7 +99,6 @@ export class SurveyGridComponent implements OnInit {
           this.answerService.findByQuestionId(data[i].questionId.questionId).subscribe(
             curQuestionAnswerList => {
               this.curTempAnswers[i] = curQuestionAnswerList;
-              console.log(curQuestionAnswerList);
             }
           );
         }

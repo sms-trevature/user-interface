@@ -13,6 +13,7 @@ export class DaynoticeReportComponent implements OnInit {
   dayNoticeList: ActualDayNotice[];
   listFilterVar = '';
   dayNoticeListFilter: ActualDayNotice[];
+  boolFilterVar = 'all';
 
   constructor(private dayNotice: DaynoticeService) { }
 
@@ -25,6 +26,15 @@ export class DaynoticeReportComponent implements OnInit {
       this.performFilter(this.listFilterVar) : this.dayNoticeList;
   }
 
+  get reviewFilter(): string {
+    return this.boolFilterVar;
+  }
+  set reviewFilter(temp: string) {
+    this.boolFilterVar = temp;
+    this.dayNoticeListFilter = this.boolFilterVar ?
+      this.performFilter(this.listFilterVar) : this.dayNoticeList;
+  }
+
   ngOnInit() {
    this.get24Hr();
   }
@@ -32,32 +42,27 @@ export class DaynoticeReportComponent implements OnInit {
   get24Hr() {
     this.dayNotice.get24HrNotice().subscribe((data: ActualDayNotice[]) => {
       this.dayNoticeList = data;
-      this.dayNoticeList = this.filterByTrue();
+     // this.dayNoticeList = this.filterByTrue();
+      this.dayNoticeListFilter = data;
     });
   }
 
 
   filterByTrue(): ActualDayNotice[] {
-    return this.dayNoticeList.filter((randomV: ActualDayNotice) => (randomV.twentyFourAssoc) == true);
+    return this.dayNoticeList.filter((randomV: ActualDayNotice) => (randomV.twentyFourAssoc) == false);
 
   }
-    // {
-    //   if (randomV.associateInput.dayNotice == null) {
-    //     document.getElementById('Notice').innerHTML = 'N/A';
-    //   } else {
-    //     randomV.associateInput.dayNotice == true;
-    //   }
-    // }
-    // )};
-
 
   performFilter(filterBy: string): ActualDayNotice[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.dayNoticeList.filter((temp: ActualDayNotice) =>
       (temp.assocEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
-        || temp.assocName.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.assocName.toLocaleLowerCase().indexOf(filterBy) !== -1) &&
+         (this.boolFilterVar === 'all'
+        || (this.boolFilterVar === 'true' && temp.twentyFourAssoc == true)
+        || (this.boolFilterVar === 'false' && temp.twentyFourAssoc == false)
       )
-    );
+    ); 
   }
 }
 
