@@ -49,8 +49,12 @@ import { FeedbackReportComponent } from './components/feedback-report/feedback-r
 import { AutodataComponent } from './components/autodata/autodata.component';
 import { InterviewListForCurUserComponent } from './components/interview-list-for-cur-user/interview-list-for-cur-user.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
-const routes: Routes = [
+//loading screen citation: https://github.com/mpalourdio/ng-http-loader
+//refresh capabilities citation: https://stackblitz.com/edit/angular-r6-detect-browser-refresh?file=src%2Fapp%2Fapp.component.ts
+//Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
+const routes: Routes = [ 
   {path: 'interviewlistForCurUser',
    component:InterviewListForCurUserComponent},
   {
@@ -209,7 +213,8 @@ const routes: Routes = [
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
-    DatePickerModule
+    NgHttpLoaderModule.forRoot(),
+    DatePickerModule,
 
 
   ],
