@@ -50,6 +50,8 @@ import { AutodataComponent } from './components/autodata/autodata.component';
 import { AuthGuard } from './services/guards/auth-guard.service';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 
+//loading screen citation: https://github.com/mpalourdio/ng-http-loader
+//refresh capabilities citation: https://stackblitz.com/edit/angular-r6-detect-browser-refresh?file=src%2Fapp%2Fapp.component.ts
 const routes: Routes = [ 
   {
     path: 'login',
