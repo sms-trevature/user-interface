@@ -7,8 +7,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
+<div class='container'>Search: <input class='searchBar' type='text' [(ngModel)]='listFilter'> </div>
+
 <div class="container">
-    <h2>Associates with Feedback Requested</h2>
+    <h2>Feedback Requested Report</h2>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -18,7 +20,7 @@
                 <th>Feedback Requested</th>
             </tr>
         </thead>
-        <tbody *ngFor="let temp of feedbackYesList">
+        <tbody *ngFor="let temp of feedbackListFilter">
             <tr>
                 <td>{{temp.id}}</td>
                 <td>{{temp.associateEmail}}</td>

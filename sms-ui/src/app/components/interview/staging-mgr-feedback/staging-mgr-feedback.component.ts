@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { StagingmanagerService } from 'src/app/sms-client/clients/stagingmanager.service';
+import { Router } from '@angular/router';
 import { InterviewFeedback } from 'src/app/sms-client/dto/InterviewFeedback';
 
 @Component({
@@ -12,17 +12,32 @@ export class StagingMgrFeedbackComponent implements OnInit {
 
 
   private feedbackVar: InterviewFeedback;
+  sManagerServ: any;
 
   get feedback() {
     return this.feedbackVar;
   }
 
-  constructor(private sManagerServ: StagingmanagerService) { }
+
+  constructor(private mngrfeedback: StagingmanagerService, private routerMod: Router) { 
+
+  }
 
   ngOnInit() {
     // Need to not hardcode feedback id (WIP)
     this.sManagerServ.getMgrFeedback(2).subscribe(data => { this.feedbackVar = data; });
   }
+
+
+  /* getManagerFeedback(){
+    this.mngrfeedback.retrieveFeedback().subscribe(
+      data => {
+        //const ourField = 'base_experience';
+        console.log(data);
+        //console.log('experience? ', data[ourField]);
+      }
+
+  } */
 
 
 
