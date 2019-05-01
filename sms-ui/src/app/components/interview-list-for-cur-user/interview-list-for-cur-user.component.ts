@@ -3,12 +3,12 @@ import { InterviewService } from 'src/app/sms-client/clients/interview.service';
 import { Interview } from 'src/app/sms-client/dto/Interview';
 
 @Component({
-  selector: 'app-interview-list',
-  templateUrl: './interview-list.component.html',
-  styleUrls: ['./interview-list.component.scss']
+  selector: 'app-interview-list-for-cur-user',
+  templateUrl: './interview-list-for-cur-user.component.html',
+  styleUrls: ['./interview-list-for-cur-user.component.scss']
 })
-export class InterviewListComponent implements OnInit {
-
+export class InterviewListForCurUserComponent implements OnInit {
+  
   private interviewList: Interview[] = [];
   private filteredInterviewList: Interview[] = [];
   private listFilterVar = '';
@@ -91,9 +91,14 @@ export class InterviewListComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    let email = localStorage.getItem('userEmail');
+    this.filteredInterviewList = [];
     this.interview.getInterviews().subscribe(data => {
-      this.filteredInterviewList = data;
+      for(let temp of data){
+        if(temp.associateEmail===email){
+          this.filteredInterviewList.push(temp);
+        }
+      }
       this.sortByDateScheduled();
       this.interviewList = this.filteredInterviewList;
       }

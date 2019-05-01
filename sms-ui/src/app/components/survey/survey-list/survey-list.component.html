@@ -1,14 +1,18 @@
 <app-navbar> </app-navbar>
-<div id="main-content-container">  
+<div id="main-content-container">
+
+  <h2> Survey List</h2>
+
+   
   <div id="manage-users-container">
-     <div class='panel-body'>
-      <div class='row'>
-        <div class='col-md-3'><b>Search:</b></div>
-        <div class='col-md-2' id='search-container'>
-         <input id="searchbar" class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
-        </div>
-      </div>
-    </div>  
+      <div class='panel-body'>
+          <div class='row'>
+            <div class='col-md-3'><b>Search:</b></div>
+            <div class='col-md-2' id='search-container'>
+             <input id="searchbar" class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
+            </div>
+          </div>
+        </div>  
         <table id="manage-users-table" class="tableUsers table table-striped" id="box-shadow">
 
             <thead class="rev-background-color">

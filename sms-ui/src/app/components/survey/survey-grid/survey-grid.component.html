@@ -1,15 +1,17 @@
 <app-navbar> </app-navbar>
-<div id="main-content-container">  
-  <div id="manage-users-container">
-     <div class='panel-body'>
-      <div class='row'>
-        <div class='col-md-3'><b id="search">Search:</b></div>
-        <div class='col-md-2' id='search-container'>
-         <input id="searchbar" class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
-        </div>
-      </div>
-    </div>  
-        <table class='table' *ngIf='listOfSurvey && listOfSurvey.length' id="box-shadow">
+<div id="main-content-container">
+
+    <h2> Survey Templates </h2>
+
+        <div class='panel-body'>
+                <div class='row'>
+                  <div class='col-md-3'><b id= "search">Search:</b></div>
+                  <div class='col-md-2' id='search-container'>
+                   <input id="searchbar" class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
+                  </div>
+                </div>
+              </div>
+    <table class='table' *ngIf='listOfSurvey && listOfSurvey.length' id="box-shadow">
 
 
         <thead>
@@ -62,12 +64,13 @@
                     </path>
                 </svg> <i><span class="noteDiv">Note that you can edit both the survey title and description</span></i>
             </div>
-            <div class="modalHeading" *ngIf='curTemplate'><strong>Survey Title</strong>:&nbsp;<input type="text"
+            <div class="modalHeading" *ngIf='curTemplate' id="modal-heading"><strong>Survey Title</strong>:&nbsp;<input type="text"
                     class="surveyName"
                     [value]='curTemplate[0].surveyId.title'>&nbsp;<strong>Description</strong>:&nbsp;<input type="text"
                     class="surveyDescription" [value]='curTemplate[0].surveyId.description'></div>
             <div class="modal-body">
                 <ul *ngIf='curTemplate'>
+                    <br>
                     <li *ngFor='let temp of curTemplate; index as i;'>
                         <strong>
                             <p>{{"Q"+(i+1)+": "+temp.questionId.question}}</p>
