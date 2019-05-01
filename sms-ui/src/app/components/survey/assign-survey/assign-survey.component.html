@@ -1,5 +1,6 @@
 <app-navbar> </app-navbar>
 
+
 <div class="container" *ngIf='listOfSurvey && listOfSurvey.length; else elseBlock'>
     <div class='panel-body'>
         <div class='row'>
@@ -28,6 +29,7 @@
         <td>{{listOfSurveyHistory[i].dateAssigned | showTimestamp}}</td>
         <td>{{temp.closingDate | showTimestamp}} </td>
       </tr>
+
     </tbody>
   </table>
 </div>
@@ -81,6 +83,7 @@
           name="anonymousResponses"><label class="form-check-label" for="gridCheck">Make my responses anonymous</label>
       </div>
       <div class="modal-footer">
+
         <button type="submit" class="submitSurveyButton" (click)='close()' data-dismiss="modal">Close</button>
         <button type="submit" class="submitSurveyButton" (click)='submit()' data-dismiss="modal">Submit</button>
       </div>
@@ -92,6 +95,7 @@
             <th><br></th>
             <tr>
               <td>
+
                 <h1>No Surveys Assigned</h1>
               </td>
             </tr>
