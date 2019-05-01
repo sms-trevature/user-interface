@@ -42,16 +42,11 @@ import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
-<<<<<<< HEAD
-=======
-import { AutodataComponent } from './components/autodata/autodata.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
->>>>>>> befc52387559f07c0fb65e9880f8e1ea2c0582db
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
-import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
+import { AutodataComponent } from './components/autodata/autodata.component';
 
 
 const routes: Routes = [
@@ -63,20 +58,12 @@ const routes: Routes = [
   { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
   { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
   { path: 'InterviewListRoute', component: InterviewListComponent},
-<<<<<<< HEAD
   {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
   {path: 'JobDescRoute', component: JobdescReportComponent},
   {path: 'NewRegistration', component: RegistrationComponent},
   {path: 'FeedbackRoute', component: FeedbackReportComponent},
-
-
-=======
   { path: 'AutoDataRoute', component: AutodataComponent},
-  {path: 'FeedbackRoute', component: FeedbackReportComponent},
-  {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
-  {path: 'JobDescRoute', component: JobdescReportComponent},
   
->>>>>>> befc52387559f07c0fb65e9880f8e1ea2c0582db
 
   {
     path: 'ManageRoute', component: ManageComponent,
