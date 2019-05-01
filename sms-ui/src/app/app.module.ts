@@ -44,28 +44,85 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
+import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
 import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
+import { AutodataComponent } from './components/autodata/autodata.component';
+import { AuthGuard } from './services/guards/auth-guard.service';
+//import { NgHttpLoaderModule } from 'ng-http-loader';
 
-
-const routes: Routes = [
-  { path: 'profileInfo', component: ProfileInfoComponent },
-  { path: '', component: LoginComponent },
-  { path: 'reportsRoute', component: ReportsComponent },
-  { path: 'InterViewRoute', component: InterviewComponent },
-  { path: 'CreateInterviewRoute', component: NewInterviewComponent},
-  { path: 'AssociateFeedbackRoute', component: AssociateFeedbackFormComponent},
-  { path: 'ManagerFeedbackRouting', component: StagingMgrFeedbackComponent},
-  { path: 'InterviewListRoute', component: InterviewListComponent},
-  {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
-  {path: 'JobDescRoute', component: JobdescReportComponent},
-  {path: 'FeedbackRoute', component: FeedbackReportComponent},
-
-  {path: 'DayNoticeRoute', component: DaynoticeReportComponent},
-  {path: 'JobDescRoute', component: JobdescReportComponent},
+//loading screen citation: https://github.com/mpalourdio/ng-http-loader
+//refresh capabilities citation: https://stackblitz.com/edit/angular-r6-detect-browser-refresh?file=src%2Fapp%2Fapp.component.ts
+//Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
+const routes: Routes = [ 
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '',
+    component: LoginComponent
+  },
+  {
+    path: 'profileInfo',
+    component: ProfileInfoComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reportsRoute',
+    component: ReportsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'InterViewRoute',
+    component: InterviewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'CreateInterviewRoute',
+    component: NewInterviewComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'AssociateFeedbackRoute',
+    component: AssociateFeedbackFormComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'ManagerFeedbackRouting',
+    component: StagingMgrFeedbackComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'InterviewListRoute',
+    component: InterviewListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'AutoDataRoute',
+    component: AutodataComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'FeedbackRoute',
+    component: FeedbackReportComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'DayNoticeRoute',
+    component: DaynoticeReportComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'JobDescRoute',
+    component: JobdescReportComponent,
+    canActivate: [AuthGuard]
+  },
 
 
   {
-    path: 'ManageRoute', component: ManageComponent,
+    path: 'ManageRoute',
+    component: ManageComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'subMan1Internal',
@@ -81,7 +138,11 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'SurveyRoute', component: SurveyListComponent }
+  {
+    path: 'SurveyRoute',
+    component: SurveyListComponent,
+    canActivate: [AuthGuard]
+  }
   // need to change back to SurveyComponentlater later, now just testing functionalities
 
 ];
@@ -122,16 +183,17 @@ const routes: Routes = [
     AnswerData5Component,
     AnswerData6Component,
     AnswerData7Component,
+
+    SurveyRespondentsComponent,
+
+    AutodataComponent,
+
     DaynoticeReportComponent,
     JobdescReportComponent,
-    
     DaynoticeGraphComponent,
-    DaynoticeReportComponent,
     FeedbackReportComponent,
     JobdescReportComponent,
-   
-
-
+    AutodataComponent
 
   ],
   imports: [
@@ -147,13 +209,13 @@ const routes: Routes = [
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
-    
-    DatePickerModule
+   // NgHttpLoaderModule.forRoot(),
+    DatePickerModule,
 
 
   ],
   providers: [
-    CognitoService, FakeServiceComponent, NavbarComponent
+    CognitoService, FakeServiceComponent, NavbarComponent, AuthGuard
   ],
   /* AppComponent */
   bootstrap: [AppComponent]

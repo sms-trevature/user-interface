@@ -780,7 +780,24 @@ export class MngrSubAssociatesComponent implements OnInit {
 
     grabDataCell.appendChild(NewRole);
     // a service is needed to update user info by the email assocaited with their row - 
-  }
+  } 
+  // changeRole() {
+
+  //   const newSpot = document.getElementById('selectedRoleRow') as HTMLSelectElement;
+  //   const emailIdentifier = newSpot.className;
+  //   let index = newSpot.selectedIndex;
+  //   let opt = newSpot.options[index];
+  //   //this values will be used to update the user's role per their email as the identifier.. 
+  //   console.log("role has been changed to " + opt.value + " for:" + emailIdentifier);//onChange test -
+  //   this.http.put('cognito/users/groups', {
+  //     'email':emailIdentifier,
+  //     'groupName':opt.value
+  //   }
+  //   ).toPromise().then(change => {
+  //     console.log(change);
+  //   });
+
+  // }
 
   inputNewRole() {
     //how to enter on 'enter' key

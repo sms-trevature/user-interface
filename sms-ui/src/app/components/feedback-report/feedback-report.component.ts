@@ -9,38 +9,20 @@ import { DaynoticeService } from 'src/app/services/daynotice.service';
 })
 export class FeedbackReportComponent implements OnInit {
 
-  _id = 0;
-  _associateEmail = '';
-  _place = '';
-
-  feedbackYesList: DayNotice[];
-  feedbackNoList: DayNotice[];
+  feedbackList: DayNotice[];
+  feedbackListFilter: DayNotice[];
+  listFilterVar = '';
  
 
   constructor(private dayNotice: DaynoticeService) { }
 
-  get id(): number {
-    return this._id;
+  get listFilter(): string {
+    return this.listFilterVar;
   }
-
-  set id(temp: number) {
-    this._id = temp;
-  }
-
-  get associateEmail(): string {
-    return this._associateEmail;
-  }
-
-  set associateEmail(temp: string) {
-    this._associateEmail = temp;
-  }
-
-  get place(): string {
-    return this._place;
-  }
-
-  set place(temp: string) {
-    this._place = temp;
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.feedbackListFilter = (this.listFilterVar) ?
+      this.performFilter(this.listFilterVar) : this.feedbackList;
   }
 
   ngOnInit() {
@@ -49,21 +31,20 @@ export class FeedbackReportComponent implements OnInit {
 
   getAllInterviews() {
     this.dayNotice.getAllInterviews().subscribe((data: DayNotice[]) => {
-      this.feedbackYesList = data;
-      this.feedbackNoList = data;
-     // this.feedbackYesList = this.filterByRequested();
-      this.feedbackNoList = this.filterByNotRequested();
+      this.feedbackList = data;
+      this.feedbackListFilter = data;
 
     });
   }
 
- /*  filterByRequested(): DayNotice[] {
-    console.log("inside of requested");
-    return this.feedbackYesList.filter((randomV: DayNotice) => (randomV.feedback.feedbackRequested) == null);
-  } */
-
-  filterByNotRequested(): DayNotice[] {
-    console.log("inside of not requested");
-    return this.feedbackNoList.filter((randomV: DayNotice) => (randomV.feedback) == null);
+  performFilter(filterBy: string): DayNotice[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.feedbackList.filter((temp: DayNotice) =>
+      (temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.place.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    ); 
   }
+
+  
 }

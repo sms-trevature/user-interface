@@ -2,104 +2,125 @@ $revature-orange-light: #f3a55d;
 $revature-orange: #f26925;
 $drew-orange: #f3a55d;
 $rounded-amount: 0.5em;
-
 @mixin flex-col {
     display: flex;
     flex-direction: column;
-  }
+}
 
 @mixin rounded-top {
     border-top-left-radius: $rounded-amount;
     border-top-right-radius: $rounded-amount;
-  }
+}
 
-
-
-#associatesHeader{
+#associatesHeader {
     background: $revature-orange-light;
     margin: auto;
     border-style: outset;
     border-width: 2px;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
-    border-color:$revature-orange-light;
+    border-color: $revature-orange-light;
 }
-#InternalAssociates{
+
+#InternalAssociates {
     margin: auto;
     max-width: 750px;
-
 }
-body{
+
+body {
     text-align: center;
 }
-#associateTable{
+
+#associateTable {
     margin-top: 1px;
-  @include rounded-top();
-  thead {
     @include rounded-top();
-    tr {
-      @include rounded-top();
-      th {
-        border: none;
-      }
+    thead {
+        @include rounded-top();
+        tr {
+            @include rounded-top();
+            th {
+                border: none;
+            }
+        }
     }
 }
+
+#ateam {
+    border: none;
+    background: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    justify-content: space-between;
+    &:hover {
+        color: $revature-orange;
+    }
 }
 
-// #ateam{
-//     border: none;
-//   padding: 15px 32px;
-//   text-align: center;
-//   text-decoration: none;
-//   display: inline-block;
-//   font-size: 16px;
-//     justify-content:space-between;
-
-//     &:hover {
-//         color: $revature-orange;}
-
-// }
-
-.spreadColumn{
+.spreadColumn {
     padding: 10px;
     padding-left: 35px;
     padding-right: 35px;
 }
-.spreadColumnChrt{
+
+.spreadColumnChrt {
     padding: 10px;
     padding-left: 35px;
     padding-right: 35px;
 }
-#filterCohortBy{
+
+#filterCohortBy {
     margin: 2px;
     background: whitesmoke;
     border-radius: 10px;
     padding-left: 5px;
 }
+
 .pure-button {
     border: none;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     //justify-content:space-between;
-    background-color:$revature-orange-light;
+    background-color: $revature-orange-light;
     &:hover {
-        color: gray;}
-  }
+        color: gray;
+    }
+}
 
-  .modal-body {
+.modal-body {
     width: 100%;
     text-align: left;
     // height: 10px;
     background-color: $revature-orange-light;
     color: black;
     padding: 10px;
-
-
     text-align: center;
     font-size: 14px;
     font-family: Helvetica;
     border-radius: 10px 10px 0px 0px;
-  }
+}
+
+.modal-body2 {
+    width: 100%;
+    text-align: left;
+    //height: 5px;
+    background-color: $revature-orange-light;
+    color: black;
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-family: Helvetica;
+    border-radius: 20px 20px 10px 10px;
+}
+
+.abc2 {
+    border-radius: 4px;
+    background-color: #f3a55d;
+    color: black;
+    border: 2px solid white;
+}

@@ -47,11 +47,11 @@
                                     <option value="1">IDK</option>
                                 </select>
                                 <br>
-                                <br><button type='submit'>Submit</button>
+                                <br><button class="abc2" type='submit'>Submit</button>
                             </div>
                         </form>
                     </div>
-                    <div *ngSwitchCase="'editAssociates'">
+                    <div class="modal-body2" *ngSwitchCase="'editAssociates'">
                         <div *ngIf='modalShow'>
 
                             <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
