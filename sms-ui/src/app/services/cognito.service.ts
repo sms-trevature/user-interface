@@ -50,8 +50,6 @@ export class CognitoService {
   }
 
   async logout() {
-    localStorage.setItem('token','');
-    localStorage.setItem('user','');
     localStorage.clear();
     await Auth.signOut();
     this.tokenStream.next(undefined);
