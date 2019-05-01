@@ -11,6 +11,7 @@ import { SurveyListComponent } from './components/survey/survey-list/survey-list
 import { SurveyDataComponent } from './components/survey/survey-data/survey-data.component'; // temporary -Steph
 import { AssignSurveyComponent } from './components/survey/assign-survey/assign-survey.component';
 import { SurveyGridComponent } from './components/survey/survey-grid/survey-grid.component';
+import { AuthGuard } from './services/guards/auth-guard.service';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'auth-loading',
@@ -29,33 +31,40 @@ const routes: Routes = [
   {
 
     path: 'interview-list',
-    component: InterviewListComponent
+    component: InterviewListComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: 'survey',
-    component: SurveyCreatorComponent
+    component: SurveyCreatorComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: 'surveyList',
-    component: SurveyListComponent},
+    component: SurveyListComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'survey-data', // temporary path just need to see my page - Steph
-    component: SurveyDataComponent
-
+    component: SurveyDataComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'assign-survey',
-    component: AssignSurveyComponent
-
+    component: AssignSurveyComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-survey',
-    component: SurveyCreatorComponent
+    component: SurveyCreatorComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'survey-template',
-    component: SurveyGridComponent
-
+    component: SurveyGridComponent,
+    canActivate: [AuthGuard]
   }
 
 ];
