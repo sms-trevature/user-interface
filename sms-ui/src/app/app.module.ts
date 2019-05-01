@@ -46,6 +46,7 @@ import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-repo
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { AutodataComponent } from './components/autodata/autodata.component';
+import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 
 
 const routes: Routes = [
@@ -128,6 +129,7 @@ const routes: Routes = [
     JobdescReportComponent,
     RegistrationComponent,
     FeedbackReportComponent,
+    DaynoticeGraphComponent
 
 
   ],
