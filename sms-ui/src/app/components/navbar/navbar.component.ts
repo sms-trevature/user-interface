@@ -13,9 +13,9 @@ export class NavbarComponent implements OnInit {
 
 
   email: string;
-  fullAccess: boolean = false;
+  fullAccess = false;
 
-  constructor(private router: Router, private cognito:CognitoService, private http: HttpClient) { }
+  constructor(private router: Router, private cognito: CognitoService, private http: HttpClient) { }
   public user: User;
 
   showSurveyPage() {
@@ -25,15 +25,15 @@ export class NavbarComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.email = localStorage.getItem('userEmail');
     this.user = JSON.parse(localStorage.getItem('user'));
-    let roles = localStorage.getItem('role');
-    if(roles.includes('admins')||roles.includes('staging-manager')||roles.includes('trainer')){
+    const roles = localStorage.getItem('role');
+    if (roles.includes('admins') || roles.includes('staging-manager') || roles.includes('trainer')) {
       this.fullAccess = true;
     }
   }
-  logout(){
+  logout() {
     localStorage.clear();
-    this.cognito.logout().then(data=>{
-      console.log(data)
-    })
+    this.cognito.logout().then(data => {
+      console.log(data);
+    });
   }
 }
