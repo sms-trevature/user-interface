@@ -22,6 +22,7 @@ export class UsersClientService {
     return this.http.get<User>(`${this.context}/email/${email}`);
   }
 
+
   updateUser(currentUser: User): Observable<User> {
     console.log("in the user service");
      return this.http.patch<User>(`${this.context}`, currentUser);

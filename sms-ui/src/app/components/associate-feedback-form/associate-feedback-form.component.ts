@@ -81,6 +81,7 @@ export class AssociateFeedbackFormComponent implements OnInit {
   }
 
   postAssociateInput() {
+
     this.assignInterviewFormat();
     this.assignProposedFormat();
     let associateInput = new AssociateFeedback(this._descriptionProvided, this.receivedNotifications, this._dayNotice, this.interviewFormat, this.proposedFormat);

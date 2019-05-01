@@ -16,10 +16,12 @@ import { AssociateInterviewCount } from 'src/app/sms-client/dto/AssociateIntervi
 export class AutodataComponent implements OnInit {
 
 
+
   listFilterVar = '';
 
-  AssociateInterviewCounts: AssociateInterviewCount[] = [];
-  AssociateInterviewCountsFilter: AssociateInterviewCount[] = [];
+  private AssociateInterviewCounts: AssociateInterviewCount[] = [];
+ // listFilterVar: string;
+  AssociateInterviewCountsFilter: AssociateInterviewCount[];
 
   constructor(private http: HttpClient, private interview: InterviewService, private autodata: AutodataService) {
 
