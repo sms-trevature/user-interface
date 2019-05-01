@@ -217,6 +217,10 @@ const routes: Routes = [
     JobdescReportComponent,
     RegistrationComponent,
     FeedbackReportComponent,
+    DaynoticeGraphComponent
+   
+
+
     JobdescReportComponent,
     AutodataComponent,
     InterviewListForCurUserComponent,

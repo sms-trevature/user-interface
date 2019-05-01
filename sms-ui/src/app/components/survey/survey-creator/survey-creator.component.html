@@ -52,6 +52,24 @@
           <option value="6">Yes/No</option>
           <option value="7">Strongly Agree - Strongly Disagree</option>
         </select>
+<<<<<<< HEAD
+            </div>
+            <br>
+            <div *ngIf="curQuestionType&&curQuestionType!=5" id="answerdesc">
+                <br> Possible Answer Value:
+                <div id="answerlist" *ngFor='let temp of curAnswerList'>{{temp.answer}}</div>
+                <br>
+                <br>
+                <div *ngIf="curQuestionType==2||curQuestionType==3">
+                    <input class="form-control input-md" type='text' id="answerText" [(ngModel)]='inputAnswerString' />
+                    <br>
+                    <button id="addAnswer" name="addbutton" class="btn btn-primary" (click)='addAnswer()'>Add to Answers</button>
+                    <button *ngIf="curAnswerList.length" id="removeAnswer" name="addbutton" class="btn btn-danger" (click)='undo()'>Undo</button>
+                </div>
+            </div>
+            <br>
+            <button id="addquestion" name="addbutton" class="btn btn-primary" (click)='addQuestion()'>Add Question</button>
+=======
 
       </div>
       <br>
@@ -63,6 +81,7 @@
           <ul>
             <li>{{temp.answer}}</li>
           </ul>
+>>>>>>> fb8922473776c0af677cc82c640eb77fefc9ef1f
         </div>
         <div *ngIf="curQuestionType==2||curQuestionType==3">
           <input style="margin-left: 5px" class="form-control input-md" type='text' id="answerText"
