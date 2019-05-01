@@ -83,7 +83,7 @@ export class AssignSurveyComponent implements OnInit {
     this.curTemplate = [];
     this.curTempAnswers = [];
     this.sqService.getTemplate(surveyId).subscribe(
-      data => {
+      data => {console.log(data);
         this.curTemplate = data;
 
         for (const i of Object.keys(data)) {
@@ -100,7 +100,8 @@ export class AssignSurveyComponent implements OnInit {
   close() {
     window.location.reload();
   }
-  async submit() {
+  
+  submit() {
     const responseList: Responses[] = [];
 
     for (const i of Object.keys(this.inputAns)) {
@@ -141,11 +142,11 @@ export class AssignSurveyComponent implements OnInit {
     this.responseService.saveList(responseList).subscribe(
       hope => {
         if (hope) {
-          window.location.reload();
+          alert("successful");console.log(hope);
         }
       }
     );
     this.curSH.dateCompleted = new Date();
-    this.historyService.update(this.curSH).subscribe();
+    this.historyService.update(this.curSH).subscribe(d=>{console.log(d);});
   }
 }

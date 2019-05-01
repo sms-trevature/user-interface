@@ -111,39 +111,44 @@ export class SurveyListComponent implements OnInit {
 
   assignSurvey() {
     const userEmailList: string[] = [];
-    for (const i in this.cohortCheckList) {
-      if (this.cohortCheckList[i]) {
-        this.usersClientService.findAllByCohortId(this.cohorts[i].cohortId).subscribe(data => {
-          for (const user of data) {
-            this.pushSurveyHistory(user.email, this.surveyId);
-            userEmailList.push(user.email);
-          }
-        });
-      }
-    }
+    this.shownEmailList = [];
+    
     // tslint:disable-next-line: forin
     for (const j in this.users) {
       const cur = this.users[j].userStatus.statusId;
       if ((this.userCheckList[j]) || (cur <= 3 && cur >= 1 && this.statusCheckList[0]) ||
       (cur <= 10 && cur >= 4 && this.statusCheckList[1]) ||
       (cur <= 17 && cur >= 11 && this.statusCheckList[2]) ||
-      (cur <= 4 && cur >= 17 && this.statusCheckList[3])) {
+      (cur <= 17 && cur >= 4 && this.statusCheckList[3])) {
         if (!userEmailList.includes(this.users[j].email)) {
           userEmailList.push(this.users[j].email);
         }
       }
     }
-    console.log(userEmailList);
+
     for (const email of userEmailList) {
       this.pushSurveyHistory(email, this.surveyId);
     }
+
+    for (const i in this.cohortCheckList) {
+      if (this.cohortCheckList[i]) {
+        this.usersClientService.findAllByCohortId(this.cohorts[i].cohortId).subscribe(data => {
+          for (const user of data) {
+            if (!userEmailList.includes(user.email)) {
+              userEmailList.push(user.email);
+              this.pushSurveyHistory(user.email, this.surveyId);
+            }
+          }
+        });
+      }
+    }
+   
   }
 
   pushSurveyHistory(email, surveyId) {
-    this.shownEmailList = [];
     const surHistory = new SurveyHistory(null, surveyId, email, new Date(), null);
     this.surveyHistoryService.save(surHistory).subscribe(
-      data => {console.log(data);
+      data => {
                this.shownEmailList.push(data.userEmail);
       }
     );
@@ -165,59 +170,58 @@ export class SurveyListComponent implements OnInit {
       )
     );
   }
-
   getGraph(surveyId: number, title: string) {
     this.surveyTitle = title;
     this.answerService.findAll().subscribe(
       ansList => {
-        this.responseService.findBySurveyId(surveyId).subscribe(
-          data => {
-            this.sqService.getTemplate(surveyId).subscribe(
-              sqList => {
-                this.ArrayOfResponseAnswerList = new Array(sqList.length);
-                this.arrOfCounts = new Array(sqList.length);
-                this.qList = new Array(sqList.length);
-                for (const sq of sqList) {
-                  const tempAnsList = [];
-                  const count = [];
-                  if (sq.questionId.typeId === 5) {
-                    for (const temp of ansList) {
-                      if (temp.questionId === sq.questionId.questionId) {
-                        tempAnsList.push(temp.answer);
-                      }
-                    }
-                  } else {
-                    for (const res of data) {
-                      if (res.answerId.questionId === sq.questionId.questionId) {
-                        if (tempAnsList.length === 0 || res.answerId.answer !== tempAnsList[tempAnsList.length - 1]) {
-                          tempAnsList.push(res.answerId.answer);
-                          count.push(1);
-                        } else if (res.answerId.answer === tempAnsList[tempAnsList.length - 1]) {
-                          count[count.length - 1]++;
-                        }
-                      }
-                    }
+    this.responseService.findBySurveyId(surveyId).subscribe(
+      data => {
+        this.sqService.getTemplate(surveyId).subscribe(
+          sqList => {
+            this.ArrayOfResponseAnswerList = new Array (sqList.length);
+            this.arrOfCounts = new Array (sqList.length);
+            this.qList = new Array (sqList.length);
+            const tempArrOfAnsList = new Array (sqList.length);
+            for (const ans of ansList) {
+              // tslint:disable-next-line: forin
+              for (const i in sqList) {
+                this.qList[sqList[i].questionOrder - 1] = sqList[i].questionId;
+              // tslint:disable-next-line: max-line-length
+                if (ans.questionId === sqList[i].questionId.questionId && (!this.ArrayOfResponseAnswerList[i] || !this.ArrayOfResponseAnswerList[i].includes(ans.answer))) {
+                  if (!this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1]) {
+                    this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1] = [];
+                    tempArrOfAnsList[sqList[i].questionOrder - 1] = [];
                   }
-                  this.qList[sq.questionOrder - 1] = sq.questionId;
-                  this.ArrayOfResponseAnswerList[sq.questionOrder - 1] = tempAnsList;
-                  this.arrOfCounts[sq.questionOrder - 1] = count;
+                  this.ArrayOfResponseAnswerList[sqList[i].questionOrder - 1].push(ans.answer);
+                  tempArrOfAnsList[sqList[i].questionOrder - 1].push(ans.id);
+                  }
+              }
+            }
+            for (const res of data) {
+              for (const index in this.ArrayOfResponseAnswerList) {
+                if (tempArrOfAnsList[index].includes(res.answerId.id)) {
+                  if (!this.arrOfCounts[index]) { this.arrOfCounts[index] = new Array (tempArrOfAnsList[index].length); }
+                  const tempIndex = this.ArrayOfResponseAnswerList[index].indexOf(res.answerId.answer);
+                  this.arrOfCounts[index][tempIndex] = this.arrOfCounts[index][tempIndex] ? this.arrOfCounts[index][tempIndex] + 1 : 1;
                 }
               }
-            );
+            }
           }
         );
       }
     );
   }
+  );
+  }
 
   getRespondents(surveyId: number) {
-    if (this.respPressed !== true) {
-      console.log('The current surveyId is: ' + surveyId);
+    // if (this.respPressed !== true) {
+    //   console.log('The current surveyId is: ' + surveyId);
       this.surveyId = surveyId;
       this.respPressed = true;
-    } else {
-      this.respPressed = false;
-    }
+    // } else {
+    //   this.respPressed = false;
+    // }
   }
 
   reload() {
