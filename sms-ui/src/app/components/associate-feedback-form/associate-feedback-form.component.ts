@@ -136,6 +136,9 @@ associateFeed: AssociateFeedback;
         data.dayNotice = this._dayNotice
 
     });
+
+    window.location.reload();
+  
   }
   /**
    *
@@ -143,6 +146,7 @@ associateFeed: AssociateFeedback;
    * 
    * @memberof AssociateFeedbackFormComponent
    */
+
   assignInterviewFormat() {
     if (this._interviewFormatStr == 'On Site') {
       this.interviewFormat = { 'id': 1, 'formatDesc': this._interviewFormatStr };
