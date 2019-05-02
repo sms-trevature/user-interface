@@ -11,7 +11,7 @@ user-interface for SMS
 
 ## Where to Start?
 *start with the project given to you and work on getting cognito setup and getting the webpage ran as intended
-* Once you are able to nagivate through the website you should be able to see many problems that need fixing
+*Once you are able to nagivate through the website you should be able to see many problems that need fixing
 
 ## Cognito startup connecting the database
 * Cognito is responsible for handling our login. 
@@ -38,27 +38,27 @@ user-interface for SMS
 * login as blake.kruppa@revature.com
 * You will notice several tabs at the top of the screen. Survey, Manage, Interview, Reports as well as an email display of the current user where we will logout
 
-###Survey
+### Survey
 *View all - should see a table with clickable rows that bring up the assign page(where we assign the surveys) and data and status buttons that bring modals displaying the graphs and data.
 *assign - Will say no surveys assign in a table if empty if not it will contain a clickable survey that will allow the user to fill out the survey
 *Create  - allows us to completely customize a survey (make sure to make it a template so we can reuse that survey)
 *Template - shows a list of all the current templates that we can create and ready up to be assigned to users
 
-###Manage
+### Manage
 *View all -Shows a table of all the user and there privallages if you are an Admin. Else this shouldnt be there
 
-###Interview
+### Interview
 *View all interview - Shows a list of Interviews and who they are assigned to and whether or not they have been completed or not
 *Create Interview - Currently broken, But should allow us to create and schedule an interview
 *Associate Feedback Form - Allows the associate to display their feed back about how their staging and interviews were handled
 
-###Reports
+### Reports
 *24 Hour Notice - Shows a table of the reports and the data that comes with it
 *Recieved Job Description - Shows a table of Users who have been given a job
 *Associate Interview Count - Shows a table of all the assoicates and how many interviews they have 
 *Feedback Requested - Shows a table of where the associate is gone and whether they have filled out their survey
 
-###Current User email
+### Current User email
 * edit profile - edit the current users profile currently needs optimization
 *Logout -  returns us to the login and invalidates the session
 
@@ -77,7 +77,7 @@ user-interface for SMS
 * Xiandra Despacito
 * Jordan Ponder
 * Colton Stamey
-* La'Kerra Harris
+* La'Keyera Harris
 * Debbie Biteye
 * Kevin Fite
 * David Meyers
