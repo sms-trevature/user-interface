@@ -52,11 +52,11 @@ export class FeedbackReportComponent implements OnInit {
     return this.feedbackList.filter((temp: DayNotice) =>
       (temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
         || temp.place.toLocaleLowerCase().indexOf(filterBy) !== -1
-      ) &&
+      ) /* &&
       (this.boolFilterVar === 'all'
         || (this.boolFilterVar === 'true' && temp.feedback.feedbackRequested == true)
         || (this.boolFilterVar === 'false' && temp.feedback.feedbackRequested == false)
-      )
+      ) */
     );
   }
 }

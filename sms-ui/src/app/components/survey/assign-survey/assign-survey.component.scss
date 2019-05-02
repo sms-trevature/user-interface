@@ -141,7 +141,7 @@ h1 {
 } */
 
 .form-control {
-    width: 15%;
+    width: 100%;
     margin-bottom: 10px;
 }
 
@@ -199,4 +199,12 @@ strong {
     max-width: 25%;
     position: relative;
     left: -15px;
+}
+
+h2 {
+    background-color: #f3a55d;
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
 }

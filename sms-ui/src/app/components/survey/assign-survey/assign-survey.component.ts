@@ -10,13 +10,18 @@ import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.se
 import { Responses } from 'src/app/sms-client/dto/Response';
 import { SurveyResponseService } from 'src/app/sms-client/clients/survey-response.service';
 
+/**
+ * This component imports services from the sms client folder in order to 
+ */
 @Component({
   selector: 'app-assign-survey',
   templateUrl: './assign-survey.component.html',
   styleUrls: ['./assign-survey.component.scss']
 })
 export class AssignSurveyComponent implements OnInit {
-
+/**
+ * Initializing variables and assigning 
+ */
   listOfSurvey: Survey[];
   listOfSurveyHistory: SurveyHistory[];
   curSH: SurveyHistory;
@@ -28,6 +33,9 @@ export class AssignSurveyComponent implements OnInit {
   listFilterVar: string;
   filteredListOfSurvey: Survey[];
   constructor(
+    /**
+     * Dependency Injecting the services into the constructor.
+     */
     private surveyService: SurveyService,
     private historyService: SurveyHistoryService,
     private sqService: SurveyQuestionService,
@@ -36,6 +44,18 @@ export class AssignSurveyComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    /**
+     * On the initialization of the class, get current instance 
+     * of Survey history and survey list. 
+     *Utilizing the findAll method from the survey service, 
+     we subscribe to surveyList using the observable from the survey service.
+     From there we use the findByEmail method from the surveyHistory service and within the parameters
+     we retrieve the userEmail from the local storage. We then execute the subscribe method again and fulfill
+     the logic provided within the for loop, its nested for loop, and the nested if statements. The logic within
+     the for loops and if else statements self document their logic.
+
+
+     */
     this.listOfSurveyHistory = [];
     this.listOfSurvey = [];
     this.surveyService.findAll().subscribe(
@@ -59,6 +79,11 @@ export class AssignSurveyComponent implements OnInit {
     );
   }
 
+  /**
+   * From the httpclient, we acquire the usage of the get and set methods. We use this to list, and filter surveys.
+   * 
+   */
+
   get listFilter(): string {
     return this.listFilterVar;
   }
@@ -76,6 +101,14 @@ export class AssignSurveyComponent implements OnInit {
       )
     );
   }
+
+  /**
+   * 
+   * The following block of close is to open the survey. 
+   * When you select the survey assigned to you, it'll retrieve the information and open in a modal. 
+   * You can submit the information in the survey, which will send the information back to surveyList
+   * and add the information to survey data and survey status respectively. 
+   */
 
   openSurvey(sh: SurveyHistory) {
     this.curSH = sh;
@@ -101,6 +134,10 @@ export class AssignSurveyComponent implements OnInit {
     window.location.reload();
   }
   
+  /**
+   * You can submit the information in the survey, which will send the information back to surveyList
+   * and add the information to survey data and survey status respectively. 
+   */
   submit() {
     const responseList: Responses[] = [];
 
