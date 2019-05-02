@@ -1,10 +1,5 @@
 <body>
-<<<<<<< HEAD
-
-    <div id="InternalAssociates">
-=======
     <div class='panel-body col-md-6'>
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
         <div id="legendHead" style="display: none;">
             <hr> <b>Roles Legend </b>
             <hr>
@@ -21,10 +16,6 @@
                 <input type='text' [(ngModel)]='listFilter' id="filterByThisAssociate" />
             </div>
             <span style="display: inline; margin-left: 10px; margin-right: 10px;"><b> Internal Associates</b> </span>
-<<<<<<< HEAD
-
-=======
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
             <div style="display: inline;">
                 <!-- (change)="nrSelect(value)" -->
                 <select id="selectElement" (change)="optionSelect()">
@@ -41,16 +32,9 @@
         Add Employee
       </button><br>
             <button id="standardizeB" (click)="returnView()" style="font-size: 10px; display: none;">Standardize</button>
-<<<<<<< HEAD
-
-            <button id="editButton" (click)="editAllRoles()" style=" font-size: 10px;"> Edit Mode </button>
-        </div>
-        <table id="associateTable">
-=======
             <button id="editButton" (click)="editAllRoles()" style=" font-size: 10px;"> Edit Mode </button>
         </div>
         <table class='table'>
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
             <tr>
                 <th class="spreadColumn">Name</th>
                 <th class="spreadColumn">Role
@@ -68,10 +52,6 @@
                 <td id={{temp.email|uppercase}} style="display: none;">
                     <!-- //--I think I need to save this button v-v-v-v---- -->
                     <button (click)="displaySelectChange(temp.lastName, temp.firstName)" id="ThisID(temp.email)" class="ForAddingRoles">Add</button>
-<<<<<<< HEAD
-
-=======
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
                     <div id="{{temp.firstName}}notAfunction({{temp.lastName}})" class="FloatingRoles" style="display: none; ">
                         <div style="background: blanchedalmond; border: goldenrod; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 8px; ">
                             Grant <i> {{temp.firstName}} {{temp.lastName}} </i>
@@ -85,19 +65,6 @@
                             <button id="exitMenuButton" (click)="closeMenu(temp.firstName,temp.lastName)" style="width: 120px; height: 30px; background: gray; color: orangered;"> Exit</button>
                         </div>
                     </div>
-<<<<<<< HEAD
-
-                </td>
-            </tr>
-
-        </table>
-        <br>
-
-        <!-- modal zone---------------------------------------------------------- -->
-        <ng-template #content let-modal>
-            <div [ngSwitch]="ngswitchCase">
-                <div class="modal-header">
-=======
                 </td>
             </tr>
         </table>
@@ -106,26 +73,17 @@
         <ng-template #content let-modal>
             <div [ngSwitch]="ngswitchCase">
                 <div class="modal fade modal-header">
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
                     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
                 </div>
-<<<<<<< HEAD
-                <div class="modal-body" *ngSwitchCase="'addAssociate'">
-=======
                 <div class="modal-content" *ngSwitchCase="'addAssociate'">
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
                     <h4 class="modal-title" id="modal-basic-title">Add Employee</h4>
                     <form #addAssociateForm='ngForm' (ngSubmit)='addAssociateByForm(addAssociateForm)'>
                         <div class="form-group">
                             <label for="Name">First Name</label>
                             <div class="input-group">
                                 <input id="FName" ngModel class="form-control" placeholder="First Name" name="dp1">
-<<<<<<< HEAD
-
-=======
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
                             </div>
                             <br>
                             <label for="LName">Last Name</label>
@@ -136,30 +94,11 @@
                             <label for="Email">Email</label>
                             <div class="input-group">
                                 <input id="Email" ngModel class="form-control" placeholder="Email@email.com" name="dp3">
-<<<<<<< HEAD
-
-=======
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
                             </div>
                             <br>
                             <label for="phone">Contact Number</label>
                             <div class="input-group">
                                 <input id="phone" ngModel class="form-control" placeholder="555 555 5555" name="dp4">
-<<<<<<< HEAD
-
-                            </div>
-                            <br>
-                            <label for="status">Status</label>
-                            <div class="input-group">
-                                <select name='status' id="GeneralSelection" (change)="generalStatus()" ngModel>
-                  <option value="Training">Training</option>
-                  <option value="Staging">Staging</option>
-                </select>
-                            </div>
-                            <br>
-                            <div class="input-group" id="specificStatusElmnt1">
-                                <select id="specStaging" name='SpecStatus' ngModel>
-=======
                             </div>
                             <br>
                             <label for="status">Status</label>
@@ -340,22 +279,14 @@
                                             <br>
                                             <div class="input-group" id="specificStatusElmnt1">
                                                 <select id="specStaging" name='SpecStatus' ngModel>
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
                   <option value="Dropped">Dropped</option>
                   <option value="Training">Training</option>
                   <option value="Complete">Complete</option>
                 </select>
-<<<<<<< HEAD
-                            </div>
-                            <br>
-                            <div class="input-group" id="specificStatusElmnt2">
-                                <select id="specTraining" name='SpecStatus' ngModel>
-=======
                                             </div>
                                             <br>
                                             <div class="input-group" id="specificStatusElmnt2">
                                                 <select id="specTraining" name='SpecStatus' ngModel>
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
                   <option value="Staging">Staging</option>
                   <option value="Bench">Bench</option>
                   <option value="Waiting for Paperwork">Waiting for Paperwork</option>
@@ -364,22 +295,6 @@
                   <option value="Paused">Paused</option>
                   <option value="Panel Pending">Panel Pending</option>
                 </select>
-<<<<<<< HEAD
-                                <label for="virtual">Virtual</label>
-                                <input type="checkbox" (change)="checkboxChecked()" name="virtual" />
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <label for="location">Training Location</label>
-                                <select ngModel name='location' id="locationTrainingChoice">
-                  <option *ngFor='let temp of addressList' [value]="temp.city">{{temp.city}}, {{temp.state}}
-                  </option>
-                </select>
-                            </div>
-                            <br>
-                            <label for="Role">Choose Role</label><br>
-                            <select name='Role' ngModel id="ChooseInitialRole">
-=======
                                                 <label for="virtual">Virtual</label>
                                                 <input type="checkbox" (change)="checkboxChecked()" name="virtual" />
                                             </div>
@@ -394,29 +309,11 @@
                                             <br>
                                             <label for="Role">Choose Role</label><br>
                                             <select name='Role' ngModel id="ChooseInitialRole">
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
                 <option value="1">Associate</option>
                 <option value="2">Staging Manager</option>
                 <option value="3">Admin </option>
                 <option value="4">Trainer</option>
               </select>
-<<<<<<< HEAD
-                            <br> <br>
-                            <button type="button" id="hideBut" (click)="hidePAddress()" style="display: none;"> Hide</button>
-                            <button type="button" id="showP" (click)="dispalyPAddress()"> Include Personal Address </button>
-                            <div class="input-group" id="pAddress">
-                                <input id="pstreet" ngModel name="pstreet" placeholder="643 Deer Street"> <br>
-                                <input id="pcity" ngModal name="pcity" placeholder="New York"><br>
-                                <input id="pstate" ngModal name="pstate" placeholder="North Carolina"><br>
-                                <input id="pzip" ngModal name="pzip" placeholder="73013">
-                            </div>
-                            <br>
-                            <button type='submit'>Submit</button>
-                        </div>
-                    </form>
-                </div>
-                <!-- <div *ngSwitchCase="'editAssociates'">
-=======
                                             <br> <br>
                                             <button type="button" id="hideBut" (click)="hidePAddress()" style="display: none;"> Hide</button>
                                             <button type="button" id="showP" (click)="dispalyPAddress()"> Include Personal Address </button>
@@ -432,23 +329,10 @@
                                     </form>
                                 </div>
                                 <!-- <div *ngSwitchCase="'editAssociates'">
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
         <div *ngIf='modalShow'>
           <app-cohort-modal [cohort]='exportedCohort'></app-cohort-modal>
         </div>
       </div> -->
-<<<<<<< HEAD
-                <div id="deliveredMessage"> Delivered</div>
-                <div class="modal-footer">
-
-                    <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
-
-                </div>
-            </div>
-        </ng-template>
-        <!-- modal zone-------------------------------------------------------- -->
-        <!-- </body> -->
-=======
                                 <div id="deliveredMessage"> Delivered</div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
@@ -465,4 +349,3 @@
 
                     <!-- modal zone-------------------------------------------------------- -->
                     <!-- </body> -->
->>>>>>> fdf0d9b0f9a9b7ab7eb297d821d181dc565e8ef2
