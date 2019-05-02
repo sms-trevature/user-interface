@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AssociateFeedbackService, AssociateFeedback } from './associate-feedback.service';
 import { Router } from '@angular/router';
 import { InterviewFormat } from 'src/app/sms-client/dto/InterviewFormat';
+import { AssignSurveyComponent } from '../survey/assign-survey/assign-survey.component';
 
 @Component({
   selector: 'app-associate-feedback-form',
@@ -10,12 +11,10 @@ import { InterviewFormat } from 'src/app/sms-client/dto/InterviewFormat';
 })
 export class AssociateFeedbackFormComponent implements OnInit {
 
-  public minDate: Date = new Date('01/01/2016');
-  public maxDate: Date = new Date('12/31/2019');
-  public value: Date = new Date('05/16/2017');
-
+  private _maxDate: Date;
+  private _minDate: Date;
   _descriptionProvided = false;
-  _recievedNotifications = '';
+  private receivedNotifications: Date;
   _dayNotice = false;
   _interviewFormatStr = '';
   _proposedFormatStr = '';
@@ -26,7 +25,16 @@ export class AssociateFeedbackFormComponent implements OnInit {
   interviewFormat: InterviewFormat;
   proposedFormat: InterviewFormat;
   constructor(private associateFeedbackService: AssociateFeedbackService, private router: Router) {
+    this._maxDate = new Date();
+    this._maxDate.setDate(this._maxDate.getDate());
+  }
 
+  get maxDate(): Date {
+    return this._maxDate;
+  }
+
+  set maxDate(temp: Date) {
+    this._maxDate = temp;
   }
 
   get descriptionProvided(): boolean {
@@ -37,13 +45,13 @@ export class AssociateFeedbackFormComponent implements OnInit {
     this._descriptionProvided = temp;
   }
 
-  get recievedNotifications(): string {
-    return this._recievedNotifications;
-  }
+  // get recievedNotifications(): Date {
+  //   return this._recievedNotifications;
+  // }
 
-  set recievedNotifications(temp: string) {
-    this._recievedNotifications = temp;
-  }
+  // set recievedNotifications(temp: Date) {
+  //   this._recievedNotifications = temp;
+  // }
 
   get dayNotice(): boolean {
     return this._dayNotice;
@@ -70,31 +78,15 @@ export class AssociateFeedbackFormComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.postAssociateInput();
   }
 
   postAssociateInput() {
 
-    console.log('in the submit')
-    console.log(this._interviewFormatStr)
-    console.log(this.interviewFormat)
-    console.log(this.dayNotice)
-    this.interviewFormat = {'formatDesc':this._interviewFormatStr};
-    console.log('seperator')
-    this.proposedFormat={'formatDesc':this._proposedFormatStr};;
-    console.log('made it past the formats')
-    let associateInput = new AssociateFeedback(this._descriptionProvided, this._recievedNotifications, this._dayNotice, this.interviewFormat, this.proposedFormat);
-    let tempString = '2019-08-03 14:00:00';
-    console.log('past the constructor')
-    associateInput.interviewFormat.formatDesc = this._interviewFormatStr;
-    associateInput.proposedFormat.formatDesc = this._proposedFormatStr;
-    console.log('interview Format')
-    console.log('proposed Format')
-    console.log(this.proposedFormat)
-    associateInput.recievedNotifications=tempString;
-
+    this.assignInterviewFormat();
+    this.assignProposedFormat();
+    let associateInput = new AssociateFeedback(this._descriptionProvided, this.receivedNotifications, this._dayNotice, this.interviewFormat, this.proposedFormat);
     this.associateFeedbackService.postAssociateInput(associateInput).subscribe(data => {
-      data.recievedNotifications = tempString,
+      data.receivedNotifications = this.receivedNotifications,
         data.descriptionProvided = this._descriptionProvided,
         data.interviewFormat = this.interviewFormat,
         data.proposedFormat = this.proposedFormat,
@@ -102,9 +94,27 @@ export class AssociateFeedbackFormComponent implements OnInit {
 
     });
   }
+  assignInterviewFormat() {
+    if (this._interviewFormatStr == 'On Site') {
+      this.interviewFormat = { 'id': 1, 'formatDesc': this._interviewFormatStr };
+    } else if (this._interviewFormatStr == 'In Person') {
+      this.interviewFormat = { 'id': 2, 'formatDesc': this._interviewFormatStr };
+    } else if (this._interviewFormatStr == 'Video Call') {
+      this.interviewFormat = { 'id': 3, 'formatDesc': this._interviewFormatStr };
+    } else if (this._interviewFormatStr == 'Phone Call') {
+      this.interviewFormat = { 'id': 4, 'formatDesc': this._interviewFormatStr };
+    }
+  }
 
-  newInterviewFeedback() {
-    console.log("inside of new interview feedback");
-
+  assignProposedFormat() {
+    if (this._proposedFormatStr == 'On Site') {
+      this.proposedFormat = { 'id': 1, 'formatDesc': this._proposedFormatStr };
+    } else if (this._proposedFormatStr == 'In Person') {
+      this.proposedFormat = { 'id': 2, 'formatDesc': this._proposedFormatStr };
+    } else if (this._proposedFormatStr == 'Video Call') {
+      this.proposedFormat = { 'id': 3, 'formatDesc': this._proposedFormatStr };
+    } else if (this._proposedFormatStr == 'Phone Call') {
+      this.proposedFormat = { 'id': 4, 'formatDesc': this._proposedFormatStr };
+    }
   }
 }

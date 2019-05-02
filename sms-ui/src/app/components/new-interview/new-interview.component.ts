@@ -3,6 +3,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { NewInterviewService } from 'src/app/sms-client/clients/new-interview.service';
 import { Cohort } from 'src/app/sms-client/dto/Cohort';
 import { NewInterviewData } from 'src/app/sms-client/dto/NewInterviewData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-interview',
@@ -39,7 +40,7 @@ export class NewInterviewComponent implements OnInit {
 
 
 
-  constructor(private newInt: NewInterviewService) {
+  constructor(private newInt: NewInterviewService, private router: Router) {
      this.minDate= new Date();
      this.minDate.setDate(this.minDate.getDate());
   
@@ -81,9 +82,7 @@ export class NewInterviewComponent implements OnInit {
     });
     });
 
-
-  //  window.location.reload();
-
+    this.router.navigate(['/CreateInterviewRoute']);
   }
 
 // tslint:disable-next-line: ban-types

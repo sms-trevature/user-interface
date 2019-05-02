@@ -1,34 +1,33 @@
-<div class="container">
-  <div class="jumbotron">
-    <div class="col-6">
+<div class="jumbotron">
+  <form>
 
 
-      <div class="card form-group mb-3" *ngIf='isBarChart'>
+            <div class="card form-group mb-3" *ngIf='isBarChart'>
 
-        <h4 class="card-header">{{question}}</h4>
-        <div class="card-body">
-          <app-answer-data1 [inputAnswers]='arrOfAns' [inputCounts] = 'arrOfCountedResponse'></app-answer-data1>
-        </div>
-      </div>
-      <br>
-      <br>
+                <h4 class="card-header">{{question}}</h4>
+                <div class="card-body">
+                    <app-answer-data1 [inputAnswers]='arrOfAns' [inputCounts]='arrOfCountedResponse'></app-answer-data1>
+                </div>
+            </div>
+            <br>
+            <br>
 
-      <div class="card form-group mb-3" *ngIf='isPieChart'>
-        <h4 class="card-header">{{question}}</h4>
-        <div class="card-body" >
-          <app-answer-data2 [inputAnswers]='arrOfAns' [inputCounts] = 'arrOfCountedResponse'></app-answer-data2>
-        </div>
-      </div>
+            <div class="card form-group mb-3" *ngIf='isPieChart'>
+                <h4 class="card-header">{{question}}</h4>
+                <div class="card-body">
+                    <app-answer-data2 [inputAnswers]='arrOfAns' [inputCounts]='arrOfCountedResponse'></app-answer-data2>
+                </div>
+            </div>
 
-      <div class="card form-group mb-3" *ngIf='isFeedback'>
-        <h4 class="card-header">{{question}}</h4>
-        <div class="card-body" *ngFor ="let temp of arrOfAns">
-         {{temp}}
-        </div>
-      </div>
+            <div class="card form-group mb-3" *ngIf='isFeedback'>
+                <h4 class="card-header">{{question}}</h4>
+                <div class="card-body" *ngFor="let temp of arrOfAns">
+                    {{temp}}
+                </div>
+            </div>
 
 
-      <!-- <div class="card form-group mb-3">
+            <!-- <div class="card form-group mb-3">
         <h4 class="card-header">The materials provided helpful</h4>
         <div class="card-body">
           <app-answer-data4></app-answer-data4>
@@ -69,8 +68,7 @@
 
 
        -->
+</form>
+        </div>
 
-    </div>
-
-  </div>
-</div>
+    

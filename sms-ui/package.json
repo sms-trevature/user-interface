@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve -o",
+        "start": "ng serve",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
@@ -21,8 +21,6 @@
         "@angular/router": "~7.2.0",
         "@ng-bootstrap/ng-bootstrap": "^4.1.1",
         "@syncfusion/ej2-angular-calendars": "^17.1.42",
-        "@syncfusion/ej2-ng-charts": "^16.2.50",
-        "angular-chart.js": "^1.1.1",
         "angular-custom-dropdown": "^1.1.1",
         "aws-amplify": "^1.1.26",
         "aws-amplify-angular": "^3.0.1",
@@ -30,10 +28,11 @@
         "bootstrap": "^4.3.1",
         "chart.js": "^2.8.0",
         "core-js": "^2.5.4",
+        "ng-http-loader": "^5.1.0",
         "ng2-charts": "^2.2.2",
         "ngx-bootstrap": "^4.0.1",
         "rxjs": "~6.3.3",
-        "tslib": "^1.9.0",
+        "tslib": "^1.9.3",
         "zone.js": "~0.8.26"
     },
     "devDependencies": {

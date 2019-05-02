@@ -11,39 +11,29 @@ import { DayNotice } from 'src/app/sms-client/dto/DayNotice';
 })
 export class JobdescReportComponent implements OnInit {
 
-  _id = 0;
-  _associateEmail = '';
-  _place = '';
-
   descProvidedList: DayNotice[];
-  noDescList: DayNotice[];
+  listFilterVar = '';
+  descProvidedListFilter: DayNotice[];
+  boolFilterVar = 'all';
 
   constructor(private interview: DaynoticeService) { }
 
-  get id(): number {
-    return this._id;
+  get listFilter(): string {
+    return this.listFilterVar;
   }
-
-  set id(temp: number) {
-    this._id = temp;
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.descProvidedListFilter = (this.listFilterVar) ?
+      this.performFilter(this.listFilterVar) : this.descProvidedList;
   }
-
-  get associateEmail(): string {
-    return this._associateEmail;
+  get reviewFilter(): string {
+    return this.boolFilterVar;
   }
-
-  set associateEmail(temp: string) {
-    this._associateEmail = temp;
+  set reviewFilter(temp: string) {
+    this.boolFilterVar = temp;
+    this.descProvidedListFilter = this.boolFilterVar ?
+      this.performFilter(this.listFilterVar) : this.descProvidedList;
   }
-
-  get place(): string {
-    return this._place;
-  }
-
-  set place(temp: string) {
-    this._place = temp;
-  }
-
   ngOnInit() {
     this.getAllInterviews();
 
@@ -52,19 +42,20 @@ export class JobdescReportComponent implements OnInit {
   getAllInterviews() {
     this.interview.getAllInterviews().subscribe((data: DayNotice[]) => {
       this.descProvidedList = data;
-      this.descProvidedList = this.descProvidedFilter();
-      this.noDescList = data;
-      this.noDescList = this.noDescFilter();
-
+      this.descProvidedListFilter = data;
     });
   }
 
-  descProvidedFilter(): DayNotice[] {
-    return this.descProvidedList.filter((randomV: DayNotice) => (randomV.associateInput.descriptionProvided) == true);
+  performFilter(filterBy: string): DayNotice[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.descProvidedList.filter((temp: DayNotice) =>
+      (temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.place.toLocaleLowerCase().indexOf(filterBy) !== -1
+      ) && 
+      (this.boolFilterVar === 'all'
+        || (this.boolFilterVar === 'true' && temp.associateInput.descriptionProvided == true)
+        || (this.boolFilterVar === 'false' && temp.associateInput.descriptionProvided == false)
+      )
+    ); 
   }
-
-  noDescFilter(): DayNotice[] {
-    return this.noDescList.filter((randomV: DayNotice) => (randomV.associateInput.descriptionProvided) == false);
-  }
-
 }
