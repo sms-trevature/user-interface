@@ -12,7 +12,8 @@ export class FeedbackReportComponent implements OnInit {
   feedbackList: DayNotice[];
   feedbackListFilter: DayNotice[];
   listFilterVar = '';
- 
+  boolFilterVar = 'all';
+
 
   constructor(private dayNotice: DaynoticeService) { }
 
@@ -25,8 +26,17 @@ export class FeedbackReportComponent implements OnInit {
       this.performFilter(this.listFilterVar) : this.feedbackList;
   }
 
+  get reviewFilter(): string {
+    return this.boolFilterVar;
+  }
+  set reviewFilter(temp: string) {
+    this.boolFilterVar = temp;
+    this.feedbackListFilter = this.boolFilterVar ?
+      this.performFilter(this.listFilterVar) : this.feedbackList;
+  }
+
   ngOnInit() {
-   this.getAllInterviews();
+    this.getAllInterviews();
   }
 
   getAllInterviews() {
@@ -42,9 +52,11 @@ export class FeedbackReportComponent implements OnInit {
     return this.feedbackList.filter((temp: DayNotice) =>
       (temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
         || temp.place.toLocaleLowerCase().indexOf(filterBy) !== -1
+      ) &&
+      (this.boolFilterVar === 'all'
+        || (this.boolFilterVar === 'true' && temp.feedback.feedbackRequested == true)
+        || (this.boolFilterVar === 'false' && temp.feedback.feedbackRequested == false)
       )
-    ); 
+    );
   }
-
-  
 }
