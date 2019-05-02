@@ -1,5 +1,5 @@
 <body>
-    <div id="InternalAssociates">
+    <div class='panel-body col-md-6'>
         <div id="legendHead" style="display: none;">
             <hr> <b>Roles Legend </b>
             <hr>
@@ -34,7 +34,7 @@
             <button id="standardizeB" (click)="returnView()" style="font-size: 10px; display: none;">Standardize</button>
             <button id="editButton" (click)="editAllRoles()" style=" font-size: 10px;"> Edit Mode </button>
         </div>
-        <table id="associateTable">
+        <table class='table'>
             <tr>
                 <th class="spreadColumn">Name</th>
                 <th class="spreadColumn">Role
@@ -72,12 +72,12 @@
         <!-- modal zone---------------------------------------------------------- -->
         <ng-template #content let-modal>
             <div [ngSwitch]="ngswitchCase">
-                <div class="modal-header">
+                <div class="modal fade modal-header">
                     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
                 </div>
-                <div class="modal-body" *ngSwitchCase="'addAssociate'">
+                <div class="modal-content" *ngSwitchCase="'addAssociate'">
                     <h4 class="modal-title" id="modal-basic-title">Add Employee</h4>
                     <form #addAssociateForm='ngForm' (ngSubmit)='addAssociateByForm(addAssociateForm)'>
                         <div class="form-group">
