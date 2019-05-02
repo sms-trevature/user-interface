@@ -25,15 +25,15 @@ table {
    text-align: center;
   
   }
-  tr:nth-child(odd){background-color: #f2f2f2}
+//   tr:nth-child(odd){background-color: #f2f2f2}
   th {
    background-color: #f3a55d;
    color: black;
   }
-  tr:hover {
-    box-shadow: inset 0px 0px 15px 5px #f3a55d;
-      cursor: pointer;
-    }
+//   tr:hover {
+//     box-shadow: inset 0px 0px 15px 5px #f3a55d;
+//       cursor: pointer;
+//     }
     body {
       margin: 0;
       padding: 0;
@@ -44,10 +44,10 @@ table {
    padding:15px;
    }
 
-  tr:hover {
-    box-shadow: inset 0px 0px 15px 5px #f3a55d;
-      cursor: pointer;
-    }
+//   tr:hover {
+//     box-shadow: inset 0px 0px 15px 5px #f3a55d;
+//       cursor: pointer;
+//     }
     body {
       margin: 0;
       padding: 0;
@@ -94,7 +94,7 @@ body {
 #ateam {
     color: black;
     border-radius: 30px;
-    background-color: #f3a55d;
+    background-color: white;
     font-weight: bold;
     height: 40px;
     width: 100%;
@@ -138,7 +138,7 @@ body {
     width: 100%;
     text-align: left;
     // height: 10px;
-    background-color: $revature-orange-light;
+    background-color: white;
     color: black;
     padding: 10px;
     text-align: center;
@@ -150,7 +150,7 @@ body {
     width: 100%;
     text-align: left;
     //height: 5px;
-    background-color: $revature-orange-light;
+    background-color: white;
     color: black;
     padding: 5px;
 

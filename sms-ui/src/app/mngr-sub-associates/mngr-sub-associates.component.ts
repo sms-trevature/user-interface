@@ -17,6 +17,13 @@ import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 import { Alert } from 'selenium-webdriver';
 import { CognitoService } from '../services/cognito.service';
 
+//In this component the purpose is to get user roles, and being able to add an remove those roles
+//We are also We are able to add or remove user roles through the UI. 
+//User info shows roles for internal employees. We also have that in this component we are 
+// able to have Admins, Staging Managers, Trainers shows first name and last name fields with no 
+//data,it can just show email previously.
+
+
 @Component({
   selector: 'app-mngr-sub-associates',
   templateUrl: './mngr-sub-associates.component.html',
@@ -415,8 +422,7 @@ export class MngrSubAssociatesComponent implements OnInit {
     this.trainerArray;
     let multiRoleUsers = new Array;
     this.trainerArray.forEach(element => {
-      // console.log("trainers: ");
-      // console.log(element);
+
       const roleSpot = document.getElementById(element) as HTMLDataListElement;
       if (roleSpot != null && roleSpot != undefined) {
         multiRoleUsers.push(element);

@@ -24,112 +24,53 @@
 
         </div>
 
-        <div id="associatesHeader">
+      </div>
+    </div>
 
-            <div style="display: inline;">
+    <div class='table-responsive'>
+      <table class='table' *ngIf='interviewList && interviewList.length'>
+        <thead class='rev-background-color'>
+          <tr>
+            <th>Reviewed</th>
+            <th (click)='sortByAssociateEmail()'>Associate Email</th>
+            <th (click)='sortByManagerEmail()'>Manager Email</th>
+            <th (click)='sortByLocation()'>Location</th>
+            <th (click)='sortByClient()'>Client</th>
+            <th (click)='sortByDateNotified()'>Date Notified</th>
+            <th (click)='sortByDateScheduled()'>Date Scheduled</th>
+            <th (click)='sortByDateReviewed()'>Date Reviewed</th>
+            <th>Associate Feedback</th>
+            <th>Interview Feedback</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let temp of filteredInterviewList'>
+            <td *ngIf='temp.reviewed'>Yes</td>
+            <td *ngIf='!temp.reviewed'>No</td>
+            <td>{{temp.associateEmail}}</td>
+            <td>{{temp.managerEmail}}</td>
+            <td>{{temp.place}}</td>
+            <td>{{temp.client.clientName}}</td>
+            <td>{{temp.notified | date}}</td>
+            <td>{{temp.scheduled | date}}</td>
+            <td>{{temp.reviewed | date}}</td>
+            
+            <td *ngIf='temp.associateInput'>
+              <button type="button" id={{$id}} class="modalbtn" (click)='openAssociateInputModal(temp.id)' data-toggle="modal" data-target='#associateInputModal'>Display</button>
 
-                <input type='text' [(ngModel)]='listFilter' id="filterByThisAssociate" />
-
-            </div>
-
-            <span style="display: inline; margin-left: 10px; margin-right: 10px;"><b> Internal Associates</b> </span>
-
-            <div style="display: inline;">
-
-                <!-- (change)="nrSelect(value)" -->
-
-                <select id="selectElement" (change)="optionSelect()">
-
-          <option value="All">All</option>
-
-          <option value="Associates">Associates</option>
-
-          <option value="Trainers">Trainers</option>
-
-          <option value="Staging Managers">Staging Managers</option>
-
-          <option value="Admins">Admins</option>
-
-        </select>
-
-            </div>
-
-            <br>
-
-            <button class="pure-button" id="addEmployee" (click)='open(content)' style="display: inline; font-size: 10px; background: transparent; border: transparent; ">
-
-        <i class="material-icons">person</i>
-
-        Add Employee
-
-      </button><br>
-
-            <button id="standardizeB" (click)="returnView()" style="font-size: 10px; display: none;">Standardize</button>
-
-            <button id="editButton" (click)="editAllRoles()" style=" font-size: 10px;"> Edit Mode </button>
-
-        </div>
-
-        <table id="associateTable">
-
-            <tr>
-
-                <th class="spreadColumn">Name</th>
-
-                <th class="spreadColumn">Role
-
-                    <div id="claricationDiv"> (Of precedence)</div>
-
-                </th>
-
-                <th class="spreadColumn">Email</th>
-
-            </tr>
-
-            <tr *ngFor='let temp of filteredEmployees'>
-
-                <!--    //Jordan was here -->
-
-                <td>{{temp.firstName}} {{temp.lastName}}</td>
-
-                <td id={{temp.email}}><button class="cantBelieveItsNotButton" (click)="editRole(temp.email)">
-
-            {{functionTest(temp.email)}}</button></td>
-
-                <td>{{temp.email}}</td>
-
-                <!-- <div id="{{temp.email+'Button'}}">   -->
-
-                <td id={{temp.email|uppercase}} style="display: none;">
-
-                    <!-- //--I think I need to save this button v-v-v-v---- -->
-
-                    <button (click)="displaySelectChange(temp.lastName, temp.firstName)" id="ThisID(temp.email)" class="ForAddingRoles">Add</button>
-
-                    <div id="{{temp.firstName}}notAfunction({{temp.lastName}})" class="FloatingRoles" style="display: none; ">
-
-                        <div style="background: blanchedalmond; border: goldenrod; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 8px; ">
-
-                            Grant <i> {{temp.firstName}} {{temp.lastName}} </i>
-
-                            <br>
-
-                            <button (click)="addATrainer(temp.email)" class="roleOption"> <b>Trainer Role</b></button>
-
-                            <br>
-
-                            <button (click)=addAAdmin(temp.email) class="roleOption"> <b>Admin Role</b> </button>
-
-                            <!-- </div>  | id={{temp.firstName|uppercase}} --><br>
-
-                            <button (click)=addSM(temp.email) class="roleOption"> <b>Staging Manager </b> </button>
-
-                            <br>
-
-                            <button id="exitMenuButton" (click)="closeMenu(temp.firstName,temp.lastName)" style="width: 120px; height: 30px; background: gray; color: orangered;"> Exit</button>
-
-                        </div>
-
+              <div class="modal fade bd-example-modal-lg" id='associateInputModal' tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-body" id='modal-text'>
+                        <h4>Associate Feedback</h4>
+                        <hr>
+                        <label for='notificationReceived'><b>Notification Received:</b> {{notificationDate | date}}</label><br>
+                        <label *ngIf='fullDayNotice' for='fullDayNotice'><b>Was 24 Hour Notice Provided:</b> Yes</label>
+                        <label *ngIf='!fullDayNotice' for='fullDayNotice'><b>Was 24 Hour Notice Provided:</b> No</label><br>
+                        <label *ngIf='descriptionProvided' for='descriptionProvided'><b>Was Description Provided:</b> Yes</label>
+                        <label *ngIf='!descriptionProvided' for='descriptionProvided'><b>Was Description Provided:</b> No</label><br><br>
+                        <label for='proposedFormat'><b>Proposed Interview Format:</b> {{proposedFormat}}</label><br>
+                        <label for='actualFormat'><b>Actual Interview Format:</b> {{actualFormat}}</label><br>
                     </div>
 
                 </td>
