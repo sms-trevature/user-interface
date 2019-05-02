@@ -13,41 +13,57 @@ import { AssociateInterviewCount } from 'src/app/sms-client/dto/AssociateIntervi
   templateUrl: './autodata.component.html',
   styleUrls: ['./autodata.component.scss']
 })
+/**
+ * This component is specifically used to create a list that
+ * has associate name, associate email, and how many interviews have
+ * been done.  This component is routed via the nav-bar through reports/
+ * associate interview count.
+ */
 export class AutodataComponent implements OnInit {
 
 
+
+  listFilterVar = '';
+
   private AssociateInterviewCounts: AssociateInterviewCount[] = [];
+ // listFilterVar: string;
+  AssociateInterviewCountsFilter: AssociateInterviewCount[];
 
   constructor(private http: HttpClient, private interview: InterviewService, private autodata: AutodataService) {
-   /*  this.http.get('interview-service/interview').toPromise().then(data => {
-        console.log("retrieved   " + data); 
-        console.log(data[1]);
-       console.log( data[1].associateEmail);
-      
 
-      let objIndex = 0;
+  }
 
-      while (data[objIndex] != null || data[objIndex] != undefined) {
+  get listFilter(): string {
+    return this.listFilterVar;
+  }
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.AssociateInterviewCountsFilter = (this.listFilterVar) ?
+      this.performFilter(this.listFilterVar) : this.AssociateInterviewCounts;
+  }
 
-        this.filteredAssociates.push(data[objIndex]);
-
-        objIndex++;
-
-      }
-
-
-    }); */
-    
-   // console.log(this.filteredAssociates[2].associateEmail);
-    //{{temp.filteredAssociates.associateEmail}}
-   }
-
+  /**
+   * This method is specifically to call to the database and populate
+   * the tables. This component utilizes the dto service AssociateInterviewCount.
+   * It also utilzes the service within sms-client/clients interview.service.ts.
+   */
   ngOnInit() {
     this.interview.getInterviewCounts().subscribe(data => {
       this.AssociateInterviewCounts = data;
+      this.AssociateInterviewCountsFilter = data;
       //console.log("kenneth.james.currie@gmail.com");
       console.log(this.AssociateInterviewCounts);
     });
+  }
+
+
+  performFilter(filterBy: string): AssociateInterviewCount[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.AssociateInterviewCounts.filter((temp: AssociateInterviewCount) =>
+      (temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.associateName.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    );
   }
 
 }
