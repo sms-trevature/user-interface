@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { InterviewService } from 'src/app/sms-client/clients/interview.service';
 import { Interview } from 'src/app/sms-client/dto/Interview';
 
+/*
+The purpose of this component is to display a list of interviews retrieved from the database
+by the interview service, while also providing searching, filtering, and sorting functionality.
+Also provides methodology to populate modals for associate and interviewer feedback.
+*/
+
 @Component({
   selector: 'app-interview-list',
   templateUrl: './interview-list.component.html',

@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { Interview } from '../dto/Interview';
 import { AssociateInterviewCount } from '../dto/AssociateInterviewCount';
 
+/*
+The purpose of this service is to contact the InterviewService on the server to retrieve a list
+of interviews or a list of associate data paired with the number of interviews they have been assigned.
+*/
+
 @Injectable({
   providedIn: 'root'
 })
