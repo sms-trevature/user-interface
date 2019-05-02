@@ -9,12 +9,12 @@
 
     <div class='panel-body'>
       <div class='row'>
-        <div class='col-md-2'><b>Search:</b></div>
-        <div class='col-md-4'>
+        <div class='col-md-3'><b>Search:</b></div>
+        <div class='col-md-2' id='search-container'>
           <input type='text' [(ngModel)]='listFilter' />
         </div>
-        <div class='col-md-2'><b>Review Status:</b></div>
-        <div class='col-md-4'>
+        <div class='col-md-3'><b>Review Status:</b></div>
+        <div class='col-md-2' id='status-container'>
             <select autofocus type='text' [(ngModel)]='reviewFilter'>
                 <option value="all">Any</option>
                 <option value="reviewed">Reviewed</option>
@@ -61,11 +61,13 @@
                     <div class="modal-body" id='modal-text'>
                       <h4>Associate Feedback</h4>
                       <hr>
-                      <label for='notificationReceived'><b>Notification Received: {{notificationDate | date}} </b></label><br>
-                      <label *ngIf='descriptionProvided' for='descriptionProvided'><b>Description Provided: Yes</b></label>
-                      <label *ngIf='!descriptionProvided' for='descriptionProvided'><b>Description Provided: No</b></label><br><br>
-                      <label for='proposedFormat'><b>Proposed Format: {{proposedFormat}}</b></label><br>
-                      <label for='actualFormat'><b>Actual Format: {{actualFormat}}</b></label><br>
+                      <label for='notificationReceived'><b>Notification Received:</b> {{notificationDate | date}}</label><br>
+                      <label *ngIf='fullDayNotice' for='fullDayNotice'><b>Was 24 Hour Notice Provided:</b> Yes</label>
+                      <label *ngIf='!fullDayNotice' for='fullDayNotice'><b>Was 24 Hour Notice Provided:</b> No</label><br>
+                      <label *ngIf='descriptionProvided' for='descriptionProvided'><b>Was Description Provided:</b> Yes</label>
+                      <label *ngIf='!descriptionProvided' for='descriptionProvided'><b>Was Description Provided:</b> No</label><br><br>
+                      <label for='proposedFormat'><b>Proposed Interview Format:</b> {{proposedFormat}}</label><br>
+                      <label for='actualFormat'><b>Actual Interview Format:</b> {{actualFormat}}</label><br>
                     </div>
                   </div>
                 </div>
@@ -82,11 +84,12 @@
                     <div class="modal-body" id='modal-text'>
                       <h4>Interview Feedback</h4>
                       <hr>
-                      <label for='dateRequested'><b>Date Requested:</b> {{interviewFeedbackDateReq | date}} </label><br>
-                      <label for='feedbackReceived'><b>Date Received:</b> {{interviewFeedbackDateRec | date}}</label><br>
-                      <label for='feedbackDelivered'><b>Feedback Delivered: </b>{{interviewFeedbackDateDel | date}}</label><br>
+                      <label for='dateRequested'><b>Date Feedback Requested:</b> {{interviewFeedbackDateReq | date}}</label><br>
+                      <label for='feedbackReceived'><b>Date Feedback Received:</b> {{interviewFeedbackDateRec | date}}</label><br>
+                      <label for='feedbackDelivered'><b>Date Feedback Delivered:</b> {{interviewFeedbackDateDel | date}}</label><br>
                       <label for='feedbackStatus'><b>Feedback Status:</b> {{interviewFeedbackStatus}}</label><br><br>
-                      <label for='feedback'><b>Feedback Comments:</b> {{interviewFeedbackComments}}</label><br>
+                      <label for='feedback'><b>Comments:</b> {{interviewFeedbackComments}}</label><br>
+
                     </div>
                   </div>
                 </div>
