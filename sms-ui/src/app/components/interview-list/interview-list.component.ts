@@ -13,6 +13,7 @@ export class InterviewListComponent implements OnInit {
   private filteredInterviewList: Interview[] = [];
   private listFilterVar = '';
   private reviewFilterVar = 'all';
+
   // private pageTitle = 'All Interviews';
 
   get listFilter(): string {
@@ -33,15 +34,96 @@ export class InterviewListComponent implements OnInit {
       this.performFilter(this.listFilterVar) : this.interviewList;
   }
 
+  private interviewFeedbackDateReqVar: number;
+  private interviewFeedbackDateRecVar: number;
+  private interviewFeedbackDateDelVar: number;
+  private interviewFeedbackStatusVar: string;
+  private interviewFeedbackCommentsVar: string;
+
+  get interviewFeedbackDateReq(): number {
+    return this.interviewFeedbackDateReqVar;
+  }
+
+  get interviewFeedbackDateRec() {
+    return this.interviewFeedbackDateRecVar;
+  }
+
+  get interviewFeedbackDateDel() {
+    return this.interviewFeedbackDateDelVar;
+  }
+
+  get interviewFeedbackStatus() {
+    return this.interviewFeedbackStatusVar;
+  }
+
+  get interviewFeedbackComments() {
+    return this.interviewFeedbackCommentsVar;
+  }
+
+  private notificationDateVar: number;
+  private descriptionProvidedVar: boolean;
+  private proposedFormatVar: string;
+  private actualFormatVar: string;
+
+  get notificationDate() {
+    return this.notificationDateVar;
+  }
+
+  get descriptionProvided() {
+    return this.descriptionProvidedVar;
+  }
+
+  get proposedFormat() {
+    return this.proposedFormatVar;
+  }
+
+  get actualFormat() {
+    return this.actualFormatVar;
+  }
+
   constructor(private interview: InterviewService) {}
 
   ngOnInit() {
 
     this.interview.getInterviews().subscribe(data => {
-      this.interviewList = data;
-      this.filteredInterviewList = this.interviewList;
+      this.filteredInterviewList = data;
+      this.sortByScheduledDesc();
+      this.interviewList = this.filteredInterviewList;
       }
     );
+  }
+
+  openAssociateInputModal(id: number) {
+    let index = -1;
+
+    for (let i = 0; i < this.filteredInterviewList.length; i++) {
+      if (this.filteredInterviewList[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+
+    this.notificationDateVar = this.filteredInterviewList[index].associateInput.receivedNotifications;
+    this.descriptionProvidedVar = this.filteredInterviewList[index].associateInput.descriptionProvided;
+    this.proposedFormatVar = this.filteredInterviewList[index].associateInput.proposedFormat.formatDesc;
+    this.actualFormatVar = this.filteredInterviewList[index].associateInput.interviewFormat.formatDesc;
+  }
+
+  openInterviewFeedbackModal(id: number) {
+    let index = -1;
+
+    for (let i = 0; i < this.filteredInterviewList.length; i++) {
+      if (this.filteredInterviewList[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+
+    this.interviewFeedbackDateReqVar = this.filteredInterviewList[index].feedback.feedbackRequested;
+    this.interviewFeedbackDateRecVar = this.filteredInterviewList[index].feedback.feedbackReceived;
+    this.interviewFeedbackDateDelVar = this.filteredInterviewList[index].feedback.feedbackDelivered;
+    this.interviewFeedbackStatusVar = this.filteredInterviewList[index].feedback.status.feedback_status_desc;
+    this.interviewFeedbackCommentsVar = this.filteredInterviewList[index].feedback.feedback;
   }
 
   performFilter(filterBy: string): Interview[] {

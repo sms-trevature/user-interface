@@ -1,4 +1,4 @@
 export interface InterviewFormat {
-    // id: number;
+    id: number;
     formatDesc: string;
 }

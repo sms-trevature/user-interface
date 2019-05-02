@@ -1,18 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive, Input } from '@angular/core';
 import { SurveyService } from 'src/app/sms-client/clients/survey.service';
-import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
 import { SurveyQuestionService } from 'src/app/sms-client/clients/surveyquestion.service';
 import { Survey } from 'src/app/sms-client/dto/Survey';
-import { User } from 'src/app/sms-client/dto/User';
 import { SurveyHistoryService } from 'src/app/sms-client/clients/survey-history.service';
 import { SurveyHistory } from 'src/app/sms-client/dto/SurveyHistory';
 import { SurveyQuestion } from 'src/app/sms-client/dto/surveyQuestion';
 import { Answer } from 'src/app/sms-client/dto/Answer';
 import { SurveyAnswerService } from 'src/app/sms-client/clients/survey-answer.service';
 import { Responses } from 'src/app/sms-client/dto/Response';
-
-
-
+import { SurveyResponseService } from 'src/app/sms-client/clients/survey-response.service';
 
 @Component({
   selector: 'app-assign-survey',
@@ -23,16 +19,20 @@ export class AssignSurveyComponent implements OnInit {
 
   listOfSurvey: Survey[];
   listOfSurveyHistory: SurveyHistory[];
+  curSH: SurveyHistory;
   curTemplate: SurveyQuestion[];
   curTempAnswers: Array<Answer[]>;
   inputAns: string[] = [];
   inputMultiAns: string[] = [];
   inputMultiAnsQNum: number[] = [];
+  listFilterVar: string;
+  filteredListOfSurvey: Survey[];
   constructor(
     private surveyService: SurveyService,
     private historyService: SurveyHistoryService,
     private sqService: SurveyQuestionService,
-    private answerService: SurveyAnswerService
+    private answerService: SurveyAnswerService,
+    private responseService: SurveyResponseService
     ) { }
 
   ngOnInit() {
@@ -51,22 +51,42 @@ export class AssignSurveyComponent implements OnInit {
               if (!temp.dateCompleted) {
                 this.listOfSurveyHistory.push(temp);
               }
+              this.filteredListOfSurvey = this.listOfSurvey;
             }
           }
         );
       }
     );
-
-
   }
-  openSurvey(surveyId: number) {
+
+  get listFilter(): string {
+    return this.listFilterVar;
+  }
+  set listFilter(temp: string) {
+    this.listFilterVar = temp;
+    this.filteredListOfSurvey = (this.listFilterVar) ?
+    this.performFilter(this.listFilterVar) : this.listOfSurvey;
+  }
+
+  performFilter(filterBy: string): Survey[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.listOfSurvey.filter((temp: Survey) =>
+      (temp.title.toLocaleLowerCase().indexOf(filterBy) !== -1
+        || temp.description.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    );
+  }
+
+  openSurvey(sh: SurveyHistory) {
+    this.curSH = sh;
+    const surveyId = sh.surveyId;
     this.curTemplate = [];
     this.curTempAnswers = [];
     this.sqService.getTemplate(surveyId).subscribe(
       data => {
         this.curTemplate = data;
-        // tslint:disable-next-line: forin
-        for (const i in data) {
+
+        for (const i of Object.keys(data)) {
           this.answerService.findByQuestionId(data[i].questionId.questionId).subscribe(
             curQuestionAnswerList => {
               this.curTempAnswers[i] = curQuestionAnswerList;
@@ -76,52 +96,59 @@ export class AssignSurveyComponent implements OnInit {
       }
     );
   }
-  closeSurvey(index: number) {
-    this.listOfSurvey[index].closingDate = new Date();
-    // this.surveyService.save(this.listOfSurvey[index]).subscribe(
-    //   data => {
-    //     this.listOfSurvey[index] = data;
-    //     console.log(this.listOfSurvey[index]);
-    //   }
-    // );
 
-  }
+
+
+
   close() {
     window.location.reload();
   }
-  submit() {
+  async submit() {
     const responseList: Responses[] = [];
-    const answerList: Answer[] = [];
-// tslint:disable-next-line: forin
-    for (const i in this.inputAns) {
-      let tempAns;
+
+    for (const i of Object.keys(this.inputAns)) {
+      let tempAns: Answer = null;
       if (this.curTemplate[i].questionId.typeId === 5) {
         tempAns = new Answer(null, this.inputAns[i], this.curTemplate[i].questionId.questionId);
-        // need to send to db and get back then push to answerlist here
-        answerList.push(tempAns);
+        this.answerService.save(tempAns).subscribe(
+          data => {
+            this.responseService.save(
+              new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, data)
+            ).subscribe();
+          }
+        );
+
       } else {
         for (const ansForCurQuestion of this.curTempAnswers[i]) {
           if (ansForCurQuestion.answer === this.inputAns[i]) {
             tempAns = ansForCurQuestion;
+            break;
           }
         }
       }
-      responseList.push(new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, tempAns));
-    }
-
-    console.log(this.inputAns);
-    console.log(this.inputMultiAns);
-    console.log(this.inputMultiAnsQNum);
-    for (let x = 0; x < this.inputMultiAns.length; x++) {
-      if (this.inputMultiAns[x]) {
-        const index = x / this.inputMultiAnsQNum[x] - 1;
-        const tempSurvey = this.curTemplate[this.inputMultiAnsQNum[x] - 1].surveyId;
-        const tempAns = this.curTempAnswers[this.inputMultiAnsQNum[x] - 1][index];
-        responseList.push(new Responses(null, localStorage.getItem('userEmail'), tempSurvey, tempAns));
+      if (tempAns.id) {
+        responseList.push(new Responses(null, localStorage.getItem('userEmail'), this.curTemplate[i].surveyId, tempAns));
       }
     }
 
-    console.log(answerList);
-    console.log(responseList);
+    for (const x in this.inputMultiAns) {
+      if (this.inputMultiAns[x]) {
+        const hide = document.getElementById(x.toString()) as HTMLInputElement;
+        const iPlus1 = Number(hide.value);
+        const index = Number(x) / iPlus1 - 1;
+        const tempSurvey = this.curTemplate[iPlus1 - 1].surveyId;
+        const tempAns = this.curTempAnswers[iPlus1 - 1][index];
+        responseList.push(new Responses(null, localStorage.getItem('userEmail'), tempSurvey, tempAns));
+      }
+    }
+    this.responseService.saveList(responseList).subscribe(
+      hope => {
+        if (hope) {
+          window.location.reload();
+        }
+      }
+    );
+    this.curSH.dateCompleted = new Date();
+    this.historyService.update(this.curSH).subscribe();
   }
 }
