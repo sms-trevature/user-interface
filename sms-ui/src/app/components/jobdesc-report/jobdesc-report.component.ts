@@ -14,6 +14,7 @@ export class JobdescReportComponent implements OnInit {
   descProvidedList: DayNotice[];
   listFilterVar = '';
   descProvidedListFilter: DayNotice[];
+  boolFilterVar = 'all';
 
   constructor(private interview: DaynoticeService) { }
 
@@ -23,6 +24,14 @@ export class JobdescReportComponent implements OnInit {
   set listFilter(temp: string) {
     this.listFilterVar = temp;
     this.descProvidedListFilter = (this.listFilterVar) ?
+      this.performFilter(this.listFilterVar) : this.descProvidedList;
+  }
+  get reviewFilter(): string {
+    return this.boolFilterVar;
+  }
+  set reviewFilter(temp: string) {
+    this.boolFilterVar = temp;
+    this.descProvidedListFilter = this.boolFilterVar ?
       this.performFilter(this.listFilterVar) : this.descProvidedList;
   }
   ngOnInit() {
@@ -42,6 +51,10 @@ export class JobdescReportComponent implements OnInit {
     return this.descProvidedList.filter((temp: DayNotice) =>
       (temp.associateEmail.toLocaleLowerCase().indexOf(filterBy) !== -1
         || temp.place.toLocaleLowerCase().indexOf(filterBy) !== -1
+      ) && 
+      (this.boolFilterVar === 'all'
+        || (this.boolFilterVar === 'true' && temp.associateInput.descriptionProvided == true)
+        || (this.boolFilterVar === 'false' && temp.associateInput.descriptionProvided == false)
       )
     ); 
   }

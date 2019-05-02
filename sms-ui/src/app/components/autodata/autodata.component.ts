@@ -7,39 +7,30 @@ import { AutodataService } from 'src/app/sms-client/clients/autodata.service';
 import { AssociateInterviewCount } from 'src/app/sms-client/dto/AssociateInterviewCount';
 
 
+
 @Component({
   selector: 'app-autodata',
   templateUrl: './autodata.component.html',
   styleUrls: ['./autodata.component.scss']
 })
+/**
+ * This component is specifically used to create a list that
+ * has associate name, associate email, and how many interviews have
+ * been done.  This component is routed via the nav-bar through reports/
+ * associate interview count.
+ */
 export class AutodataComponent implements OnInit {
+
+
 
   listFilterVar = '';
 
-  AssociateInterviewCounts: AssociateInterviewCount[] = [];
-  AssociateInterviewCountsFilter: AssociateInterviewCount[] = [];
+  private AssociateInterviewCounts: AssociateInterviewCount[] = [];
+ // listFilterVar: string;
+  AssociateInterviewCountsFilter: AssociateInterviewCount[];
 
   constructor(private http: HttpClient, private interview: InterviewService, private autodata: AutodataService) {
 
-    /*  this.http.get('interview-service/interview').toPromise().then(data => {
-        console.log("retrieved   " + data); 
-        console.log(data[1]);
-       console.log( data[1].associateEmail);
-      
-      let objIndex = 0;
-
-      while (data[objIndex] != null || data[objIndex] != undefined) {
-
-        this.filteredAssociates.push(data[objIndex]);
-
-        objIndex++;
-
-      }
-
-    }); */
-
-    // console.log(this.filteredAssociates[2].associateEmail);
-    //{{temp.filteredAssociates.associateEmail}}
   }
 
   get listFilter(): string {
@@ -51,6 +42,11 @@ export class AutodataComponent implements OnInit {
       this.performFilter(this.listFilterVar) : this.AssociateInterviewCounts;
   }
 
+  /**
+   * This method is specifically to call to the database and populate
+   * the tables. This component utilizes the dto service AssociateInterviewCount.
+   * It also utilzes the service within sms-client/clients interview.service.ts.
+   */
   ngOnInit() {
     this.interview.getInterviewCounts().subscribe(data => {
       this.AssociateInterviewCounts = data;
@@ -59,6 +55,7 @@ export class AutodataComponent implements OnInit {
       console.log(this.AssociateInterviewCounts);
     });
   }
+
 
   performFilter(filterBy: string): AssociateInterviewCount[] {
     filterBy = filterBy.toLocaleLowerCase();

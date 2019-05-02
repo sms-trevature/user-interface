@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
 <div class='table-container'>
+
+  <h2> Interview List</h2>
   <div class='panel panel-primary'>
     <div class='panel-heading'>
       {{pageTitle}}
@@ -23,7 +25,7 @@
     </div>
 
     <div class='table-responsive'>
-      <table class='table' *ngIf='interviewList && interviewList.length'>
+      <table class='table table-striped' *ngIf='interviewList && interviewList.length'>
         <thead class='rev-background-color'>
           <tr>
             <th>Reviewed</th>
@@ -87,6 +89,7 @@
                       <label for='feedbackDelivered'><b>Date Feedback Delivered:</b> {{interviewFeedbackDateDel | date}}</label><br>
                       <label for='feedbackStatus'><b>Feedback Status:</b> {{interviewFeedbackStatus}}</label><br><br>
                       <label for='feedback'><b>Comments:</b> {{interviewFeedbackComments}}</label><br>
+
                     </div>
                   </div>
                 </div>
