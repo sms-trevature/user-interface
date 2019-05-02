@@ -12,6 +12,11 @@ import { QuestionOfSurveyService } from 'src/app/sms-client/clients/survey-quest
   templateUrl: './survey-creator.component.html',
   styleUrls: ['./survey-creator.component.scss']
 })
+/**
+ * This component is for survey creation. It is routed via
+ * the nav-bar through survey/create.  It is a form based
+ * creator that will add quetions and answer choices.
+ */
 export class SurveyCreatorComponent implements OnInit {
   title: string;
   isTemplate = false;
@@ -28,6 +33,12 @@ export class SurveyCreatorComponent implements OnInit {
     private answerService: SurveyAnswerService,
     private questionService: QuestionOfSurveyService) {
   }
+
+  /**
+   * This is the method to overload the answer input box with 
+   * static values.  Cases are based on the options within the
+   * question type drop down menu. 
+   */
   selectOption(qType: number) {
     this.curAnswerList = [];
     switch (qType.toString()) {
@@ -55,20 +66,38 @@ export class SurveyCreatorComponent implements OnInit {
         break;
     }
   }
+
+  /**
+   * This is where the answer is added within the answer input 
+   * box.  This is mainly for the multiple choice based answers.
+   */
   addAnswer() {
     const temp = new Answer(null, this.inputAnswerString, this.questionList ? this.questionList.length + 1 : 1);
     this.curAnswerList.push(temp);
 
   }
-
+  /**
+   * This is for the questions that are overloaded.
+   * This will provide the overloaded answer.
+   */
   addAnswerOverload1(ans: string) {
     const temp = new Answer(null, ans, this.questionList ? this.questionList.length + 1 : 1);
     this.curAnswerList.push(temp);
   }
+
+  /**
+   * This is specifically for the undo button that appears
+   * when an answer has been commited.
+   */
   undo() {
     if (!this.curAnswerList.length) { return; }
     this.curAnswerList.pop();
   }
+
+  /**
+   * This is for the add question button. This will add question
+   * to the answer list. 
+   */
   addQuestion() {
     this.questionList.push(new Question(
       null, this.curQuestionString, this.curQuestionType));
@@ -77,6 +106,12 @@ export class SurveyCreatorComponent implements OnInit {
     this.curAnswerList = [];
     this.curQuestionType = null;
   }
+
+  /**
+   * This is for the submit button.  This will send the question list
+   * to the survey template component.  This also includes the checkbox
+   * that will determine if it will be saved as template or not.
+   */
   submit() {
     let survey = new Survey(null, this.title, this.description, new Date(),
       null, this.isTemplate, !this.isTemplate);
@@ -115,6 +150,11 @@ export class SurveyCreatorComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * This is for the drop current survey button.
+   * This specific method will remove data via
+   * reloading the page.
+   */
   drop() {
     window.location.reload();
   }
