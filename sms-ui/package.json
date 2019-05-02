@@ -2,9 +2,8 @@
     "name": "sms-ui",
     "version": "0.0.0",
     "scripts": {
-        "compodoc": "npx compodoc -p src/tsconfig.app.json",
-        "ng": "ng",
         "compodoc": "compodoc -p tsconfig.json",
+        "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
         "test": "ng test",

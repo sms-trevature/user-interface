@@ -5,40 +5,50 @@ table {
     color: #000000;
     height: 200px;
 }
+
 tbody {
     padding: 15px;
 }
+
 th,
 td {
     text-align: center;
 }
+
 tr:nth-child(odd) {
     background-color: #f2f2f2
 }
+
 th {
     background-color: #f3a55d;
     color: black;
 }
+
 tr:hover {
     box-shadow: inset 0px 0px 15px 5px #f3a55d;
     cursor: pointer;
 }
+
 body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
 }
+
 table th {
     padding: 15px;
 }
+
 #main-content-container {
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
+
 .modal-content {
     min-height: 300px;
 }
+
 .modal-content {
     position: relative;
     display: flex;
@@ -51,19 +61,23 @@ table th {
     border-radius: .3rem;
     outline: 0;
 }
+
 .modal-dialog {
     max-width: 70%;
     margin: 2em auto;
 }
+
 .modal.show .modal-dialog {
     transform: none;
 }
+
 .table td,
 .table th {
     padding: .75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
 }
+
 .assignSurveyBtn {
     color: black;
     border-radius: 10px;
@@ -73,6 +87,7 @@ table th {
     width: 100%;
     border: none;
 }
+
 .buttonDiv {
     float: right;
 }
@@ -106,7 +121,7 @@ h4 {
 .form-control[_ngcontent-c1] {
     width: 82%;
     margin-bottom: 10px;
-  right: 70px;
+    right: 70px;
     position: relative;
     top: 12px;
 }
@@ -148,8 +163,6 @@ strong {
     position: relative;
     left: -15px;
 }
-<<<<<<< HEAD
-=======
 
 h2 {
     background-color: #f3a55d;
@@ -158,4 +171,3 @@ h2 {
     padding-bottom: 10px;
     text-align: center;
 }
->>>>>>> 27a0df9a78443e32cea5f2ab1deffa57570d2701
