@@ -4,6 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/sms-client/dto/User';
 import { NgForm } from '@angular/forms';
 
+//In this component we have a modal for end and start dates for coharts, also in the modal
+// we are able to add cotrainer and remove trainer. lastly we are able in this modal to add an 
+// remove associates from a cohart.
+
+
 @Component({
   selector: 'app-cohort-modal',
   templateUrl: './cohort-modal.component.html',
