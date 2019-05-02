@@ -74,7 +74,7 @@ export class SurveyCreatorComponent implements OnInit {
   addAnswer() {
     const temp = new Answer(null, this.inputAnswerString, this.questionList ? this.questionList.length + 1 : 1);
     this.curAnswerList.push(temp);
-
+    this.inputAnswerString="";
   }
   /**
    * This is for the questions that are overloaded.
@@ -105,6 +105,7 @@ export class SurveyCreatorComponent implements OnInit {
     this.arrofAnswerList.push(this.curAnswerList);
     this.curAnswerList = [];
     this.curQuestionType = null;
+    this.curQuestionString="";
   }
 
   /**

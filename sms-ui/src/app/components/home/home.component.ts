@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private currentUserSubscription: Subscription;
 
   public user: User;
-
+  fullAccess: boolean = false;
   constructor(private nav: NavbarComponent, private userClient: UsersClientService, private cognito: CognitoService) { }
 
   ngOnInit() {
@@ -25,7 +25,11 @@ export class HomeComponent implements OnInit, OnDestroy {
           console.log("kjgjhg  "+succResp);
           this.user = succResp;
           localStorage.setItem('userEmail', this.user.email);
-          console.log(localStorage.getItem('userEmail'));
+          localStorage.setItem('user', JSON.stringify(this.user));
+          let roles = localStorage.getItem('role');
+          if(roles.includes('admins')||roles.includes('staging-manager')||roles.includes('trainer')){
+          this.fullAccess = true;
+    }
         },
         err => {
         }

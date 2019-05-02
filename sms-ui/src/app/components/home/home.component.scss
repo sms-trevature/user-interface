@@ -1,3 +1,7 @@
+$revature-orange-light: #f3a55d;
+$revature-orange: #f26925;
+$drew-orange: #f3a55d;
+
 img {
     max-width: 100%;
     max-height: 100%;
@@ -31,12 +35,39 @@ img {
 }
 
 .surveys {
-    width: 1980px;
-    height: 400px;
+  /*   width: 1980px;
+    height: 500px;
     background: url("../../../assets/surveyimg.jpg");
     background-size: 1980px;
     background-position: bottom;
+    background-attachment: fixed; */
+    
+    height: 500px;
+    width: 1980px;
+    background:
+    linear-gradient(
+        rgba(191, 191, 191, .70),
+        rgba(191, 191, 191, .70),
+    ),
+    url("../../../assets/surveyimg.jpg");
+    background-size: 1980px;
+    background-position: bottom;
     background-attachment: fixed;
+}
+.centered{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.below-centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
 }
 
 .container {
@@ -49,7 +80,7 @@ img {
     font-size: 20px;
     text-decoration: none;
     &:hover {
-        color: orange;
+        color: $revature-orange-light;
     }
 }
 
@@ -58,6 +89,14 @@ a {
     border-color: white;
     padding: 5px;
     &:hover {
-        color: orange;
+        color: $revature-orange-light;
     }
+}
+
+h1{
+    color:black;
+     /* #f3a55d; */
+    font-size:60px;
+    white-space: nowrap;
+    overflow: hidden;
 }

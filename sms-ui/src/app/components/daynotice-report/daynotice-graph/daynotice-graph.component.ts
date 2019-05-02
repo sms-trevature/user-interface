@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Label, SingleDataSet } from 'ng2-charts';
+import { ChartDataSets } from 'chart.js';
 
 @Component({
   selector: 'app-daynotice-graph',
@@ -6,13 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./daynotice-graph.component.scss']
 })
 export class DaynoticeGraphComponent implements OnInit {
-  public doughnutChartLabels = ['Associates with a 24 Hour Notice', 'Associates without  a 24 Hour Notice'];
-  public doughnutChartData = [20, 10];
+
+
+  chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false
+  };
+
+  //in the future, this will not be hard coded values
+  public doughnutChartLabels= ['Insufficient Notice', 'Sufficient Notice'];
+  public doughnutChartData= [10, 2];
   public doughnutChartType = 'doughnut';
+
+  //in the future, this will not be hard coded values
+  public doughnutChartLabels1 = ['Insufficient Notice', 'Sufficient Notice'];
+  public doughnutChartData1 = [10, 5];
+  public doughnutChartType1 = 'doughnut';
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
