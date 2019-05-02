@@ -4,6 +4,7 @@ import { User } from 'src/app/sms-client/dto/User';
 import { UsersClientService } from 'src/app/sms-client/clients/users-client.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { userInfo } from 'os';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   private currentUserSubscription: Subscription;
   currentUser: User;
   
-  constructor(private userClient: UsersClientService,  private cognito: CognitoService) { }
+  constructor(private userClient: UsersClientService,  private cognito: CognitoService, private router: Router) { }
 
   private firstName: string;
   private lastName: string;
@@ -43,11 +44,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   userRegistration() {
-    //testing to be deleted later
-    console.log(this.firstName);
-    console.log(this.lastName);
-    console.log(this.uEmail);
-    console.log(this.phoneNumber);
+
     
 // tslint:disable-next-line: whitespace
     if(this.uEmail === (this.currentUser.email)){
@@ -56,13 +53,11 @@ export class RegistrationComponent implements OnInit {
       this.currentUser.phoneNumber = this.phoneNumber;
 
       this.userClient.updateUser(this.currentUser).subscribe(data => {
-        console.log("sad face");
+     
       });
-      //testing and it's working
+     
+      this.router.navigateByUrl('/home');
       
-      console.log(this.currentUser.email);
-      console.log(this.currentUser.firstName);
-      console.log(this.currentUser.lastName);
        
       
     }
