@@ -11,7 +11,7 @@ import { Responses } from 'src/app/sms-client/dto/Response';
 import { SurveyResponseService } from 'src/app/sms-client/clients/survey-response.service';
 
 /**
- * This component imports services from the sms client folder in order to 
+ * This component imports services from the sms client folder in order to employ the logic defined in those classes.
  */
 @Component({
   selector: 'app-assign-survey',
