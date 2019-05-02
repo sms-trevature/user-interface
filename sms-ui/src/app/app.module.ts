@@ -19,7 +19,6 @@ import { ProfileInfoComponent } from './components/profile-info/profile-info.com
 import { ReportsComponent } from './reports/reports.component';
 import { InterviewComponent } from './interview/interview.component';
 import { ManageComponent } from './manage/manage.component';
-import { SurveyComponent } from './survey/survey.component';
 import { MngrSubAssociatesComponent } from './mngr-sub-associates/mngr-sub-associates.component';
 import { SubMan2CohortComponent } from './sub-man2-cohort/sub-man2-cohort.component';
 import { FakeServiceComponent } from './fake-service/fake-service.component';
@@ -45,12 +44,19 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { DaynoticeGraphComponent } from './components/daynotice-report/daynotice-graph/daynotice-graph.component';
 import { DaynoticeReportComponent } from './components/daynotice-report/daynotice-report.component';
 import { JobdescReportComponent } from './components/jobdesc-report/jobdesc-report.component';
-import { AuthGuard } from './services/guards/auth-guard.service';
-import { AutodataComponent } from './components/autodata/autodata.component';
-import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
 import { SurveyRespondentsComponent } from './components/survey/survey-respondents/survey-respondents.component';
+import { FeedbackReportComponent } from './components/feedback-report/feedback-report.component';
+import { AutodataComponent } from './components/autodata/autodata.component';
+import { InterviewListForCurUserComponent } from './components/interview-list-for-cur-user/interview-list-for-cur-user.component';
+import { AuthGuard } from './services/guards/auth-guard.service';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
-const routes: Routes = [
+//loading screen citation: https://github.com/mpalourdio/ng-http-loader
+//refresh capabilities citation: https://stackblitz.com/edit/angular-r6-detect-browser-refresh?file=src%2Fapp%2Fapp.component.ts
+//Router Guard citation: https://codeburst.io/using-angular-route-guard-for-securing-routes-eabf5b86b4d1
+const routes: Routes = [ 
+  {path: 'interviewlistForCurUser',
+   component:InterviewListForCurUserComponent},
   {
     path: 'login',
     component: LoginComponent
@@ -210,6 +216,13 @@ const routes: Routes = [
     JobdescReportComponent,
     RegistrationComponent,
     FeedbackReportComponent,
+    DaynoticeGraphComponent,
+   
+
+
+    JobdescReportComponent,
+    AutodataComponent,
+    InterviewListForCurUserComponent,
     DaynoticeGraphComponent
    
 
@@ -227,7 +240,8 @@ const routes: Routes = [
     BsDatepickerModule.forRoot(),
     TimepickerModule.forRoot(),
     BrowserModule,
-    DatePickerModule
+    NgHttpLoaderModule.forRoot(),
+    DatePickerModule,
 
 
   ],

@@ -1,35 +1,24 @@
 <app-navbar> </app-navbar>
 
 <body style="text-align:center;">
-    <div class="centeredBody">
 
-        <p>
-            Welcome: {{user?.firstName }} {{user?.lastName}}
-        </p>
-    </div>
     <div class="container">
         <div class="row surveys">
-            <div class="centered"><h1>Staging Management System</h1></div>
-            <div class="below-centered">Revature associates who have completed training 
-                and are awaiting a job assignment.</div>
-            <!-- <div class="btn"><a routerLink="surveyList">SURVEYS</a></div> -->
+
+            <div class="centered">
+                <h1 style="margin-top: -50px;">Staging Management System</h1>
+            </div>
+
+            <div class="buttons">
+                <div class="btn btn-2" id="surveys"><a routerLink="/surveyList">SURVEYS</a></div>
+                <div class="btn btn-2" id="manage"><a routerLink="/ManageRoute">MANAGE</a></div>
+                <div class="btn btn-2" id="interviews"><a routerLink="/InterviewListRoute">INTERVIEWS</a></div>
+                <div class="btn btn-2" id="reports"><a routerLink="/DayNoticeRoute">REPORTS</a></div>
+            </div>
+
         </div>
-<!--         <div class="row manage">
-            <div class="btn"><a routerLink="reportRoute">MANAGE</a></div>
-        </div>
-        <div class="row interviews">
-            <div class="btn"><a routerLink="reportRoute">INTERVIEWS</a></div>
-        </div>
-        <div class="row reports">
-            <div class="btn"><a routerLink="reportRoute">REPORTS</a></div> -->
-
-        <!-- </div> -->
-
-
-
-        <br>
-        <br>
-        <br>
-
     </div>
+    <div class="below-centered"><b>Welcome Revature employees, the Staging Management System allows associates to stay up to date with 
+        interviews until they are hired by a client. Staging managers are able to send interview notice and provide the 
+    assoicate with feedback from their interviews. </b></div>
 </body>
