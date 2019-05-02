@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (localStorage.length) {
+    if (this.cognito.localStorage.length) {
         return true;
     }
     this.router.navigate(['/login']); 
