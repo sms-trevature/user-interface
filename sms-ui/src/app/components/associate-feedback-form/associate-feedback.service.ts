@@ -1,3 +1,15 @@
+/**
+ * the purpose of this service is to send an assocciet form to the server
+ * 
+ * using the end point pervoide by the url variable
+ * 
+ * it also utilizes the interview formate DTO
+ * 
+ * 
+ * 
+ */
+
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
@@ -79,8 +91,16 @@ export class AssociateFeedbackService {
   getAssociateInput(): Observable<AssociateFeedback> {
     return this.httpClient.get<AssociateFeedback>(this.url);
   }
-
-  postAssociateInput(associateInput): Observable<AssociateFeedback> {
+/**
+ *this method is observable to send the associate feednack information to the serve
+ *
+ * it takes an object of a parameter and it reeturn null
+ * 
+ * @param {*} associateInput
+ * @returns {Observable<AssociateFeedback>}
+ * @memberof AssociateFeedbackService
+ */
+postAssociateInput(associateInput): Observable<AssociateFeedback> {
 
     // console.log('the asso input proposed format is ');
     // console.log(associateInput.proposedFormat);

@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { InterviewService } from 'src/app/sms-client/clients/interview.service';
 import { Interview } from 'src/app/sms-client/dto/Interview';
 
+/*
+The purpose of this component is to display a list of interviews retrieved from the database
+by the interview service, while also providing searching, filtering, and sorting functionality.
+Also provides methodology to populate modals for associate and interviewer feedback.
+*/
+
 @Component({
   selector: 'app-interview-list',
   templateUrl: './interview-list.component.html',
@@ -17,9 +23,9 @@ export class InterviewListComponent implements OnInit {
   private managerEmailSortDir = true;
   private locationSortDir = true;
   private clientSortDir = true;
-  private dateNotifiedSortDir = true;
+  private dateNotifiedSortDir = false;
   private dateScheduledSortDir = false;
-  private dateReviewedSortDir = true;
+  private dateReviewedSortDir = false;
 
   get listFilter(): string {
     return this.listFilterVar;
@@ -67,6 +73,7 @@ export class InterviewListComponent implements OnInit {
 
   private notificationDateVar: number;
   private descriptionProvidedVar: boolean;
+  private fullDayNoticeVar: boolean;
   private proposedFormatVar: string;
   private actualFormatVar: string;
 
@@ -76,6 +83,10 @@ export class InterviewListComponent implements OnInit {
 
   get descriptionProvided() {
     return this.descriptionProvidedVar;
+  }
+
+  get fullDayNotice() {
+    return this.fullDayNoticeVar;
   }
 
   get proposedFormat() {
@@ -96,6 +107,7 @@ export class InterviewListComponent implements OnInit {
       this.filteredInterviewList = data;
       this.sortByDateScheduled();
       this.interviewList = this.filteredInterviewList;
+      console.log(this.interviewList);
       }
     );
   }
@@ -112,6 +124,7 @@ export class InterviewListComponent implements OnInit {
 
     this.notificationDateVar = this.filteredInterviewList[index].associateInput.receivedNotifications;
     this.descriptionProvidedVar = this.filteredInterviewList[index].associateInput.descriptionProvided;
+    this.fullDayNoticeVar = this.filteredInterviewList[index].associateInput.dayNotice;
     this.proposedFormatVar = this.filteredInterviewList[index].associateInput.proposedFormat.formatDesc;
     this.actualFormatVar = this.filteredInterviewList[index].associateInput.interviewFormat.formatDesc;
   }

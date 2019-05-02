@@ -7,6 +7,10 @@ import { Label, Color } from 'ng2-charts';
   templateUrl: './answer-data1.component.html',
   styleUrls: ['./answer-data1.component.css']
 })
+
+/**
+ * The purpose of this class is to two provide a modular way to display our graphs from ng-charts
+ */
 export class AnswerData1Component implements OnInit {
 
   @Input() inputAnswers: string[];
@@ -22,6 +26,9 @@ export class AnswerData1Component implements OnInit {
     }
   };
   public barChartLabels: Label[];
+  /**
+   * This is what the data would look like if it were hardcoded
+   */
   // public barChartLabels: Label[] = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6',
   // 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12', 'Week 13', 'Week 14 or More'];
   public barChartType: ChartType = 'bar';
@@ -35,13 +42,18 @@ export class AnswerData1Component implements OnInit {
 
   constructor() { }
 
+  /**
+   * We use ngOnInit to load the data from the survey-data class
+   */
   ngOnInit() {
     this.barChartLabels = this.inputAnswers;
     this.barChartData = [
       { data: this.inputCounts, label: 'Number of Responses' }
     ];
   }
-
+/**
+ * Special effects for the graphs
+ */
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }

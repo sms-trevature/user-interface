@@ -6,4 +6,5 @@ export interface AssociateFeedback {
     descriptionProvided: boolean;
     interviewFormat: InterviewFormat;
     proposedFormat: InterviewFormat;
+    dayNotice: boolean;
 }

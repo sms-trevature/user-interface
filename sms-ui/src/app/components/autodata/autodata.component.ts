@@ -13,6 +13,12 @@ import { AssociateInterviewCount } from 'src/app/sms-client/dto/AssociateIntervi
   templateUrl: './autodata.component.html',
   styleUrls: ['./autodata.component.scss']
 })
+/**
+ * This component is specifically used to create a list that
+ * has associate name, associate email, and how many interviews have
+ * been done.  This component is routed via the nav-bar through reports/
+ * associate interview count.
+ */
 export class AutodataComponent implements OnInit {
 
 
@@ -24,6 +30,7 @@ export class AutodataComponent implements OnInit {
   AssociateInterviewCountsFilter: AssociateInterviewCount[];
 
   constructor(private http: HttpClient, private interview: InterviewService, private autodata: AutodataService) {
+
   }
 
   get listFilter(): string {
@@ -35,6 +42,11 @@ export class AutodataComponent implements OnInit {
       this.performFilter(this.listFilterVar) : this.AssociateInterviewCounts;
   }
 
+  /**
+   * This method is specifically to call to the database and populate
+   * the tables. This component utilizes the dto service AssociateInterviewCount.
+   * It also utilzes the service within sms-client/clients interview.service.ts.
+   */
   ngOnInit() {
     this.interview.getInterviewCounts().subscribe(data => {
       this.AssociateInterviewCounts = data;
