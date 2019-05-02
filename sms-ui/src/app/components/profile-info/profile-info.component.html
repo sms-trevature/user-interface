@@ -2,12 +2,13 @@
 
 
 <body style="text-align:center; ">
-  <div class="centeredBody" >
-    <div class="profile-container" style="background: #f3a55d;">
+    <div class="centeredBody" >
+    <div class="profile-container">
+      <div><h3>Edit Profile</h3></div>
       <div class="userinfo">
         <b id="adjustTL">Training Location:</b> &nbsp;&nbsp; <div id="trainWork"> <button
             (click)="changeTrainingAddress()"
-            style="position: relative; left: -160px; border: outset; border-radius: 10px; background:#f26925; font: white">{{currentUser.trainingAddress.alias}}</button></div>
+            style="position: relative; left: -160px; border-radius: 5px; background:#f3a55d; color: white">{{currentUser.trainingAddress.alias}}</button></div>
         <br>
         <br>
         <b>First Name:</b> &nbsp; <input value="{{currentUser.firstName}}" id="fName">
@@ -43,7 +44,7 @@
         <b>Company Status:</b> &nbsp;&nbsp; <input value="{{currentUser.userStatus.generalStatus}}" readonly id="companyStat">
         <br>
         <br>
-        <button type="button" class="btn btn-info" (click)="someMethodToUpdateAddressOrUserInfo()">Update</button>
+        <button type="button" class="btn btn-info" (click)="someMethodToUpdateAddressOrUserInfo()" style="font: black;">Update</button>
       </div>
     </div>
   </div>

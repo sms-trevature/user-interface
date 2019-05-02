@@ -9,6 +9,10 @@ import { DayNotice } from 'src/app/sms-client/dto/DayNotice';
   templateUrl: './jobdesc-report.component.html',
   styleUrls: ['./jobdesc-report.component.scss']
 })
+
+/* the purpose of this component is to retrive all of the associates who were provided a job description
+when told about an interview */
+
 export class JobdescReportComponent implements OnInit {
 
   descProvidedList: DayNotice[];
@@ -46,6 +50,9 @@ export class JobdescReportComponent implements OnInit {
     });
   }
 
+
+  // allows you to dynamically change the data shown on the list by 
+  // performing a filter by email or place/location
   performFilter(filterBy: string): DayNotice[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.descProvidedList.filter((temp: DayNotice) =>

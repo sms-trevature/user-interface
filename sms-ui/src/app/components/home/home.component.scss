@@ -1,7 +1,6 @@
 $revature-orange-light: #f3a55d;
 $revature-orange: #f26925;
 $drew-orange: #f3a55d;
-
 img {
     max-width: 100%;
     max-height: 100%;
@@ -10,25 +9,20 @@ img {
 .surveys {
     height: 500px;
     width: 1980px;
-    background:
-    linear-gradient(
-        rgba(191, 191, 191, .70),
-        rgba(191, 191, 191, .70),
-    ),
-    url("../../../assets/surveyimg.jpg");
+    background: linear-gradient( rgba(191, 191, 191, .70), rgba(191, 191, 191, .70), ), url("../../../assets/surveyimg.jpg");
     background-size: 1980px;
     background-position: bottom;
     background-attachment: fixed;
 }
-.centered{
+
+.centered {
     position: absolute;
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-
 }
 
-.below-centered{
+.below-centered {
     position: absolute;
     top: 85%;
     left: 50%;
@@ -72,4 +66,5 @@ h1 {
     white-space: nowrap;
     position: relative;
     
+
 }
