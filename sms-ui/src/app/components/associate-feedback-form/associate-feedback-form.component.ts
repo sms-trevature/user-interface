@@ -1,3 +1,16 @@
+
+/**
+ *  the purpose of this component is to send associete input for a preticular interview
+ * 
+ * 
+ * there is only one fuction to send the informaiton and there's two function to assign an ID to the 
+ * interview format object
+ * 
+ * this component utilizes associet-feedback-service.ts and utilizes the interview format DTO
+ * 
+ * 
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { AssociateFeedbackService, AssociateFeedback } from './associate-feedback.service';
 import { Router } from '@angular/router';
@@ -11,6 +24,13 @@ import { AssignSurveyComponent } from '../survey/assign-survey/assign-survey.com
 })
 export class AssociateFeedbackFormComponent implements OnInit {
 
+  /**
+   *
+   *
+   * @private
+   * @type {Date}
+   * @memberof AssociateFeedbackFormComponent
+   */
   private _maxDate: Date;
   private _minDate: Date;
   _descriptionProvided = false;
@@ -19,16 +39,28 @@ export class AssociateFeedbackFormComponent implements OnInit {
   _interviewFormatStr = '';
   _proposedFormatStr = '';
 
-  associateInputList: any[];
-
-  associateFeed: AssociateFeedback;
-  interviewFormat: InterviewFormat;
+  
+  associateInputList: any[]; 
+/**
+ *this is an array list of our object 
+ *
+ * @type {AssociateFeedback}
+ * @memberof AssociateFeedbackFormComponent
+ */
+associateFeed: AssociateFeedback;
+  interviewFormat: InterviewFormat; /** this is the interview object that we grab */
   proposedFormat: InterviewFormat;
   constructor(private associateFeedbackService: AssociateFeedbackService, private router: Router) {
     this._maxDate = new Date();
     this._maxDate.setDate(this._maxDate.getDate());
   }
 
+  /**
+   * these are our getters and setter for our varibles
+   *
+   * @type {Date}
+   * @memberof AssociateFeedbackFormComponent
+   */
   get maxDate(): Date {
     return this._maxDate;
   }
@@ -37,10 +69,12 @@ export class AssociateFeedbackFormComponent implements OnInit {
     this._maxDate = temp;
   }
 
+ 
   get descriptionProvided(): boolean {
     return this._descriptionProvided;
   }
 
+ 
   set descriptionProvided(temp: boolean) {
     this._descriptionProvided = temp;
   }
@@ -53,10 +87,12 @@ export class AssociateFeedbackFormComponent implements OnInit {
   //   this._recievedNotifications = temp;
   // }
 
+  
   get dayNotice(): boolean {
     return this._dayNotice;
   }
 
+  
   set dayNotice(temp: boolean) {
     this._dayNotice = temp;
   }
@@ -80,6 +116,13 @@ export class AssociateFeedbackFormComponent implements OnInit {
 
   }
 
+  /**
+   *
+   * this function is grabbing the associate input and assigning
+   *  it to the interview it belongs to.
+   * 
+   * @memberof AssociateFeedbackFormComponent
+   */
   postAssociateInput() {
 
     this.assignInterviewFormat();
@@ -97,6 +140,12 @@ export class AssociateFeedbackFormComponent implements OnInit {
     window.location.reload();
   
   }
+  /**
+   *
+   * this method help assign an id to the the onject best on the value provided 
+   * 
+   * @memberof AssociateFeedbackFormComponent
+   */
 
   assignInterviewFormat() {
     if (this._interviewFormatStr == 'On Site') {
@@ -110,6 +159,11 @@ export class AssociateFeedbackFormComponent implements OnInit {
     }
   }
 
+  /**
+   *
+   * this method help assign an id to the the onject best on the value provided  
+   * @memberof AssociateFeedbackFormComponent
+   */
   assignProposedFormat() {
     if (this._proposedFormatStr == 'On Site') {
       this.proposedFormat = { 'id': 1, 'formatDesc': this._proposedFormatStr };
