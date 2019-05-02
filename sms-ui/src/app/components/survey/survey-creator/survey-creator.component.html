@@ -1,5 +1,7 @@
 <app-navbar> </app-navbar>
 <div class="container">
+
+    <h2> Create Surveys</h2>
     <div class="form-horizontal">
 
         <!-- Form Name -->
@@ -77,7 +79,7 @@
             <br>
             <!-- Add buttons should be light not dark - FINAL-->
             <div style="padding-left: 5px">
-                <button id="addquestion" name="addbutton" class="btn btn-light" (click)='addQuestion()'>Add Question</button>
+                <button id="addquestion" name="addbutton" class="btn rev-btn" (click)='addQuestion()'>Add Question</button>
             </div>
             <br>
             <div id="questionlist">
@@ -97,7 +99,7 @@
 
             <div class="submit-button">
                 <!-- Buttons should be light -- FINAL-->
-                <button id="singlebutton" name="singlebutton" class="btn btn-light" (click)='submit()'>Submit</button>
+                <button id="singlebutton" name="singlebutton" class="btn rev-btn" (click)='submit()'>Submit</button>
                 <br><br>
                 <!-- Exit should not say exit but reset --FINAL-->
                 <button id="singlebutton" name="singlebutton" class="btn btn-danger" (click)='drop()'>Reset</button>
