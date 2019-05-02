@@ -9,29 +9,31 @@
                 <input id="searchbar" class="form-control" type="text" [(ngModel)]='listFilter' placeholder="Search">
             </div>
         </div>
+      </div>
     </div>
-    <table class="table table-striped" id="box-shadow">
-        <thead>
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Date Created</th>
-                <th scope="col">Date Assigned</th>
-                <th scope="col">Date Closed</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let temp of filteredListOfSurvey; index as i' data-toggle="modal" data-target="#exampleModal" (click)='openSurvey(listOfSurveyHistory[i])'>
-                <td>{{temp.title}}</td>
-                <td>{{temp.description}}</td>
-                <td>{{temp.dateCreated | showTimestamp}}</td>
-                <td>{{listOfSurveyHistory[i].dateAssigned | showTimestamp}}</td>
-                <td>{{temp.closingDate | showTimestamp}} </td>
-            </tr>
+  <table class="table table-striped" id="box-shadow">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">Date Assigned</th>
+        <th scope="col">Date Closed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let temp of filteredListOfSurvey; index as i' data-toggle="modal" data-target="#exampleModal"
+        (click)='openSurvey(listOfSurveyHistory[i])'>
+        <td>{{temp.title}}</td>
+        <td>{{temp.description}}</td>
+        <td>{{temp.dateCreated | showTimestamp}}</td>
+        <td>{{listOfSurveyHistory[i].dateAssigned | showTimestamp}}</td>
+        <td>{{temp.closingDate | showTimestamp}} </td>
+      </tr>
 
-        </tbody>
-    </table>
-</div>
+    </tbody>
+  </table>
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,13 +83,16 @@
                 <button type="submit" class="submitSurveyButton" (click)='submit()' data-dismiss="modal">Submit</button>
             </div>
 
-            <!-- No Surveys to display needs to look better -->
-            <ng-template #elseBlock>
-                <div class="container">
-                    <table class="table table-striped" id="box-shadow">
-                        <th><br></th>
-                        <tr>
-                            <td>
+    </div>
+
+      <!-- No Surveys to display needs to look better -->
+      <ng-template #elseBlock>
+        <div class="container">
+          <table class="table table-striped" id="box-shadow">
+            <th><br></th>
+            <tr>
+              <td>
+
 
                                 <h1>No Surveys Assigned</h1>
                             </td>

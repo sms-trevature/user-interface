@@ -232,5 +232,3 @@ export class SurveyListComponent implements OnInit {
     this.shownEmailList = [];
   }
 }
-
-

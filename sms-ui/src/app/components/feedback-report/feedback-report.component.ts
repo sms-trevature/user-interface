@@ -7,6 +7,12 @@ import { DaynoticeService } from 'src/app/services/daynotice.service';
   templateUrl: './feedback-report.component.html',
   styleUrls: ['./feedback-report.component.scss']
 })
+
+/* the purpose of this component is to retrieve all of the associates whom
+were requested to submit an interview feedback by their staging manager and
+display it on the application.
+
+*/
 export class FeedbackReportComponent implements OnInit {
 
   feedbackList: DayNotice[];
@@ -16,6 +22,13 @@ export class FeedbackReportComponent implements OnInit {
 
 
   constructor(private dayNotice: DaynoticeService) { }
+
+  /*we have getters and setters for the lists and the list filters so we
+  can easily use these functions without actually using the ()
+
+  we are are performing filters within the list that allows us to 
+  search within the list by name and by email.
+  */
 
   get listFilter(): string {
     return this.listFilterVar;
@@ -46,6 +59,9 @@ export class FeedbackReportComponent implements OnInit {
 
     });
   }
+
+  //performs a search filter that dynamicallt changes what is being displayed on the list
+  // to show a specific search function (by email or place/location)
 
   performFilter(filterBy: string): DayNotice[] {
     filterBy = filterBy.toLocaleLowerCase();
