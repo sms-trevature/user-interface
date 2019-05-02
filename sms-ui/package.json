@@ -29,6 +29,7 @@
         "bootstrap": "^4.3.1",
         "chart.js": "^2.8.0",
         "core-js": "^2.5.4",
+        "ng-http-loader": "^5.1.0",
         "ng2-charts": "^2.2.2",
         "ngx-bootstrap": "^4.0.1",
         "rxjs": "~6.3.3",
@@ -58,6 +59,4 @@
         "tslint": "~5.11.0",
         "typescript": "~3.2.2"
     }
-
 }
-

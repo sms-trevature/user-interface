@@ -44,7 +44,7 @@ export class ProfileInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(" this here huh :  " + this.currentUser.userStatus.generic_status);
+    console.log(" this here huh :  " + this.currentUser.userStatus.generalStatus);
     this.http.get('user-service/addresses/is-training-location/true').toPromise().then(data => {
       // alert(data);
       this.addressList = data;
