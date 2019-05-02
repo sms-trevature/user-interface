@@ -82,7 +82,7 @@ export class NewInterviewComponent implements OnInit {
     });
     });
 
-    this.router.navigate(['/CreateInterviewRoute']);
+   window.location.reload();
   }
 
 // tslint:disable-next-line: ban-types
