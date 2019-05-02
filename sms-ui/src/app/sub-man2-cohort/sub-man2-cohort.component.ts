@@ -8,6 +8,11 @@ import { Observable } from 'rxjs';
 import { SmsInterceptor } from '../sms-client/interceptors/sms.interceptor';
 
 
+//In this component we are to show all of the associates in that cohort.
+//we are able to show who the trainer is, an It allows us to add/remove users from the cohort.
+//Allows us to update the trainer or add a cotrainer. We are also able to filter within the cohort
+//Lastly we have it to where you can edit start and end date of cohorts.
+
 @Component({
   selector: 'app-sub-man2-cohort',
   templateUrl: './sub-man2-cohort.component.html',

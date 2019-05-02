@@ -38,7 +38,7 @@ import { AnswerData5Component } from './components/survey/survey-data/graph-comp
 import { AnswerData6Component } from './components/survey/survey-data/graph-components/answer-data6/answer-data6.component';
 import { AnswerData7Component } from './components/survey/survey-data/graph-components/answer-data7/answer-data7.component';
 import { DatePickerModule } from '@syncfusion/ej2-angular-calendars';
-import { StagingMgrFeedbackComponent } from './components/interview/staging-mgr-feedback/staging-mgr-feedback.component';
+import { StagingMgrFeedbackComponent } from './components/interview-list/interview/staging-mgr-feedback/staging-mgr-feedback.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { RegistrationComponent } from './components/registration/registration.component';
