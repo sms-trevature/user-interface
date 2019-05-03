@@ -17,32 +17,6 @@ import { status } from 'src/app/sms-client/dto/Status';
   styleUrls: ['./profile-info.component.sass']
 })
 export class ProfileInfoComponent implements OnInit {
-<<<<<<< HEAD
-  currentAddress: Address[] = [
-    {
-      addressId: 1,
-      alias: 'n.a',
-      street: '123 Buena Vista Way',
-      zip: '91193',
-      city: 'InterpolateCity',
-      state: 'California',
-      country: 'USA',
-      isTrainingLocation: false
-    }
-  ];
-  //user will somehow be retrieved through cognito session
-  currentUser: User[]/* = [
-    {
-      userId: 2,
-      firstName: 'Goofy',
-      lastName: 'lastName',
-      email: 'email@email.com',
-      phoneNumber: '705837213',
-      trainingAddress: this.currentAddress[0],
-      personalAddress: this.currentAddress[0]
-    }
-  ];*/
-=======
   currentAddress: Address;
 
   // user will somehow be retrieved through cognito session
@@ -52,7 +26,6 @@ export class ProfileInfoComponent implements OnInit {
   UserPersonalAddress: AddressObject;
 
  // currentUser: User; 
->>>>>>> 62c3a262792a43347febb67f882345494ad805ac
 
   constructor(private http: HttpClient, private nav: NavbarComponent, private cognitoService: CognitoService) {
     
