@@ -1,10 +1,14 @@
+import { User } from './User';
+import { Address } from 'cluster';
+
 export interface Cohort {
-    cohortId:number;
-    CName: String; 
-    address: String; 
-    Token: String; 
-    StartD: String; 
-    EndD: String; 
-    trainer: String; 
-    Email: String; 
+    cohortId: number;
+    cohortName: string;
+    address: Address;
+    Token: string;
+    StartD: string;
+    EndD: string;
+    trainer: User;
+    coTrainer: User;
+    Email: string;
 }
