@@ -1,5 +1,16 @@
 <body>
     <div class='panel-body col-md-6'>
+        <div id="legendHead" style="display: none;">
+            <hr> <b>Roles Legend </b>
+            <hr>
+        </div>
+        <br>
+        <div id="legend" style="display: none;">
+            <div class="adminRoleIcon">A</div> <b class="spaceLegendIndex"> - Administrator</b>
+            <div class="manstagRoleIcon">MS</div> <b class="spaceLegendIndex">- Staging Manager </b>
+            <div class="trainRoleIcon">T </div> <b class="spaceLegendIndex">- Trainer</b> <br> <br>
+            <div class="ForAddingRoles" style="margin-left: 255px;"> Add </div> <b style="display: inline-block; position: relative; top: -26px;">- For Adding Roles</b>
+        </div>
         <div id="associatesHeader">
             <div style="display: inline;">
                 <input type='text' [(ngModel)]='listFilter' id="filterByThisAssociate" />
@@ -26,14 +37,16 @@
         <table class='table'>
             <tr>
                 <th class="spreadColumn">Name</th>
-                <th class="spreadColumn">Phone Number
+                <th class="spreadColumn">Role
+                    <div id="claricationDiv"> (Of precedence)</div>
                 </th>
                 <th class="spreadColumn">Email</th>
             </tr>
             <tr *ngFor='let temp of filteredEmployees'>
                 <!--    //Jordan was here -->
                 <td>{{temp.firstName}} {{temp.lastName}}</td>
-                <td>{{temp.phoneNumber}}</td>
+                <td id={{temp.email}}><button class="cantBelieveItsNotButton" (click)="editRole(temp.email)">
+            {{functionTest(temp.email)}}</button></td>
                 <td>{{temp.email}}</td>
                 <!-- <div id="{{temp.email+'Button'}}">   -->
                 <td id={{temp.email|uppercase}} style="display: none;">
